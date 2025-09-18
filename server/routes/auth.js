@@ -3,32 +3,27 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import pool from "../config/db.js";
 import validator from "validator";
-
+import validatePassword from "../utils/validatePassword.js";
 const router = express.Router();
 
 router.post("/register", async (req, res) => {
   const { username, email, password, first_name, last_name } = req.body;
 
-  // Input validation
-  if (
-    !username ||
-    !email ||
-    !password ||
-    !first_name ||
-    !last_name
-  ) {
+  if (!username || !email || !password || !first_name || !last_name) {
     return res.status(400).json({ error: "Tous les champs sont requis." });
   }
+
   if (!validator.isEmail(email)) {
     return res.status(400).json({ error: "Format d'email invalide." });
   }
-  // Password: at least 8 chars, at least one letter and one number
-  const passwordPolicy = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-  if (!passwordPolicy.test(password)) {
+
+  if (!validatePassword(password)) {
     return res.status(400).json({
-      error: "Le mot de passe doit contenir au moins 8 caractères, dont au moins une lettre et un chiffre."
+      error:
+        "Le mot de passe doit contenir au moins 12 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial."
     });
   }
+
   try {
     const checkUser = await pool.query("SELECT * FROM users WHERE email=$1 OR username=$2", [email, username]);
     if (checkUser.rows.length > 0) {
