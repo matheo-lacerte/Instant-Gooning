@@ -17,7 +17,7 @@ router.post("/register", async (req, res) => {
     const hash = await bcrypt.hash(password, 10);
 
     await pool.query(
-      `INSERT INTO users (username, email, password_hash, first_name, last_name, is_a_developer)
+      `INSERT INTO users (username, email, password, first_name, last_name, is_a_developer)
        VALUES ($1, $2, $3, $4, $5, false)`,
       [username, email, hash, first_name, last_name]
     );
@@ -36,7 +36,7 @@ router.post("/login", async (req, res) => {
     if (result.rows.length === 0) return res.status(400).json({ error: "Utilisateur introuvable" });
 
     const user = result.rows[0];
-    const valid = await bcrypt.compare(password, user.password_hash);
+    const valid = await bcrypt.compare(password, user.password);
     if (!valid) return res.status(400).json({ error: "Mot de passe invalide" });
 
     const token = jwt.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET, { expiresIn: "1h" });
