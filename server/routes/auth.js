@@ -39,6 +39,9 @@ router.post("/login", async (req, res) => {
     const valid = await bcrypt.compare(password, user.password);
     if (!valid) return res.status(400).json({ error: "Mot de passe invalide" });
 
+    if (!process.env.JWT_SECRET) {
+      return res.status(500).json({ error: "JWT secret is not configured on the server." });
+    }
     const token = jwt.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET, { expiresIn: "1h" });
 
     res.json({ message: "Connexion réussie", token });
