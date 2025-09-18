@@ -14,7 +14,7 @@ export default function validatePassword(password) {
   if (!/[0-9]/.test(password)) return false;
 
   // Au moins un caractère spécial
-  if (!/[@$!%*?&]/.test(password)) return false;
+  if (!/[!@#$%^&*()_\-+={}\[\]|\\:;"'<>,.?/~]/.test(password)) return false;
 
   return true;
 }
