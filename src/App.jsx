@@ -1,6 +1,7 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
 import RootLayout from './app/layout/RootLayout';
-import Home from './pages/home/Home.jsx';
+import Home from './pages/Home/Home.jsx';
+import Login from './pages/Login/Login.jsx';
 import AuthContext from "./app/Context/AuthContext";
 import ErrorPage from "./app/Error/ErrorPage";
 import { useState } from "react";
@@ -11,7 +12,7 @@ const routerLogin = createBrowserRouter([
     element: <RootLayout />,
     errorElement: <ErrorPage />,
     children: [
-      //{ path: "/login", element: <Navigate to="/" replace /> },
+      { path: "/login", element: <Navigate to="/" replace /> },
       { path: "", element: <Home /> },
     ],
   },
@@ -24,7 +25,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { path: "", element: <Home /> },
-      //{ path: "/login", element: <LoginForm /> },
+      { path: "/login", element: <Login /> }
     ],
   },
 ]);
