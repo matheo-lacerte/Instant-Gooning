@@ -1,16 +1,45 @@
-import { Routes, Route } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootLayout from './app/layout/RootLayout';
-import Home from './pages/Home/Home.jsx';
+import Home from './pages/home/Home.jsx';
+import AuthContext from "./app/Context/AuthContext";
+import ErrorPage from "./app/Error/ErrorPage";
+import { useState } from "react";
 
+const routerLogin = createBrowserRouter([
+  {
+    path: "/",
+    element: <RootLayout />,
+    errorElement: <ErrorPage />,
+    children: [
+      //{ path: "/login", element: <Navigate to="/" replace /> },
+      { path: "", element: <Home /> },
+    ],
+  },
+]);
 
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <RootLayout />,
+    errorElement: <ErrorPage />,
+    children: [
+      { path: "", element: <Home /> },
+      //{ path: "/login", element: <LoginForm /> },
+    ],
+  },
+]);
 
+const App = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-export default function App() {
+  const login = () => setIsLoggedIn(true);
+  const logout = () => setIsLoggedIn(false);
+
   return (
-    <Routes>
-      <Route path="/" element={<RootLayout />}>
-        <Route index element={<Home />} />
-      </Route>
-    </Routes>
+    <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
+      <RouterProvider router={isLoggedIn ? routerLogin : router} />
+    </AuthContext.Provider>
   );
-}
+};
+
+export default App;
