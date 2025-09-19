@@ -30,7 +30,7 @@ router.post("/register", async (req, res) => {
     const { data: existing, error: checkError } = await supabase
       .from("users")
       .select("*")
-      .or(`email.eq.${email},username.eq.${username}`)
+      .or(`email.eq.${encodeURIComponent(email)},username.eq.${encodeURIComponent(username)}`)
       .maybeSingle();
 
     if (existing) {
