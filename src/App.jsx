@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom"
 import RootLayout from './app/layout/RootLayout';
 import Home from './pages/Home/Home.jsx';
 import Login from './pages/Login/Login.jsx';
+import Register from './pages/Register/Register.jsx';
 import AuthContext from "./app/Context/AuthContext";
 import ErrorPage from "./app/Error/ErrorPage";
 import { useState } from "react";
@@ -25,7 +26,8 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { path: "", element: <Home /> },
-      { path: "/login", element: <Login /> }
+      { path: "/login", element: <Login /> },
+      { path: "/register", element: <Register /> }
     ],
   },
 ]);
