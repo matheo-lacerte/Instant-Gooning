@@ -4,9 +4,35 @@ import { AuthContext } from "../../app/Context/AuthContext";
 
 export default function Login() {
   const auth = useContext(AuthContext);
+  const navigate = useNavigate();
 
-  const authSubmitHandler = () => {
-    auth.login();
+  const authSubmitHandler = async (event)  => {
+     event.preventDefault();
+
+    const fd = new FormData(event.target);
+    const data = Object.fromEntries(fd.entries());
+    const email = data.email.trim();
+    const password = data.password.trim();
+
+    try{
+      const response = await fetch("http://localhost:5174/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        alert(errorData.error);
+        throw new Error("Données invalides");
+      }
+      const responseData = await response.json();
+      auth.login(responseData.token);
+      alert(responseData.message);
+      navigate("/");
+    } catch (error) {
+      console.error("Erreur lors de la connexion :", error);
+    }
   };
 
   return (
@@ -15,12 +41,12 @@ export default function Login() {
 
       <div className="control-row">
         <div className="control no-margin">
-          <label htmlFor="username">Nom d'utilisateur</label>
+          <label htmlFor="email">Courriel</label>
           <input
-            id="username"
+            id="email"
             type="text"
-            name="username"
-            placeholder="Entrez votre nom"
+            name="email"
+            placeholder="Entrez votre courriel"
             required
           />
         </div>
