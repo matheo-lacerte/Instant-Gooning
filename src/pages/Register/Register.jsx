@@ -1,4 +1,5 @@
 import { useNavigate, Link } from "react-router-dom";
+import "./register.css";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -35,7 +36,8 @@ export default function Register() {
   };
 
   return (
-    <form onSubmit={registerSubmitHandler}>
+    <div className="register-page">
+    <form className="register-card" onSubmit={registerSubmitHandler}>
       <h1>Inscription</h1>
 
       <div className="control-row">
@@ -98,7 +100,8 @@ export default function Register() {
       <div className="form-actions">
         <button className="button">S'inscrire</button>
       </div>
-      <Link to="/login">Déjà inscrit? Connectez-vous ici</Link>
+      <Link className="muted-link" to="/login">Déjà inscrit? Connectez-vous ici</Link>
     </form>
+    </div>
   );
 }

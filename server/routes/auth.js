@@ -55,7 +55,7 @@ router.post("/register", async (req, res) => {
 
     res.status(201).json({ message: "Utilisateur créé avec succès" });
   } catch (err) {
-    console.error("🔥 ERROR register:", err);
+    console.error("ERROR register:", err);
     res.status(500).json({ error: err.message || "Erreur serveur" });
   }
 });
@@ -94,7 +94,7 @@ router.post("/login", async (req, res) => {
 
     res.json({ message: "Connexion réussie", token });
   } catch (err) {
-    console.error("🔥 ERROR login:", err);
+    console.error("ERROR login:", err);
     res.status(500).json({ error: err.message || "Erreur serveur" });
   }
 });
