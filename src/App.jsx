@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
 import RootLayout from './app/layout/RootLayout';
-import Home from './pages/Home/Home.jsx';
+import Home from './pages/home/Home.jsx';
 import Login from './pages/Login/Login.jsx';
 import Register from './pages/Register/Register.jsx';
 import AuthContext from "./app/Context/AuthContext";
