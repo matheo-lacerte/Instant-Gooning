@@ -1,6 +1,6 @@
 import { useNavigate, Link } from "react-router-dom";
 
-export default function Login() {
+export default function Register() {
   const navigate = useNavigate();
 
   const registerSubmitHandler = async (event) => {
