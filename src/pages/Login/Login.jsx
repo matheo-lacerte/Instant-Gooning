@@ -1,47 +1,44 @@
-import { useState, useContext } from "react";
-import { useNavigate, Link } from "react-router-dom";
+
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../app/Context/AuthContext";
-import "./login.css";
+import { Link } from "react-router-dom";
+
 
 export default function Login() {
   const auth = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [submitting, setSubmitting] = useState(false);
-  const [error, setError] = useState("");
 
-  const authSubmitHandler = async (event) => {
+  const authSubmitHandler = async (event)  => {
     event.preventDefault();
-    setError("");
-    setSubmitting(true);
 
-    try {
-      const res = await fetch("/auth/login", {
+    const fd = new FormData(event.target);
+    const data = Object.fromEntries(fd.entries());
+    const email = data.email.trim();
+    const password = data.password.trim();
+
+    try{
+      const response = await fetch("http://localhost:5174/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ email, password }),
       });
 
-      if (!res.ok) {
-        const errData = await res.json().catch(() => ({}));
-        throw new Error(errData?.message || "Échec de la connexion");
+      if (!response.ok) {
+        const errorData = await response.json();
+        alert(errorData.error);
+        throw new Error("Données invalides");
       }
-
-      const data = await res.json();
-
-      // Pass whatever your AuthContext expects (token/user/etc.)
-      auth.login?.(data);
-
+      const responseData = await response.json();
+      auth.login(responseData.token);
+      alert(responseData.message);
       navigate("/");
-    } catch (e) {
-      setError(e.message || "Une erreur est survenue");
-    } finally {
-      setSubmitting(false);
+    } catch (error) {
+      console.error("Erreur lors de la connexion :", error);
     }
   };
-
+  
   return (
     <div className="login-page">
     <form className="login-card" onSubmit={authSubmitHandler}>
@@ -49,11 +46,11 @@ export default function Login() {
 
       <div className="control-row">
         <div className="control no-margin">
-          <label htmlFor="username">Nom d'utilisateur</label>
+          <label htmlFor="username">Courriel</label>
           <input
-            id="username"
+            id="email"
             type="text"
-            name="username"
+            name="email"
             placeholder="Entrez votre nom"
             required
             value={username}
@@ -85,7 +82,8 @@ export default function Login() {
         </button>
       </p>
 
-      <Link className="muted-link" to="/register">Vous ne possedez pas de compte? Inscrivez-vous ici</Link>
+      <Link to="/register">Aucun compte? Inscrivez-vous ici</Link>
+
     </form>
     </div>
   );
