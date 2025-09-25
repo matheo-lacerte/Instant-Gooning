@@ -6,6 +6,7 @@ import Register from './pages/Register/Register.jsx';
 import AuthContext from "./app/Context/AuthContext";
 import ErrorPage from "./app/Error/ErrorPage";
 import { useState } from "react";
+import GameDetail from "./pages/GameDetail/GameDetail.jsx";
 
 const routerLogin = createBrowserRouter([
   {
@@ -15,6 +16,7 @@ const routerLogin = createBrowserRouter([
     children: [
       { path: "/login", element: <Navigate to="/" replace /> },
       { path: "", element: <Home /> },
+      { path: "/game/:id", element: <GameDetail /> },
     ],
   },
 ]);
@@ -27,7 +29,8 @@ const router = createBrowserRouter([
     children: [
       { path: "", element: <Home /> },
       { path: "/login", element: <Login /> },
-      { path: "/register", element: <Register /> }
+      { path: "/register", element: <Register /> },
+      { path: "/game/:id", element: <GameDetail /> }
     ],
   },
 ]);
