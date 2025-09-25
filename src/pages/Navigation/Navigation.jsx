@@ -1,13 +1,14 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../app/Context/AuthContext";
+import "./navigation.css";
 
 const Navigation = () => {
   const auth = useContext(AuthContext);
 
   return (
     <header className="main-header">
-      <div className="title">Instant Gooning</div>
+      <Link to="/" className="title">Instant Gooning</Link>
       <div className="nav-buttons">
         {!auth.isLoggedIn ? (
           <>
