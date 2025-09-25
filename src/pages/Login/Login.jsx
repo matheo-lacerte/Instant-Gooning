@@ -1,11 +1,14 @@
+
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../app/Context/AuthContext";
 import { Link } from "react-router-dom";
 
+
 export default function Login() {
   const auth = useContext(AuthContext);
   const navigate = useNavigate();
+
 
   const authSubmitHandler = async (event)  => {
     event.preventDefault();
@@ -37,7 +40,8 @@ export default function Login() {
   };
   
   return (
-    <form onSubmit={authSubmitHandler}>
+    <div className="login-page">
+    <form className="login-card" onSubmit={authSubmitHandler}>
       <h1>Connexion</h1>
 
       <div className="control-row">
@@ -49,6 +53,9 @@ export default function Login() {
             name="email"
             placeholder="Entrez votre nom"
             required
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            disabled={submitting}
           />
         </div>
 
@@ -60,15 +67,24 @@ export default function Login() {
             name="password"
             placeholder="Entrez votre mot de passe"
             required
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            disabled={submitting}
           />
         </div>
       </div>
 
+      {error && <p className="error">{error}</p>}
+
       <p className="form-actions">
-        <button className="button">Se connecter</button>
+        <button className="button" disabled={submitting}>
+          {submitting ? "Connexion..." : "Se connecter"}
+        </button>
       </p>
 
       <Link to="/register">Aucun compte? Inscrivez-vous ici</Link>
+
     </form>
+    </div>
   );
 }
