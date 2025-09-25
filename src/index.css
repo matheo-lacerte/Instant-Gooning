@@ -1,16 +1,13 @@
-/* --- Theme tokens (global) --- */
 :root {
   --bg: #000000;
   --surface: #0f1115;
   --text: #e5e7eb;
   --muted: #9ca3af;
   --blue: #2563eb;
-  --border: #1f2937; /* slate-800 */
+  --border: #1f2937;
 
   color-scheme: dark;
 }
-
-/* --- Modern base/reset --- */
 *, *::before, *::after { box-sizing: border-box; }
 html, body { height: 100%; }
 
@@ -39,6 +36,4 @@ button, input, textarea, select { font: inherit; color: inherit; }
 
 h1, h2, h3 { line-height: 1.2; margin: 0; }
 p { margin: 0; }
-
-/* Optional layout helper */
 #root { min-height: 100dvh; }
