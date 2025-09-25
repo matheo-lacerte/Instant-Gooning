@@ -1,11 +1,10 @@
-/* Navigation bar: modern black + single-blue theme */
 :root {
 	--nav-bg: #0a0a0a;
 	--nav-surface: #0f1115;
 	--nav-text: #e5e7eb;
 	--nav-muted: #9ca3af;
 	--nav-blue: #2563eb;
-	--nav-border: #1f2937; /* slate-800 */
+	--nav-border: #1f2937;
 }
 
 .main-header {
@@ -27,7 +26,7 @@
 	font-weight: 800;
 	font-size: 1.2rem;
 	letter-spacing: 0.3px;
-	color: var(--nav-text) !important; /* override global link color */
+	color: var(--nav-text) !important;
 	text-decoration: none;
 }
 
@@ -56,16 +55,12 @@
 
 .nav-buttons button:hover { filter: brightness(1.05); }
 .nav-buttons button:active { transform: translateY(1px); }
-
-/* Secondary/ghost variant for less prominent actions */
 .nav-buttons .ghost {
 	background: transparent;
 	color: var(--nav-text);
 	border-color: var(--nav-border);
 }
 .nav-buttons .ghost:hover { border-color: var(--nav-blue); color: #fff; }
-
-/* On very small screens stack content a bit tighter */
 @media (max-width: 420px) {
 	.main-header { padding: 12px 14px; }
 	.title { font-size: 1.05rem; }

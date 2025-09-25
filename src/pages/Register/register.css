@@ -1,4 +1,3 @@
-/* Register page styling, matching login theme: modern black + single-blue */
 :root {
   --bg: #000000;
   --surface: #0f1115;
@@ -38,11 +37,10 @@
   text-align: center;
 }
 
-/* Reuse login control layout sizes for consistency */
 .control-row {
   display: grid;
   gap: 16px;
-  max-width: 420px; /* a bit wider for extra fields */
+  max-width: 420px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -75,7 +73,6 @@
   box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.18);
 }
 
-/* Autofill fix */
 .control input:-webkit-autofill,
 .control input:-webkit-autofill:hover,
 .control input:-webkit-autofill:focus {
@@ -86,8 +83,6 @@
   -webkit-box-shadow: 0 0 0px 1000px #0b0b0b inset !important;
   border: 1px solid #1f2937;
 }
-
-/* Button */
 .button {
   appearance: none;
   border: none;

@@ -1,0 +1,80 @@
+.home-wrap {
+  padding: 22px;
+
+  --gap: 14px;
+  --tile-min-w: 230px;
+  --radius: 12px;
+}
+.home-title {
+  font-size: 1.6rem;
+  margin: 0 0 var(--gap);
+}
+.games-grid {
+  display: grid;
+  gap: var(--gap);
+}
+.ig-grid {
+  grid-template-columns: repeat(auto-fill, minmax(var(--tile-min-w), 1fr));
+}
+.ig-card {
+  transition: transform 0.08s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.ig-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.45);
+  border-color: rgba(37, 99, 235, 0.6);
+}
+.ig-card:focus-visible {
+  outline: 2px solid #93c5fd;
+  outline-offset: 2px;
+}
+.ig-cover {
+  position: relative;
+  aspect-ratio: 8/10;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border, #1f2937);
+  background: #0b0b0b;
+}
+.ig-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.ig-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: #16a34a;
+  color: #fff;
+  font-weight: 800;
+  padding: 6px 8px;
+  border-radius: 8px;
+}
+.ig-overlay {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.85) 60%,
+    rgba(0, 0, 0, 0.95) 100%
+  );
+}
+.ig-title { font-weight: 700; font-size: 0.98rem; color: var(--text, #e5e7eb); }
+.ig-price { font-weight: 800; background: var(--blue, #2563eb); color: #fff; padding: 6px 10px; border-radius: 8px; }
+.thumb-fallback {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  color: var(--muted, #9ca3af);
+  font-weight: 800;
+  font-size: 1.6rem;
+}
