@@ -66,6 +66,8 @@ export default function Login() {
       <p className="form-actions">
         <button className="button">Se connecter</button>
       </p>
+
+      <Link to="/register">Vous ne possedez pas de compte? Inscrivez-vous ici</Link>
     </form>
   );
 }
