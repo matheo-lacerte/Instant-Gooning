@@ -1,15 +1,12 @@
-/* Modern black + single-blue theme */
 :root {
-  --bg: #000000;          /* pure black */
-  --surface: #0f1115;     /* card surface */
-  --text: #e5e7eb;        /* light text */
-  --muted: #9ca3af;       /* muted text */
-  --blue: #2563eb;        /* primary blue (one shade) */
-  --error: #ef4444;       /* red for errors */
+  --bg: #000000;
+  --surface: #0f1115;
+  --text: #e5e7eb;
+  --muted: #9ca3af;
+  --blue: #2563eb;
+  --error: #ef4444;
   --shadow: rgba(0,0,0,0.5);
 }
-
-/* Page container */
 .login-page {
   min-height: 100vh;
   display: grid;
@@ -19,18 +16,16 @@
     var(--bg);
   padding: 24px;
 }
-
-/* Card */
 .login-card {
   width: 100%;
   max-width: 460px;
   background: var(--surface);
-  border: 1px solid #1f2937; /* slate-800 */
+  border: 1px solid #1f2937;
   border-radius: 14px;
   padding: 28px 26px;
   color: var(--text);
   box-shadow: 0 24px 48px var(--shadow);
-  color-scheme: dark; /* ensure native controls prefer dark */
+  color-scheme: dark;
 }
 
 .login-card h1 {
@@ -40,11 +35,10 @@
   text-align: center;
 }
 
-/* Controls layout */
 .control-row {
   display: grid;
   gap: 16px;
-  max-width: 380px;            /* limit input length */
+  max-width: 380px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -62,8 +56,8 @@
   width: 100%;
   padding: 12px 14px;
   border-radius: 10px;
-  border: 1px solid #1f2937; /* slate-800 */
-  background: #0b0b0b; /* near black */
+  border: 1px solid #1f2937;
+  background: #0b0b0b;
   color: var(--text);
   outline: none;
   transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
@@ -77,19 +71,16 @@
   box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.18);
 }
 
-/* Fix Chrome/Edge autofill light background */
 .control input:-webkit-autofill,
 .control input:-webkit-autofill:hover,
 .control input:-webkit-autofill:focus {
   -webkit-text-fill-color: var(--text);
   caret-color: var(--text);
-  transition: background-color 9999s ease-in-out 0s; /* keep our bg */
+  transition: background-color 9999s ease-in-out 0s;
   box-shadow: 0 0 0px 1000px #0b0b0b inset !important;
   -webkit-box-shadow: 0 0 0px 1000px #0b0b0b inset !important;
   border: 1px solid #1f2937;
 }
-
-/* Button: flat single blue */
 .button {
   appearance: none;
   border: none;
@@ -114,32 +105,27 @@
 }
 
 .form-actions {
-  margin: 18px auto 10px;      /* center actions and limit width */
+  margin: 18px auto 10px;
   max-width: 380px;
 }
-
-/* Error */
 .error {
   margin: 10px 0 0;
   color: var(--error);
   font-size: 0.95rem;
 }
-
-/* Link */
 .muted-link {
   display: inline-block;
   margin-top: 6px;
   color: var(--blue);
   text-decoration: none;
   opacity: 0.9;
-  max-width: 380px;            /* align with inputs */
+  max-width: 380px;
   margin-left: auto;
   margin-right: auto;
 }
 
 .muted-link:hover { opacity: 1; text-decoration: underline; }
 
-/* Small screen tweaks */
 @media (max-width: 420px) {
   .login-card { padding: 22px 18px; }
 }

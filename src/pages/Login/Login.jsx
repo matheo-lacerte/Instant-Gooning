@@ -1,41 +1,53 @@
-
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../app/Context/AuthContext";
 import { Link } from "react-router-dom";
+import "./login.css";
 
 
 export default function Login() {
   const auth = useContext(AuthContext);
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
 
 
   const authSubmitHandler = async (event)  => {
     event.preventDefault();
+    setError("");
+    setSubmitting(true);
 
-    const fd = new FormData(event.target);
-    const data = Object.fromEntries(fd.entries());
-    const email = data.email.trim();
-    const password = data.password.trim();
+    const payload = {
+      email: email.trim(),
+      password: password.trim(),
+    };
 
     try{
-      const response = await fetch("http://localhost:5174/api/auth/login", {
+      const response = await fetch("/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify(payload),
       });
 
       if (!response.ok) {
-        const errorData = await response.json();
-        alert(errorData.error);
-        throw new Error("Données invalides");
+        let msg = "Données invalides";
+        try {
+          const errorData = await response.json();
+          if (errorData?.error) msg = errorData.error;
+        } catch {}
+        setError(msg);
+        throw new Error(msg);
       }
-      const responseData = await response.json();
-      auth.login(responseData.token);
-      alert(responseData.message);
+      // const responseData = await response.json();
+      auth.login();
       navigate("/");
     } catch (error) {
       console.error("Erreur lors de la connexion :", error);
+      if (!error.message) setError("Une erreur est survenue.");
+    } finally {
+      setSubmitting(false);
     }
   };
   
@@ -46,15 +58,15 @@ export default function Login() {
 
       <div className="control-row">
         <div className="control no-margin">
-          <label htmlFor="username">Courriel</label>
+          <label htmlFor="email">Courriel</label>
           <input
             id="email"
-            type="text"
+            type="email"
             name="email"
-            placeholder="Entrez votre nom"
+            placeholder="Entrez votre courriel"
             required
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             disabled={submitting}
           />
         </div>
@@ -82,7 +94,7 @@ export default function Login() {
         </button>
       </p>
 
-      <Link to="/register">Aucun compte? Inscrivez-vous ici</Link>
+  <Link className="muted-link" to="/register">Aucun compte? Inscrivez-vous ici</Link>
 
     </form>
     </div>
