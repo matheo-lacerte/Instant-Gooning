@@ -1,6 +1,7 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../app/Context/AuthContext";
+import { Link } from "react-router-dom";
 
 export default function Login() {
   const auth = useContext(AuthContext);
@@ -41,11 +42,11 @@ export default function Login() {
 
       <div className="control-row">
         <div className="control no-margin">
-          <label htmlFor="username">Nom d'utilisateur</label>
+          <label htmlFor="username">Courriel</label>
           <input
-            id="username"
+            id="email"
             type="text"
-            name="username"
+            name="email"
             placeholder="Entrez votre nom"
             required
           />
@@ -67,7 +68,7 @@ export default function Login() {
         <button className="button">Se connecter</button>
       </p>
 
-      <Link to="/register">Vous ne possedez pas de compte? Inscrivez-vous ici</Link>
+      <Link to="/register">Aucun compte? Inscrivez-vous ici</Link>
     </form>
   );
 }
