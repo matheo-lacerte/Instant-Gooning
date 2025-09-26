@@ -1,9 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
-import AuthContext from "../../app/Context/AuthContext.jsx";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Dev() {
-  const auth = useContext(AuthContext);
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
   const [isDev, setIsDev] = useState(null);
@@ -30,20 +28,11 @@ export default function Dev() {
         } catch (err) {
             setIsDev(false);
             alert("Une erreur est survenue. Veuillez réessayer plus tard.");
+            throw err;
         }
     };
     is_a_developer();
   }, [token]);
-
-  const deconnexion = () => {
-    const demande = window.confirm("Voulez-vous vraiment vous déconnecter?");
-    if (demande) {
-      auth.logout();
-      navigate("/");
-    } else {
-      return;
-    }
-  };
 
   const joinDevelopper = async () => {
     try {
@@ -64,6 +53,7 @@ export default function Dev() {
       }
     } catch (err) {
       alert("Une erreur est survenue. Veuillez réessayer plus tard.");
+      throw err;
     }
   };
 
@@ -87,6 +77,7 @@ export default function Dev() {
       }
     } catch (err) {
       alert("Une erreur est survenue. Veuillez réessayer plus tard.");
+      throw err;
     }
   };
 
@@ -118,7 +109,7 @@ export default function Dev() {
           )}
         </div>
       </div>
-      <button onClick={deconnexion}>Déconnexion</button>
+      <button><Link to="/logout">Déconnexion</Link></button>
     </>
   );
 }
