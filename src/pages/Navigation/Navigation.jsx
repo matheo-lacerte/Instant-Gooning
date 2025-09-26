@@ -20,9 +20,9 @@ const Navigation = () => {
             </Link>
           </>
         ) : (
-          <Link to="/">
-            <button id="droite" onClick={auth.logout}>
-              Se déconnecter
+          <Link to="/dev">
+            <button id="droite">
+              Profil
             </button>
           </Link>
         )}

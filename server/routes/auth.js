@@ -86,13 +86,15 @@ router.post("/login", async (req, res) => {
         .json({ error: "JWT secret non configuré sur le serveur." });
     }
 
+    
     const token = jwt.sign(
       { id: user.id, email: user.email },
       process.env.JWT_SECRET,
       { expiresIn: "1h" }
     );
 
-    res.json({ message: "Connexion réussie", token });
+    //res.json({ message: "Connexion réussie", token, user: user});
+    res.json({ message: "Connexion réussie", token});
   } catch (err) {
     console.error("ERROR login:", err);
     res.status(500).json({ error: err.message || "Erreur serveur" });
