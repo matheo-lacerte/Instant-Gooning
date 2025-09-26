@@ -2,8 +2,9 @@ import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom"
 import RootLayout from './app/layout/RootLayout';
 import Home from './pages/Home/Home.jsx';
 import Login from './pages/Login/Login.jsx';
-import Dev from './pages/Dev/Dev.jsx';
+import Logout from './pages/Logout/Logout.jsx';
 import Register from './pages/Register/Register.jsx';
+import Dev from './pages/Dev/Dev.jsx';
 import AuthContext from "./app/Context/AuthContext";
 import ErrorPage from "./app/Error/ErrorPage";
 import { useState } from "react";
@@ -19,6 +20,7 @@ const routerLogin = createBrowserRouter([
       { path: "", element: <Home /> },
       { path: "/game/:id", element: <GameDetail /> },
       { path: "/dev", element: <Dev />},
+      { path: "/logout", element: <Logout />},
     ],
   },
 ]);
