@@ -55,7 +55,6 @@ export default function Dev() {
     } catch (err) {
       alert("Une erreur est survenue. Veuillez réessayer plus tard.");
       throw err;
-      throw err;
     }
   };
 
@@ -79,7 +78,6 @@ export default function Dev() {
       }
     } catch (err) {
       alert("Une erreur est survenue. Veuillez réessayer plus tard.");
-      throw err;
       throw err;
     }
   };
