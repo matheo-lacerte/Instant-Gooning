@@ -35,4 +35,14 @@ router.post("/leave", authMiddleware, requireUser, async (req, res) => {
   }
 });
 
+router.get("", authMiddleware, requireUser, async (req, res) => {
+  const { data: user, error } = await supabase
+    .from("users")
+    .select("*")
+    .eq("id", req.user.id)
+    .single();
+
+  res.json({ is_a_developer: user.is_a_developer });
+});
+
 export default router;
