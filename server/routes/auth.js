@@ -1,12 +1,12 @@
 import express from "express";
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
 import validator from "validator";
+import bcrypt from "bcrypt"; // Pour conserver un hash local si la colonne password est NOT NULL
 import validatePassword from "../utils/validatePassword.js";
-import supabase from "../config/supabase.js";
+import { supabase, supabaseAdmin } from "../config/supabase.js";
 
 const router = express.Router();
 
+// REGISTER
 router.post("/register", async (req, res) => {
   const { username, email, password, first_name, last_name } = req.body;
 
@@ -26,40 +26,78 @@ router.post("/register", async (req, res) => {
   }
 
   try {
-    // Vérifie si déjà existant
-    const { data: existing, error: checkError } = await supabase
-      .from("users")
-      .select("*")
-      .or(`email.eq.${encodeURIComponent(email)},username.eq.${encodeURIComponent(username)}`)
-      .maybeSingle();
+    // On accepte maintenant les doublons de username -> aucune vérification d'unicité
 
-    if (existing) {
-      return res.status(400).json({ error: "Email ou username déjà utilisé" });
+    // SignUp Supabase Auth
+    const { data: authData, error: authError } = await supabase.auth.signUp({
+      email,
+      password
+    });
+
+    if (authError) {
+      if (authError.code === 'email_address_invalid') {
+        return res.status(400).json({ error: 'Adresse email invalide' });
+      }
+      if (authError.message?.includes('already registered')) {
+        return res.status(400).json({ error: 'Email déjà utilisé' });
+      }
+      return res.status(400).json({ error: authError.message });
     }
-    if (checkError && checkError.code !== "PGRST116") throw checkError;
 
-    const hash = await bcrypt.hash(password, 10);
+    if (!authData.user) {
+      return res.status(500).json({ error: "Création utilisateur échouée" });
+    }
 
-    const { error: insertError } = await supabase.from("users").insert([
-      {
+    // Hash local du mot de passe si la colonne password existe / est requise
+    let hashed = null;
+    try {
+      hashed = await bcrypt.hash(password, 10);
+    } catch (e) {
+      console.warn("Hash password failed (continuing without local password)", e);
+    }
+
+    // Insère le profil utilisateur dans la table `users`
+    const { error: profileError } = await supabase
+      .from("users")
+      .insert([
+        {
+          id: authData.user.id,
+          username,
+          first_name,
+          last_name,
+          role: "user",
+          email, // conserver l'email pour usages internes
+          ...(hashed ? { password: hashed } : {})
+        }
+      ]);
+
+    if (profileError) {
+      console.error('Profile insert error:', profileError);
+      // Optionnel: rollback user via admin
+      if (supabaseAdmin) {
+        await supabaseAdmin.auth.admin.deleteUser(authData.user.id);
+      }
+      return res.status(500).json({ error: 'Échec création profil' });
+    }
+
+    res.status(201).json({
+      message: "Utilisateur créé avec succès",
+      user: {
+        id: authData.user.id,
+        email: authData.user.email,
         username,
-        email,
-        password: hash,
         first_name,
         last_name,
-        is_a_developer: false,
-      },
-    ]);
-
-    if (insertError) throw insertError;
-
-    res.status(201).json({ message: "Utilisateur créé avec succès" });
+        role: 'user'
+      }
+    });
   } catch (err) {
-    console.error("ERROR register:", err);
-    res.status(500).json({ error: err.message || "Erreur serveur" });
+    console.error('ERROR register:', err);
+    res.status(500).json({ error: err.message || 'Erreur serveur' });
   }
 });
 
+// LOGIN
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
@@ -68,39 +106,43 @@ router.post("/login", async (req, res) => {
   }
 
   try {
-    const { data: user, error } = await supabase
-      .from("users")
-      .select("*")
-      .eq("email", email)
-      .single();
+    // Utilise l'authentification native de Supabase
+    const { data: authData, error: authError } = await supabase.auth.signInWithPassword({
+      email,
+      password
+    });
 
-    if (error) throw error;
-    if (!user) return res.status(400).json({ error: "Utilisateur introuvable" });
-
-    const valid = await bcrypt.compare(password, user.password);
-    if (!valid) return res.status(400).json({ error: "Mot de passe invalide" });
-
-    if (!process.env.JWT_SECRET) {
-      return res
-        .status(500)
-        .json({ error: "JWT secret non configuré sur le serveur." });
+    if (authError) {
+      return res.status(400).json({ error: "Email ou mot de passe invalide" });
     }
 
-    
-    const token = jwt.sign(
-      { id: user.id, email: user.email },
-      process.env.JWT_SECRET,
-      { expiresIn: "1h" }
-    );
+    if (!authData.user || !authData.session) {
+      return res.status(400).json({ error: "Échec de l'authentification" });
+    }
 
-    //res.json({ message: "Connexion réussie", token, user: user});
-    res.json({ message: "Connexion réussie", token});
+    // Optionnel: récupère les données du profil utilisateur
+    const { data: profile } = await supabase
+      .from("users")
+      .select("id, username, first_name, last_name, role, email")
+      .eq("id", authData.user.id)
+      .single();
+
+    res.json({ 
+      message: "Connexion réussie", 
+      token: authData.session.access_token,
+      user: {
+        id: authData.user.id, // UUID de Supabase
+        email: authData.user.email,
+        ...profile
+      }
+    });
   } catch (err) {
     console.error("ERROR login:", err);
     res.status(500).json({ error: err.message || "Erreur serveur" });
   }
 });
 
+// LOGOUT (coté backend uniquement: frontend doit supprimer le token du stockage)
 router.post("/logout", (_req, res) => {
   res.json({ message: "Déconnecté avec succès" });
 });
