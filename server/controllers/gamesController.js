@@ -1,10 +1,23 @@
-import { supabase } from "../config/supabase.js";
+import { supabase, supabaseAdmin } from "../config/supabase.js";
 
+const ALLOWED_UPDATE_FIELDS = Object.freeze([
+    'title',
+    'description',
+    'genre',
+    'platform',
+    'developer',
+    'publisher',
+    'price',
+    'rating',
+    'cover_url',
+    'trailer_url',
+    'discount'
+]);
 export async function getAllGames(req, res) {
     try {
-        const { data, error} = await supabase
-        .from("games")
-        .select("title, price, cover_url, discount, discounted_price");
+        const { data, error } = await supabase
+            .from("games")
+            .select("title, price, cover_url, discount, discounted_price");
         if (error) throw error;
         res.json(data);
     } catch (err) {
@@ -15,11 +28,11 @@ export async function getAllGames(req, res) {
 export async function getGameById(req, res) {
     const { id } = req.params;
     try {
-        const { data, error} = await supabase
-        .from("games")
-        .select("*")
-        .eq("id", id)
-        .single();
+        const { data, error } = await supabase
+            .from("games")
+            .select("*")
+            .eq("id", id)
+            .single();
         if (error) throw error;
         res.json(data);
     } catch (err) {
@@ -80,6 +93,104 @@ export async function createGame(req, res) {
             .select();
         if (error) throw error;
         res.status(201).json(data[0]);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+}
+
+export async function updateGame(req, res) {
+    const { id } = req.params;
+    // Choix du client: si admin -> supabaseAdmin (bypass RLS), sinon client lié au token (req.supabase) si dispo
+    const client = (req.user?.role === 'admin' && supabaseAdmin) ? supabaseAdmin : (req.supabase || supabase);
+    console.log('DEBUG updateGame start', {
+        idParam: id,
+        userId: req.user?.id,
+        userRole: req.user?.role,
+        hasSupabaseAdmin: !!supabaseAdmin,
+        usingAdminClient: client === supabaseAdmin
+    });
+    try {
+        const { data: game, error } = await client
+            .from('games')
+            .select('id, created_by, price, discount')
+            .eq('id', id)
+            .single();
+        console.log('DEBUG fetched game for update', { game, selectError: error });
+        if (error) {
+            if (error.code === "PGRST116") {
+                res.status(404).json({ error: "jeu introuvable" });
+                return;
+            }
+            res.status(500).json({ error: error.message });
+            return;
+        }
+        if (req.user.role !== "admin" && game.created_by !== req.user.id) {
+            res.status(403).json({ error: "Autorisation refusée" })
+            return;
+        }
+        const body = req.body;
+        const updatePayload = {};
+
+        for (const [key, value] of Object.entries(body)) {
+            if (!ALLOWED_UPDATE_FIELDS.includes(key)) continue;
+            if (value === undefined) continue;
+            if (typeof value === 'string') {
+                const trimmed = value.trim();
+                updatePayload[key] = trimmed;
+            } else {
+                updatePayload[key] = value;
+            }
+        }
+        if (Object.keys(updatePayload).length === 0) {
+            res.status(400).json({ error: "Aucune modification n'a été appliquée" });
+            return;
+        }
+        if ('price' in updatePayload) {
+            const p = Number(updatePayload.price);
+            if (Number.isNaN(p) || p < 0) {
+                return res.status(400).json({ error: 'Prix invalide (doit être un nombre >= 0)' });
+            }
+            updatePayload.price = p;
+        }
+
+        if ('discount' in updatePayload) {
+            const d = Number(updatePayload.discount);
+            if (Number.isNaN(d) || d < 0 || d > 100) {
+                return res.status(400).json({ error: 'Rabais invalide (doit être un nombre >= 0 ou un nombre <= 100)' });
+            }
+            updatePayload.discount = d;
+        }
+
+        if ('rating' in updatePayload) {
+            const r = Number(updatePayload.rating);
+            if (Number.isNaN(r) || r < 0 || r > 10) {
+                return res.status(400).json({ error: 'Rating invalide (doit être un nombre >= 0 ou un nombre <= 10)' });
+            }
+            updatePayload.rating = r;
+        }
+
+        if ('price' in updatePayload || 'discount' in updatePayload) {
+            const effectivePrice = ('price' in updatePayload) ? updatePayload.price : game.price;
+            const effectiveDiscount = ('discount' in updatePayload) ? updatePayload.discount : game.discount;
+
+            const discounted = effectivePrice - (effectivePrice * (effectiveDiscount / 100));
+            updatePayload.discounted_price = Number(discounted.toFixed(2));
+        }
+       
+        const { data: updatedGame, error: updateError } = await client
+            .from('games')
+            .update(updatePayload)
+            .eq('id', id)
+            .select('*')
+            .single();
+
+        console.log('DEBUG after update attempt', { updatePayload, updateError, updatedGameExists: !!updatedGame });
+    
+        if (updateError) {
+            return res.status(500).json({ error: updateError.message });
+        }
+
+        return res.json(updatedGame);
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
