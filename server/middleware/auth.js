@@ -1,4 +1,5 @@
 import { supabase } from "../config/supabase.js";
+import { createClient } from "@supabase/supabase-js";
 
 export default async function authMiddleware(req, res, next) {
     const authHeader = req.headers["authorization"];
@@ -16,8 +17,21 @@ export default async function authMiddleware(req, res, next) {
             return res.status(403).json({ error: "Token invalide" });
         }
 
+        // Crée un client "scopé" avec le token pour que les requêtes suivantes
+        // soient évaluées sous le rôle authenticated (RLS) et non en anon.
+        // On ne l'écrase pas sur l'instance globale pour éviter les effets de bord.
+        req.supabase = createClient(
+            process.env.SUPABASE_URL,
+            process.env.SUPABASE_ANON_KEY,
+            {
+                global: {
+                    headers: { Authorization: `Bearer ${token}` }
+                }
+            }
+        );
+
         // Optionnel: récupère les données du profil utilisateur
-        const { data: profile } = await supabase
+        const { data: profile } = await req.supabase
             .from("users")
             .select("id, username, first_name, last_name, role, email")
             .eq("id", user.id)
