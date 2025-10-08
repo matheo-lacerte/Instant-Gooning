@@ -143,8 +143,12 @@ router.post("/login", async (req, res) => {
 });
 
 // LOGOUT (coté backend uniquement: frontend doit supprimer le token du stockage)
-router.post("/logout", (_req, res) => {
-  res.json({ message: "Déconnecté avec succès" });
+router.post("/logout", async (_req, res) => {
+  const { error } = await supabase.auth.signOut();
+  if (error) {
+    return res.status(500).json({ error: error.message });
+  }
+  res.json({ message: "Déconnexion réussie" });
 });
 
 export default router;
