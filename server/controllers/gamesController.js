@@ -100,22 +100,14 @@ export async function createGame(req, res) {
 
 export async function updateGame(req, res) {
     const { id } = req.params;
-    // Choix du client: si admin -> supabaseAdmin (bypass RLS), sinon client lié au token (req.supabase) si dispo
     const client = (req.user?.role === 'admin' && supabaseAdmin) ? supabaseAdmin : (req.supabase || supabase);
-    console.log('DEBUG updateGame start', {
-        idParam: id,
-        userId: req.user?.id,
-        userRole: req.user?.role,
-        hasSupabaseAdmin: !!supabaseAdmin,
-        usingAdminClient: client === supabaseAdmin
-    });
     try {
         const { data: game, error } = await client
             .from('games')
             .select('id, created_by, price, discount')
             .eq('id', id)
             .single();
-        console.log('DEBUG fetched game for update', { game, selectError: error });
+       
         if (error) {
             if (error.code === "PGRST116") {
                 res.status(404).json({ error: "jeu introuvable" });
@@ -184,7 +176,7 @@ export async function updateGame(req, res) {
             .select('*')
             .single();
 
-        console.log('DEBUG after update attempt', { updatePayload, updateError, updatedGameExists: !!updatedGame });
+       
     
         if (updateError) {
             return res.status(500).json({ error: updateError.message });
@@ -194,4 +186,8 @@ export async function updateGame(req, res) {
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
+}
+
+export async function deleteGame(req, res){
+
 }
