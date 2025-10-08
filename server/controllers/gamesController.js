@@ -107,7 +107,7 @@ export async function updateGame(req, res) {
             .select('id, created_by, price, discount')
             .eq('id', id)
             .single();
-       
+
         if (error) {
             if (error.code === "PGRST116") {
                 res.status(404).json({ error: "jeu introuvable" });
@@ -168,7 +168,7 @@ export async function updateGame(req, res) {
             const discounted = effectivePrice - (effectivePrice * (effectiveDiscount / 100));
             updatePayload.discounted_price = Number(discounted.toFixed(2));
         }
-       
+
         const { data: updatedGame, error: updateError } = await client
             .from('games')
             .update(updatePayload)
@@ -176,8 +176,8 @@ export async function updateGame(req, res) {
             .select('*')
             .single();
 
-       
-    
+
+
         if (updateError) {
             return res.status(500).json({ error: updateError.message });
         }
@@ -188,6 +188,42 @@ export async function updateGame(req, res) {
     }
 }
 
-export async function deleteGame(req, res){
+export async function deleteGame(req, res) {
+    const { id } = req.params;
+    const numericId = Number(id);
+    if (Number.isNaN(numericId)) return res.status(400).json({ error: 'id invalide' });
+    const client = (req.user?.role === 'admin' && supabaseAdmin) ? supabaseAdmin : (req.supabase || supabase);
+    try {
+        const { data: game, error } = await client
+            .from("games")
+            .select("id, created_by")
+            .eq("id", numericId)
+            .single()
+        if (error) {
+            if (error.code === "PGRST116") {
+                res.status(404).json({ error: "jeu introuvable" });
+                return;
+            }
+            res.status(500).json({ error: error.message });
+            return;
+        }
+        if (req.user.role !== 'admin' && game.created_by !== req.user.id) {
+            return res.status(403).json({ error: 'Autorisation refusée' });
+        }
+
+        const { error: deleteError } = await client
+            .from('games')
+            .delete()
+            .eq('id', numericId)
+            .limit(1);
+        
+        if(deleteError){
+            return res.status(500).json({ error: deleteError.message });
+        }
+
+        return res.status(204).send();
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
 
 }
