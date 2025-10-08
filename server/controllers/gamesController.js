@@ -17,7 +17,7 @@ export async function getAllGames(req, res) {
     try {
         const { data, error } = await supabase
             .from("games")
-            .select("title, price, cover_url, discount, discounted_price");
+            .select("id, title, price, cover_url, discount, discounted_price");
         if (error) throw error;
         res.json(data);
     } catch (err) {
@@ -41,6 +41,7 @@ export async function getGameById(req, res) {
 }
 
 export async function createGame(req, res) {
+    const client = (req.user?.role === 'admin' && supabaseAdmin) ? supabaseAdmin : (req.supabase || supabase);
     const {
         title,
         description,
@@ -55,7 +56,10 @@ export async function createGame(req, res) {
         trailer_url,
         discount = 0
     } = req.body;
-
+    if (req.user.role !== "admin" && req.user.role !== "dev") {
+        res.status(403).json({ error: "Autorisation refusée" })
+        return;
+    }
     if (!title || price == null) {
         return res.status(400).json({ error: 'Titre et prix requis' });
     }
@@ -216,8 +220,8 @@ export async function deleteGame(req, res) {
             .delete()
             .eq('id', numericId)
             .limit(1);
-        
-        if(deleteError){
+
+        if (deleteError) {
             return res.status(500).json({ error: deleteError.message });
         }
 
