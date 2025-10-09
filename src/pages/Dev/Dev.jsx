@@ -6,7 +6,8 @@ import "./Dev.css";
 export default function Dev() {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
-  const [isDev, setIsDev] = useState(null);
+  const [isDev, setIsDev] = useState(false);
+ let errorToken = false;
 
   useEffect(() => {
     const is_a_developer = async () => {
@@ -20,20 +21,26 @@ export default function Dev() {
         });
 
         const reponseData = await response.json();
+
         if (response.ok) {
           setIsDev(reponseData.is_a_developer);
         } else {
-          setIsDev(false);
-          alert(reponseData.error);
+          if (!errorToken) {
+            alert(reponseData.error);
+            errorToken = true;
+          }
         }
       } catch (err) {
-        setIsDev(false);
-        alert("Une erreur est survenue. Veuillez réessayer plus tard.");
+        if (!errorToken) {
+          setIsDev(false);
+          alert("Une erreur est survenue. Veuillez réessayer plus tard.");
+          errorToken = true;
+        }
         throw err;
       }
     };
     is_a_developer();
-  });
+  }, []);
 
   const joinDevelopper = async () => {
     try {
@@ -82,6 +89,10 @@ export default function Dev() {
     }
   };
 
+  const backHome = () => {
+    navigate("/");
+  }
+
   return (
     <div className="dev">
       <div className="rangee">
@@ -102,32 +113,22 @@ export default function Dev() {
             <>
               <h3>Souhaitez-vous devenir développeur?</h3>
               <div className="btn-row">
-                <button className="button_dev" onClick={joinDevelopper}>
-                  oui
-                </button>
-                <Link to="/">
-                  <button className="button_dev">non</button>
-                </Link>
+                <button className="button_dev" onClick={joinDevelopper}>oui</button>
+                <button className="button_dev" onClick={backHome}>non</button>
               </div>
             </>
           ) : (
             <>
               <h3>Vous ne voulez plus être développeur?</h3>
               <div className="btn-row">
-                <button className="button_dev" onClick={leaveDevelopper}>
-                  oui
-                </button>
-                <Link to="/">
-                  <button className="button_dev">non</button>
-                </Link>
+                <button className="button_dev" onClick={leaveDevelopper}>oui</button>
+                <button className="button_dev" onClick={backHome}>non</button>
               </div>
             </>
           )}
         </div>
       </div>
-      <button className="button_dev">
-        <Link to="/logout">Déconnexion</Link>
-      </button>
+        <Link to="/logout" className="button_dev">Déconnexion</Link>
     </div>
   );
 }
