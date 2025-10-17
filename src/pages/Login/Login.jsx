@@ -10,6 +10,7 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
 
   const authSubmitHandler = async (event) => {
@@ -50,17 +51,8 @@ export default function Login() {
     }
   };
 
-  const changementImage = () => {
-    const image = document.querySelector(".image");
-    const password = document.getElementById("password");
-
-    if (image.src.includes("ouvert.svg")) {
-      image.src = "fermer.svg";
-      password.type = "text";
-    } else {
-      image.src = "ouvert.svg";
-      password.type = "password";
-    }
+  const changement = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
@@ -88,7 +80,7 @@ export default function Login() {
             <div className="password-container">
               <input
                 id="password"
-                type="password"
+                type= {showPassword ? "text" : "password"}
                 name="password"
                 placeholder="Entrez votre mot de passe"
                 required
@@ -96,8 +88,8 @@ export default function Login() {
                 onChange={(e) => setPassword(e.target.value)}
                 disabled={submitting}
               />
-              <button onClick={changementImage} className="eye-button" type="button">
-                <img src="ouvert.svg" className="image"/>
+              <button onClick={changement} className="eye-button" type="button">
+                <img src={showPassword ? "fermer.svg" : "ouvert.svg"} className="image"/>
               </button>
             </div>
           </div>
