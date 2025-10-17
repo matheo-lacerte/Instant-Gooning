@@ -18,6 +18,7 @@ export default function GameDetail() {
       setGame(reponseData);
     } catch (err) {
       alert("Une erreur est survenue. Veuillez réessayer plus tard.");
+      throw err;
     }
   });
   if (!game) {
