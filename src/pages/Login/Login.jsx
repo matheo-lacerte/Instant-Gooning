@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../app/Context/AuthContext";
 import { Link } from "react-router-dom";
 import "./login.css";
-// test
+
 export default function Login() {
   const auth = useContext(AuthContext);
   const navigate = useNavigate();
@@ -31,12 +31,10 @@ export default function Login() {
 
       if (!response.ok) {
         let msg = "Données invalides";
-        try {
-          const errorData = await response.json();
-          if (errorData?.error) msg = errorData.error;
-        } catch {
+        const errorData = await response.json();
+        if (errorData?.error) {
+          msg = errorData.error;
           setError(msg);
-          throw new Error(msg);
         }
       }
 
@@ -52,9 +50,22 @@ export default function Login() {
     }
   };
 
+  const changementImage = () => {
+    const image = document.querySelector(".image");
+    const password = document.getElementById("password");
+
+    if (image.src.includes("ouvert.svg")) {
+      image.src = "fermer.svg";
+      password.type = "text";
+    } else {
+      image.src = "ouvert.svg";
+      password.type = "password";
+    }
+  };
+
   return (
     <div className="login-page">
-      <form className="login-card" onSubmit={authSubmitHandler}>
+      <div className="login-card" onSubmit={authSubmitHandler}>
         <h1>Connexion</h1>
 
         <div className="control-row">
@@ -74,23 +85,28 @@ export default function Login() {
 
           <div className="control no-margin">
             <label htmlFor="password">Mot de passe</label>
-            <input
-              id="password"
-              type="password"
-              name="password"
-              placeholder="Entrez votre mot de passe"
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              disabled={submitting}
-            />
+            <div className="password-container">
+              <input
+                id="password"
+                type="password"
+                name="password"
+                placeholder="Entrez votre mot de passe"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                disabled={submitting}
+              />
+              <button onClick={changementImage} className="eye-button" type="button">
+                <img src="ouvert.svg" className="image"/>
+              </button>
+            </div>
           </div>
         </div>
 
         {error && <p className="error">{error}</p>}
 
         <p className="form-actions">
-          <button className="button" disabled={submitting}>
+          <button className="button" disabled={submitting} onClick={authSubmitHandler}>
             {submitting ? "Connexion..." : "Se connecter"}
           </button>
         </p>
@@ -98,7 +114,7 @@ export default function Login() {
         <Link className="muted-link" to="/register">
           Aucun compte? Inscrivez-vous ici
         </Link>
-      </form>
+      </div>
     </div>
   );
 }
