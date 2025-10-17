@@ -120,3 +120,35 @@
 @media (max-width: 420px) {
   .register-card { padding: 22px 18px; }
 }
+
+.password-container {
+  justify-content: center;
+  display: flex;
+}
+
+.password-container #password {
+  border-radius: 10px 0 0 10px;
+}
+
+.image {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+
+.eye-button {
+  background: var(--blue);
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  transition: transform 0.06s ease, box-shadow 0.2s ease, filter 0.2s ease;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  width: 50px;
+  height: 50px;
+  border-radius: 0 10px 10px 0;
+}
