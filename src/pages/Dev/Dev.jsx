@@ -7,7 +7,7 @@ export default function Dev() {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
   const [isDev, setIsDev] = useState(false);
- let errorToken = false;
+  let errorToken = false;
 
   useEffect(() => {
     const is_a_developer = async () => {
