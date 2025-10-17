@@ -7,8 +7,8 @@ export default function GameCard({ game }) {
 	return (
 		<Link to={`/game/${game.id}`} className="game-card ig-card">
 			<div className="ig-cover">
-				{game.cover ? (
-					<img src={game.cover} alt="" loading="lazy" />
+				{game.cover_url ? (
+					<img src={game.cover_url} alt="" loading="lazy" />
 				) : (
 					<div className="thumb-fallback">{game.title?.[0] ?? "?"}</div>
 				)}
