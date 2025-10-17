@@ -5,6 +5,7 @@ import "./register.css";
 export default function Register() {
   const navigate = useNavigate();
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const registerSubmitHandler = async (event) => {
     event.preventDefault();
@@ -43,22 +44,13 @@ export default function Register() {
     }
   };
 
-  const changementImage = () => {
-    const image = document.querySelector(".image");
-    const password = document.getElementById("password");
-
-    if (image.src.includes("ouvert.svg")) {
-      image.src = "fermer.svg";
-      password.type = "text";
-    } else {
-      image.src = "ouvert.svg";
-      password.type = "password";
-    }
+  const changement = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
     <div className="register-page">
-      <form className="register-card" onSubmit={registerSubmitHandler}>
+      <div className="register-card">
         <h1>Inscription</h1>
 
         <div className="control-row">
@@ -111,27 +103,27 @@ export default function Register() {
             <div className="password-container">
               <input
                 id="password"
-                type="password"
+                type= {showPassword ? "text" : "password"}
                 name="password"
                 placeholder="Entrez votre mot de passe"
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <button onClick={changementImage} className="eye-button" type="button">
-                <img src="ouvert.svg" className="image"/>
+              <button onClick={changement} className="eye-button" type="button">
+                <img src={showPassword ? "fermer.svg" : "ouvert.svg"} className="image"/>
               </button>
             </div>
           </div>
         </div>
 
         <div className="form-actions">
-          <button className="button">S'inscrire</button>
+          <button className="button" onClick={registerSubmitHandler}>S'inscrire</button>
         </div>
         <Link className="muted-link" to="/login">
           Déjà inscrit? Connectez-vous ici
         </Link>
-      </form>
+      </div>
     </div>
   );
 }
