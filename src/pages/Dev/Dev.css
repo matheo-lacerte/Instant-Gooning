@@ -11,7 +11,7 @@
   box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5);
   background: #0f1115;
   padding: 0 5px;
-  height: 125px;
+  height: 500px;
 }
 
 .dev {
@@ -21,26 +21,29 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 800px;
+  max-width: 1200px;
   color: #e5e7eb;
   color-scheme: dark;
 }
 
-.colonnes:first-child {
-  max-width: 25%;
-}
-
-.colonnes:last-child {
-  max-width: 75%;
-}
 .colonnes {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   padding: 0 16px;
   width: 100%;
+}
+
+.colonnes:first-child {
+  max-width: 25%;
+  justify-content: center;
+  align-items: center;
+}
+
+.colonnes:last-child {
+  max-width: 75%;
 }
 
 .colonnes:not(:last-child) {
@@ -69,4 +72,30 @@
 
 .button_dev:last-child {
   align-self: flex-end;
+}
+
+.margin-colonne {
+  padding: 30px;
+  height: 100%;
+}
+
+.top{
+  padding: 10px;
+}
+
+textarea{
+  resize: none;
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.btn-envoyer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 5px;
+  width: 100%;
+}
+
+.space {
+  padding-bottom: 20px;
 }

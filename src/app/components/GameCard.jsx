@@ -19,7 +19,7 @@ export default function GameCard({ game }) {
 
 				<div className="ig-overlay">
 					<div className="ig-title">{game.title}</div>
-					<div className="ig-price">{game.price}</div>
+					<div className="ig-price">{game.price}$</div>
 				</div>
 			</div>
 		</Link>
