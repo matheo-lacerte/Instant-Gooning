@@ -16,8 +16,8 @@ import GameDetail from "./pages/GameDetail/GameDetail.jsx";
 import Admin from "./pages/Admin/Admin.jsx";
 import RequireAdmin from "./app/components/Guards/RequireAdmin.jsx";
 import { jwtDecode } from "jwt-decode";
+import Search from "./pages/Search/Search.jsx";
 
-// Router pour NON-connectés (inchangé)
 const router = createBrowserRouter([
   {
     path: "/",
@@ -28,11 +28,13 @@ const router = createBrowserRouter([
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
       { path: "/game/:id", element: <GameDetail /> },
+      { path: "/search", element: <Search /> },
     ],
   },
 ]);
 
 const App = () => {
+  const [search, setSearch] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
     const token = localStorage.getItem("token");
     if (!token) return false;
@@ -49,7 +51,6 @@ const App = () => {
     return true;
   });
 
-  // On lit l'utilisateur (et son rôle) depuis le localStorage.
   const user = (() => {
     try {
       return JSON.parse(localStorage.getItem("user") || "null");
@@ -58,10 +59,9 @@ const App = () => {
     }
   })();
 
-  // IMPORTANT: login accepte (token, user) pour stocker le rôle
-  const login = (token, userObj) => {
+  const login = (token, user) => {
     localStorage.setItem("token", token);
-    localStorage.setItem("user", JSON.stringify(userObj || null));
+    localStorage.setItem("user", JSON.stringify(user || null));
     setIsLoggedIn(true);
   };
 
@@ -71,19 +71,16 @@ const App = () => {
     setIsLoggedIn(false);
   };
 
-  // Routes disponibles quand on est connecté
   const loggedInChildren = [
     { path: "/login", element: <Navigate to="/" replace /> },
     { path: "", element: <Home /> },
     { path: "/game/:id", element: <GameDetail /> },
     { path: "/dev", element: <Dev /> },
     { path: "/logout", element: <Logout /> },
+    { path: "/search", element: <Search /> },
   ];
 
-  // On n'ajoute /admin QUE si l'utilisateur est admin
   if (user?.role === "admin") {
-    // RequireAdmin est optionnel ici (la route n’existe pas pour les non-admins),
-    // mais on le garde en garde supplémentaire.
     loggedInChildren.push({
       path: "/admin",
       element: (
@@ -94,7 +91,6 @@ const App = () => {
     });
   }
 
-  // Router pour connectés (construit dynamiquement selon le rôle)
   const routerLoginLocal = createBrowserRouter([
     {
       path: "/",
@@ -105,7 +101,7 @@ const App = () => {
   ]);
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
+    <AuthContext.Provider value={{ isLoggedIn, login, logout, search, setSearch }}>
       <RouterProvider router={isLoggedIn ? routerLoginLocal : router} />
     </AuthContext.Provider>
   );

@@ -17,11 +17,12 @@ export default function Home() {
       setListeJeux(reponseData);
     } catch (err) {
       alert("Une erreur est survenue. Veuillez réessayer plus tard.");
+      throw err;
     }
   });
 
   return (
-    <div className="home-wrap">
+    <div className="wrap">
       <h1 className="home-title">Jeux populaires</h1>
       <div className="games-grid ig-grid">
         {listeJeux.map((j) => (
