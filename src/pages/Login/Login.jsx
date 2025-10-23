@@ -57,7 +57,7 @@ export default function Login() {
 
   return (
     <div className="login-page">
-      <div className="login-card" onSubmit={authSubmitHandler}>
+      <div className="login-card">
         <h1>Connexion</h1>
 
         <div className="control-row">
