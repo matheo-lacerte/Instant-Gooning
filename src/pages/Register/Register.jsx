@@ -4,31 +4,29 @@ import "./register.css";
 
 export default function Register() {
   const navigate = useNavigate();
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
   const registerSubmitHandler = async (event) => {
     event.preventDefault();
 
-    const fd = new FormData(event.target);
-    const data = Object.fromEntries(fd.entries());
-    const username = data.username.trim();
-    const password = data.password.trim();
-    const email = data.email.trim();
-    const first_name = data.first_name.trim();
-    const last_name = data.last_name.trim();
+    const payload = {
+      username: username.trim(),
+      email: email.trim(),
+      password: password.trim(),
+      first_name: firstName.trim(),
+      last_name: lastName.trim(),
+    };
 
     try {
       const response = await fetch("http://localhost:5174/api/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          username,
-          email,
-          password,
-          first_name,
-          last_name,
-        }),
+        body: JSON.stringify(payload),
       });
 
       if (!response.ok) {
@@ -62,6 +60,8 @@ export default function Register() {
               name="email"
               placeholder="Entrez votre courriel"
               required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
@@ -73,6 +73,8 @@ export default function Register() {
               name="username"
               placeholder="Entrez votre nom d'utilisateur"
               required
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
             />
           </div>
 
@@ -84,6 +86,8 @@ export default function Register() {
               name="first_name"
               placeholder="Entrez votre prénom"
               required
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
             />
           </div>
 
@@ -95,6 +99,8 @@ export default function Register() {
               name="last_name"
               placeholder="Entrez votre nom"
               required
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
             />
           </div>
 
@@ -103,7 +109,7 @@ export default function Register() {
             <div className="password-container">
               <input
                 id="password"
-                type= {showPassword ? "text" : "password"}
+                type={showPassword ? "text" : "password"}
                 name="password"
                 placeholder="Entrez votre mot de passe"
                 required
@@ -111,14 +117,19 @@ export default function Register() {
                 onChange={(e) => setPassword(e.target.value)}
               />
               <button onClick={changement} className="eye-button" type="button">
-                <img src={showPassword ? "fermer.svg" : "ouvert.svg"} className="image"/>
+                <img
+                  src={showPassword ? "fermer.svg" : "ouvert.svg"}
+                  className="image"
+                />
               </button>
             </div>
           </div>
         </div>
 
         <div className="form-actions">
-          <button className="button" onClick={registerSubmitHandler}>S'inscrire</button>
+          <button className="button" onClick={registerSubmitHandler}>
+            S'inscrire
+          </button>
         </div>
         <Link className="muted-link" to="/login">
           Déjà inscrit? Connectez-vous ici
