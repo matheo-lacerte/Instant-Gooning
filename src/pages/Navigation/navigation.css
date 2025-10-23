@@ -65,3 +65,29 @@
 	.main-header { padding: 12px 14px; }
 	.title { font-size: 1.05rem; }
 }
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--nav-border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.search-bar input {
+  border: none;
+  padding: 6px 10px;
+  width: 500px;
+  outline: none;
+  background: var(#5c5656);
+  color: var(white);
+}
+
+.search-bar button {
+  background: var(--nav-blue);
+  border: none;
+  cursor: pointer;
+  padding: 3px 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
