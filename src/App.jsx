@@ -17,6 +17,7 @@ import Admin from "./pages/Admin/Admin.jsx";
 import RequireAdmin from "./app/components/Guards/RequireAdmin.jsx";
 import { jwtDecode } from "jwt-decode";
 import Search from "./pages/Search/Search.jsx";
+import Profile from "./pages/Profile/Profile.jsx"
 
 const router = createBrowserRouter([
   {
@@ -78,6 +79,7 @@ const App = () => {
     { path: "/dev", element: <Dev /> },
     { path: "/logout", element: <Logout /> },
     { path: "/search", element: <Search /> },
+    { path: "/profile", element: <Profile /> },
   ];
 
   if (user?.role === "admin") {
