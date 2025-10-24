@@ -21,6 +21,7 @@ export async function postForm(req, res) {
             .from('request')
             .select('id')
             .eq('created_by', req.user.id)
+            .eq('requestState', 'En examination')
             .limit(1);
 
         if (existingError) return res.status(500).json({ error: existingError.message });
