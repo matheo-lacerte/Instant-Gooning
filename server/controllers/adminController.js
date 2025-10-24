@@ -74,18 +74,17 @@ export async function acceptRequest(req, res){
         const userId = req.body?.userId;
         if (!userId) return res.status(400).json({ error: 'ID utilisateur requis' });
         const client = supabaseAdmin || supabase;
-        const { error } = await client
+        const { error: userError } = await client
             .from("users")
             .update({ role: "dev" })
             .eq("id", userId);
 
-        const { error: deleteError } = await client
+        const { error: requestError } = await client
             .from("request")
-            .delete('*')
+            .update({ requestState: "Accepté" })
             .eq("created_by", userId);
-
-        if (deleteError) return res.status(500).json({ error: deleteError.message });
-        if (error) return res.status(500).json({ error: error.message });
+        if (requestError) return res.status(500).json({ error: requestError.message });
+        if (userError) return res.status(500).json({ error: userError.message });
         return res.json({ message: "Rôle développeur ajouté avec succès" });
     } catch (err) {
         return res.status(500).json({ error: err.message });
