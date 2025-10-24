@@ -5,6 +5,7 @@ import devRoutes from "./routes/dev.js";
 import { supabase } from "./config/supabase.js";
 import gamesRoutes from "./routes/games.js";
 import adminRoutes from "./routes/admin.js";
+import userRoutes from "./routes/user.js";
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -13,6 +14,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/games", gamesRoutes);
 app.use("/api/dev", devRoutes);
 app.use("/api/admin", adminRoutes);
+app.use("/api/user", userRoutes);
 app.get("/api/health", (_req, res) => res.json({ ok: true }));
 
 // Test DB
