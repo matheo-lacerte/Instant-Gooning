@@ -45,21 +45,24 @@ export async function postForm(req, res) {
 }
 
 export async function getAllRequests(req, res) {
-    try {
-        if (!req.user) return res.status(401).json({ error: 'Non authentifié' });
-        if (req.user?.role !== "admin") {
-            return res.status(403).json({ error: "Accès refusé" });
-        }
-        const { data, error } = await supabase
-            .from("request")
-            .select("*")
-            .order("created_at", { ascending: true });
-        if (error) return res.status(500).json({ error: error.message });
-        return res.json(data);
-    } catch (err) {
-        return res.status(500).json({ error: err.message });
+  try {
+    if (!req.user) return res.status(401).json({ error: 'Non authentifié' });
+    if (req.user.role !== 'admin') return res.status(403).json({ error: 'Accès refusé' });
+
+    if (!supabaseAdmin) {
+      return res.status(500).json({ error: 'Service role non configuré' });
     }
 
+    const { data, error } = await supabaseAdmin
+      .from('request')
+      .select('*')
+      .order('created_at', { ascending: true }); 
+
+    if (error) return res.status(500).json({ error: error.message });
+    return res.json(data);
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
 }
 
 export async function acceptRequest(req, res){
