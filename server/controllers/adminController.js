@@ -43,9 +43,37 @@ export async function getAllRequests(req, res) {
         const { data, error } = await supabase
             .from("request")
             .select("*")
-            .order("created_at", { ascending: false });
+            .order("created_at", { ascending: true });
         if (error) return res.status(500).json({ error: error.message });
         return res.json(data);
+    } catch (err) {
+        return res.status(500).json({ error: err.message });
+    }
+
+}
+
+export async function acceptRequest(req, res){
+    try {
+        if (!req.user) return res.status(401).json({ error: 'Non authentifié' });
+        if (req.user?.role !== "admin") {
+            return res.status(403).json({ error: "Accès refusé" });
+        }
+        const userId = req.body?.userId;
+        if (!userId) return res.status(400).json({ error: 'ID utilisateur requis' });
+        const client = supabaseAdmin || supabase;
+        const { error } = await client
+            .from("users")
+            .update({ role: "dev" })
+            .eq("id", userId);
+
+        const { error: deleteError } = await client
+            .from("request")
+            .delete('*')
+            .eq("created_by", userId);
+
+        if (deleteError) return res.status(500).json({ error: deleteError.message });
+        if (error) return res.status(500).json({ error: error.message });
+        return res.json({ message: "Rôle développeur ajouté avec succès" });
     } catch (err) {
         return res.status(500).json({ error: err.message });
     }
