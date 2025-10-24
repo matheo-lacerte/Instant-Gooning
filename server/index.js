@@ -6,9 +6,13 @@ import { supabase } from "./config/supabase.js";
 import gamesRoutes from "./routes/games.js";
 import adminRoutes from "./routes/admin.js";
 import userRoutes from "./routes/user.js";
+import { globalApiLimiter } from "./middleware/rateLimit.js";
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+// Apply a global limiter to all API routes
+app.use("/api", globalApiLimiter);
 
 app.use("/api/auth", authRoutes);
 app.use("/api/games", gamesRoutes);
@@ -33,4 +37,3 @@ const port = process.env.PORT || 2000;
 app.listen(port, () =>
   console.log(`API server on http://localhost:${port}`)
 );
-0

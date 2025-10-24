@@ -3,11 +3,12 @@ import validator from "validator";
 import bcrypt from "bcrypt"; // Pour conserver un hash local si la colonne password est NOT NULL
 import validatePassword from "../utils/validatePassword.js";
 import { supabase, supabaseAdmin } from "../config/supabase.js";
+import { loginLimiter, registerLimiter } from "../middleware/rateLimit.js";
 
 const router = express.Router();
 
 // REGISTER
-router.post("/register", async (req, res) => {
+router.post("/register", registerLimiter, async (req, res) => {
   const { username, email, password, first_name, last_name } = req.body;
 
   if (!username || !email || !password || !first_name || !last_name) {
@@ -98,7 +99,7 @@ router.post("/register", async (req, res) => {
 });
 
 // LOGIN
-router.post("/login", async (req, res) => {
+router.post("/login", loginLimiter, async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
