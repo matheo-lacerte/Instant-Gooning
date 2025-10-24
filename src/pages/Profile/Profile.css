@@ -1,0 +1,64 @@
+.userData {
+  width: 100%;
+  flex-direction: column;
+  min-height: 300px;
+}
+
+.userData .control {
+  align-self: flex-start;
+}
+
+.userData .control input {
+  margin-bottom: 15px;
+  width: 500px;
+  height: 40px;
+}
+
+.userData h1 {
+  font-size: 32px;
+  margin-bottom: 15px;
+  text-align: center;
+  width: 100%;
+}
+
+.edit-button {
+  background-color: var(--blue);
+  color: white;
+  border: none;
+  padding: 7px 24px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  align-self: flex-end;
+  margin-top: auto;
+  width: 315px;
+}
+
+.row-bottom {
+  margin-top: auto;
+  align-self: flex-end;
+}
+
+.row-bottom button {
+  margin-left: 10px;
+}
+
+.userData label {
+  font-size: 20px;  
+}
+
+.save {
+  background-color: green;
+}
+
+.cancel {
+  background-color: rgb(168, 9, 9);
+}
+
+.userData .password-container input {
+  margin-bottom: 15px;
+  width: 500px;
+  height: auto;
+}

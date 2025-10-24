@@ -103,7 +103,9 @@ export default function Dev() {
         <div className="colonnes">
           <ul>
             <li>
-              <h1>Profil</h1>
+              <h1>
+                <Link to="/profile">Profil</Link>
+              </h1>
             </li>
             <li>
               <h1>
