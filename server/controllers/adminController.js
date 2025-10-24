@@ -99,12 +99,18 @@ export async function declineRequest(req, res){
         if (req.user?.role !== "admin") {
             return res.status(403).json({ error: "Accès refusé" });
         }
+        const body = req.body ?? {};
+        const reasonRaw = body?.reason;
+
+        const reason = typeof reasonRaw === 'string' ? reasonRaw.trim() : '';
+
+        if (!reason) return res.status(400).json({ error: 'Raison requise' });
         const userId = req.body?.userId;
         if (!userId) return res.status(400).json({ error: 'ID utilisateur requis' });
         const client = supabaseAdmin || supabase;
         const { error: requestError } = await client
             .from("request")
-            .update({ requestState: "Refusé" })
+            .update({ requestState: "Refusé", reason: reason })
             .eq("created_by", userId)
             .eq("requestState", "En examination");
         if (requestError) return res.status(500).json({ error: requestError.message });
