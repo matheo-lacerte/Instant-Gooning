@@ -56,7 +56,7 @@ export const devFormLimiter = createLimiter({
 // Admin endpoints (list/accept/decline)
 export const adminActionLimiter = createLimiter({
   windowMs: 60 * 1000, // 1 minute
-  max: 60, // generous but prevents abuse
+  max: 20, 
   message: "Trop d'actions administrateur. Réessayez plus tard.",
   keyGenerator: (req) => req.user?.id || req.ip,
 });

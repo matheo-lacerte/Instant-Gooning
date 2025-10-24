@@ -53,3 +53,25 @@ export async function changePassword(req, res) {
     return res.status(500).json({ error: err.message });
   }
 }
+
+export async function changeUserProfile(req, res) {
+  try {
+    if (!req.user) return res.status(401).json({ error: 'Non authentifié' });
+    const { first_name, last_name, username, email } = req.body;
+    if (!first_name || !last_name || !username || !email) {
+      return res.status(400).json({ error: 'Tous les champs sont requis.' });
+    }
+    const client = req.supabase;
+    const { error } = await client
+      .from('users')
+      .update({ first_name, last_name, username, email })
+      .eq('id', req.user.id);
+    if (error) {
+      return res.status(500).json({ error: error.message });
+    }
+    return res.json({ message: 'Profil mis à jour avec succès.' });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+}
+
