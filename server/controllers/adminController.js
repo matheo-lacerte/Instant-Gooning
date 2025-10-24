@@ -17,6 +17,16 @@ export async function postForm(req, res) {
         if (!description) return res.status(400).json({ error: 'Description requise' });
 
         const client = req.supabase;
+        const { data: existing, error: existingError } = await client
+            .from('request')
+            .select('id')
+            .eq('created_by', req.user.id)
+            .limit(1);
+
+        if (existingError) return res.status(500).json({ error: existingError.message });
+        if (existing && existing.length > 0) {
+            return res.status(409).json({ code: 'ALREADY_EXISTS', message: 'Vous avez déjà une demande en attente' });
+        }
         const payload = { title, description };
 
         const {data, error } = await client
