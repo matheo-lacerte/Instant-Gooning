@@ -6,92 +6,34 @@ import "./Dev.css";
 export default function Dev() {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
-  const [isDev, setIsDev] = useState(false);
+  const user = localStorage.getItem("user");
+  const userParsed = JSON.parse(user);
   const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-  let errorToken = false;
+  const [description, setDescription] = useState("");
 
-  useEffect(() => {
-    const is_a_developer = async () => {
-      try {
-        const response = await fetch("http://localhost:5174/api/dev/", {
-          method: "GET",
+  const formSubmitDev = async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:5174/api/admin/request-dev",
+        {
+          method: "POST",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-        });
-
-        const reponseData = await response.json();
-
-        if (response.ok) {
-          setIsDev(reponseData.is_a_developer);
-        } else {
-          if (!errorToken) {
-            alert(reponseData.error);
-            errorToken = true;
-          }
+          body: JSON.stringify({ title, description }),
         }
-      } catch (err) {
-        if (!errorToken) {
-          setIsDev(false);
-          alert("Une erreur est survenue. Veuillez réessayer plus tard.");
-          errorToken = true;
-        }
-        throw err;
-      }
-    };
-    is_a_developer();
-  }, []);
+      );
 
-  const joinDevelopper = async () => {
-    try {
-      const response = await fetch("http://localhost:5174/api/dev/join", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      const responseData = await response.json();
-      if (response.ok) {
-        alert(responseData.message);
-        navigate("/");
-      } else {
-        alert(responseData.error);
+      if (!response.ok) {
+        const errorData = await response.json();
+        alert(errorData.error);
+        throw new Error("Données invalides");
       }
-    } catch (err) {
-      alert("Une erreur est survenue. Veuillez réessayer plus tard.");
-      throw err;
+    } catch (error) {
+      console.error("");
     }
   };
-
-  const leaveDevelopper = async () => {
-    try {
-      const response = await fetch("http://localhost:5174/api/dev/leave", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      const responseData = await response.json();
-
-      if (response.ok) {
-        alert(responseData.message);
-        navigate("/");
-      } else {
-        alert(responseData.error);
-      }
-    } catch (err) {
-      alert("Une erreur est survenue. Veuillez réessayer plus tard.");
-      throw err;
-    }
-  };
-
-  const formSubmitDev = async () => {};
 
   const backHome = () => {
     navigate("/");
@@ -118,7 +60,7 @@ export default function Dev() {
           </ul>
         </div>
         <div className="colonnes">
-          {!isDev ? (
+          {userParsed.role != "dev" ? (
             <div className="margin-colonne">
               <h1 className="top">
                 Formulaire de demande pour être développeur
@@ -145,13 +87,16 @@ export default function Dev() {
                     name="contenu"
                     placeholder="Entrez le contenu de votre demande"
                     required
-                    value={content}
-                    onChange={(e) => setContent(e.target.value)}
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
                     rows={7}
                   />
                 </div>
                 <div className="btn-envoyer">
-                  <button type="submit" className="button_dev">
+                  <button
+                    type="submit"
+                    className="button_dev"
+                  >
                     Envoyer la demande
                   </button>
                 </div>
@@ -161,9 +106,7 @@ export default function Dev() {
             <>
               <h3>Vous ne voulez plus être développeur?</h3>
               <div className="btn-row">
-                <button className="button_dev" onClick={leaveDevelopper}>
-                  oui
-                </button>
+                <button className="button_dev">oui</button>
                 <button className="button_dev" onClick={backHome}>
                   non
                 </button>
@@ -178,4 +121,3 @@ export default function Dev() {
     </div>
   );
 }
- 
