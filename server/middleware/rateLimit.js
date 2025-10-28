@@ -1,6 +1,6 @@
 import rateLimit from "express-rate-limit";
 
-// Helper to create a limiter with consistent JSON 429 responses
+
 function createLimiter({ windowMs, max, message, keyGenerator }) {
   return rateLimit({
     windowMs,
@@ -17,14 +17,14 @@ function createLimiter({ windowMs, max, message, keyGenerator }) {
   });
 }
 
-// Global API limiter (applied to all /api routes)
+
 export const globalApiLimiter = createLimiter({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 1000, // per IP
   message: "Trop de requêtes. Réessayez plus tard.",
 });
 
-// Auth-specific limiters
+
 export const loginLimiter = createLimiter({
   windowMs: 10 * 60 * 1000, // 10 minutes
   max: 5,
@@ -37,7 +37,7 @@ export const registerLimiter = createLimiter({
   message: "Trop de créations de compte depuis cette IP. Réessayez plus tard.",
 });
 
-// User-sensitive actions
+
 export const passwordChangeLimiter = createLimiter({
   windowMs: 60 * 60 * 1000, // 1 hour
   max: 3,
@@ -45,7 +45,7 @@ export const passwordChangeLimiter = createLimiter({
   keyGenerator: (req) => req.user?.id || req.ip,
 });
 
-// Developer request form (user requests dev role)
+
 export const devFormLimiter = createLimiter({
   windowMs: 60 * 60 * 1000, // 1 hour
   max: 2,
@@ -53,7 +53,6 @@ export const devFormLimiter = createLimiter({
   keyGenerator: (req) => req.user?.id || req.ip,
 });
 
-// Admin endpoints (list/accept/decline)
 export const adminActionLimiter = createLimiter({
   windowMs: 60 * 1000, // 1 minute
   max: 20, 
@@ -61,7 +60,6 @@ export const adminActionLimiter = createLimiter({
   keyGenerator: (req) => req.user?.id || req.ip,
 });
 
-// Generic write limiter for create/update/delete on resources
 export const writeLimiter = createLimiter({
   windowMs: 60 * 1000, // 1 minute
   max: 30,

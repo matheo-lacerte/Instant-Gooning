@@ -5,7 +5,7 @@ async function ensureCartExists(userId) {
         throw new Error("Supabase admin client non configuré. Définissez SUPABASE_SERVICE_ROLE_KEY.");
     }
 
-    // Cherche un panier existant
+    
     const { data: existingCart, error: findError } = await supabaseAdmin
         .from("carts")
         .select("id")
@@ -15,7 +15,7 @@ async function ensureCartExists(userId) {
     if (findError) throw findError;
     if (existingCart) return existingCart.id;
 
-    // Crée un panier puis retourne son id
+    
     const { data: newCart, error: insertError } = await supabaseAdmin
         .from("carts")
         .insert({ user_id: userId })
@@ -71,7 +71,7 @@ export async function addItemToCart(req, res) {
       .single();
 
     if (gErr || !game) {
-      return res.status(404).json({ error: "Jeu non trouvé" }); // return, pas throw
+      return res.status(404).json({ error: "Jeu non trouvé" }); 
     }
 
     const cart_id = await ensureCartExists(user_id);
@@ -84,7 +84,7 @@ export async function addItemToCart(req, res) {
       .select("id, quantity")
       .eq("cart_id", cart_id)
       .eq("game_id", game_id)
-      .maybeSingle(); // <- évite erreur si aucune ligne
+      .maybeSingle(); 
 
     if (existing) {
       const { error: upErr } = await supabaseAdmin
@@ -114,7 +114,6 @@ export async function removeCartItem(req, res) {
 
     const { itemId } = req.params;
 
-    // 1) Lire l'item et son cart
     const { data: item, error: itemErr } = await supabaseAdmin
       .from("cart_items")
       .select("id, cart_id")
@@ -124,7 +123,7 @@ export async function removeCartItem(req, res) {
     if (itemErr) throw itemErr;
     if (!item) return res.status(404).json({ error: "Item introuvable" });
 
-    // 2) Vérifier que le cart appartient au user
+
     const { data: cart, error: cartErr } = await supabaseAdmin
       .from("carts")
       .select("user_id")
@@ -136,7 +135,7 @@ export async function removeCartItem(req, res) {
       return res.status(403).json({ error: "Refusé" });
     }
 
-    // 3) Supprimer
+    
     const { error: delErr } = await supabaseAdmin
       .from("cart_items")
       .delete()
@@ -166,7 +165,7 @@ export async function decrementCartItem(req, res) {
 
     if (getErr || !item) return res.status(404).json({ error: "Item introuvable" });
 
-    // Vérifier propriétaire du panier
+  
     const { data: cart } = await supabaseAdmin
       .from("carts")
       .select("user_id")
@@ -176,7 +175,7 @@ export async function decrementCartItem(req, res) {
     if (!cart || cart.user_id !== user_id) return res.status(403).json({ error: "Refusé" });
 
     if (item.quantity > 1) {
-      // Décrémente seulement
+  
       const { error: upErr } = await supabaseAdmin
         .from("cart_items")
         .update({ quantity: item.quantity - 1 })
@@ -186,7 +185,7 @@ export async function decrementCartItem(req, res) {
       return res.status(200).json({ ok: true });
     }
 
-    // Si quantité = 1 → supprimer la ligne
+
     const { error: delErr } = await supabaseAdmin
       .from("cart_items")
       .delete()
