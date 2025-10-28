@@ -6,21 +6,38 @@ import { supabase } from "./config/supabase.js";
 import gamesRoutes from "./routes/games.js";
 import adminRoutes from "./routes/admin.js";
 import userRoutes from "./routes/user.js";
+import paymentsRoutes from "./routes/payments.js";
+import stripeWebhookRoutes from "./routes/stripeWebhook.js";
+import { globalApiLimiter } from "./middleware/rateLimit.js";
+
 const app = express();
 app.use(cors());
-app.use(express.json());
 
+// IMPORTANT: pas de app.use(express.json()) ici
+app.use((req, res, next) => {
+  if (req.path === "/api/webhook/stripe") return next(); // body brut pour Stripe
+  express.json()(req, res, next);                        // JSON pour le reste
+});
+
+// rate limit après le wrapper
+app.use("/api", globalApiLimiter);
+
+// routes API
 app.use("/api/auth", authRoutes);
 app.use("/api/games", gamesRoutes);
 app.use("/api/dev", devRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/user", userRoutes);
+app.use("/api/payments", paymentsRoutes);
+
+// webhook à la fin
+app.use("/api", stripeWebhookRoutes);
+
 app.get("/api/health", (_req, res) => res.json({ ok: true }));
 
-// Test DB
 app.get("/api/test-db", async (_req, res) => {
   try {
-  const { data, error } = await supabase.from("users").select("id, role").limit(1);
+    const { data, error } = await supabase.from("users").select("id, role").limit(1);
     if (error) throw error;
     res.json({ db: "OK", sampleUser: data });
   } catch (err) {
@@ -30,7 +47,4 @@ app.get("/api/test-db", async (_req, res) => {
 });
 
 const port = process.env.PORT || 2000;
-app.listen(port, () =>
-  console.log(`API server on http://localhost:${port}`)
-);
-0
+app.listen(port, () => console.log(`API server on http://localhost:${port}`));
