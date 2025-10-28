@@ -45,7 +45,7 @@ export async function syncStripeForGame(game) {
 }
 
 export async function archiveStripeForGame(game) {
-  // Sécurise: si rien côté Stripe, rien à faire
+
   if (game.stripe_price_id) {
     try { await stripe.prices.update(game.stripe_price_id, { active: false }); } catch {}
   }
