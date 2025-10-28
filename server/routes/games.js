@@ -9,5 +9,5 @@ router.get("/getAllGames", getAllGames);
 router.get("/getGameById/:id", getGameById);
 router.post("/createGame", authMiddleware, requireUser, writeLimiter, createGame);
 router.patch("/update/:id", authMiddleware, requireUser, writeLimiter, updateGame);
-router.delete("/delete/:id", authMiddleware, requireUser, writeLimiter, deleteGame);
+router.patch("/delete/:id", authMiddleware, requireUser, writeLimiter, deleteGame);
 export default router;

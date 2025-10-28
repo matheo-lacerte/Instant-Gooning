@@ -1,5 +1,6 @@
 import { supabase, supabaseAdmin } from "../config/supabase.js";
-
+import { syncStripeForGame } from "../utils/stripePricing.js";
+import { archiveStripeForGame } from "../utils/stripePricing.js";
 const ALLOWED_UPDATE_FIELDS = Object.freeze([
     'title',
     'description',
@@ -173,17 +174,37 @@ export async function updateGame(req, res) {
             updatePayload.discounted_price = Number(discounted.toFixed(2));
         }
 
+        // Fetch current game data before update for comparison/sync purposes
+        const { data: before, error: beforeError } = await client
+            .from("games")
+            .select("id, title, price, discount, discounted_price, stripe_product_id, stripe_price_id")
+            .eq("id", id)
+            .single();
+        if (beforeError) {
+            return res.status(500).json({ error: beforeError.message });
+        }
+
+        // Apply update
         const { data: updatedGame, error: updateError } = await client
             .from('games')
             .update(updatePayload)
             .eq('id', id)
             .select('*')
             .single();
-
-
-
         if (updateError) {
             return res.status(500).json({ error: updateError.message });
+        }
+
+        // Sync Stripe only if relevant fields changed
+        try {
+            const titleChanged = 'title' in updatePayload && updatePayload.title !== before.title;
+            const priceChanged = 'price' in updatePayload || 'discount' in updatePayload;
+            if (titleChanged || priceChanged) {
+                await syncStripeForGame(updatedGame);
+            }
+        } catch (e) {
+            console.error("[syncStripeForGame] error:", e);
+            // on ne bloque pas la réponse
         }
 
         return res.json(updatedGame);
@@ -193,41 +214,29 @@ export async function updateGame(req, res) {
 }
 
 export async function deleteGame(req, res) {
-    const { id } = req.params;
-    const numericId = Number(id);
-    if (Number.isNaN(numericId)) return res.status(400).json({ error: 'id invalide' });
-    const client = (req.user?.role === 'admin' && supabaseAdmin) ? supabaseAdmin : (req.supabase || supabase);
-    try {
-        const { data: game, error } = await client
-            .from("games")
-            .select("id, created_by")
-            .eq("id", numericId)
-            .single()
-        if (error) {
-            if (error.code === "PGRST116") {
-                res.status(404).json({ error: "jeu introuvable" });
-                return;
-            }
-            res.status(500).json({ error: error.message });
-            return;
-        }
-        if (req.user.role !== 'admin' && game.created_by !== req.user.id) {
-            return res.status(403).json({ error: 'Autorisation refusée' });
-        }
+  const id = Number(req.params.id);
+  if (Number.isNaN(id)) return res.status(400).json({ error: "id invalide" });
 
-        const { error: deleteError } = await client
-            .from('games')
-            .delete()
-            .eq('id', numericId)
-            .limit(1);
+  // 1) lire le jeu (authz comme tu fais déjà)
+  const { data: game, error: gErr } = await supabaseAdmin
+    .from("games")
+    .select("id, created_by, stripe_product_id, stripe_price_id")
+    .eq("id", id)
+    .single();
+  if (gErr) return res.status(gErr.code === "PGRST116" ? 404 : 500).json({ error: gErr.message });
+  if (req.user.role !== "admin" && game.created_by !== req.user.id)
+    return res.status(403).json({ error: "Autorisation refusée" });
 
-        if (deleteError) {
-            return res.status(500).json({ error: deleteError.message });
-        }
+  // 2) marquer inactif
+  const { error: upErr } = await supabaseAdmin
+    .from("games").update({ is_active: false }).eq("id", id);
+  if (upErr) return res.status(500).json({ error: upErr.message });
 
-        return res.status(204).send();
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
+  // 3) retirer des paniers
+  await supabaseAdmin.from("cart_items").delete().eq("game_id", id);
 
+  // 4) archiver côté Stripe (désactiver price/product)
+  try { await archiveStripeForGame(game); } catch (e) { console.error(e); }
+
+  return res.json({ ok: true });
 }
