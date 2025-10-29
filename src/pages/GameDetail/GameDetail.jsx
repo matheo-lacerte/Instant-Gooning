@@ -75,7 +75,7 @@ export default function GameDetail() {
           return `https://www.youtube.com/embed/${idParam}?rel=0&modestbranding=1&color=white`;
         }
       }
-      // Fallback: return original (could be direct mp4 or another provider)
+     
       return url;
     } catch {
       return url;
@@ -168,11 +168,11 @@ export default function GameDetail() {
               {isDiscounted ? <span className="badge">-{game.discount}%</span> : null}
               {isDiscounted ? (
                 <>
-                  <span className="price price-original">{(game.price)}</span>
-                  <span className="price price-final">{(game.discounted_price)}</span>
+                  <span className="price price-original">{(game.price)} $</span>
+                  <span className="price price-final">{(game.discounted_price)} $</span>
                 </>
               ) : (
-                <span className="price price-final">{(game.price)}</span>
+                <span className="price price-final">{(game.price)}$</span>
               )}
               <button className="buy-btn" aria-label="Acheter le jeu">Acheter</button>
             </div>
