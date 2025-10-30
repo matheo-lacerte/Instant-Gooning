@@ -76,7 +76,7 @@ export async function checkoutCart(req, res) {
 
       automatic_tax: { enabled: true },
 
-      customer_creation: "always", // crée un Customer si nécessaire
+      customer_creation: "always", 
       billing_address_collection: "required",
 
       success_url: `${process.env.SITE_URL}/purchase/success?session_id={CHECKOUT_SESSION_ID}`,
