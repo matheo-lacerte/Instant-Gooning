@@ -5,8 +5,6 @@ import "./Profile.css";
 
 export default function Profile() {
   const navigate = useNavigate();
-  const user = localStorage.getItem("user");
-  const userParse = JSON.parse(user);
 
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
@@ -15,23 +13,28 @@ export default function Profile() {
   const [editAccount, setEditAccount] = useState(isEditProfile);
   const [editPassword, setEditPassword] = useState(isEditPassword);
 
-  const [username, setUsername] = useState(userParse.username);
-  const [first, setFirst] = useState(userParse.first_name);
-  const [last, setLast] = useState(userParse.last_name);
-  const [email, setEmail] = useState(userParse.email);
+  const [userParse, setUserParse] = useState(() => {
+    const storedUser = localStorage.getItem("user");
+    return storedUser ? JSON.parse(storedUser) : {};
+  });
+
+  const [username, setUsername] = useState(userParse.username || "");
+  const [first, setFirst] = useState(userParse.first_name || "");
+  const [last, setLast] = useState(userParse.last_name || "");
+  const [email, setEmail] = useState(userParse.email || "");
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [showOldPassword, setShowOldPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [token, setToken] = useState(localStorage.getItem("token"));
-
+ 
   useEffect(() => {
-    if (!editAccount || !editPassword) {
-      navigate("/profile");
-    } else if (editAccount) {
+    if (editAccount) {
       editAccountAction();
-    } else {
+    } else if (editPassword) {
       editPasswordAction();
+    } else {
+      navigate("/profile");
     }
   }, []);
 
@@ -67,7 +70,48 @@ export default function Profile() {
     setShowNewPassword(!showNewPassword);
   };
 
-  const sauvegarde = async () => {};
+  const sauvegarde = async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:5174/api/user/changeUserProfile",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            first_name: first,
+            last_name: last,
+            username,
+            email,
+          }),
+        }
+      );
+
+      const data = await response.json();
+      if (response.ok) {
+        const newUser = {
+          ...userParse,
+          username,
+          first_name: first,
+          last_name: last,
+          email,
+        };
+
+        setUserParse(newUser);
+        localStorage.setItem("user", JSON.stringify(newUser));
+
+        alert(data.message);
+        navigate("/profile");
+        setEditAccount(false);
+      } else {
+        alert(data.error);
+      }
+    } catch (error) {
+      alert(error);
+    }
+  };
 
   const sauvegardeMDP = async () => {
     try {
@@ -253,6 +297,7 @@ export default function Profile() {
           )}
         </div>
       </div>
+      
       <Link to="/logout" className="button_dev">
         Déconnexion
       </Link>

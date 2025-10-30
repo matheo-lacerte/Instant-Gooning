@@ -9,19 +9,24 @@ const Logout = () => {
   const navigate = useNavigate();
 
   const deconnexion = async () => {
-    const reponse = await fetch("http://localhost:5174/api/auth/logout", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-    });
+    try {
+      const reponse = await fetch("http://localhost:5174/api/auth/logout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+      });
 
-    if (!reponse.ok) {
-      throw new Error("Erreur lors de la déconnexion");
+      if (!reponse.ok) {
+        throw new Error("Erreur lors de la déconnexion");
+      }
+
+      const reponseData = await reponse.json();
+      alert(reponseData.message);
+      auth.logout();
+      navigate("/");
+    } catch (error) {
+      auth.logout();
+      navigate("/");
     }
-
-    const reponseData = await reponse.json();
-    alert(reponseData.message);
-    auth.logout();
-    navigate("/");
   };
 
   return (
