@@ -89,6 +89,18 @@ export default function GameDetail() {
     return Math.max(0, Math.min(10, n));
   }, [game]);
 
+  // Save recently viewed ids in localStorage for Home page
+  useEffect(() => {
+    if (!game?.id) return;
+    try {
+      const raw = localStorage.getItem("ig_recent");
+      const arr = raw ? JSON.parse(raw) : [];
+      const idNum = game.id;
+      const next = [idNum, ...arr.filter((x) => x !== idNum)].slice(0, 10);
+      localStorage.setItem("ig_recent", JSON.stringify(next));
+    } catch {}
+  }, [game?.id]);
+
   if (loading) {
     return (
       <div className="game-detail-wrap">
