@@ -99,3 +99,49 @@ textarea{
 .space {
   padding-bottom: 20px;
 }
+
+.link-dev {
+  margin: 10px 0;
+}
+
+.cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* espace entre les cartes */
+}
+
+.request-card {
+  background-color: #585454;
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 700px;
+}
+
+.request-title {
+  margin: 0;
+  font-size: 2rem;
+  color: black;
+}
+
+.request-state {
+  font-size: 1.2rem;
+  color: black;
+  margin-top: 0.3rem;
+}
+
+.request-desc {
+  font-size: 1rem;
+  color: black;
+  margin-top: 0.6rem;
+  line-height: 1.4;
+}
+
+.request {
+  text-align: center;
+}
+
+.centre {
+  text-align: center;
+  padding-bottom: 30px;
+}
