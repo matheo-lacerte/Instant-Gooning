@@ -1,58 +1,61 @@
-import { useEffect, useMemo, useState } from "react";
+// src/pages/Success.jsx
+import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import "./success.css";
 
 export default function Success() {
   const [params] = useSearchParams();
   const sessionId = params.get("session_id");
+
   const [showKeys, setShowKeys] = useState(false);
-  const [keys, setKeys] = useState([]);
-  const [items, setItems] = useState([]); // {title, quantity}
+  const [keys, setKeys] = useState([]);            // [{title, key, status?}]
+  const [items, setItems] = useState([]);          // [{title, quantity}]
   const [loading, setLoading] = useState(false);
   const [err, setErr] = useState(null);
 
+  // Mémoriser la session localement (utile pour debug)
   useEffect(() => {
-    if (sessionId) {
-      try { localStorage.setItem("last_checkout_session_id", sessionId); } catch (e) { console.warn("localStorage set failed", e); }
-    }
+    if (!sessionId) return;
+    try {
+      localStorage.setItem("last_checkout_session_id", sessionId);
+    } catch {}
   }, [sessionId]);
 
-  const prng = useMemo(() => {
-    // Seeded PRNG from sessionId for reproducible fake keys per session
-    const seed = (sessionId || "").split("").reduce((a, c) => (a * 33 + c.charCodeAt(0)) >>> 0, 2166136261);
-    let s = seed || 123456789;
-    return () => { s ^= s << 13; s ^= s >>> 17; s ^= s << 5; return (s >>> 0) / 0xffffffff; };
-  }, [sessionId]);
-
-  const generateKey = () => {
-    const alphabet = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; // avoid confusing chars
-    const block = (len) => Array.from({ length: len }, () => alphabet[Math.floor(prng() * alphabet.length)]).join("");
-    return `${block(5)}-${block(5)}-${block(5)}-${block(5)}-${block(5)}`;
-  };
-
-  const revealKeys = () => {
-    // Map one key per purchased item title (quantity times)
-    const out = [];
-    if (items.length) {
-      for (const it of items) {
-        const count = Math.max(1, Number(it.quantity) || 1);
-        for (let i = 0; i < count; i++) out.push({ title: it.title, key: generateKey() });
-      }
-    } else {
-      // Fallback: try localStorage
-      let titles = [];
-      try { const raw = localStorage.getItem("last_cart_titles"); const arr = raw ? JSON.parse(raw) : []; if (Array.isArray(arr)) titles = arr; } catch (e) { console.warn("localStorage read failed", e); }
-      if (!titles.length) titles = ["Votre jeu"]; // minimal fallback
-      for (const t of titles) out.push({ title: t, key: generateKey() });
-    }
-    setKeys(out);
+  // Bouton: aller chercher les clés côté backend
+  const revealKeys = async () => {
+    if (!sessionId) return;
     setShowKeys(true);
+    setLoading(true);
+    setErr(null);
+    try {
+      const token = localStorage.getItem("token");
+      const r = await fetch(
+        `/api/payments/session/keys?session_id=${encodeURIComponent(sessionId)}`,
+        {
+          credentials: "include",
+          headers: token ? { Authorization: `Bearer ${token}` } : undefined,
+        }
+      );
+      const j = await r.json();
+      if (!r.ok) throw new Error(j.error || "Erreur");
+      setKeys(Array.isArray(j.items) ? j.items : []);
+    } catch (e) {
+      setErr(e.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
+  // Copier une clé
   const copy = async (text) => {
-    try { await navigator.clipboard.writeText(text); } catch (e) { console.error("clipboard copy failed", e); }
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch (e) {
+      console.error("clipboard copy failed", e);
+    }
   };
 
+  // Charger un petit résumé d’items (facultatif) + clear-cart best-effort
   useEffect(() => {
     let cancelled = false;
     (async () => {
@@ -61,32 +64,43 @@ export default function Success() {
         setLoading(true);
         setErr(null);
         const token = localStorage.getItem("token");
-        const res = await fetch(`/api/payments/session/details?session_id=${encodeURIComponent(sessionId)}`, {
-          credentials: "include",
-          headers: token ? { Authorization: `Bearer ${token}` } : undefined,
-        });
+
+        // Résumé des articles achetés (endpoint facultatif)
+        const res = await fetch(
+          `/api/payments/session/details?session_id=${encodeURIComponent(sessionId)}`,
+          {
+            credentials: "include",
+            headers: token ? { Authorization: `Bearer ${token}` } : undefined,
+          }
+        );
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
         if (cancelled) return;
-        const mapped = Array.isArray(data.items) ? data.items.map(it => ({ title: it.title, quantity: it.quantity })) : [];
+        const mapped = Array.isArray(data.items)
+          ? data.items.map((it) => ({ title: it.title, quantity: it.quantity }))
+          : [];
         setItems(mapped);
-        // Best-effort: clear the cart using the verified session_id
+
+        // Best-effort: au cas où, demander un clear cart (le webhook le fait déjà normalement)
         try {
-          await fetch(`/api/payments/session/clear-cart?session_id=${encodeURIComponent(sessionId)}`, {
-            method: "POST",
-            credentials: "include",
-            headers: token ? { Authorization: `Bearer ${token}` } : undefined,
-          });
-        } catch (_) {
-          // ignore
-        }
+          await fetch(
+            `/api/payments/session/clear-cart?session_id=${encodeURIComponent(sessionId)}`,
+            {
+              method: "POST",
+              credentials: "include",
+              headers: token ? { Authorization: `Bearer ${token}` } : undefined,
+            }
+          );
+        } catch {}
       } catch (e) {
         if (!cancelled) setErr(e.message || "Erreur");
       } finally {
         if (!cancelled) setLoading(false);
       }
     })();
-    return () => { cancelled = true; };
+    return () => {
+      cancelled = true;
+    };
   }, [sessionId]);
 
   return (
@@ -99,17 +113,41 @@ export default function Success() {
           </svg>
         </div>
         <h1>Merci, paiement confirmé</h1>
+
         {sessionId ? (
-          <p className="sub">Session Stripe: <code>{sessionId}</code></p>
+          <p className="sub">
+            Session Stripe: <code>{sessionId}</code>
+          </p>
         ) : (
           <p className="sub">Votre paiement a été confirmé.</p>
         )}
-        {loading && <p className="sub">Chargement des articles…</p>}
-        {err && <p className="sub" style={{ color: '#f87171' }}>Erreur: {err}</p>}
+
+        {loading && <p className="sub">Chargement…</p>}
+        {err && (
+          <p className="sub" style={{ color: "#f87171" }}>
+            Erreur: {err}
+          </p>
+        )}
+
+        {/* Petit résumé facultatif */}
+        {!!items.length && !showKeys && (
+          <ul className="sub">
+            {items.map((it, i) => (
+              <li key={i}>
+                {it.title} × {it.quantity}
+              </li>
+            ))}
+          </ul>
+        )}
+
         {!showKeys ? (
           <div className="actions">
-            <button className="btn primary" onClick={revealKeys}>Afficher mes clés</button>
-            <Link className="btn" to="/">Accueil</Link>
+            <button className="btn primary" onClick={revealKeys}>
+              Afficher mes clés
+            </button>
+            <Link className="btn" to="/">
+              Accueil
+            </Link>
           </div>
         ) : (
           <div className="keys-wrap">
@@ -119,13 +157,19 @@ export default function Success() {
                 <li key={i} className="key-row">
                   <span className="key-label">{obj.title}:</span>
                   <span className="key-code">{obj.key}</span>
-                  <button className="btn copy" onClick={() => copy(obj.key)} aria-label="Copier la clé">Copier</button>
+                  <button className="btn copy" onClick={() => copy(obj.key)} aria-label="Copier la clé">
+                    Copier
+                  </button>
                 </li>
               ))}
             </ul>
             <div className="actions">
-              <Link className="btn primary" to="/profile">Voir mes achats</Link>
-              <Link className="btn" to="/">Accueil</Link>
+              <Link className="btn primary" to="/profile">
+                Voir mes achats
+              </Link>
+              <Link className="btn" to="/">
+                Accueil
+              </Link>
             </div>
           </div>
         )}
