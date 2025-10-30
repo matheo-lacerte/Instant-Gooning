@@ -1,5 +1,5 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./Dev.css";
 
 export default function Dev() {
@@ -12,6 +12,7 @@ export default function Dev() {
   const [errorMsg, setErrorMsg] = useState("");
   const [requests, setRequests] = useState([]);
   const [isPendingRequest, setIsPendingRequest] = useState(false);
+  const lastCheckRef = useRef(0);
 
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
@@ -21,9 +22,13 @@ export default function Dev() {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        // throttle isPendingRequest checks: at most once every 10s
+        const now = Date.now();
+        if (now - lastCheckRef.current < 10000) return;
+        lastCheckRef.current = now;
         if (user.role !== "dev") {
           const checkResponse = await fetch(
-            "http://localhost:5174/api/admin/isPendingRequest",
+            "/api/admin/isPendingRequest",
             {
               headers: {
                 "Content-Type": "application/json",
@@ -44,7 +49,7 @@ export default function Dev() {
 
         if (isViewRequest) {
           const response = await fetch(
-            "http://localhost:5174/api/user/getAllRequests",
+            "/api/user/getAllRequests",
             {
               headers: { Authorization: `Bearer ${token}` },
             }
@@ -69,7 +74,7 @@ export default function Dev() {
     e.preventDefault();
     try {
       const response = await fetch(
-        "http://localhost:5174/api/admin/request-dev",
+        "/api/admin/request-dev",
         {
           method: "POST",
           headers: {
@@ -107,7 +112,7 @@ export default function Dev() {
               </h1>
             </li>
             <li>
-              <h1><Link to="/cartList">Panier</Link></h1>
+              <h1><Link to="/cart">Panier</Link></h1>
             </li>
           </ul>
         </div>
