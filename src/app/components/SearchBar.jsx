@@ -33,8 +33,8 @@ export default function SearchBar({
         setLoading(true);
      
         let data = null;
-       
-          const res = await fetch("/api/games/getAllGames", { method: "GET" });
+
+          const res = await fetch("http://localhost:5174/api/games/getAllGames", { method: "GET" });
           if (!res.ok) throw new Error(`HTTP ${res.status}`);
           data = await res.json();
         

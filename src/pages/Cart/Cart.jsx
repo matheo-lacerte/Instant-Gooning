@@ -27,7 +27,7 @@ export default function Cart() {
 			try {
 				if (!silent) setLoading(true);
 				setError("");
-				const res = await authFetch("/api/payments/cart");
+				const res = await authFetch("http://localhost:5174/api/payments/cart");
 			if (res.status === 401) {
 				navigate("/login");
 				return;
@@ -53,7 +53,7 @@ export default function Cart() {
 				setItems((prev) => prev.map((it, i) => i === idx ? { ...it, quantity: it.quantity + 1 } : it));
 				setPending((p) => new Set(p).add(itemId));
 				try {
-					await authFetch("/api/payments/cart/items", { method: "POST", body: JSON.stringify({ game_id: gameId, quantity: 1 }) });
+					await authFetch("http://localhost:5174/api/payments/cart/items", { method: "POST", body: JSON.stringify({ game_id: gameId, quantity: 1 }) });
 				} catch {
 					// revert on failure
 					setItems((prev) => prev.map((it, i) => i === idx ? { ...it, quantity: Math.max(1, it.quantity - 1) } : it));
@@ -74,7 +74,7 @@ export default function Cart() {
 				// optimistic
 				setItems((prev) => newQty > 0 ? prev.map((it, i) => i === idx ? { ...it, quantity: newQty } : it) : prev.filter((it) => it.id !== itemId));
 				try {
-					await authFetch(`/api/payments/cart/items/${itemId}`, { method: "PATCH" });
+					await authFetch(`http://localhost:5174/api/payments/cart/items/${itemId}`, { method: "PATCH" });
 				} catch {
 					// revert
 					setItems((prev) => prev.map((it, i) => i === idx ? { ...it, quantity: current.quantity } : it));
@@ -91,7 +91,7 @@ export default function Cart() {
 			const prevItems = items;
 			setItems((prev) => prev.filter((it) => it.id !== itemId));
 			try {
-				await authFetch(`/api/payments/cart/items/${itemId}`, { method: "DELETE" });
+				await authFetch(`http://localhost:5174/api/payments/cart/items/${itemId}`, { method: "DELETE" });
 			} catch {
 				// revert
 				setItems(prevItems);
@@ -109,7 +109,7 @@ export default function Cart() {
 				const titles = items.map((it) => it.game?.title).filter(Boolean);
 				localStorage.setItem("last_cart_titles", JSON.stringify(titles));
 			} catch {}
-			const res = await authFetch("/api/payments/cart/checkout", { method: "POST", body: JSON.stringify({ cart_id: cartId }) });
+			const res = await authFetch("http://localhost:5174/api/payments/cart/checkout", { method: "POST", body: JSON.stringify({ cart_id: cartId }) });
 			if (!res.ok) throw new Error(`HTTP ${res.status}`);
 			const data = await res.json();
 			if (data?.url) window.location.assign(data.url);
@@ -122,7 +122,7 @@ export default function Cart() {
 			try {
 				setLoading(true);
 				setError("");
-				await authFetch("/api/payments/cart/clear", { method: "DELETE" });
+				await authFetch("http://localhost:5174/api/payments/cart/clear", { method: "DELETE" });
 				setItems([]);
 				try { localStorage.removeItem("last_cart_titles"); } catch {}
 			} catch (e) {
