@@ -2,7 +2,7 @@ import express from "express";
 import { supabase } from "../config/supabase.js";
 import authMiddleware from "../middleware/auth.js";
 import requireUser from "../middleware/requireUser.js";
-
+import { getDevGames } from "../controllers/gamesController.js";
 const router = express.Router();
 
 router.post("/join", authMiddleware, requireUser, async (req, res) => {
@@ -45,6 +45,15 @@ router.get("", authMiddleware, requireUser, async (req, res) => {
     .single();
   if (error) return res.status(500).json({ error: error.message });
   res.json({ role: user.role, is_developer: user.role === 'dev' });
+});
+
+router.get("/games", authMiddleware, requireUser, async (req, res) => {
+  try {
+    const games = await getDevGames(req, res);
+    return res.json(games);
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
 });
 
 export default router;
