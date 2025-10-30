@@ -15,6 +15,7 @@ const Navigation = () => {
   return (
     <header className="main-header">
       <Link to="/" className="title"> Instant Gooning </Link>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
       <div className="nav-buttons">
         {!auth.isLoggedIn ? (
           <>
@@ -27,9 +28,14 @@ const Navigation = () => {
 
           </>
         ) : (
-          <Link to="/profile">
-            <button id="droite">Profil</button>
-          </Link>
+          <>
+            <Link to="/cart">
+              <button id="droite"><i className="fa fa-shopping-cart" aria-hidden="true"></i> Panier</button>
+            </Link>
+            <Link to="/profile">
+              <button id="droite"><i className="fa fa-user" aria-hidden="true"></i> Profil</button>
+            </Link>
+          </>
         )}
       </div>
     </header>

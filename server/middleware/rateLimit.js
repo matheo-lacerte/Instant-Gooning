@@ -52,6 +52,14 @@ export const devFormLimiter = createLimiter({
   keyGenerator: (req) => req.user?.id || req.ip,
 });
 
+// Higher allowance for lightweight status checks (e.g., isPendingRequest)
+export const statusCheckLimiter = createLimiter({
+  windowMs: 60 * 1000, // 1 minute
+  max: 60, // up to 1/s per user
+  message: "Trop de vérifications d'état. Réessayez plus tard.",
+  keyGenerator: (req) => req.user?.id || req.ip,
+});
+
 export const adminActionLimiter = createLimiter({
   windowMs: 60 * 1000, // 1 minute
   max: 20, 

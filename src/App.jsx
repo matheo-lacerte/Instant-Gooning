@@ -20,7 +20,8 @@ import Search from "./pages/Search/Search.jsx";
 import Profile from "./pages/Profile/Profile.jsx";
 import PurchaseSuccess from "./pages/Purchase/Success.jsx";
 import CreateGame from "./pages/Dev/CreateGame/CreateGame.jsx";
-import CartList from "./pages/CartList/CartList.jsx";
+
+import Cart from "./pages/Cart/Cart.jsx";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,7 @@ const router = createBrowserRouter([
       { path: "/game/:id", element: <GameDetail /> },
       { path: "/search", element: <Search /> },
       { path: "/purchase/success", element: <PurchaseSuccess /> },
+      { path: "/cart", element: <Cart /> },
     ],
   },
 ]);
@@ -83,8 +85,8 @@ const App = () => {
     { path: "/dev", element: <Dev /> },
     { path: "/logout", element: <Logout /> },
     { path: "/search", element: <Search /> },
-    { path: "/profile", element: <Profile /> },
-    { path: "cartlist", element: <CartList />},
+  { path: "/profile", element: <Profile /> },
+  { path: "/cart", element: <Cart /> },
     { path: "/purchase/success", element: <PurchaseSuccess /> },
   ];
 
