@@ -46,5 +46,5 @@ app.get("/api/test-db", async (_req, res) => {
   }
 });
 
-const port = process.env.PORT || 2000;
+const port = process.env.PORT || 5174;
 app.listen(port, () => console.log(`API server on http://localhost:${port}`));

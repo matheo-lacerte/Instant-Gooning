@@ -18,6 +18,7 @@ import RequireAdmin from "./app/components/Guards/RequireAdmin.jsx";
 import { jwtDecode } from "jwt-decode";
 import Search from "./pages/Search/Search.jsx";
 import Profile from "./pages/Profile/Profile.jsx"
+import PurchaseSuccess from "./pages/Purchase/Success.jsx";
 
 const router = createBrowserRouter([
   {
@@ -29,7 +30,8 @@ const router = createBrowserRouter([
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
       { path: "/game/:id", element: <GameDetail /> },
-      { path: "/search", element: <Search /> },
+  { path: "/search", element: <Search /> },
+  { path: "/purchase/success", element: <PurchaseSuccess /> },
     ],
   },
 ]);
@@ -80,6 +82,7 @@ const App = () => {
     { path: "/logout", element: <Logout /> },
     { path: "/search", element: <Search /> },
     { path: "/profile", element: <Profile /> },
+  { path: "/purchase/success", element: <PurchaseSuccess /> },
   ];
 
   if (user?.role === "admin") {
