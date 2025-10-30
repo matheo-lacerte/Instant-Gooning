@@ -27,7 +27,7 @@ const Navigation = () => {
 
           </>
         ) : (
-          <Link to="/dev">
+          <Link to="/profile">
             <button id="droite">Profil</button>
           </Link>
         )}

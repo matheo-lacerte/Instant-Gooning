@@ -1,8 +1,9 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { useEffect, useMemo, useState } from "react";
 import "./gameDetail.css";
 
 export default function GameDetail() {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [game, setGame] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -110,6 +111,7 @@ export default function GameDetail() {
         return;
       }
       alert("Jeu ajouté au panier avec succès !");
+      navigate("/");
     } else {
       alert("Veuillez vous connecter pour ajouter des jeux au panier.");
     }

@@ -107,7 +107,7 @@ export default function Dev() {
               </h1>
             </li>
             <li>
-              <h1>Panier</h1>
+              <h1><Link to="/cartList">Panier</Link></h1>
             </li>
           </ul>
         </div>
