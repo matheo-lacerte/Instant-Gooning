@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "./CreateGame.css";
+import { apiUrl } from "../../../app/services/api";
 
 export default function CreateGame() {
   const navigate = useNavigate();
@@ -52,7 +53,7 @@ export default function CreateGame() {
 
     try {
       const response = await fetch(
-        "http://localhost:5174/api/games/createGame",
+        apiUrl("/api/games/createGame"),
         {
           method: "POST",
           headers: {

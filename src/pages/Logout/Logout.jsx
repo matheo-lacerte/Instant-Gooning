@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../../app/Context/AuthContext.jsx";
 import { useContext } from "react";
+import { apiUrl } from "../../app/services/api";
 
 import "./Logout.css";
 
@@ -10,7 +11,7 @@ const Logout = () => {
 
   const deconnexion = async () => {
     try {
-      const reponse = await fetch("http://localhost:5174/api/auth/logout", {
+      const reponse = await fetch(apiUrl("/api/auth/logout"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
       });

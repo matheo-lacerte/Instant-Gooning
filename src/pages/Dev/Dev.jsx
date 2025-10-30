@@ -1,6 +1,7 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import "./Dev.css";
+import { apiUrl } from "../../app/services/api";
 
 export default function Dev() {
   const navigate = useNavigate();
@@ -28,7 +29,7 @@ export default function Dev() {
         lastCheckRef.current = now;
         if (user.role !== "dev") {
           const checkResponse = await fetch(
-            "http://localhost:5174/api/admin/isPendingRequest",
+            apiUrl("/api/admin/isPendingRequest"),
             {
               headers: {
                 "Content-Type": "application/json",
@@ -49,7 +50,7 @@ export default function Dev() {
 
         if (isViewRequest) {
           const response = await fetch(
-            "http://localhost:5174/api/user/getAllRequests",
+            apiUrl("/api/user/getAllRequests"),
             {
               headers: { Authorization: `Bearer ${token}` },
             }

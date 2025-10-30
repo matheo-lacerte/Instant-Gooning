@@ -1,5 +1,6 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { apiUrl } from "../../app/services/api";
 
 import "./Profile.css";
 
@@ -73,7 +74,7 @@ export default function Profile() {
   const sauvegarde = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5174/api/user/changeUserProfile",
+        apiUrl("/api/user/changeUserProfile"),
         {
           method: "POST",
           headers: {
@@ -116,7 +117,7 @@ export default function Profile() {
   const sauvegardeMDP = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5174/api/user/changePassword",
+        apiUrl("/api/user/changePassword"),
         {
           method: "POST",
           headers: {

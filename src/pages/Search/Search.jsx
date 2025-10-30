@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import GameCard from "../../app/components/GameCard";
+import { apiUrl } from "../../app/services/api";
 
 import "./Search.css";
 
@@ -12,12 +13,9 @@ export default function Search() {
   useEffect(() => {
     const fetchGames = async () => {
       try {
-        const response = await fetch(
-          "http://localhost:5174/api/games/GetAllGames",
-          {
-            method: "GET",
-          }
-        );
+        const response = await fetch(apiUrl("/api/games/GetAllGames"), {
+          method: "GET",
+        });
 
         const reponseData = await response.json();
         const filteredData = reponseData.filter((game) =>

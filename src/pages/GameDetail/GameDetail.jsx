@@ -1,6 +1,7 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useEffect, useMemo, useState } from "react";
 import "./gameDetail.css";
+import { apiUrl } from "../../app/services/api";
 
 export default function GameDetail() {
   const navigate = useNavigate();
@@ -16,8 +17,8 @@ export default function GameDetail() {
       setLoading(true);
       setError(null);
       try {
-        const response = await fetch(
-          `http://localhost:5174/api/games/GetGameById/${id}`,
+          const response = await fetch(
+            apiUrl(`/api/games/GetGameById/${id}`),
           { method: "GET" }
         );
         if (!response.ok) throw new Error("Réponse invalide du serveur");
@@ -96,7 +97,7 @@ export default function GameDetail() {
   const addGameToCart = async () => {
     if (token) {
       const response = await fetch(
-        "http://localhost:5174/api/payments/cart/items",
+          apiUrl("/api/payments/cart/items"),
         {
           method: "POST",
           headers: {

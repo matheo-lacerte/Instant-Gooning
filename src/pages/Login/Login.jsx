@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "../../app/Context/AuthContext";
 import "./login.css";
+import { apiUrl } from "../../app/services/api";
 
 export default function Login() {
   const auth = useContext(AuthContext);
@@ -23,7 +24,7 @@ export default function Login() {
     };
 
     try {
-      const response = await fetch("http://localhost:5174/api/auth/login", {
+      const response = await fetch(apiUrl("/api/auth/login"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
