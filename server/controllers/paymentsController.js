@@ -68,6 +68,23 @@ export async function checkoutCart(req, res) {
       line_items.push({ price: priceId, quantity: it.quantity });
     }
 
+    // Try hard to redirect users back to the FRONTEND (Vite 5173 in dev)
+    let origin = req.get("origin");
+    if (!origin) {
+      const ref = req.get("referer");
+      if (ref) {
+        try { origin = new URL(ref).origin; } catch { /* ignore parse error */ }
+      }
+    }
+    // If we ended up with backend origin (5174) while on localhost, force 5173
+    if (origin && /localhost:5174$/i.test(origin)) {
+      origin = "http://localhost:5173";
+    }
+    // Prefer a non-local SITE_URL in production
+    if ((!origin || /localhost/i.test(origin)) && process.env.SITE_URL && !/localhost/i.test(process.env.SITE_URL)) {
+      origin = process.env.SITE_URL;
+    }
+    if (!origin) origin = "http://localhost:5173";
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
       customer_email: email,
@@ -79,13 +96,49 @@ export async function checkoutCart(req, res) {
       customer_creation: "always", 
       billing_address_collection: "required",
 
-      success_url: `${process.env.SITE_URL}/purchase/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.SITE_URL}/cart`,
+      success_url: `${origin}/purchase/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${origin}/cart`,
       metadata: { user_id, cart_id: req.body.cart_id }
     });
 
     res.json({ url: session.url });
   } catch (e) {
     res.status(500).json({ error: e.message });
+  }
+}
+
+export async function getCheckoutSessionDetails(req, res) {
+  try {
+    const session_id = req.query.session_id;
+    if (!session_id) return res.status(400).json({ error: "session_id requis" });
+    const { id: userId } = req.user || {};
+    if (!userId) return res.status(401).json({ error: "Non authentifié" });
+
+    const sess = await stripe.checkout.sessions.retrieve(session_id, {
+      expand: ["line_items.data.price.product"],
+    });
+
+    // security: ensure session belongs to this user
+    if (String(sess.metadata?.user_id || "") !== String(userId)) {
+      return res.status(403).json({ error: "Accès refusé à cette session" });
+    }
+
+    const items = (sess.line_items?.data || []).map((li) => ({
+      title: li.price?.product?.name || "",
+      game_id: parseInt(li.price?.product?.metadata?.game_id || "0"),
+      quantity: li.quantity || 1,
+      unit_amount: li.price?.unit_amount || 0,
+      currency: (li.price?.currency || "cad").toUpperCase(),
+    }));
+
+    return res.json({
+      id: sess.id,
+      payment_status: sess.payment_status,
+      amount_total: sess.amount_total,
+      currency: (sess.currency || "cad").toUpperCase(),
+      items,
+    });
+  } catch (e) {
+    return res.status(500).json({ error: e.message });
   }
 }
