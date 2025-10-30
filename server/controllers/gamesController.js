@@ -242,3 +242,18 @@ export async function deleteGame(req, res) {
 
   return res.json({ ok: true });
 }
+
+export async function getDevGames(req, res) {
+    const user_id = req.user?.id;
+    if (!user_id) return res.status(401).json({ error: "Non authentifié" });
+    try {
+        const { data, error } = await supabase
+            .from("games")
+            .select("*")
+            .eq("created_by", user_id);
+        if (error) throw error;
+        res.json(data);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+}    
