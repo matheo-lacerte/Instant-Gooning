@@ -18,7 +18,7 @@ export async function getAllGames(req, res) {
     try {
         const { data, error } = await supabase
             .from("games")
-            .select("id, title, price, cover_url, discount, discounted_price");
+            .select("id, title, price, cover_url, discount, discounted_price, is_active");
         if (error) throw error;
         res.json(data);
     } catch (err) {
@@ -74,7 +74,9 @@ export async function createGame(req, res) {
     }
 
     try {
-        const discounted_price = numericPrice - (numericPrice * (numericDiscount / 100));
+        const discounted_price = Number(
+            (numericPrice - (numericPrice * (numericDiscount / 100))).toFixed(2)
+        );
         const { data, error } = await supabase
             .from('games')
             .insert([
