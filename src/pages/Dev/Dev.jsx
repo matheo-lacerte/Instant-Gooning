@@ -113,7 +113,6 @@ export default function Dev() {
         </div>
 
         <div className="colonnes">
-          {/* === FORM REQUEST === */}
           {isFormRequest && (
             <div className="margin-colonne">
               {errorMsg ? (
@@ -162,7 +161,6 @@ export default function Dev() {
             </div>
           )}
 
-          {/* === VIEW REQUEST === */}
           {isViewRequest && (
             <div className="margin-colonne">
               <h1 className="space request">
@@ -187,7 +185,6 @@ export default function Dev() {
             </div>
           )}
 
-          {/* === DEFAULT VIEW === */}
           {!isFormRequest &&
             !isViewRequest &&
             (user.role !== "dev" ? (
