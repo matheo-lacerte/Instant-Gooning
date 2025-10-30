@@ -4,6 +4,7 @@ import { useContext, useEffect, useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../app/Context/AuthContext";
 import "./home.css";
+import { apiUrl } from "../../app/services/api";
 
 export default function Home() {
   const auth = useContext(AuthContext);
@@ -25,7 +26,7 @@ export default function Home() {
         setLoading(true);
         let data = null;
 
-          const response = await fetch("http://localhost:5174/api/games/getAllGames", { method: "GET" });
+          const response = await fetch(apiUrl("/api/games/getAllGames"), { method: "GET" });
           if (!response.ok) throw new Error(`HTTP ${response.status}`);
           data = await response.json();
 

@@ -11,7 +11,32 @@ import stripeWebhookRoutes from "./routes/stripeWebhook.js";
 import { globalApiLimiter } from "./middleware/rateLimit.js";
 
 const app = express();
-app.use(cors());
+
+// CORS: allow specific origins and credentials for cookies/Authorization headers
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://localhost:5174",
+  "https://instant-gooning-v1.vercel.app",
+  process.env.FRONTEND_ORIGIN,
+].filter(Boolean);
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    // Allow non-browser requests (like curl/postman) which may not send Origin
+    if (!origin) return callback(null, true);
+    const isAllowed =
+      allowedOrigins.includes(origin) || /\.vercel\.app$/i.test(origin);
+    if (isAllowed) return callback(null, true);
+    return callback(new Error(`Not allowed by CORS: ${origin}`));
+  },
+  credentials: true,
+  methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization", "Stripe-Signature"],
+};
+
+app.use(cors(corsOptions));
+// Handle preflight
+app.options("*", cors(corsOptions));
 
 // IMPORTANT: pas de app.use(express.json()) ici
 app.use((req, res, next) => {

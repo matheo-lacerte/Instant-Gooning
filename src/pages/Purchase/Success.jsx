@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import "./success.css";
+import { apiUrl } from "../../app/services/api";
 
 export default function Success() {
   const [params] = useSearchParams();
@@ -30,7 +31,7 @@ export default function Success() {
     try {
       const token = localStorage.getItem("token");
       const r = await fetch(
-        `http://localhost:5174/api/payments/session/keys?session_id=${encodeURIComponent(sessionId)}`,
+        apiUrl(`/api/payments/session/keys?session_id=${encodeURIComponent(sessionId)}`),
         {
           credentials: "include",
           headers: token ? { Authorization: `Bearer ${token}` } : undefined,
@@ -67,7 +68,7 @@ export default function Success() {
 
         // Résumé des articles achetés (endpoint facultatif)
         const res = await fetch(
-          `http://localhost:5174/api/payments/session/details?session_id=${encodeURIComponent(sessionId)}`,
+          apiUrl(`/api/payments/session/details?session_id=${encodeURIComponent(sessionId)}`),
           {
             credentials: "include",
             headers: token ? { Authorization: `Bearer ${token}` } : undefined,
@@ -84,7 +85,7 @@ export default function Success() {
         // Best-effort: au cas où, demander un clear cart (le webhook le fait déjà normalement)
         try {
           await fetch(
-            `http://localhost:5174/api/payments/session/clear-cart?session_id=${encodeURIComponent(sessionId)}`,
+            apiUrl(`/api/payments/session/clear-cart?session_id=${encodeURIComponent(sessionId)}`),
             {
               method: "POST",
               credentials: "include",
