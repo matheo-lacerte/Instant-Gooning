@@ -56,7 +56,7 @@ export default function Dev() {
           }
         }
       } catch (error) {
-        setErrorMsg("Erreur de connexion au serveur");
+        setErrorMsg(error);
       }
     };
 
@@ -85,7 +85,7 @@ export default function Dev() {
       alert("Demande envoyée avec succès !");
       navigate("/dev");
     } catch (error) {
-      alert("Erreur réseau");
+      alert(error);
     }
   };
 
@@ -163,7 +163,9 @@ export default function Dev() {
           {/* === VIEW REQUEST === */}
           {isViewRequest && (
             <div className="margin-colonne">
-              <h1 className="space request">Vos demandes pour devenir développeur</h1>
+              <h1 className="space request">
+                Vos demandes pour devenir développeur
+              </h1>
 
               {requests.length > 0 ? (
                 <div className="cards-container">
@@ -205,18 +207,24 @@ export default function Dev() {
                   </h2>
                 )}
                 <h2>
-                  <Link to="/dev?viewRequest">Consulter mes demandes envoyées</Link>
+                  <Link to="/dev?viewRequest">
+                    Consulter mes demandes envoyées
+                  </Link>
                 </h2>
               </div>
             ) : (
-              <>
-                <h2 className="space">Ajouter un jeu</h2>
+              <div className="link-dev">
+                <h2 className="space">
+                  <Link to="/dev/create">Ajouter un jeu</Link>
+                </h2>
                 <h2 className="space">Modifier un de mes jeux</h2>
                 <h2 className="space">Supprimer un de mes jeux</h2>
                 <h2>
-                  <Link to="/dev?viewRequest">Consulter mes demandes envoyées</Link>
+                  <Link to="/dev?viewRequest">
+                    Consulter mes demandes envoyées
+                  </Link>
                 </h2>
-              </>
+              </div>
             ))}
         </div>
       </div>
