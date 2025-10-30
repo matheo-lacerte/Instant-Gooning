@@ -1,5 +1,7 @@
 import { supabase, supabaseAdmin } from "../config/supabase.js";
 import validatePassword from "../utils/validatePassword.js";
+import validator from "validator";
+
 export async function getAllRequests(req, res) {
   try {
     if (!req.user) return res.status(401).json({ error: "Non authentifié" });
@@ -34,11 +36,9 @@ export async function changePassword(req, res) {
     }
 
     if (oldPassword === newPassword) {
-      return res
-        .status(400)
-        .json({
-          error: "Le nouveau mot de passe doit être différent de l'ancien.",
-        });
+      return res.status(400).json({
+        error: "Le nouveau mot de passe doit être différent de l'ancien.",
+      });
     }
 
     if (!validatePassword(newPassword)) {
@@ -82,6 +82,11 @@ export async function changeUserProfile(req, res) {
     if (!first_name || !last_name || !username || !email) {
       return res.status(400).json({ error: "Tous les champs sont requis." });
     }
+
+    if (!validator.isEmail(email)) {
+      return res.status(400).json({ error: "Format d'email invalide." });
+    }
+
     const client = req.supabase;
     const { error } = await client
       .from("users")
