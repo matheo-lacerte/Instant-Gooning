@@ -2,7 +2,7 @@ import express from "express";
 import authMiddleware from "../middleware/auth.js";
 import requireUser from "../middleware/requireUser.js";
 import { getCart, addItemToCart, removeCartItem, decrementCartItem, clearCart } from "../controllers/cartController.js";
-import { checkoutCart, getCheckoutSessionDetails, clearCartFromSession } from "../controllers/paymentsController.js";
+import { checkoutCart, getCheckoutSessionDetails, clearCartFromSession, getKeysBySession } from "../controllers/paymentsController.js";
 
 const router = express.Router();
 
@@ -14,5 +14,6 @@ router.delete("/cart/clear", authMiddleware, requireUser, clearCart);
 router.post("/cart/checkout", authMiddleware, requireUser, checkoutCart);
 router.get("/session/details", authMiddleware, requireUser, getCheckoutSessionDetails);
 router.post("/session/clear-cart", authMiddleware, requireUser, clearCartFromSession);
+router.get("/session/keys", authMiddleware, requireUser, getKeysBySession);
 
 export default router;

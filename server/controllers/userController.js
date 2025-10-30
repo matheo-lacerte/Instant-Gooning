@@ -9,7 +9,8 @@ export async function getAllRequests(req, res) {
     const { data, error } = await client
       .from("request")
       .select("*")
-      .order("created_at", { ascending: false });
+      .order("created_at", { ascending: false })
+      .eq("created_by", req.user.id);
 
     if (error) return res.status(500).json({ error: error.message });
     return res.json(data);
@@ -100,3 +101,39 @@ export async function changeUserProfile(req, res) {
     return res.status(500).json({ error: err.message });
   }
 }
+
+export async function getMyKeys(req, res) {
+  try {
+    const user_id = req.user.id;
+    const { data, error } = await supabaseAdmin
+      .from("game_keys")
+      .select("key_code, status, created_at, game_id, order_id")
+      .eq("user_id", user_id)
+      .order("created_at", { ascending: false });
+    if (error) throw error;
+
+    // joindre titres
+    const ids = [...new Set(data.map(d => d.game_id))];
+    let titles = {};
+    if (ids.length) {
+      const { data: games } = await supabaseAdmin
+        .from("games")
+        .select("id, title")
+        .in("id", ids);
+      titles = Object.fromEntries((games || []).map(g => [g.id, g.title]));
+    }
+
+    return res.json(
+      data.map(d => ({
+        title: titles[d.game_id] || `Jeu ${d.game_id}`,
+        key: d.key_code,
+        status: d.status,
+        order_id: d.order_id,
+        created_at: d.created_at
+      }))
+    );
+  } catch (e) {
+    return res.status(500).json({ error: e.message });
+  }
+}
+
