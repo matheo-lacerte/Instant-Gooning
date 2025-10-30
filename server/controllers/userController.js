@@ -2,12 +2,12 @@ import { supabase, supabaseAdmin } from "../config/supabase.js";
 import validatePassword from "../utils/validatePassword.js";
 export async function getAllRequests(req, res) {
   try {
-    if (!req.user) return res.status(401).json({ error: 'Non authentifié' });
+    if (!req.user) return res.status(401).json({ error: "Non authentifié" });
     const client = req.supabase;
     const { data, error } = await client
-      .from('request')
-      .select('*')
-      .order('created_at', { ascending: false });
+      .from("request")
+      .select("*")
+      .order("created_at", { ascending: false });
 
     if (error) return res.status(500).json({ error: error.message });
     return res.json(data);
@@ -18,37 +18,58 @@ export async function getAllRequests(req, res) {
 
 export async function changePassword(req, res) {
   try {
-    if (!req.user) return res.status(401).json({ error: 'Non authentifié' });
+    if (!req.user) return res.status(401).json({ error: "Non authentifié" });
     const { oldPassword, newPassword } = req.body;
     const { error } = await req.supabase.auth.signInWithPassword({
       email: req.user.email,
-      password: oldPassword
+      password: oldPassword,
     });
     if (error) {
-      return res.status(400).json({ error: 'Ancien mot de passe incorrect.' });
+      return res.status(400).json({ error: "Ancien mot de passe incorrect." });
     }
     if (!oldPassword || !newPassword) {
-      return res.status(400).json({ error: 'Ancien et nouveau mot de passe requis.' });
+      return res
+        .status(400)
+        .json({ error: "Ancien et nouveau mot de passe requis." });
     }
 
     if (oldPassword === newPassword) {
-      return res.status(400).json({ error: 'Le nouveau mot de passe doit être différent de l\'ancien.' });
+      return res
+        .status(400)
+        .json({
+          error: "Le nouveau mot de passe doit être différent de l'ancien.",
+        });
     }
 
     if (!validatePassword(newPassword)) {
       return res.status(400).json({
         error:
-          "Le mot de passe doit contenir au moins 12 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial."
+          "Le mot de passe doit contenir au moins 12 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial.",
       });
     }
     const client = req.supabase;
-    const { data: authData, error: authError } = await client.auth.updateUser({
-      password: newPassword
+    const { error: authError } = await client.auth.updateUser({
+      password: newPassword,
     });
     if (authError) {
       return res.status(500).json({ error: authError.message });
     }
-    return res.json({ message: 'Mot de passe mis à jour avec succès.' });
+
+    const { data: newSession, error: tokenError } =
+      await req.supabase.auth.signInWithPassword({
+        email: req.user.email,
+        password: newPassword,
+      });
+
+    if (tokenError)
+      return res
+        .status(500)
+        .json({ error: "Mot de passe changé, mais erreur de session." });
+
+    return res.json({
+      message: "Mot de passe mis à jour avec succès.",
+      token: newSession.session.access_token,
+    });
   } catch (err) {
     return res.status(500).json({ error: err.message });
   }
@@ -56,22 +77,21 @@ export async function changePassword(req, res) {
 
 export async function changeUserProfile(req, res) {
   try {
-    if (!req.user) return res.status(401).json({ error: 'Non authentifié' });
+    if (!req.user) return res.status(401).json({ error: "Non authentifié" });
     const { first_name, last_name, username, email } = req.body;
     if (!first_name || !last_name || !username || !email) {
-      return res.status(400).json({ error: 'Tous les champs sont requis.' });
+      return res.status(400).json({ error: "Tous les champs sont requis." });
     }
     const client = req.supabase;
     const { error } = await client
-      .from('users')
+      .from("users")
       .update({ first_name, last_name, username, email })
-      .eq('id', req.user.id);
+      .eq("id", req.user.id);
     if (error) {
       return res.status(500).json({ error: error.message });
     }
-    return res.json({ message: 'Profil mis à jour avec succès.' });
+    return res.json({ message: "Profil mis à jour avec succès." });
   } catch (err) {
     return res.status(500).json({ error: err.message });
   }
 }
-
