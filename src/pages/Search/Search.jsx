@@ -13,7 +13,7 @@ export default function Search() {
   useEffect(() => {
     const fetchGames = async () => {
       try {
-        const response = await fetch(apiUrl("/api/games/GetAllGames"), {
+        const response = await fetch(apiUrl("/api/games/getAllGames"), {
           method: "GET",
         });
 

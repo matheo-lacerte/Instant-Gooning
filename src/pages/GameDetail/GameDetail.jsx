@@ -18,7 +18,7 @@ export default function GameDetail() {
       setError(null);
       try {
           const response = await fetch(
-            apiUrl(`/api/games/GetGameById/${id}`),
+            apiUrl(`/api/games/getGameById/${id}`),
           { method: "GET" }
         );
         if (!response.ok) throw new Error("Réponse invalide du serveur");
