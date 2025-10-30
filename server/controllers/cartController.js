@@ -199,4 +199,23 @@ export async function decrementCartItem(req, res) {
   }
 }
 
+export async function clearCart(req, res) {
+  try {
+    const user_id = req.user?.id;
+    if (!user_id) return res.status(401).json({ error: "Non authentifié" });
+
+    const cart_id = await ensureCartExists(user_id);
+    const { error: delErr } = await supabaseAdmin
+      .from("cart_items")
+      .delete()
+      .eq("cart_id", cart_id);
+    if (delErr) throw delErr;
+
+    return res.status(200).json({ ok: true, cart_id });
+  } catch (err) {
+    console.error("Error clearing cart:", err);
+    return res.status(500).json({ error: "Erreur serveur" });
+  }
+}
+
 

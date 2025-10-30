@@ -112,7 +112,7 @@ export default function Profile() {
               </h1>
             </li>
             <li>
-              <h1>Panier</h1>
+              <h1><Link to="/cart">Panier</Link></h1>
             </li>
           </ul>
         </div>
