@@ -15,12 +15,6 @@ const Navigation = () => {
   return (
     <header className="main-header">
       <Link to="/" className="title"> Instant Gooning </Link>
-      <div className="search-bar">
-        <input type="text" placeholder="Rechercher un jeu..." value={auth.search} onChange={(e) => auth.setSearch(e.target.value)} />
-        <button onClick={recherche}>
-          <img src="/loupe.png" className="image" />
-        </button>
-      </div>
       <div className="nav-buttons">
         {!auth.isLoggedIn ? (
           <>

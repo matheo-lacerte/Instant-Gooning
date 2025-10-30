@@ -5,6 +5,15 @@
   --tile-min-w: 230px;
   --radius: 12px;
 }
+.search-section {
+  display: grid;
+  place-items: center;
+  padding: 8px 0 16px;
+}
+.search-section .search-bar { /* ensure full width but capped */
+  width: 100%;
+  max-width: 720px;
+}
 .home-title {
   font-size: 1.6rem;
   margin: 0 0 var(--gap);
