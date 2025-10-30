@@ -27,7 +27,7 @@ export default function Profile() {
   const [showOldPassword, setShowOldPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [token, setToken] = useState(localStorage.getItem("token"));
-
+ 
   useEffect(() => {
     if (editAccount) {
       editAccountAction();
@@ -297,6 +297,7 @@ export default function Profile() {
           )}
         </div>
       </div>
+      
       <Link to="/logout" className="button_dev">
         Déconnexion
       </Link>
