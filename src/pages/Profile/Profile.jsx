@@ -1,6 +1,5 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { AuthContext } from "../../app/Context/AuthContext";
 
 import "./Profile.css";
 
@@ -9,20 +8,31 @@ export default function Profile() {
   const user = localStorage.getItem("user");
   const userParse = JSON.parse(user);
 
-  const [editAccount, setEditAccount] = useState(false);
-  const [editPassword, setEditPassword] = useState(false);
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const isEditProfile = queryParams.has("editProfile");
+  const isEditPassword = queryParams.has("editPassword");
+  const [editAccount, setEditAccount] = useState(isEditProfile);
+  const [editPassword, setEditPassword] = useState(isEditPassword);
 
   const [username, setUsername] = useState(userParse.username);
   const [first, setFirst] = useState(userParse.first_name);
   const [last, setLast] = useState(userParse.last_name);
   const [email, setEmail] = useState(userParse.email);
-  const [password, setPassword] = useState("");
+  const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
-  const [showPassword1, setShowPassword1] = useState(false);
-  const [showPassword2, setShowPassword2] = useState(false);
+  const [showOldPassword, setShowOldPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [token, setToken] = useState(localStorage.getItem("token"));
 
   useEffect(() => {
-    navigate("/profile");
+    if (!editAccount || !editPassword) {
+      navigate("/profile");
+    } else if (editAccount) {
+      editAccountAction();
+    } else {
+      editPasswordAction();
+    }
   }, []);
 
   const editAccountAction = () => {
@@ -41,25 +51,50 @@ export default function Profile() {
     setLast(userParse.last_name);
     setEmail(userParse.email);
     setNewPassword("");
-    setPassword("");
+    setOldPassword("");
     setEditAccount(false);
     setEditPassword(false);
-    setShowPassword1(false);
-    setShowPassword2(false);
+    setShowOldPassword(false);
+    setShowNewPassword(false);
     navigate("/profile");
   };
 
   const setshowPassword1 = () => {
-    setShowPassword1(!showPassword1);
+    setShowOldPassword(!showOldPassword);
   };
 
   const setshowPassword2 = () => {
-    setShowPassword2(!showPassword2);
+    setShowNewPassword(!showNewPassword);
   };
 
   const sauvegarde = async () => {};
 
-  const sauvegardeMDP = async () => {};
+  const sauvegardeMDP = async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:5174/api/user/changePassword",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ oldPassword, newPassword }),
+        }
+      );
+
+      const data = await response.json();
+      if (response.ok) {
+        localStorage.setItem("token", data.token);
+        setToken(data.token);
+        alert(data.message);
+      } else {
+        alert(data.error);
+      }
+    } catch (error) {
+      alert(error);
+    }
+  };
 
   return (
     <div className="dev">
@@ -162,12 +197,12 @@ export default function Profile() {
                 <div className="password-container">
                   <input
                     id="password"
-                    type={showPassword1 ? "text" : "password"}
+                    type={showOldPassword ? "text" : "password"}
                     name="password"
                     placeholder="Entrez votre mot de passe"
                     required
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    value={oldPassword}
+                    onChange={(e) => setOldPassword(e.target.value)}
                   />
                   <button
                     onClick={setshowPassword1}
@@ -175,7 +210,7 @@ export default function Profile() {
                     type="button"
                   >
                     <img
-                      src={showPassword1 ? "fermer.svg" : "ouvert.svg"}
+                      src={showOldPassword ? "fermer.svg" : "ouvert.svg"}
                       className="image"
                     />
                   </button>
@@ -187,7 +222,7 @@ export default function Profile() {
                 <div className="password-container">
                   <input
                     id="password"
-                    type={showPassword2 ? "text" : "password"}
+                    type={showNewPassword ? "text" : "password"}
                     name="password"
                     placeholder="Entrez votre mot de passe"
                     required
@@ -200,7 +235,7 @@ export default function Profile() {
                     type="button"
                   >
                     <img
-                      src={showPassword2 ? "fermer.svg" : "ouvert.svg"}
+                      src={showNewPassword ? "fermer.svg" : "ouvert.svg"}
                       className="image"
                     />
                   </button>
