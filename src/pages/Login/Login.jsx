@@ -29,18 +29,17 @@ export default function Login() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-
       if (!response.ok) {
-        let msg = "Données invalides";
-        const errorData = await response.json();
-        if (errorData?.error) {
-          msg = errorData.error;
-          setError(msg);
-        }
+        let msg = `HTTP ${response.status}`;
+        try {
+          const errorData = await response.json();
+          if (errorData?.error) msg = errorData.error;
+        } catch {}
+        setError(msg);
+        return; // stop here on error
       }
 
       const responseData = await response.json();
-
       auth.login(responseData.token, responseData.user);
       navigate("/");
     } catch (error) {
