@@ -1,17 +1,70 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-
 import "./Dev.css";
 
 export default function Dev() {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
-  const user = localStorage.getItem("user");
-  const userParsed = JSON.parse(user);
+  const user = JSON.parse(localStorage.getItem("user"));
+
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
+  const [requests, setRequests] = useState([]);
+  const [isPendingRequest, setIsPendingRequest] = useState(false);
 
-  const formSubmitDev = async () => {
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const isFormRequest = queryParams.has("formRequest");
+  const isViewRequest = queryParams.has("viewRequest");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const checkResponse = await fetch(
+          "http://localhost:5174/api/admin/isPendingRequest",
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        const checkData = await checkResponse.json();
+
+        if (checkResponse.ok) {
+          setIsPendingRequest(checkData.hasPendingRequest);
+          setErrorMsg(checkData.message);
+        } else {
+          setErrorMsg(checkResponse.error);
+        }
+
+        if (isViewRequest) {
+          const response = await fetch(
+            "http://localhost:5174/api/user/getAllRequests",
+            {
+              headers: { Authorization: `Bearer ${token}` },
+            }
+          );
+
+          const data = await response.json();
+          if (response.ok) {
+            setRequests(data);
+          } else {
+            setErrorMsg(data.error);
+          }
+        }
+      } catch (error) {
+        setErrorMsg("Erreur de connexion au serveur");
+      }
+    };
+
+    fetchData();
+  }, [isFormRequest, isViewRequest, token]);
+
+  const formSubmitDev = async (e) => {
+    e.preventDefault();
     try {
       const response = await fetch(
         "http://localhost:5174/api/admin/request-dev",
@@ -21,22 +74,19 @@ export default function Dev() {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify({ title, description }),
+          body: JSON.stringify({ title, description, checkExisting: false }),
         }
       );
-
+      const data = await response.json();
       if (!response.ok) {
-        const errorData = await response.json();
-        alert(errorData.error);
-        throw new Error("Données invalides");
+        alert(data.error);
+        return;
       }
+      alert("Demande envoyée avec succès !");
+      navigate("/dev");
     } catch (error) {
-      console.error("");
+      alert("Erreur réseau");
     }
-  };
-
-  const backHome = () => {
-    navigate("/");
   };
 
   return (
@@ -59,62 +109,118 @@ export default function Dev() {
             </li>
           </ul>
         </div>
-        <div className="colonnes">
-          {userParsed.role != "dev" ? (
-            <div className="margin-colonne">
-              <h1 className="top">
-                Formulaire de demande pour être développeur
-              </h1>
-              <form onSubmit={formSubmitDev} className="form-dev">
-                <div className="control no-margin space">
-                  <label htmlFor="titre">Titre</label>
-                  <input
-                    id="titre"
-                    type="text"
-                    name="titre"
-                    placeholder="Entrez le titre de la demande"
-                    required
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                  />
-                </div>
 
-                <div className="control no-margin space">
-                  <label htmlFor="contenu">Contenu</label>
-                  <textarea
-                    id="contenu"
-                    type="text"
-                    name="contenu"
-                    placeholder="Entrez le contenu de votre demande"
-                    required
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                    rows={7}
-                  />
+        <div className="colonnes">
+          {/* === FORM REQUEST === */}
+          {isFormRequest && (
+            <div className="margin-colonne">
+              {errorMsg ? (
+                <div className="error">
+                  <h1>{errorMsg}</h1>
                 </div>
-                <div className="btn-envoyer">
-                  <button
-                    type="submit"
-                    className="button_dev"
-                  >
-                    Envoyer la demande
-                  </button>
-                </div>
-              </form>
+              ) : (
+                <>
+                  <h1 className="top">
+                    Formulaire de demande pour être développeur
+                  </h1>
+                  <form onSubmit={formSubmitDev} className="form-dev">
+                    <div className="control no-margin space">
+                      <label htmlFor="titre">Titre</label>
+                      <input
+                        id="titre"
+                        type="text"
+                        name="titre"
+                        placeholder="Entrez le titre de la demande"
+                        required
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                      />
+                    </div>
+
+                    <div className="control no-margin space">
+                      <label htmlFor="contenu">Contenu</label>
+                      <textarea
+                        id="contenu"
+                        name="contenu"
+                        placeholder="Entrez le contenu de votre demande"
+                        required
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                        rows={7}
+                      />
+                    </div>
+                    <div className="btn-envoyer">
+                      <button type="submit" className="button_dev">
+                        Envoyer la demande
+                      </button>
+                    </div>
+                  </form>
+                </>
+              )}
             </div>
-          ) : (
-            <>
-              <h3>Vous ne voulez plus être développeur?</h3>
-              <div className="btn-row">
-                <button className="button_dev">oui</button>
-                <button className="button_dev" onClick={backHome}>
-                  non
-                </button>
-              </div>
-            </>
           )}
+
+          {/* === VIEW REQUEST === */}
+          {isViewRequest && (
+            <div className="margin-colonne">
+              <h1 className="space request">Vos demandes pour devenir développeur</h1>
+
+              {requests.length > 0 ? (
+                <div className="cards-container">
+                  {requests.map((req) => (
+                    <div key={req.id} className="request-card">
+                      <h1 className="request-title">{req.title}</h1>
+                      <h2 className="request-state">
+                        État : <strong>{req.requestState}</strong>
+                      </h2>
+                      <p className="request-desc">{req.description}</p>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p>Aucune demande trouvée.</p>
+              )}
+            </div>
+          )}
+
+          {/* === DEFAULT VIEW === */}
+          {!isFormRequest &&
+            !isViewRequest &&
+            (user.role !== "dev" ? (
+              <div className="link-dev">
+                {!isPendingRequest ? (
+                  <>
+                    <h1 className="centre">
+                      Bienvenue sur la page développeur.
+                    </h1>
+                    <h2 className="space">
+                      <Link to="/dev?formRequest">
+                        Faire une demande pour devenir développeur
+                      </Link>
+                    </h2>
+                  </>
+                ) : (
+                  <h2 className="space">
+                    Veuillez patienter jusqu’à l’acceptation de votre demande.
+                  </h2>
+                )}
+                <h2>
+                  <Link to="/dev?viewRequest">Consulter mes demandes envoyées</Link>
+                </h2>
+              </div>
+            ) : (
+              <>
+                <h2 className="space">Ajouter un jeu</h2>
+                <h2 className="space">Modifier un de mes jeux</h2>
+                <h2 className="space">Supprimer un de mes jeux</h2>
+                <h2>
+                  <Link to="/dev?viewRequest">Consulter mes demandes envoyées</Link>
+                </h2>
+              </>
+            ))}
         </div>
       </div>
+
       <Link to="/logout" className="button_dev">
         Déconnexion
       </Link>
