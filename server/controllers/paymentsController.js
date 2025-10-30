@@ -1,6 +1,5 @@
 import Stripe from "stripe";
 import { supabaseAdmin } from "../config/supabase.js";
-
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: "2024-06-20" });
 
 async function syncStripeForGame(game) {
@@ -168,3 +167,52 @@ export async function clearCartFromSession(req, res) {
     return res.status(500).json({ error: e.message });
   }
 }
+
+export async function getKeysBySession(req, res) {
+  try {
+    const user_id = req.user.id;
+    const session_id = req.query.session_id;
+    if (!session_id) return res.status(400).json({ error: "session_id requis" });
+
+    // retrouver l'order via le webhook metadata
+    const session = await stripe.checkout.sessions.retrieve(session_id);
+    const cart_id = session.metadata?.cart_id; // optionnel, juste info
+
+    // récupère la commande correspondante par session_id
+    const { data: order, error: oErr } = await supabaseAdmin
+      .from("orders")
+      .select("id")
+      .eq("stripe_checkout_session_id", session_id)
+      .eq("user_id", user_id)
+      .single();
+    if (oErr || !order) return res.status(404).json({ error: "Commande introuvable" });
+
+    const { data: keys, error: kErr } = await supabaseAdmin
+      .from("game_keys")
+      .select("game_id, key_code, status")
+      .eq("order_id", order.id);
+    if (kErr) throw kErr;
+
+    // optionnel: joindre titres
+    const gameIds = [...new Set(keys.map(k => k.game_id))];
+    let titles = {};
+    if (gameIds.length) {
+      const { data: games } = await supabaseAdmin
+        .from("games")
+        .select("id, title")
+        .in("id", gameIds);
+      titles = Object.fromEntries((games || []).map(g => [g.id, g.title]));
+    }
+
+    const items = keys.map(k => ({
+      title: titles[k.game_id] || `Jeu ${k.game_id}`,
+      key: k.key_code,
+      status: k.status
+    }));
+
+    return res.json({ items });
+  } catch (e) {
+    return res.status(500).json({ error: e.message });
+  }
+}
+

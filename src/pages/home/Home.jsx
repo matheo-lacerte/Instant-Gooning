@@ -25,7 +25,7 @@ export default function Home() {
         setLoading(true);
         let data = null;
 
-          const response = await fetch("/api/games/getAllGames", { method: "GET" });
+          const response = await fetch("http://localhost:5174/api/games/getAllGames", { method: "GET" });
           if (!response.ok) throw new Error(`HTTP ${response.status}`);
           data = await response.json();
 
