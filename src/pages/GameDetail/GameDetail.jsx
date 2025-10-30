@@ -7,6 +7,7 @@ export default function GameDetail() {
   const [game, setGame] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     let ignore = false;
@@ -43,19 +44,27 @@ export default function GameDetail() {
   const platforms = useMemo(() => {
     if (!game) return [];
     if (Array.isArray(game.platform)) return game.platform;
-    if (typeof game.platform === "string" && game.platform.trim()) return [game.platform];
+    if (typeof game.platform === "string" && game.platform.trim())
+      return [game.platform];
     return [];
   }, [game]);
 
   const isDiscounted = useMemo(() => {
     if (!game) return false;
-    return typeof game.discount === "number" && game.discount > 0 && Number(game.discounted_price) > 0;
+    return (
+      typeof game.discount === "number" &&
+      game.discount > 0 &&
+      Number(game.discounted_price) > 0
+    );
   }, [game]);
 
   const formatPrice = (value) => {
     if (value == null) return "";
     const cents = Number(value);
-    return new Intl.NumberFormat("fr-CA", { style: "currency", currency: "CAD" }).format(cents / 100);
+    return new Intl.NumberFormat("fr-CA", {
+      style: "currency",
+      currency: "CAD",
+    }).format(cents / 100);
   };
 
   const trailerEmbedUrl = useMemo(() => {
@@ -63,7 +72,8 @@ export default function GameDetail() {
     if (!url) return null;
     try {
       const u = new URL(url);
-      const isYouTube = u.hostname.includes("youtube.com") || u.hostname.includes("youtu.be");
+      const isYouTube =
+        u.hostname.includes("youtube.com") || u.hostname.includes("youtu.be");
       if (isYouTube) {
         let idParam = "";
         if (u.hostname.includes("youtu.be")) {
@@ -75,12 +85,35 @@ export default function GameDetail() {
           return `https://www.youtube.com/embed/${idParam}?rel=0&modestbranding=1&color=white`;
         }
       }
-     
+
       return url;
     } catch {
       return url;
     }
   }, [game]);
+
+  const addGameToCart = async () => {
+    if (token) {
+      const response = await fetch(
+        "http://localhost:5174/api/payments/cart/items",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ game_id: game.id, quantity: "1" }),
+        }
+      );
+      if (!response.ok) {
+        alert("Erreur lors de l'ajout du jeu au panier.");
+        return;
+      }
+      alert("Jeu ajouté au panier avec succès !");
+    } else {
+      alert("Veuillez vous connecter pour ajouter des jeux au panier.");
+    }
+  };
 
   const rating10 = useMemo(() => {
     const r = game?.rating;
@@ -107,7 +140,14 @@ export default function GameDetail() {
         <Link className="back-link" to="/" aria-label="Retour à l'accueil">
           <span className="icon" aria-hidden>
             <svg viewBox="0 0 24 24" width="12" height="12">
-              <path d="M15 18l-6-6 6-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <path
+                d="M15 18l-6-6 6-6"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
             </svg>
           </span>
           <span>Retour</span>
@@ -131,7 +171,14 @@ export default function GameDetail() {
         <Link className="back-link" to="/" aria-label="Retour à l'accueil">
           <span className="icon" aria-hidden>
             <svg viewBox="0 0 24 24" width="12" height="12">
-              <path d="M15 18l-6-6 6-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <path
+                d="M15 18l-6-6 6-6"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
             </svg>
           </span>
           <span>Retour</span>
@@ -145,7 +192,14 @@ export default function GameDetail() {
       <Link className="back-link" to="/" aria-label="Retour à l'accueil">
         <span className="icon" aria-hidden>
           <svg viewBox="0 0 24 24" width="12" height="12">
-            <path d="M15 18l-6-6 6-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <path
+              d="M15 18l-6-6 6-6"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </svg>
         </span>
         <span>Retour</span>
@@ -153,7 +207,11 @@ export default function GameDetail() {
 
       <section
         className="game-hero"
-        style={{ backgroundImage: game.cover_url ? `linear-gradient(180deg, rgba(10,12,16,0.8), rgba(10,12,16,0.95)), url(${game.cover_url})` : undefined }}
+        style={{
+          backgroundImage: game.cover_url
+            ? `linear-gradient(180deg, rgba(10,12,16,0.8), rgba(10,12,16,0.95)), url(${game.cover_url})`
+            : undefined,
+        }}
         aria-label="En-tête du jeu"
       >
         <div className="detail-header">
@@ -171,32 +229,56 @@ export default function GameDetail() {
             {genres.length > 0 && (
               <div className="chips" aria-label="Genres">
                 {genres.map((g) => (
-                  <span key={g} className="chip">{g}</span>
+                  <span key={g} className="chip">
+                    {g}
+                  </span>
                 ))}
               </div>
             )}
 
             <div className="price-row">
-              {isDiscounted ? <span className="badge">-{game.discount}%</span> : null}
+              {isDiscounted ? (
+                <span className="badge">-{game.discount}%</span>
+              ) : null}
               {isDiscounted ? (
                 <>
-                  <span className="price price-original">{(game.price)} $</span>
-                  <span className="price price-final">{(game.discounted_price)} $</span>
+                  <span className="price price-original">{game.price} $</span>
+                  <span className="price price-final">
+                    {game.discounted_price} $
+                  </span>
                 </>
               ) : (
-                <span className="price price-final">{(game.price)}$</span>
+                <span className="price price-final">{game.price}$</span>
               )}
-              <button className="buy-btn" aria-label="Acheter le jeu">Acheter</button>
+              <button
+                className="buy-btn"
+                aria-label="Acheter le jeu"
+                onClick={addGameToCart}
+              >
+                Ajouter au panier
+              </button>
             </div>
 
             <div className="meta-grid">
-              <div><strong>Plateformes:</strong> {platforms.join(", ") || "—"}</div>
-              <div><strong>Date de sortie:</strong> {game.release_date || "—"}</div>
-              <div><strong>Développeur:</strong> {game.developer || "—"}</div>
-              <div><strong>Éditeur:</strong> {game.publisher || "—"}</div>
+              <div>
+                <strong>Plateformes:</strong> {platforms.join(", ") || "—"}
+              </div>
+              <div>
+                <strong>Date de sortie:</strong> {game.release_date || "—"}
+              </div>
+              <div>
+                <strong>Développeur:</strong> {game.developer || "—"}
+              </div>
+              <div>
+                <strong>Éditeur:</strong> {game.publisher || "—"}
+              </div>
               <div className="rating-cell">
                 <strong>Note:</strong>
-                <span className="rating-num">{rating10 > 0 ? `${rating10.toFixed(1)}/10` : "Aucune pour le moment"}</span>
+                <span className="rating-num">
+                  {rating10 > 0
+                    ? `${rating10.toFixed(1)}/10`
+                    : "Aucune pour le moment"}
+                </span>
               </div>
             </div>
           </div>
@@ -205,7 +287,10 @@ export default function GameDetail() {
 
       {trailerEmbedUrl && (
         <section className="media-section">
-          <h2 className="section-title"><span className="bar" />Bande‑annonce</h2>
+          <h2 className="section-title">
+            <span className="bar" />
+            Bande‑annonce
+          </h2>
           <div className="video-card">
             {trailerEmbedUrl.includes("/embed/") ? (
               <iframe
@@ -227,7 +312,9 @@ export default function GameDetail() {
         {game.tags?.length ? (
           <div className="tags" aria-label="Tags">
             {game.tags.map((t) => (
-              <span key={t} className="tag">{t}</span>
+              <span key={t} className="tag">
+                {t}
+              </span>
             ))}
           </div>
         ) : null}
