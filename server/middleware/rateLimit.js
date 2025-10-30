@@ -1,6 +1,5 @@
 import rateLimit from "express-rate-limit";
 
-
 function createLimiter({ windowMs, max, message, keyGenerator }) {
   return rateLimit({
     windowMs,
