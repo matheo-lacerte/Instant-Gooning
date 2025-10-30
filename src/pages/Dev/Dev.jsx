@@ -21,23 +21,25 @@ export default function Dev() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const checkResponse = await fetch(
-          "http://localhost:5174/api/admin/isPendingRequest",
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
+        if (user.role !== "dev") {
+          const checkResponse = await fetch(
+            "http://localhost:5174/api/admin/isPendingRequest",
+            {
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+
+          const checkData = await checkResponse.json();
+
+          if (checkResponse.ok) {
+            setIsPendingRequest(checkData.hasPendingRequest);
+            setErrorMsg(checkData.message);
+          } else {
+            setErrorMsg(checkResponse.error);
           }
-        );
-
-        const checkData = await checkResponse.json();
-
-        if (checkResponse.ok) {
-          setIsPendingRequest(checkData.hasPendingRequest);
-          setErrorMsg(checkData.message);
-        } else {
-          setErrorMsg(checkResponse.error);
         }
 
         if (isViewRequest) {
