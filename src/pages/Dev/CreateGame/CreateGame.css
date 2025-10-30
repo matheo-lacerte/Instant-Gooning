@@ -1,0 +1,48 @@
+.create-title {
+  margin-bottom: 10px;
+  margin-top: 5px;
+  font-size: xx-large;
+  text-align: center;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 20px;
+  width: auto;
+}
+
+.row .control {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.form-dev .control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.form-dev .control label {
+  width: auto;
+  font-weight: 500;
+}
+
+.form-dev .control input {
+  flex: 1;
+  padding: 6px 10px;
+  font-size: 1rem;
+  width: 100%;
+  margin-right: 10px;
+  border-radius: 8px;
+  border: 1px solid #1f2937;
+  background: #0b0b0b;
+  color: var(--text);
+}
+
+.create-game-container {
+  width: 100%;
+}

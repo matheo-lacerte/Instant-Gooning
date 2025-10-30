@@ -17,8 +17,9 @@ import Admin from "./pages/Admin/Admin.jsx";
 import RequireAdmin from "./app/components/Guards/RequireAdmin.jsx";
 import { jwtDecode } from "jwt-decode";
 import Search from "./pages/Search/Search.jsx";
-import Profile from "./pages/Profile/Profile.jsx"
+import Profile from "./pages/Profile/Profile.jsx";
 import PurchaseSuccess from "./pages/Purchase/Success.jsx";
+import CreateGame from "./pages/Dev/CreateGame/CreateGame.jsx";
 
 const router = createBrowserRouter([
   {
@@ -30,8 +31,8 @@ const router = createBrowserRouter([
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
       { path: "/game/:id", element: <GameDetail /> },
-  { path: "/search", element: <Search /> },
-  { path: "/purchase/success", element: <PurchaseSuccess /> },
+      { path: "/search", element: <Search /> },
+      { path: "/purchase/success", element: <PurchaseSuccess /> },
     ],
   },
 ]);
@@ -82,8 +83,27 @@ const App = () => {
     { path: "/logout", element: <Logout /> },
     { path: "/search", element: <Search /> },
     { path: "/profile", element: <Profile /> },
-  { path: "/purchase/success", element: <PurchaseSuccess /> },
+    { path: "/purchase/success", element: <PurchaseSuccess /> },
   ];
+
+  if (user?.role === "dev") {
+    loggedInChildren.push({
+      path: "/dev/create",
+      element: (
+          <CreateGame />
+      ),
+    }, {
+      path: "/dev/edit/:id",
+      element: (
+          <CreateGame />
+      ),
+    }, {
+      path: "/dev/delete",
+      element: (
+          <CreateGame />
+      ),
+    });
+  }
 
   if (user?.role === "admin") {
     loggedInChildren.push({
@@ -106,7 +126,9 @@ const App = () => {
   ]);
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, login, logout, search, setSearch }}>
+    <AuthContext.Provider
+      value={{ isLoggedIn, login, logout, search, setSearch }}
+    >
       <RouterProvider router={isLoggedIn ? routerLoginLocal : router} />
     </AuthContext.Provider>
   );
