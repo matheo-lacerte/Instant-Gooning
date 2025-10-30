@@ -142,3 +142,29 @@ export async function getCheckoutSessionDetails(req, res) {
     return res.status(500).json({ error: e.message });
   }
 }
+
+export async function clearCartFromSession(req, res) {
+  try {
+    const session_id = req.query.session_id || req.body?.session_id;
+    if (!session_id) return res.status(400).json({ error: "session_id requis" });
+
+    const { id: userId } = req.user || {};
+    if (!userId) return res.status(401).json({ error: "Non authentifié" });
+
+    const sess = await stripe.checkout.sessions.retrieve(session_id);
+
+    if (String(sess.metadata?.user_id || "") !== String(userId)) {
+      return res.status(403).json({ error: "Accès refusé à cette session" });
+    }
+
+    const cart_id = sess.metadata?.cart_id;
+    if (!cart_id) return res.status(400).json({ error: "cart_id manquant dans la session" });
+
+    const { error } = await supabaseAdmin.from("cart_items").delete().eq("cart_id", cart_id);
+    if (error) return res.status(500).json({ error: error.message });
+
+    return res.json({ cleared: true, cart_id });
+  } catch (e) {
+    return res.status(500).json({ error: e.message });
+  }
+}

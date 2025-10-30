@@ -70,6 +70,16 @@ export default function Success() {
         if (cancelled) return;
         const mapped = Array.isArray(data.items) ? data.items.map(it => ({ title: it.title, quantity: it.quantity })) : [];
         setItems(mapped);
+        // Best-effort: clear the cart using the verified session_id
+        try {
+          await fetch(`/api/payments/session/clear-cart?session_id=${encodeURIComponent(sessionId)}`, {
+            method: "POST",
+            credentials: "include",
+            headers: token ? { Authorization: `Bearer ${token}` } : undefined,
+          });
+        } catch (_) {
+          // ignore
+        }
       } catch (e) {
         if (!cancelled) setErr(e.message || "Erreur");
       } finally {
