@@ -28,7 +28,7 @@ export default function Dev() {
         lastCheckRef.current = now;
         if (user.role !== "dev") {
           const checkResponse = await fetch(
-            "/api/admin/isPendingRequest",
+            "http://localhost:5174/api/admin/isPendingRequest",
             {
               headers: {
                 "Content-Type": "application/json",
@@ -49,7 +49,7 @@ export default function Dev() {
 
         if (isViewRequest) {
           const response = await fetch(
-            "/api/user/getAllRequests",
+            "http://localhost:5174/api/user/getAllRequests",
             {
               headers: { Authorization: `Bearer ${token}` },
             }
@@ -74,7 +74,7 @@ export default function Dev() {
     e.preventDefault();
     try {
       const response = await fetch(
-        "/api/admin/request-dev",
+        "http://localhost:5174/api/admin/request-dev",
         {
           method: "POST",
           headers: {

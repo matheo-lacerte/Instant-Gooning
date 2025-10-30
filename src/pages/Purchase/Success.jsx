@@ -30,7 +30,7 @@ export default function Success() {
     try {
       const token = localStorage.getItem("token");
       const r = await fetch(
-        `/api/payments/session/keys?session_id=${encodeURIComponent(sessionId)}`,
+        `http://localhost:5174/api/payments/session/keys?session_id=${encodeURIComponent(sessionId)}`,
         {
           credentials: "include",
           headers: token ? { Authorization: `Bearer ${token}` } : undefined,
@@ -67,7 +67,7 @@ export default function Success() {
 
         // Résumé des articles achetés (endpoint facultatif)
         const res = await fetch(
-          `/api/payments/session/details?session_id=${encodeURIComponent(sessionId)}`,
+          `http://localhost:5174/api/payments/session/details?session_id=${encodeURIComponent(sessionId)}`,
           {
             credentials: "include",
             headers: token ? { Authorization: `Bearer ${token}` } : undefined,
@@ -84,7 +84,7 @@ export default function Success() {
         // Best-effort: au cas où, demander un clear cart (le webhook le fait déjà normalement)
         try {
           await fetch(
-            `/api/payments/session/clear-cart?session_id=${encodeURIComponent(sessionId)}`,
+            `http://localhost:5174/api/payments/session/clear-cart?session_id=${encodeURIComponent(sessionId)}`,
             {
               method: "POST",
               credentials: "include",
