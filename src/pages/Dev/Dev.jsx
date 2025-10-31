@@ -257,7 +257,7 @@ export default function Dev() {
 
     useEffect(() => {
         const fetchDevGames = async () => {
-            if (activeId !== "my-games" || !isDev) return;
+            if (!(activeId === "my-games" || activeId === "dev-settings") || !isDev) return;
             try {
                 setGamesLoading(true);
                 setGamesError("");
@@ -276,6 +276,72 @@ export default function Dev() {
         };
         fetchDevGames();
     }, [activeId, isDev]);
+
+    // Etats pour Paramètres développeur (transfert/désactivation)
+    const [settingsMsg, setSettingsMsg] = useState("");
+    const [settingsErr, setSettingsErr] = useState("");
+    const [transfer, setTransfer] = useState({ gameId: "", email: "" });
+    const onTransferChange = (k) => (e) => setTransfer((p) => ({ ...p, [k]: e.target.value }));
+    const doTransfer = async (e) => {
+        e.preventDefault();
+        setSettingsMsg("");
+        setSettingsErr("");
+        try {
+            if (!transfer.gameId || !transfer.email) throw new Error("Sélectionnez un jeu et entrez l'email cible");
+            const token = localStorage.getItem("token");
+            const res = await fetch("http://localhost:5174/api/dev/transfer-game", {
+                method: "POST",
+                headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+                body: JSON.stringify({ game_id: Number(transfer.gameId), to_user_email: transfer.email })
+            });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data?.error || "Transfert impossible");
+            setSettingsMsg("Transfert effectué.");
+            setTransfer({ gameId: "", email: "" });
+            // rafraîchir la liste des jeux (le jeu disparaîtra si transféré à un autre compte)
+            setActiveId("my-games");
+        } catch (err) {
+            setSettingsErr(String(err.message || err));
+        }
+    };
+
+    const disableAll = async () => {
+        setSettingsMsg("");
+        setSettingsErr("");
+        const confirm1 = window.confirm("Voulez-vous vraiment désactiver tous vos jeux ?");
+        if (!confirm1) return;
+        try {
+            const token = localStorage.getItem("token");
+            const res = await fetch("http://localhost:5174/api/dev/disable-all", {
+                method: "PATCH",
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data?.error || "Opération impossible");
+            setSettingsMsg(`Jeux désactivés (${data.disabledCount || 0}).`);
+        } catch (err) {
+            setSettingsErr(String(err.message || err));
+        }
+    };
+
+    const leaveProgram = async () => {
+        setSettingsMsg("");
+        setSettingsErr("");
+        const confirm1 = window.confirm("Quitter le programme développeur ? Votre rôle redeviendra 'user'.");
+        if (!confirm1) return;
+        try {
+            const token = localStorage.getItem("token");
+            const res = await fetch("http://localhost:5174/api/dev/leave", {
+                method: "POST",
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data?.error || "Opération impossible");
+            setSettingsMsg(data?.message || "Vous avez quitté le programme développeur.");
+        } catch (err) {
+            setSettingsErr(String(err.message || err));
+        }
+    };
 
 
 
@@ -504,6 +570,43 @@ export default function Dev() {
                                         {addLoading ? "Création…" : "Créer le jeu"}
                                     </button>
                                 </form>
+                            </div>
+                        ) : active.id === "dev-settings" ? (
+                            <div>
+                                <p className="dev-hub__card-text">{active.description}</p>
+
+                                {settingsErr && <p className="dev-hub__error">{settingsErr}</p>}
+                                {settingsMsg && <p className="dev-hub__success">{settingsMsg}</p>}
+
+                                {isDev && (
+                                    <div className="dev-hub__stack">
+                                        <h3>Transférer un jeu à un autre compte</h3>
+                                        <form onSubmit={doTransfer} className="dev-hub__form">
+                                            <label className="dev-hub__label">Jeu</label>
+                                            <select className="dev-hub__input" value={transfer.gameId} onChange={onTransferChange("gameId")}>
+                                                <option value="">— Sélectionnez —</option>
+                                                {devGames.map((g) => (
+                                                    <option key={g.id} value={g.id}>{g.title} (#{g.id})</option>
+                                                ))}
+                                            </select>
+                                            <label className="dev-hub__label">Email du compte cible</label>
+                                            <input className="dev-hub__input" type="email" placeholder="dev@exemple.com" value={transfer.email} onChange={onTransferChange("email")} />
+                                            <button className="dev-hub__btn" type="submit">Transférer</button>
+                                        </form>
+
+                                        <hr />
+
+                                        <h3>Désactiver tous mes jeux</h3>
+                                        <p className="dev-hub__muted">Cette action rendra vos jeux indisponibles à l’achat. Vous pourrez les restaurer individuellement plus tard.</p>
+                                        <button className="dev-hub__btn" onClick={disableAll}>Désactiver tous les jeux</button>
+
+                                        <hr />
+
+                                        <h3>Quitter le programme développeur</h3>
+                                        <p className="dev-hub__muted">Vous perdrez l’accès aux outils développeur. Vous pourrez refaire une demande plus tard.</p>
+                                        <button className="dev-hub__btn" onClick={leaveProgram}>Quitter le programme</button>
+                                    </div>
+                                )}
                             </div>
                         ) : (
                             <div>
