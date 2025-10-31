@@ -24,7 +24,6 @@ export async function postForm(req, res) {
     const { data: existing, error: existingError } = await client
       .from("request")
       .select("id")
-      .eq("created_by", req.user.id)
       .eq("requestState", "En examination")
       .limit(1);
 
@@ -115,7 +114,8 @@ export async function acceptRequest(req, res) {
       return res.status(403).json({ error: "Accès refusé" });
     }
     const requestId = req.body?.requestId;
-    if (!requestId) return res.status(400).json({ error: "ID de la requête requis" });
+    if (!requestId)
+      return res.status(400).json({ error: "ID de la requête requis" });
     const client = supabaseAdmin || supabase;
 
     // Charger la requête pour obtenir le user cible
@@ -124,7 +124,10 @@ export async function acceptRequest(req, res) {
       .select("id, created_by, requestState")
       .eq("id", requestId)
       .single();
-    if (getErr) return res.status(getErr.code === "PGRST116" ? 404 : 500).json({ error: getErr.message });
+    if (getErr)
+      return res
+        .status(getErr.code === "PGRST116" ? 404 : 500)
+        .json({ error: getErr.message });
     const userId = reqRow.created_by;
 
     // Marquer la requête comme acceptée (si encore en examen)
@@ -132,7 +135,8 @@ export async function acceptRequest(req, res) {
       .from("request")
       .update({ requestState: "Accepté", reason: null })
       .eq("id", requestId);
-    if (requestError) return res.status(500).json({ error: requestError.message });
+    if (requestError)
+      return res.status(500).json({ error: requestError.message });
 
     // Promouvoir l'utilisateur en dev
     const { error: userError } = await client
@@ -141,33 +145,56 @@ export async function acceptRequest(req, res) {
       .eq("id", userId);
     if (userError) return res.status(500).json({ error: userError.message });
 
-    return res.json({ message: "Demande acceptée et rôle développeur attribué." });
+    return res.json({
+      message: "Demande acceptée et rôle développeur attribué.",
+    });
   } catch (err) {
     return res.status(500).json({ error: err.message });
   }
 }
 
-export async function declineRequest(req, res){
-    try {
-        if (!req.user) return res.status(401).json({ error: 'Non authentifié' });
-        if (req.user?.role !== "admin") {
-            return res.status(403).json({ error: "Accès refusé" });
-        }
-        const body = req.body ?? {};
-        const reasonRaw = body?.reason;
-        const requestId = body?.requestId;
-        const reason = typeof reasonRaw === 'string' ? reasonRaw.trim() : '';
-        if (!requestId) return res.status(400).json({ error: 'ID de la requête requis' });
-        if (!reason) return res.status(400).json({ error: 'Raison requise' });
-        const client = supabaseAdmin || supabase;
-        const { error: requestError } = await client
-            .from("request")
-            .update({ requestState: "Refusé", reason: reason })
-            .eq("id", requestId)
-            .eq("requestState", "En examination");
-        if (requestError) return res.status(500).json({ error: requestError.message });
-        return res.json({ message: "Demande refusée avec succès" });
-    } catch (err) {
-        return res.status(500).json({ error: err.message });
+export async function declineRequest(req, res) {
+  try {
+    if (!req.user) return res.status(401).json({ error: "Non authentifié" });
+    if (req.user?.role !== "admin") {
+      return res.status(403).json({ error: "Accès refusé" });
     }
+    const body = req.body ?? {};
+    const reasonRaw = body?.reason;
+    const requestId = body?.requestId;
+    const reason = typeof reasonRaw === "string" ? reasonRaw.trim() : "";
+    if (!requestId)
+      return res.status(400).json({ error: "ID de la requête requis" });
+    if (!reason) return res.status(400).json({ error: "Raison requise" });
+    const client = supabaseAdmin || supabase;
+    const { error: requestError } = await client
+      .from("request")
+      .update({ requestState: "Refusé", reason: reason })
+      .eq("id", requestId)
+      .eq("requestState", "En examination");
+    if (requestError)
+      return res.status(500).json({ error: requestError.message });
+    return res.json({ message: "Demande refusée avec succès" });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+}
+
+export async function getAllUsers(req, res) {
+  try {
+    if (!req.user) return res.status(401).json({ error: "Non authentifié" });
+    if (req.user?.role !== "admin") {
+      return res.status(403).json({ error: "Accès refusé" });
+    }
+
+    const { data, error } = await supabaseAdmin.from("users").select("*");
+
+    if (error) {
+      return res.status(500).json({ error: error.message });
+    }
+
+    return res.json({users: data});
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
 }
