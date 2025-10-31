@@ -27,19 +27,19 @@ export async function checkoutCart(req, res) {
       line_items.push({ price: priceId, quantity: it.quantity });
     }
 
-    // Try hard to redirect users back to the FRONTEND (Vite 5173 in dev)
+ 
     let origin = req.get("origin");
     if (!origin) {
       const ref = req.get("referer");
       if (ref) {
-        try { origin = new URL(ref).origin; } catch { /* ignore parse error */ }
+        try { origin = new URL(ref).origin; } catch {}
       }
     }
-    // If we ended up with backend origin (5174) while on localhost, force 5173
+
     if (origin && /localhost:5174$/i.test(origin)) {
       origin = "http://localhost:5173";
     }
-    // Prefer a non-local SITE_URL in production
+    
     if ((!origin || /localhost/i.test(origin)) && process.env.SITE_URL && !/localhost/i.test(process.env.SITE_URL)) {
       origin = process.env.SITE_URL;
     }
