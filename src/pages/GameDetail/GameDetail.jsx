@@ -216,7 +216,7 @@ export default function GameDetail() {
         aria-label="En-tête du jeu"
       >
         <div className="detail-header">
-          <div className="cover">
+          <div className="gd-cover">
             {game.cover_url ? (
               <img src={game.cover_url} alt={game.title} />
             ) : (

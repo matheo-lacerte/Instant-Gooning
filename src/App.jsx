@@ -20,12 +20,10 @@ import { jwtDecode } from "jwt-decode";
 import Search from "./pages/Search/Search.jsx";
 import Profile from "./pages/Profile/Profile.jsx";
 import PurchaseSuccess from "./pages/Purchase/Success.jsx";
-
-
 import Cart from "./pages/Cart/Cart.jsx";
 import EditPassword from "./pages/Profile/EditPassword/EditPassword.jsx"
 import EditProfile from "./pages/Profile/EditProfile/EditProfile.jsx"
-
+import DevGameDetail from "./pages/Dev/DevGameDetail/devGameDetail.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -86,6 +84,7 @@ const App = () => {
     { path: "", element: <Home /> },
     { path: "/game/:id", element: <GameDetail /> },
     { path: "/dev", element: <Dev /> },
+    { path: "/dev/game/:id", element: <DevGameDetail /> },
     { path: "/logout", element: <Logout /> },
     { path: "/search", element: <Search /> },
   { path: "/profile", element: <Profile /> },
