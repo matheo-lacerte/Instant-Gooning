@@ -63,11 +63,10 @@ export default function CreateGame() {
         }
       );
       if (response.ok) {
-        alert("Jeu créé avec succès !");
         navigate("/dev");
       } else {
         const errorData = await response.json();
-        alert("Erreur lors de la création du jeu : " + errorData.error);
+        console.error("Erreur lors de la création du jeu:", errorData.error);
       }
     } catch (error) {
       console.error("Error creating game:", error);

@@ -32,7 +32,6 @@ export default function Home() {
         if (!cancelled) setListeJeux(Array.isArray(data) ? data : []);
       } catch (err) {
         console.error(err);
-        if (!cancelled) alert("Une erreur est survenue. Veuillez réessayer plus tard.");
       } finally {
         if (!cancelled) setLoading(false);
       }

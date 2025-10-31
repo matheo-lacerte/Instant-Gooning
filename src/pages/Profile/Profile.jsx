@@ -102,14 +102,14 @@ export default function Profile() {
         setUserParse(newUser);
         localStorage.setItem("user", JSON.stringify(newUser));
 
-        alert(data.message);
+  console.log(data.message);
         navigate("/profile");
         setEditAccount(false);
       } else {
-        alert(data.error);
+  console.error(data.error);
       }
     } catch (error) {
-      alert(error);
+  console.error(error);
     }
   };
 
@@ -131,12 +131,12 @@ export default function Profile() {
       if (response.ok) {
         localStorage.setItem("token", data.token);
         setToken(data.token);
-        alert(data.message);
+  console.log(data.message);
       } else {
-        alert(data.error);
+  console.error(data.error);
       }
     } catch (error) {
-      alert(error);
+  console.error(error);
     }
   };
 
