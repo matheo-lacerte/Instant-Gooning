@@ -43,7 +43,7 @@
   border-radius: 999px;
   display: grid;
   place-items: center;
-  background: linear-gradient(135deg, var(--blue), var(--accent));
+  background: rgb(0, 0, 111);
   color: #fff;
   box-shadow: 0 4px 10px rgba(37, 99, 235, 0.35);
 }

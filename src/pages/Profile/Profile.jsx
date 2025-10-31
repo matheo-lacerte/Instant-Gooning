@@ -65,14 +65,14 @@ export default function Profile() {
         setUserParse(newUser);
         localStorage.setItem("user", JSON.stringify(newUser));
 
-        alert(data.message);
+  console.log(data.message);
         navigate("/profile");
         setEditProfile(false);
       } else {
-        alert(data.error);
+  console.error(data.error);
       }
     } catch (error) {
-      alert(error);
+  console.error(error);
     }
   };
 

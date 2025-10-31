@@ -31,11 +31,9 @@ export default function Register() {
 
       if (!response.ok) {
         const errorData = await response.json();
-        alert(errorData.error);
+        console.error("Register error:", errorData.error);
         throw new Error("Données invalides");
       }
-
-      alert("Ne reste plus qu'à vous connecter!");
       navigate("/login");
     } catch (error) {
       console.error("Erreur lors de l'inscription :", error);

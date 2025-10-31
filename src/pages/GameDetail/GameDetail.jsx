@@ -107,13 +107,12 @@ export default function GameDetail() {
         }
       );
       if (!response.ok) {
-        alert("Erreur lors de l'ajout du jeu au panier.");
+        console.error("Erreur lors de l'ajout du jeu au panier.");
         return;
       }
-      alert("Jeu ajouté au panier avec succès !");
       navigate("/");
     } else {
-      alert("Veuillez vous connecter pour ajouter des jeux au panier.");
+      navigate("/login");
     }
   };
 
