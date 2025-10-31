@@ -5,14 +5,6 @@ import "./Profile.css";
 
 export default function Profile() {
   const navigate = useNavigate();
-
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const isEditProfile = queryParams.has("editProfile");
-  const isEditPassword = queryParams.has("editPassword");
-  const [editAccount, setEditAccount] = useState(isEditProfile);
-  const [editPassword, setEditPassword] = useState(isEditPassword);
-
   const [userParse, setUserParse] = useState(() => {
     const storedUser = localStorage.getItem("user");
     return storedUser ? JSON.parse(storedUser) : {};
@@ -22,52 +14,26 @@ export default function Profile() {
   const [first, setFirst] = useState(userParse.first_name || "");
   const [last, setLast] = useState(userParse.last_name || "");
   const [email, setEmail] = useState(userParse.email || "");
-  const [oldPassword, setOldPassword] = useState("");
-  const [newPassword, setNewPassword] = useState("");
-  const [showOldPassword, setShowOldPassword] = useState(false);
-  const [showNewPassword, setShowNewPassword] = useState(false);
   const [token, setToken] = useState(localStorage.getItem("token"));
+  const [editProfile, setEditProfile] = useState(false)
  
-  useEffect(() => {
-    if (editAccount) {
-      editAccountAction();
-    } else if (editPassword) {
-      editPasswordAction();
-    } else {
-      navigate("/profile");
-    }
-  }, []);
-
-  const editAccountAction = () => {
-    setEditAccount(true);
-    navigate("/profile?editProfile");
+  const editAccount = () => {
+    setEditProfile(true)
+    //navigate("/profile/editAccount");
   };
 
-  const editPasswordAction = () => {
-    setEditPassword(true);
-    navigate("/profile?editPassword");
+  const editPassword = () => {
+    navigate("/profile/editPassword");
   };
+
 
   const annulation = () => {
     setUsername(userParse.username);
     setFirst(userParse.first_name);
     setLast(userParse.last_name);
     setEmail(userParse.email);
-    setNewPassword("");
-    setOldPassword("");
-    setEditAccount(false);
-    setEditPassword(false);
-    setShowOldPassword(false);
-    setShowNewPassword(false);
+    setEditProfile(false);
     navigate("/profile");
-  };
-
-  const setshowPassword1 = () => {
-    setShowOldPassword(!showOldPassword);
-  };
-
-  const setshowPassword2 = () => {
-    setShowNewPassword(!showNewPassword);
   };
 
   const sauvegarde = async () => {
@@ -104,34 +70,7 @@ export default function Profile() {
 
         alert(data.message);
         navigate("/profile");
-        setEditAccount(false);
-      } else {
-        alert(data.error);
-      }
-    } catch (error) {
-      alert(error);
-    }
-  };
-
-  const sauvegardeMDP = async () => {
-    try {
-      const response = await fetch(
-        "http://localhost:5174/api/user/changePassword",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({ oldPassword, newPassword }),
-        }
-      );
-
-      const data = await response.json();
-      if (response.ok) {
-        localStorage.setItem("token", data.token);
-        setToken(data.token);
-        alert(data.message);
+        setEditProfile(false);
       } else {
         alert(data.error);
       }
@@ -161,9 +100,8 @@ export default function Profile() {
           </ul>
         </div>
         <div className="colonnes userData">
-          {!editPassword && userParse.role != "admin" ? (
             <>
-              {!editAccount ? (
+              {!editProfile ? (
                 <h1>Informations du compte</h1>
               ) : (
                 <h1>Modification du compte</h1>
@@ -176,7 +114,7 @@ export default function Profile() {
                   id="username"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  readOnly={!editAccount ? true : false}
+                  readOnly={!editProfile ? true : false}
                 />
               </div>
 
@@ -187,7 +125,7 @@ export default function Profile() {
                   id="firstName"
                   value={first}
                   onChange={(e) => setFirst(e.target.value)}
-                  readOnly={!editAccount ? true : false}
+                  readOnly={!editProfile ? true : false}
                 />
               </div>
 
@@ -198,7 +136,7 @@ export default function Profile() {
                   id="lastName"
                   value={last}
                   onChange={(e) => setLast(e.target.value)}
-                  readOnly={!editAccount ? true : false}
+                  readOnly={!editProfile ? true : false}
                 />
               </div>
 
@@ -209,16 +147,16 @@ export default function Profile() {
                   id="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  readOnly={!editAccount ? true : false}
+                  readOnly={!editProfile ? true : false}
                 />
               </div>
 
-              {!editAccount ? (
+              {!editProfile ? (
                 <div className="row-bottom">
-                  <button className="edit-button" onClick={editAccountAction}>
+                  <button className="edit-button" onClick={editAccount}>
                     Modifier les informations du compte
                   </button>
-                  <button className="edit-button" onClick={editPasswordAction}>
+                  <button className="edit-button" onClick={editPassword}>
                     Modifier le mot de passe
                   </button>
                 </div>
@@ -233,68 +171,6 @@ export default function Profile() {
                 </div>
               )}
             </>
-          ) : (
-            <>
-              <h1>Modification du mot de passe</h1>
-              <div className="control no-margin">
-                <label htmlFor="password">Ancien mot de passe</label>
-                <div className="password-container">
-                  <input
-                    id="password"
-                    type={showOldPassword ? "text" : "password"}
-                    name="password"
-                    placeholder="Entrez votre mot de passe"
-                    required
-                    value={oldPassword}
-                    onChange={(e) => setOldPassword(e.target.value)}
-                  />
-                  <button
-                    onClick={setshowPassword1}
-                    className="eye-button"
-                    type="button"
-                  >
-                    <img
-                      src={showOldPassword ? "fermer.svg" : "ouvert.svg"}
-                      className="image"
-                    />
-                  </button>
-                </div>
-              </div>
-
-              <div className="control no-margin">
-                <label htmlFor="password">Nouveau mot de passe</label>
-                <div className="password-container">
-                  <input
-                    id="password"
-                    type={showNewPassword ? "text" : "password"}
-                    name="password"
-                    placeholder="Entrez votre mot de passe"
-                    required
-                    value={newPassword}
-                    onChange={(e) => setNewPassword(e.target.value)}
-                  />
-                  <button
-                    onClick={setshowPassword2}
-                    className="eye-button"
-                    type="button"
-                  >
-                    <img
-                      src={showNewPassword ? "fermer.svg" : "ouvert.svg"}
-                      className="image"
-                    />
-                  </button>
-                </div>
-              </div>
-              <div className="row-bottom">
-                <button className="edit-button save" onClick={sauvegardeMDP}>
-                  Sauvegarder
-                </button>
-                <button className="edit-button cancel" onClick={annulation}>
-                  Annuler
-                </button>
-              </div>
-            </>
-          )}
         </div>
       </div>
       
