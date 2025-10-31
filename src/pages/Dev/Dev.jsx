@@ -116,6 +116,62 @@ export default function Dev() {
     const [errorMsg, setErrorMsg] = useState("");
     const [successMsg, setSuccessMsg] = useState("");
 
+    // Formulaire d'ajout de jeu (dev seulement)
+    const [addLoading, setAddLoading] = useState(false);
+    const [addError, setAddError] = useState("");
+    const [addSuccess, setAddSuccess] = useState("");
+    const [addForm, setAddForm] = useState({
+        title: "",
+        description: "",
+        genre: "",
+        platform: "",
+        developer: "",
+        publisher: "",
+        release_date: "",
+        price: "",
+        rating: "",
+        cover_url: "",
+        trailer_url: "",
+        discount: "0",
+    });
+    const onAddChange = (k) => (e) => setAddForm((p) => ({ ...p, [k]: e.target.value }));
+    const submitAddGame = async (e) => {
+        e.preventDefault();
+        setAddError("");
+        setAddSuccess("");
+        try {
+            setAddLoading(true);
+            const token = localStorage.getItem("token");
+            const payload = {
+                ...addForm,
+                price: addForm.price === "" ? undefined : Number(addForm.price),
+                rating: addForm.rating === "" ? undefined : Number(addForm.rating),
+                discount: addForm.discount === "" ? 0 : Number(addForm.discount),
+            };
+            if (!payload.title || payload.price == null) {
+                throw new Error("Titre et prix sont requis");
+            }
+            const res = await fetch("http://localhost:5174/api/games/createGame", {
+                method: "POST",
+                headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+                body: JSON.stringify(payload),
+            });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data?.error || "Impossible de créer le jeu");
+            setAddSuccess("Jeu créé avec succès.");
+            // Reset form and aller à Mes jeux
+            setAddForm({
+                title: "", description: "", genre: "", platform: "", developer: "", publisher: "",
+                release_date: "", price: "", rating: "", cover_url: "", trailer_url: "", discount: "0",
+            });
+            setActiveId("my-games");
+        } catch (err) {
+            setAddError(String(err.message || err));
+        } finally {
+            setAddLoading(false);
+        }
+    };
+
     // Liste des requêtes
     const [reqsLoading, setReqsLoading] = useState(false);
     const [reqsError, setReqsError] = useState("");
@@ -401,6 +457,53 @@ export default function Dev() {
                                         </div>
                                     )
                                 )}
+                            </div>
+                        ) : active.id === "add-game" ? (
+                            <div>
+                                <form onSubmit={submitAddGame} className="dev-hub__form">
+                                    {addError && <p className="dev-hub__error">{addError}</p>}
+                                    {addSuccess && <p className="dev-hub__success">{addSuccess}</p>}
+
+                                    <label className="dev-hub__label" htmlFor="add-title">Titre *</label>
+                                    <input id="add-title" className="dev-hub__input" value={addForm.title} onChange={onAddChange("title")} required />
+
+                                    <label className="dev-hub__label" htmlFor="add-desc">Description *</label>
+                                    <textarea id="add-desc" className="dev-hub__textarea" rows={4} value={addForm.description} onChange={onAddChange("description")} required />
+
+                                    <label className="dev-hub__label" htmlFor="add-genre">Genre(s)</label>
+                                    <input id="add-genre" className="dev-hub__input" placeholder="Ex: Action, Aventure" value={addForm.genre} onChange={onAddChange("genre")} />
+
+                                    <label className="dev-hub__label" htmlFor="add-platform">Plateforme(s)</label>
+                                    <input id="add-platform" className="dev-hub__input" placeholder="Ex: PC, PS5" value={addForm.platform} onChange={onAddChange("platform")} />
+
+                                    <label className="dev-hub__label" htmlFor="add-developer">Développeur</label>
+                                    <input id="add-developer" className="dev-hub__input" value={addForm.developer} onChange={onAddChange("developer")} />
+
+                                    <label className="dev-hub__label" htmlFor="add-publisher">Éditeur</label>
+                                    <input id="add-publisher" className="dev-hub__input" value={addForm.publisher} onChange={onAddChange("publisher")} />
+
+                                    <label className="dev-hub__label" htmlFor="add-release">Date de sortie</label>
+                                    <input id="add-release" className="dev-hub__input" type="date" value={addForm.release_date} onChange={onAddChange("release_date")} />
+
+                                    <label className="dev-hub__label" htmlFor="add-price">Prix (en $) *</label>
+                                    <input id="add-price" className="dev-hub__input" type="number" step="0.01" value={addForm.price} onChange={onAddChange("price")} required />
+
+                                    <label className="dev-hub__label" htmlFor="add-discount">Rabais (%)</label>
+                                    <input id="add-discount" className="dev-hub__input" type="number" min="0" max="100" step="1" value={addForm.discount} onChange={onAddChange("discount")} />
+
+                                    <label className="dev-hub__label" htmlFor="add-rating">Note (/10)</label>
+                                    <input id="add-rating" className="dev-hub__input" type="number" min="0" max="10" step="0.1" value={addForm.rating} onChange={onAddChange("rating")} />
+
+                                    <label className="dev-hub__label" htmlFor="add-cover">Image (URL)</label>
+                                    <input id="add-cover" className="dev-hub__input" placeholder="https://.../cover.jpg" value={addForm.cover_url} onChange={onAddChange("cover_url")} />
+
+                                    <label className="dev-hub__label" htmlFor="add-trailer">Bande‑annonce (URL)</label>
+                                    <input id="add-trailer" className="dev-hub__input" placeholder="https://youtu.be/... ou https://.../video.mp4" value={addForm.trailer_url} onChange={onAddChange("trailer_url")} />
+
+                                    <button type="submit" className="dev-hub__btn" disabled={addLoading}>
+                                        {addLoading ? "Création…" : "Créer le jeu"}
+                                    </button>
+                                </form>
                             </div>
                         ) : (
                             <div>

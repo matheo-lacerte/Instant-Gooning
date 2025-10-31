@@ -42,7 +42,9 @@ export async function getGameById(req, res) {
 }
 
 export async function createGame(req, res) {
-    const client = (req.user?.role === 'admin' && supabaseAdmin) ? supabaseAdmin : (req.supabase || supabase);
+    // Use the admin client on the server to bypass RLS for trusted, server-side writes.
+    // We still enforce authorization using our own role checks below.
+    const client = (supabaseAdmin) ? supabaseAdmin : (req.supabase || supabase);
     const {
         title,
         description,
@@ -77,7 +79,7 @@ export async function createGame(req, res) {
         const discounted_price = Number(
             (numericPrice - (numericPrice * (numericDiscount / 100))).toFixed(2)
         );
-        const { data, error } = await supabase
+        const { data, error } = await client
             .from('games')
             .insert([
                 {
