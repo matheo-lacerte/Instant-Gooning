@@ -20,8 +20,8 @@ import Search from "./pages/Search/Search.jsx";
 import Profile from "./pages/Profile/Profile.jsx";
 import PurchaseSuccess from "./pages/Purchase/Success.jsx";
 import CreateGame from "./pages/Dev/CreateGame/CreateGame.jsx";
-
 import Cart from "./pages/Cart/Cart.jsx";
+import EditPassword from "./pages/Profile/EditPassword/EditPassword.jsx"
 
 const router = createBrowserRouter([
   {
@@ -86,6 +86,7 @@ const App = () => {
     { path: "/logout", element: <Logout /> },
     { path: "/search", element: <Search /> },
   { path: "/profile", element: <Profile /> },
+  { path: "/profile/editPassword", element: <EditPassword /> },
   { path: "/cart", element: <Cart /> },
     { path: "/purchase/success", element: <PurchaseSuccess /> },
   ];
