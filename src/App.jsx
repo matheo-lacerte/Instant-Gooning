@@ -22,8 +22,8 @@ import Profile from "./pages/Profile/Profile.jsx";
 import Purchases from "./pages/Profile/Purchases.jsx";
 import PurchaseSuccess from "./pages/Purchase/Success.jsx";
 import Cart from "./pages/Cart/Cart.jsx";
-import EditPassword from "./pages/Profile/EditPassword/EditPassword.jsx"
-import EditProfile from "./pages/Profile/EditProfile/EditProfile.jsx"
+import EditPassword from "./pages/Profile/EditPassword/EditPassword.jsx";
+import EditProfile from "./pages/Profile/EditProfile/EditProfile.jsx";
 import DevGameDetail from "./pages/Dev/DevGameDetail/devGameDetail.jsx";
 import Support from "./pages/Support/Support.jsx";
 const router = createBrowserRouter([
@@ -93,7 +93,8 @@ const App = () => {
   { path: "/profile", element: <Profile /> },
   { path: "/profile/purchases", element: <Purchases /> },
   { path: "/profile/editPassword", element: <EditPassword /> },
-  { path: "/cart", element: <Cart /> },
+    { path: "/profile/editPassword", element: <EditPassword /> },
+    { path: "/cart", element: <Cart /> },
     { path: "/purchase/success", element: <PurchaseSuccess /> },
   { path: "/support", element: <Support /> },
   ];
