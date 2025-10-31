@@ -228,7 +228,7 @@ export default function Home() {
       <footer className="page-footer">
         <div>© {new Date().getFullYear()} Instant Gooning</div>
         <div className="footer-links">
-          <a href="#">Support</a>
+          <Link to="/support">Support</Link>
           <a href="#">Conditions</a>
           <a href="#">Confidentialité</a>
         </div>
