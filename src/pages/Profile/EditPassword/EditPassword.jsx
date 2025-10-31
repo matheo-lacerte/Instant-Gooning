@@ -1,6 +1,6 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-export default function Profile() {
+export default function EditPassword() {
   const navigate = useNavigate();
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -39,6 +39,7 @@ export default function Profile() {
         localStorage.setItem("token", data.token);
         setToken(data.token);
         alert(data.message);
+        navigate("/profile");
       } else {
         alert(data.error);
       }
