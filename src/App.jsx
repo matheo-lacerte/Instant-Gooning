@@ -88,6 +88,7 @@ const App = () => {
     { path: "/logout", element: <Logout /> },
     { path: "/search", element: <Search /> },
     { path: "/profile", element: <Profile /> },
+    { path: "/profile/editProfile", element: <EditProfile /> },
     { path: "/profile/editPassword", element: <EditPassword /> },
     { path: "/cart", element: <Cart /> },
     { path: "/purchase/success", element: <PurchaseSuccess /> },

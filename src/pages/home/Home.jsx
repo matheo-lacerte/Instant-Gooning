@@ -122,12 +122,7 @@ export default function Home() {
           </div>
         </section>
       )}
-
-   
-
-
-
-
+      
       {recentGames.length > 0 && (
         <section className="recent">
           <h2 className="section-title">Vu récemment</h2>
