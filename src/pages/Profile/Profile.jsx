@@ -15,6 +15,7 @@ export default function Profile() {
   const [last, setLast] = useState(userParse.last_name || "");
   const [email, setEmail] = useState(userParse.email || "");
   const [token, setToken] = useState(localStorage.getItem("token"));
+  
 
   const editProfile = () => {
     navigate("/profile/editProfile");
@@ -76,6 +77,8 @@ export default function Profile() {
     }
   };
 
+  
+
   return (
     <div className="dev">
       <div className="rangee">
@@ -84,6 +87,11 @@ export default function Profile() {
             <li>
               <h1>
                 <Link to="/profile">Profil</Link>
+              </h1>
+            </li>
+            <li>
+              <h1>
+                <Link to="/profile/purchases">Mes achats</Link>
               </h1>
             </li>
             <li>
