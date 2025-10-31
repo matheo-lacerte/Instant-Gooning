@@ -101,7 +101,26 @@ export async function createGame(req, res) {
             ])
             .select();
         if (error) throw error;
-        res.status(201).json(data[0]);
+        const created = data[0];
+
+        // Ensure Stripe product/price exist at creation time instead of during checkout
+        try {
+            await syncStripeForGame(created);
+            // fetch fresh record with stripe ids
+            const { data: fresh, error: freshErr } = await client
+                .from('games')
+                .select('*')
+                .eq('id', created.id)
+                .single();
+            if (!freshErr && fresh) {
+                return res.status(201).json(fresh);
+            }
+        } catch (e) {
+            console.error("[createGame] syncStripeForGame error:", e);
+            // fallthrough: return created record even if Stripe sync failed
+        }
+
+        return res.status(201).json(created);
     } catch (err) {
         res.status(500).json({ error: err.message });
     }

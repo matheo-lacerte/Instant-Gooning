@@ -112,7 +112,6 @@ export async function getMyKeys(req, res) {
       .order("created_at", { ascending: false });
     if (error) throw error;
 
-    // joindre titres
     const ids = [...new Set(data.map(d => d.game_id))];
     let titles = {};
     if (ids.length) {
@@ -122,7 +121,6 @@ export async function getMyKeys(req, res) {
         .in("id", ids);
       titles = Object.fromEntries((games || []).map(g => [g.id, g.title]));
     }
-
     return res.json(
       data.map(d => ({
         title: titles[d.game_id] || `Jeu ${d.game_id}`,
