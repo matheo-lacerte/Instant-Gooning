@@ -127,7 +127,7 @@ export async function stripeWebhook(req, res) {
 
     return res.json({ received: true });
   } catch (e) {
-    console.error("[webhook] handler error:", e);
-    return res.status(500).json({ error: e.message });
-  }
+  console.error("[checkoutCart] ERROR:", e);
+  res.status(500).json({ error: e.message, stack: e.stack });
+}
 }
