@@ -42,7 +42,9 @@ export async function getGameById(req, res) {
 }
 
 export async function createGame(req, res) {
-    const client = (req.user?.role === 'admin' && supabaseAdmin) ? supabaseAdmin : (req.supabase || supabase);
+    // Use the admin client on the server to bypass RLS for trusted, server-side writes.
+    // We still enforce authorization using our own role checks below.
+    const client = (supabaseAdmin) ? supabaseAdmin : (req.supabase || supabase);
     const {
         title,
         description,
@@ -77,7 +79,7 @@ export async function createGame(req, res) {
         const discounted_price = Number(
             (numericPrice - (numericPrice * (numericDiscount / 100))).toFixed(2)
         );
-        const { data, error } = await supabase
+        const { data, error } = await client
             .from('games')
             .insert([
                 {
@@ -241,6 +243,28 @@ export async function deleteGame(req, res) {
   try { await archiveStripeForGame(game); } catch (e) { console.error(e); }
 
   return res.json({ ok: true });
+}
+
+export async function restoreGame(req, res) {
+    const id = Number(req.params.id);
+    if (Number.isNaN(id)) return res.status(400).json({ error: "id invalide" });
+
+    const { data: game, error: gErr } = await supabaseAdmin
+        .from("games")
+        .select("id, created_by")
+        .eq("id", id)
+        .single();
+    if (gErr) return res.status(gErr.code === "PGRST116" ? 404 : 500).json({ error: gErr.message });
+    if (req.user.role !== "admin" && game.created_by !== req.user.id)
+        return res.status(403).json({ error: "Autorisation refusée" });
+
+    const { error: upErr } = await supabaseAdmin
+        .from("games")
+        .update({ is_active: true })
+        .eq("id", id);
+    if (upErr) return res.status(500).json({ error: upErr.message });
+
+    return res.json({ ok: true });
 }
 
 export async function getDevGames(req, res) {
