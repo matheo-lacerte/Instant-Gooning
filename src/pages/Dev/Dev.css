@@ -220,9 +220,18 @@
   color: var(--text);
   border: 1px solid var(--border);
   border-radius: 12px;
-  padding: 14px;
+	padding: 8px; /* plus compact */
   cursor: pointer;
   transition: transform 120ms ease, border-color 120ms ease, background 120ms ease;
+}
+.dev-hub__img {
+	width: 100%;
+	border-radius: 8px;
+	margin-bottom: 8px;
+	aspect-ratio: 4 / 3;
+	max-height: 140px;
+	height: auto;
+	object-fit: cover;
 }
 .dev-hub__tile:hover {
   transform: translateY(-1px);
@@ -230,13 +239,85 @@
   background: color-mix(in srgb, var(--brand) 8%, #0f1115);
 }
 
+/* Titre de tuile */
 .dev-hub__tile-title {
-  font-weight: 600;
-  margin-bottom: 6px;
+	font-weight: 600;
+	margin: 6px 0 4px;
 }
-.dev-hub__tile-desc {
-  color: var(--muted);
-  font-size: 0.95rem;
-  line-height: 1.5;
+
+/* Images par défaut dans les tuiles (mode carte) */
+.dev-hub__tile > img {
+	width: 100%;
+	aspect-ratio: 4 / 3;
+	height: auto;
+	max-height: 120px;
+	object-fit: cover;
+	border-radius: 8px;
+	display: block;
+	margin-bottom: 8px;
 }
+
+/* Plus de colonnes sur grands écrans pour des tuiles visuellement plus petites */
+@media (min-width: 900px) {
+	.dev-hub__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* Mise en page en ligne pour "Mes jeux" (image - titre - prix sur la même ligne) */
+.dev-hub__tile--row {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 8px 12px; /* un peu plus d'espace horizontal */
+}
+.dev-hub__tile--row > img,
+.dev-hub__tile--row .dev-hub__thumb {
+	flex: 0 0 64px;
+	width: 64px;
+	height: 64px;
+	border-radius: 8px;
+	object-fit: cover;
+	margin: 0; /* pas d'espace sous l'image en mode ligne */
+}
+.dev-hub__thumb--placeholder {
+	background: #1a1f2b;
+	color: var(--muted);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: 700;
+	font-size: 1rem;
+	text-transform: uppercase;
+}
+.dev-hub__meta {
+	flex: 1;
+	min-width: 0; /* permet l'ellipsis */
+}
+.dev-hub__meta-top {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+}
+.dev-hub__game-title {
+	font-weight: 600;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.dev-hub__game-price {
+	color: var(--muted);
+	font-weight: 600;
+	flex: 0 0 auto;
+}
+
+/* Variante rouge pour les jeux inactifs */
+.dev-hub__tile--inactive {
+	border-color: color-mix(in srgb, #e74c3c 40%, var(--border));
+	background: color-mix(in srgb, #e74c3c 10%, #0f1115);
+}
+.dev-hub__tile--inactive .dev-hub__game-title {
+	color: #e74c3c;
+}
+
+
 

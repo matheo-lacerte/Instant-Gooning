@@ -243,6 +243,28 @@ export async function deleteGame(req, res) {
   return res.json({ ok: true });
 }
 
+export async function restoreGame(req, res) {
+    const id = Number(req.params.id);
+    if (Number.isNaN(id)) return res.status(400).json({ error: "id invalide" });
+
+    const { data: game, error: gErr } = await supabaseAdmin
+        .from("games")
+        .select("id, created_by")
+        .eq("id", id)
+        .single();
+    if (gErr) return res.status(gErr.code === "PGRST116" ? 404 : 500).json({ error: gErr.message });
+    if (req.user.role !== "admin" && game.created_by !== req.user.id)
+        return res.status(403).json({ error: "Autorisation refusée" });
+
+    const { error: upErr } = await supabaseAdmin
+        .from("games")
+        .update({ is_active: true })
+        .eq("id", id);
+    if (upErr) return res.status(500).json({ error: upErr.message });
+
+    return res.json({ ok: true });
+}
+
 export async function getDevGames(req, res) {
     const user_id = req.user?.id;
     if (!user_id) return res.status(401).json({ error: "Non authentifié" });
