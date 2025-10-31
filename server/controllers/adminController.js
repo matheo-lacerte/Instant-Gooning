@@ -114,23 +114,34 @@ export async function acceptRequest(req, res) {
     if (req.user?.role !== "admin") {
       return res.status(403).json({ error: "Accès refusé" });
     }
-    const userId = req.body?.userId;
-    if (!userId)
-      return res.status(400).json({ error: "ID utilisateur requis" });
+    const requestId = req.body?.requestId;
+    if (!requestId) return res.status(400).json({ error: "ID de la requête requis" });
     const client = supabaseAdmin || supabase;
+
+    // Charger la requête pour obtenir le user cible
+    const { data: reqRow, error: getErr } = await client
+      .from("request")
+      .select("id, created_by, requestState")
+      .eq("id", requestId)
+      .single();
+    if (getErr) return res.status(getErr.code === "PGRST116" ? 404 : 500).json({ error: getErr.message });
+    const userId = reqRow.created_by;
+
+    // Marquer la requête comme acceptée (si encore en examen)
+    const { error: requestError } = await client
+      .from("request")
+      .update({ requestState: "Accepté", reason: null })
+      .eq("id", requestId);
+    if (requestError) return res.status(500).json({ error: requestError.message });
+
+    // Promouvoir l'utilisateur en dev
     const { error: userError } = await client
       .from("users")
       .update({ role: "dev" })
       .eq("id", userId);
-
-    const { error: requestError } = await client
-      .from("request")
-      .update({ requestState: "Accepté" })
-      .eq("created_by", userId);
-    if (requestError)
-      return res.status(500).json({ error: requestError.message });
     if (userError) return res.status(500).json({ error: userError.message });
-    return res.json({ message: "Rôle développeur ajouté avec succès" });
+
+    return res.json({ message: "Demande acceptée et rôle développeur attribué." });
   } catch (err) {
     return res.status(500).json({ error: err.message });
   }
@@ -144,17 +155,15 @@ export async function declineRequest(req, res){
         }
         const body = req.body ?? {};
         const reasonRaw = body?.reason;
-
+        const requestId = body?.requestId;
         const reason = typeof reasonRaw === 'string' ? reasonRaw.trim() : '';
-
+        if (!requestId) return res.status(400).json({ error: 'ID de la requête requis' });
         if (!reason) return res.status(400).json({ error: 'Raison requise' });
-        const userId = req.body?.userId;
-        if (!userId) return res.status(400).json({ error: 'ID utilisateur requis' });
         const client = supabaseAdmin || supabase;
         const { error: requestError } = await client
             .from("request")
             .update({ requestState: "Refusé", reason: reason })
-            .eq("created_by", userId)
+            .eq("id", requestId)
             .eq("requestState", "En examination");
         if (requestError) return res.status(500).json({ error: requestError.message });
         return res.json({ message: "Demande refusée avec succès" });

@@ -15,15 +15,44 @@ export default function Dev() {
     const navigate = useNavigate();
     const location = useLocation();
 
-    // Récupère le rôle utilisateur depuis le localStorage (si fourni par l'appli)
-    const isDev = useMemo(() => {
+    // Rôle développeur (initialisé depuis localStorage, puis rafraîchi côté serveur)
+    const [isDev, setIsDev] = useState(() => {
         try {
             if (typeof window === "undefined") return false;
             const u = JSON.parse(localStorage.getItem("user") || "null");
-            return u?.role === "dev";
+            return u?.role === "dev" || u?.role === "admin";
         } catch {
             return false;
         }
+    });
+
+    // Rafraîchir le rôle courant depuis l'API (utile après acceptation sans reconnexion)
+    useEffect(() => {
+        const refreshRole = async () => {
+            try {
+                const token = localStorage.getItem("token");
+                if (!token) return;
+                const res = await fetch("http://localhost:5174/api/dev", {
+                    headers: { Authorization: `Bearer ${token}` },
+                });
+                const data = await res.json();
+                if (!res.ok) return;
+                if (data?.role) {
+                    const flag = data.role === "dev" || data.role === "admin";
+                    setIsDev(flag);
+                    try {
+                        const u = JSON.parse(localStorage.getItem("user") || "null") || {};
+                        if (u.role !== data.role) {
+                            u.role = data.role;
+                            localStorage.setItem("user", JSON.stringify(u));
+                        }
+                    } catch {}
+                }
+            } catch {}
+        };
+        refreshRole();
+        // on ne dépend pas de isDev ici volontairement (rafraîchissement ponctuel)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     const quickActions = useMemo(() => {
         // visibleFor: 'all' | 'dev' | 'non-dev'
@@ -277,7 +306,7 @@ export default function Dev() {
         fetchDevGames();
     }, [activeId, isDev]);
 
-    // Etats pour Paramètres développeur (transfert/désactivation)
+
     const [settingsMsg, setSettingsMsg] = useState("");
     const [settingsErr, setSettingsErr] = useState("");
     const [transfer, setTransfer] = useState({ gameId: "", email: "" });
@@ -338,6 +367,15 @@ export default function Dev() {
             const data = await res.json();
             if (!res.ok) throw new Error(data?.error || "Opération impossible");
             setSettingsMsg(data?.message || "Vous avez quitté le programme développeur.");
+            // Mettre à jour l'état local et le localStorage
+            setIsDev(false);
+            try {
+                const u = JSON.parse(localStorage.getItem("user") || "null") || {};
+                if (u.role !== "user") {
+                    u.role = "user";
+                    localStorage.setItem("user", JSON.stringify(u));
+                }
+            } catch {}
         } catch (err) {
             setSettingsErr(String(err.message || err));
         }
