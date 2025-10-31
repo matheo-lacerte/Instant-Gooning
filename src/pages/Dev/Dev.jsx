@@ -1,15 +1,19 @@
 import { useEffect, useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./dev.css";
 
 // Hub Développeur page with sidebar navigation and main preview card
 export default function Dev() {
+    const [gamesLoading, setGamesLoading] = useState(false);
+    const [gamesError, setGamesError] = useState("");
+    const [devGames, setDevGames] = useState([]);
     const stateClass = {
         "Accepté": "is-accepted",
         "En examination": "is-pending",
         "Refusé": "is-declined",
     };
     const navigate = useNavigate();
+    const location = useLocation();
 
     // Récupère le rôle utilisateur depuis le localStorage (si fourni par l'appli)
     const isDev = useMemo(() => {
@@ -94,6 +98,15 @@ export default function Dev() {
         () => sections.find((s) => s.id === activeId) ?? sections[0],
         [activeId, sections]
     );
+
+    // If a query parameter ?section=... is present, open that section on load
+    useEffect(() => {
+        const params = new URLSearchParams(location.search);
+        const q = params.get("section");
+        if (!q) return;
+        const exists = sections.some((s) => s.id === q);
+        if (exists) setActiveId(q);
+    }, [location.search, sections]);
 
     // Etats pour la demande dev (uniquement non-dev)
     const [title, setTitle] = useState("");
@@ -186,6 +199,30 @@ export default function Dev() {
         }
     };
 
+    useEffect(() => {
+        const fetchDevGames = async () => {
+            if (activeId !== "my-games" || !isDev) return;
+            try {
+                setGamesLoading(true);
+                setGamesError("");
+                const token = localStorage.getItem("token");
+                const res = await fetch("http://localhost:5174/api/dev/games", {
+                    headers: { Authorization: `Bearer ${token}` },
+                });
+                const data = await res.json();
+                if (!res.ok) throw new Error(data?.error || "Impossible de récupérer vos jeux");
+                setDevGames(Array.isArray(data) ? data : []);
+            } catch (e) {
+                setGamesError(String(e.message || e));
+            } finally {
+                setGamesLoading(false);
+            }
+        };
+        fetchDevGames();
+    }, [activeId, isDev]);
+
+
+
     return (
         <div className="dev-hub" data-testid="dev-hub">
             <aside className="dev-hub__sidebar" aria-label="Navigation développeur">
@@ -238,7 +275,7 @@ export default function Dev() {
                                         key={action.id}
                                         type="button"
                                         className="dev-hub__tile"
-                                        onClick={() => setActiveId(action.id)} // ou navigate('/une-route') si tu veux router
+                                        onClick={() => setActiveId(action.id)} 
                                         aria-label={`Ouvrir ${action.label}`}
                                     >
                                         <div className="dev-hub__tile-title">{action.label}</div>
@@ -324,8 +361,51 @@ export default function Dev() {
                                     )
                                 )}
                             </div>
+                        ) : active.id === "my-games" ? (
+                            <div>
+                                {gamesLoading && <p className="dev-hub__muted">Chargement…</p>}
+                                {gamesError && <p className="dev-hub__error">{gamesError}</p>}
+                                {!gamesLoading && !gamesError && (
+                                    devGames.length > 0 ? (
+                                        <div className="dev-hub__grid">
+                                            {devGames.map((game) => {
+                                                const title = game.title || "Jeu sans titre";
+                                                const price = game.discountedPrice || game.price || 0;
+                                                const imgUrl = game.cover_url || game.image || null;
+                                                return (
+                                                    <button
+                                                        key={game.id}
+                                                        type="button"
+                                                        className={`dev-hub__tile dev-hub__tile--row ${!game.is_active ? "dev-hub__tile--inactive" : ""}`}
+                                                        onClick={() => navigate(`/dev/game/${game.id}`)}
+                                                        aria-label={`Gérer le jeu ${title}`}
+                                                    >
+                                                        {imgUrl ? (
+                                                            <img className="dev-hub__thumb" src={imgUrl} alt={title} />
+                                                        ) : (
+                                                            <div className="dev-hub__thumb dev-hub__thumb--placeholder">{title.charAt(0)}</div>
+                                                        )}
+                                                        <div className="dev-hub__meta">
+                                                            <div className="dev-hub__meta-top">
+                                                                <div className="dev-hub__game-title" title={title}>{title}</div>
+                                                                <div className="dev-hub__game-price">Prix: {price} $</div>
+                                                            </div>
+                                                        </div>
+                                                    </button>
+                                                );
+                                            })}
+                                        </div>
+                                    ) : (
+                                        <div>
+                                            <p className="dev-hub__card-text">{active.description}</p>
+                                        </div>
+                                    )
+                                )}
+                            </div>
                         ) : (
-                            <p className="dev-hub__card-text">{active.description}</p>
+                            <div>
+                                <p className="dev-hub__card-text">{active.description}</p>
+                            </div>
                         )}
                     </div>
                 </section>

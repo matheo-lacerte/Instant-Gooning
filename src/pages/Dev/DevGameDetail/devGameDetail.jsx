@@ -1,6 +1,6 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useEffect, useMemo, useState } from "react";
-import "./gameDetail.css";
+
 
 export default function GameDetail() {
   const navigate = useNavigate();
@@ -8,6 +8,7 @@ export default function GameDetail() {
   const [game, setGame] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [actionMsg, setActionMsg] = useState("");
   const token = localStorage.getItem("token");
 
   useEffect(() => {
@@ -116,6 +117,52 @@ export default function GameDetail() {
     }
   };
 
+  const deleteGame = async () => {
+    if (token) {
+      const response = await fetch(
+        "http://localhost:5174/api/games/delete/"+game.id,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (!response.ok) {
+        console.error("Erreur lors de la suppression du jeu.");
+        return;
+      }
+      setGame((g) => g ? { ...g, is_active: false } : g);
+      setActionMsg("Le jeu a été supprimé.");
+    } else {
+      navigate("/login");
+    }
+  };
+
+  const restoreGame = async () => {
+    if (token) {
+      const response = await fetch(
+        "http://localhost:5174/api/games/restore/"+game.id,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (!response.ok) {
+        console.error("Erreur lors de la restauration du jeu.");
+        return;
+      }
+      setGame((g) => g ? { ...g, is_active: true } : g);
+      setActionMsg("Le jeu a été restauré et est de nouveau actif.");
+    } else {
+      navigate("/login");
+    }
+  };
+
   const rating10 = useMemo(() => {
     const r = game?.rating;
     const n = r == null ? 0 : Number(r);
@@ -190,7 +237,7 @@ export default function GameDetail() {
 
   return (
     <div className="game-detail-wrap">
-      <Link className="back-link" to="/" aria-label="Retour à l'accueil">
+  <Link className="back-link" to="/dev?section=my-games" aria-label="Retour">
         <span className="icon" aria-hidden>
           <svg viewBox="0 0 24 24" width="12" height="12">
             <path
@@ -251,14 +298,35 @@ export default function GameDetail() {
               ) : (
                 <span className="price price-final">{game.price}$</span>
               )}
+              {game.is_active ? (
+                <button
+                  className="buy-btn"
+                  aria-label="Supprimer le jeu"
+                  onClick={deleteGame}
+                >
+                  Supprimer le jeu
+                </button>
+              ) : (
+                <button
+                  className="buy-btn"
+                  aria-label="Restaurer le jeu"
+                  onClick={restoreGame}
+                >
+                  Restaurer le jeu
+                </button>
+              )}
               <button
                 className="buy-btn"
-                aria-label="Acheter le jeu"
+                aria-label="Modifier le jeu"
                 onClick={addGameToCart}
               >
-                Ajouter au panier
+                Modifier le jeu
               </button>
             </div>
+
+            {actionMsg && (
+              <p style={{ color: "#42d392", marginTop: 8 }}>{actionMsg}</p>
+            )}
 
             <div className="meta-grid">
               <div>
