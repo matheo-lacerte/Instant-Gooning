@@ -5,7 +5,6 @@ import "./Admin.css";
 export default function Admin() {
   const [activeId, setActiveId] = useState("pendingRequests");
   const [requests, setRequests] = useState([]);
-  const [userList, setUserList] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -202,9 +201,7 @@ export default function Admin() {
                       <h3>Fait par {r.user.username}</h3>
                     </div>
                     <p>{r.description}</p>
-                    {r.reason && (
-                      <p className="admin-hub__muted">Raison: {r.reason}</p>
-                    )}
+                    <p className="admin-hub__muted">Raison: {r.reason != "" && r.reason != null ? r.reason : "Inconnu"}</p>
                     {r.requestState === "En examination" &&
                       activeId == "pendingRequests" && (
                         <div className="admin-hub__actions">

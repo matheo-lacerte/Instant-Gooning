@@ -90,13 +90,13 @@ const App = () => {
     { path: "/dev/game/:id", element: <DevGameDetail /> },
     { path: "/logout", element: <Logout /> },
     { path: "/search", element: <Search /> },
-  { path: "/profile", element: <Profile /> },
-  { path: "/profile/purchases", element: <Purchases /> },
-  { path: "/profile/editPassword", element: <EditPassword /> },
+    { path: "/profile", element: <Profile /> },
+    { path: "/profile/editProfile", element: <EditProfile /> },
+    { path: "/profile/purchases", element: <Purchases /> },
     { path: "/profile/editPassword", element: <EditPassword /> },
     { path: "/cart", element: <Cart /> },
     { path: "/purchase/success", element: <PurchaseSuccess /> },
-  { path: "/support", element: <Support /> },
+    { path: "/support", element: <Support /> },
   ];
 
   /* if (user?.role === "dev") {
