@@ -14,6 +14,8 @@ export default function Profile() {
   const [first, setFirst] = useState(userParse.first_name || "");
   const [last, setLast] = useState(userParse.last_name || "");
   const [email, setEmail] = useState(userParse.email || "");
+  const [token, setToken] = useState(localStorage.getItem("token"));
+  
 
   const editProfile = () => {
     navigate("/profile/editProfile");
@@ -23,6 +25,60 @@ export default function Profile() {
     navigate("/profile/editPassword");
   };
 
+  const annulation = () => {
+    setUsername(userParse.username);
+    setFirst(userParse.first_name);
+    setLast(userParse.last_name);
+    setEmail(userParse.email);
+    setEditProfile(false);
+    navigate("/profile");
+  };
+
+  const sauvegarde = async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:5174/api/user/changeUserProfile",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            first_name: first,
+            last_name: last,
+            username,
+            email,
+          }),
+        }
+      );
+
+      const data = await response.json();
+      if (response.ok) {
+        const newUser = {
+          ...userParse,
+          username,
+          first_name: first,
+          last_name: last,
+          email,
+        };
+
+        setUserParse(newUser);
+        localStorage.setItem("user", JSON.stringify(newUser));
+
+  console.log(data.message);
+        navigate("/profile");
+        setEditProfile(false);
+      } else {
+  console.error(data.error);
+      }
+    } catch (error) {
+  console.error(error);
+    }
+  };
+
+  
+
   return (
     <div className="dev">
       <div className="rangee">
@@ -31,6 +87,11 @@ export default function Profile() {
             <li>
               <h1>
                 <Link to="/profile">Profil</Link>
+              </h1>
+            </li>
+            <li>
+              <h1>
+                <Link to="/profile/purchases">Mes achats</Link>
               </h1>
             </li>
             <li>
