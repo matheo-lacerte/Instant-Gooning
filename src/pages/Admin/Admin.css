@@ -1,0 +1,364 @@
+/* Layout */
+.admin-hub {
+  --bg: var(--color-bg, #0f1115);
+  --panel: var(--color-panel, #151922);
+  --border: color-mix(in srgb, #fff 10%, transparent);
+  --text: var(--color-text, #e6e8ee);
+  --muted: color-mix(in srgb, var(--text) 65%, #000 35%);
+  --brand: #7c5cff;
+  --brand-700: #6a4cf0;
+
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 24px;
+  min-height: calc(100vh - 120px);
+  padding: 24px;
+  color: var(--text);
+}
+
+.admin-hub__sidebar {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-hub__brand {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin: 4px 8px 16px 8px;
+}
+.admin-hub__brand-title {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.admin-hub__brand-sub {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.admin-hub__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.admin-hub__nav-item {
+  text-align: left;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  transition: background 120ms ease, border-color 120ms ease, color 120ms ease;
+}
+.admin-hub__nav-item:hover {
+  background: color-mix(in srgb, var(--brand) 8%, transparent);
+  border-color: color-mix(in srgb, var(--brand) 20%, transparent);
+}
+.admin-hub__nav-item.is-active {
+  background: color-mix(in srgb, var(--brand) 14%, transparent);
+  border-color: color-mix(in srgb, var(--brand) 40%, transparent);
+}
+
+.admin-hub__grow {
+  flex: 1;
+}
+
+.admin-hub__back {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid color-mix(in srgb, var(--brand) 55%, transparent);
+  background: color-mix(in srgb, var(--brand) 12%, transparent);
+  color: var(--text);
+  cursor: pointer;
+}
+.admin-hub__back:hover {
+  background: color-mix(in srgb, var(--brand) 18%, transparent);
+  border-color: color-mix(in srgb, var(--brand) 70%, transparent);
+}
+
+.admin-hub__content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.admin-hub__header h1 {
+  font-size: clamp(1.4rem, 1.2rem + 1vw, 2rem);
+  margin: 0 0 4px 0;
+}
+
+.admin-hub__card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+.admin-hub__card-title {
+  margin: 0 0 8px 0;
+  font-size: 1.2rem;
+}
+.admin-hub__card-text {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* Simple form styles for request-dev */
+.admin-hub__form {
+  display: grid;
+  gap: 10px;
+  margin-top: 8px;
+}
+.admin-hub__label {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+.admin-hub__input,
+.admin-hub__textarea {
+  background: #0f1115;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+.admin-hub__btn {
+  margin-top: 4px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid color-mix(in srgb, var(--brand) 55%, transparent);
+  background: color-mix(in srgb, var(--brand) 18%, transparent);
+  color: var(--text);
+  cursor: pointer;
+}
+.admin-hub__btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+.admin-hub__error {
+  color: #ff6b6b;
+}
+.admin-hub__success {
+  color: #4ad295;
+}
+.admin-hub__muted {
+  color: var(--muted);
+}
+
+/* Requests list */
+.admin-hub__list {
+  display: grid;
+  gap: 10px;
+  list-style: none;
+  padding-left: 0;
+}
+.admin-hub__req-card {
+  background: #0f1115;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px;
+}
+.admin-hub__req-card.is-accepted {
+  /* Subtle green tint for accepted requests */
+  border-color: color-mix(in srgb, #2ecc71 40%, var(--border));
+  background: color-mix(in srgb, #2ecc71 10%, #0f1115);
+}
+.admin-hub__req-card.is-accepted .admin-hub__req-state strong {
+  color: #42d392;
+}
+.admin-hub__req-card.is-declined {
+  /* Subtle red tint for declined requests */
+  border-color: color-mix(in srgb, #e74c3c 40%, var(--border));
+  background: color-mix(in srgb, #e74c3c 10%, #0f1115);
+}
+.admin-hub__req-card.is-declined .admin-hub__req-state strong {
+  color: #e74c3c;
+}
+.admin-hub__req-card.is-pending {
+  /* Subtle orange tint for pending requests */
+  border-color: color-mix(in srgb, #ffb84d 40%, var(--border));
+  background: color-mix(in srgb, #ffb84d 10%, #0f1115);
+}
+.admin-hub__req-card.is-pending .admin-hub__req-state strong {
+  color: #ffb84d;
+}
+.admin-hub__req-title {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.admin-hub__req-state {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-bottom: 6px;
+}
+.admin-hub__req-reason {
+  color: #ffb84d;
+  font-size: 0.95rem;
+  margin-bottom: 6px;
+}
+.admin-hub__req-desc {
+  color: var(--text);
+  opacity: 0.9;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .admin-hub {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 16px;
+  }
+
+  .admin-hub__nav {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+}
+
+/* Grille responsive */
+.admin-hub__grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+@media (max-width: 700px) {
+  .admin-hub__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Tuile/carte cliquable */
+.admin-hub__tile {
+  text-align: left;
+  background: #0f1115;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 8px; /* plus compact */
+  cursor: pointer;
+  transition: transform 120ms ease, border-color 120ms ease,
+    background 120ms ease;
+}
+.admin-hub__img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  aspect-ratio: 4 / 3;
+  max-height: 140px;
+  height: auto;
+  object-fit: cover;
+}
+.admin-hub__tile:hover {
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--brand) 40%, var(--border));
+  background: color-mix(in srgb, var(--brand) 8%, #0f1115);
+}
+
+/* Titre de tuile */
+.admin-hub__tile-title {
+  font-weight: 600;
+  margin: 6px 0 4px;
+}
+
+/* Images par défaut dans les tuiles (mode carte) */
+.admin-hub__tile > img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  height: auto;
+  max-height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* Plus de colonnes sur grands écrans pour des tuiles visuellement plus petites */
+@media (min-width: 900px) {
+  .admin-hub__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Mise en page en ligne pour "Mes jeux" (image - titre - prix sur la même ligne) */
+.admin-hub__tile--row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px; /* un peu plus d'espace horizontal */
+}
+.admin-hub__tile--row > img,
+.admin-hub__tile--row .admin-hub__thumb {
+  flex: 0 0 64px;
+  width: 64px;
+  height: 64px;
+  border-radius: 8px;
+  object-fit: cover;
+  margin: 0; /* pas d'espace sous l'image en mode ligne */
+}
+.admin-hub__thumb--placeholder {
+  background: #1a1f2b;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+.admin-hub__meta {
+  flex: 1;
+  min-width: 0; /* permet l'ellipsis */
+}
+.admin-hub__meta-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.admin-hub__game-title {
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.admin-hub__game-price {
+  color: var(--muted);
+  font-weight: 600;
+  flex: 0 0 auto;
+}
+
+.admin-hub__tile--inactive {
+  border-color: color-mix(in srgb, #e74c3c 40%, var(--border));
+  background: color-mix(in srgb, #e74c3c 10%, #0f1115);
+}
+
+.admin-hub__tile--inactive .admin-hub__game-title {
+  color: #e74c3c;
+}
+
+.admin-hub__actions button {
+  margin-right: 3px;
+}
+
+.accept {
+  border-color: color-mix(in srgb, #2ecc71 40%, var(--border));
+  background: color-mix(in srgb, #2ecc71 30%, #0f1115);
+}
+
+.decline {
+  border-color: color-mix(in srgb, #e74c3c 40%, var(--border));
+  background: color-mix(in srgb, #e74c3c 30%, #0f1115);
+}
+
+.admin-hub__req-header strong {
+    font-size: 25px;
+}
