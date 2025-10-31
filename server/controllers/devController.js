@@ -80,7 +80,7 @@ export async function disableAllMyGames(req, res) {
   }
 }
 
-// Transférer un jeu à un autre compte (dev/admin seulement)
+
 export async function transferGameOwnership(req, res) {
   const { game_id, to_user_email, to_user_id } = req.body || {};
   const id = Number(game_id);
