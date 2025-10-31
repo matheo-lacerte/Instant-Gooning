@@ -15,11 +15,12 @@ import { useState } from "react";
 import GameDetail from "./pages/GameDetail/GameDetail.jsx";
 import Admin from "./pages/Admin/Admin.jsx";
 import RequireAdmin from "./app/components/Guards/RequireAdmin.jsx";
+import RequireDev from "./app/components/Guards/RequireDev.jsx";
 import { jwtDecode } from "jwt-decode";
 import Search from "./pages/Search/Search.jsx";
 import Profile from "./pages/Profile/Profile.jsx";
 import PurchaseSuccess from "./pages/Purchase/Success.jsx";
-import CreateGame from "./pages/Dev/CreateGame/CreateGame.jsx";
+
 
 import Cart from "./pages/Cart/Cart.jsx";
 
@@ -90,7 +91,7 @@ const App = () => {
     { path: "/purchase/success", element: <PurchaseSuccess /> },
   ];
 
-  if (user?.role === "dev") {
+  /* if (user?.role === "dev") {
     loggedInChildren.push({
       path: "/dev/create",
       element: (
@@ -107,7 +108,7 @@ const App = () => {
           <CreateGame />
       ),
     });
-  }
+  } */
 
   if (user?.role === "admin") {
     loggedInChildren.push({
