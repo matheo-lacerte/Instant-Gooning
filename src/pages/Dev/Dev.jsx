@@ -86,13 +86,12 @@ export default function Dev() {
       );
       const data = await response.json();
       if (!response.ok) {
-        alert(data.error);
+        setErrorMsg(data.error || "Erreur");
         return;
       }
-      alert("Demande envoyée avec succès !");
       navigate("/dev");
     } catch (error) {
-      alert(error);
+      setErrorMsg(String(error));
     }
   };
 

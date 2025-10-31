@@ -19,8 +19,8 @@ const Logout = () => {
         throw new Error("Erreur lors de la déconnexion");
       }
 
-      const reponseData = await reponse.json();
-      alert(reponseData.message);
+  const reponseData = await reponse.json();
+  console.log(reponseData.message);
       auth.logout();
       navigate("/");
     } catch (error) {
