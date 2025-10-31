@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import "./dev.css";
+import "./Dev.css";
 
 // Hub Développeur page with sidebar navigation and main preview card
 export default function Dev() {
