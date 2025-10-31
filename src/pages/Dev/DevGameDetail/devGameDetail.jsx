@@ -1,5 +1,6 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useEffect, useMemo, useState } from "react";
+import "../../GameDetail/gameDetail.css";
 
 
 export default function GameDetail() {
@@ -10,6 +11,21 @@ export default function GameDetail() {
   const [error, setError] = useState(null);
   const [actionMsg, setActionMsg] = useState("");
   const token = localStorage.getItem("token");
+  const [editMode, setEditMode] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [edited, setEdited] = useState({
+    title: "",
+    description: "",
+    genre: "",
+    platform: "",
+    developer: "",
+    publisher: "",
+    price: "",
+    rating: "",
+    cover_url: "",
+    trailer_url: "",
+    discount: "",
+  });
 
   useEffect(() => {
     let ignore = false;
@@ -23,7 +39,22 @@ export default function GameDetail() {
         );
         if (!response.ok) throw new Error("Réponse invalide du serveur");
         const data = await response.json();
-        if (!ignore) setGame(data);
+        if (!ignore) {
+          setGame(data);
+          setEdited({
+            title: data?.title ?? "",
+            description: data?.description ?? "",
+            genre: data?.genre ?? (Array.isArray(data?.genres) ? data.genres.join(", ") : ""),
+            platform: Array.isArray(data?.platform) ? data.platform.join(", ") : (data?.platform ?? ""),
+            developer: data?.developer ?? "",
+            publisher: data?.publisher ?? "",
+            price: data?.price ?? "",
+            rating: data?.rating ?? "",
+            cover_url: data?.cover_url ?? "",
+            trailer_url: data?.trailer_url ?? "",
+            discount: data?.discount ?? "",
+          });
+        }
       } catch (err) {
         if (!ignore) setError(err?.message || "Erreur inattendue");
       } finally {
@@ -38,27 +69,34 @@ export default function GameDetail() {
 
   const genres = useMemo(() => {
     if (!game) return [];
+    if (editMode) return (edited.genre || "").split(",").map(s => s.trim()).filter(Boolean);
     if (Array.isArray(game.genres)) return game.genres;
     if (game.genre) return [game.genre];
     return [];
-  }, [game]);
+  }, [game, editMode, edited.genre]);
 
   const platforms = useMemo(() => {
     if (!game) return [];
+    if (editMode) return (edited.platform || "").split(",").map(s => s.trim()).filter(Boolean);
     if (Array.isArray(game.platform)) return game.platform;
     if (typeof game.platform === "string" && game.platform.trim())
       return [game.platform];
     return [];
-  }, [game]);
+  }, [game, editMode, edited.platform]);
 
   const isDiscounted = useMemo(() => {
     if (!game) return false;
+    if (editMode) {
+      const d = Number(edited.discount);
+      const p = Number(edited.price);
+      return !Number.isNaN(d) && d > 0 && !Number.isNaN(p) && p > 0;
+    }
     return (
       typeof game.discount === "number" &&
       game.discount > 0 &&
       Number(game.discounted_price) > 0
     );
-  }, [game]);
+  }, [game, editMode, edited.discount, edited.price]);
 
   const formatPrice = (value) => {
     if (value == null) return "";
@@ -69,8 +107,54 @@ export default function GameDetail() {
     }).format(cents / 100);
   };
 
+  const previewFinalPrice = useMemo(() => {
+    const p = Number(editMode ? edited.price : game?.price);
+    const d = Number(editMode ? edited.discount : game?.discount);
+    if (Number.isNaN(p)) return 0;
+    const disc = Number.isNaN(d) ? 0 : d;
+    const final = p - p * (disc / 100);
+    return Math.max(0, Number(final.toFixed(2)));
+  }, [editMode, edited.price, edited.discount, game?.price, game?.discount]);
+
+  const onField = (key) => (e) => setEdited((prev) => ({ ...prev, [key]: e.target.value }));
+
+  const saveChanges = async () => {
+    if (!game) return;
+    try {
+      setSaving(true);
+      setActionMsg("");
+      const payload = {};
+      const fields = ["title","description","genre","platform","developer","publisher","price","rating","cover_url","trailer_url","discount"];
+      for (const k of fields) {
+        const oldVal = game[k] ?? "";
+        const newVal = edited[k];
+        if (String(newVal) !== String(oldVal)) payload[k] = newVal;
+      }
+      if (Object.keys(payload).length === 0) {
+        setEditMode(false);
+        setActionMsg("Aucun changement à enregistrer.");
+        return;
+      }
+      const res = await fetch(`http://localhost:5174/api/games/update/${game.id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data?.error || "Échec de la mise à jour");
+      setGame(data);
+      setEdited((prev) => ({ ...prev, ...payload }));
+      setEditMode(false);
+      setActionMsg("Modifications enregistrées.");
+    } catch (e) {
+      setActionMsg(String(e.message || e));
+    } finally {
+      setSaving(false);
+    }
+  };
+
   const trailerEmbedUrl = useMemo(() => {
-    const url = game?.trailer_url;
+    const url = (editMode ? edited.trailer_url : game?.trailer_url);
     if (!url) return null;
     try {
       const u = new URL(url);
@@ -92,30 +176,9 @@ export default function GameDetail() {
     } catch {
       return url;
     }
-  }, [game]);
+  }, [game, editMode, edited.trailer_url]);
 
-  const addGameToCart = async () => {
-    if (token) {
-      const response = await fetch(
-        "http://localhost:5174/api/payments/cart/items",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({ game_id: game.id, quantity: "1" }),
-        }
-      );
-      if (!response.ok) {
-        console.error("Erreur lors de l'ajout du jeu au panier.");
-        return;
-      }
-      navigate("/");
-    } else {
-      navigate("/login");
-    }
-  };
+  const toggleEdit = () => { setEditMode((v) => !v); setActionMsg(""); };
 
   const deleteGame = async () => {
     if (token) {
@@ -271,10 +334,18 @@ export default function GameDetail() {
             )}
           </div>
           <div className="meta">
-            <h1 className="title">{game.title}</h1>
-            <p className="desc">{game.description}</p>
+            {editMode ? (
+              <input className="title" style={{ width: "100%" }} value={edited.title} onChange={onField("title")} />
+            ) : (
+              <h1 className="title">{game.title}</h1>
+            )}
+            {editMode ? (
+              <textarea className="desc" rows={3} style={{ width: "100%" }} value={edited.description} onChange={onField("description")} />
+            ) : (
+              <p className="desc">{game.description}</p>
+            )}
 
-            {genres.length > 0 && (
+            {genres.length > 0 && !editMode && (
               <div className="chips" aria-label="Genres">
                 {genres.map((g) => (
                   <span key={g} className="chip">
@@ -283,17 +354,26 @@ export default function GameDetail() {
                 ))}
               </div>
             )}
+            {editMode && (
+              <div style={{ marginBottom: 8 }}>
+                <input style={{ width: "100%" }} placeholder="Genres (séparés par des virgules)" value={edited.genre} onChange={onField("genre")} />
+              </div>
+            )}
 
             <div className="price-row">
               {isDiscounted ? (
                 <span className="badge">-{game.discount}%</span>
               ) : null}
-              {isDiscounted ? (
+              {editMode ? (
+                <>
+                  <input type="number" step="0.01" style={{ width: 110 }} value={edited.price} onChange={onField("price")} aria-label="Prix" />
+                  <input type="number" min="0" max="100" step="1" style={{ width: 90 }} value={edited.discount} onChange={onField("discount")} aria-label="Rabais %" />
+                  <span className="price price-final">{previewFinalPrice} $</span>
+                </>
+              ) : isDiscounted ? (
                 <>
                   <span className="price price-original">{game.price} $</span>
-                  <span className="price price-final">
-                    {game.discounted_price} $
-                  </span>
+                  <span className="price price-final">{game.discounted_price} $</span>
                 </>
               ) : (
                 <span className="price price-final">{game.price}$</span>
@@ -315,13 +395,14 @@ export default function GameDetail() {
                   Restaurer le jeu
                 </button>
               )}
-              <button
-                className="buy-btn"
-                aria-label="Modifier le jeu"
-                onClick={addGameToCart}
-              >
-                Modifier le jeu
-              </button>
+              {editMode ? (
+                <>
+                  <button className="buy-btn" onClick={saveChanges} disabled={saving}>{saving ? "Enregistrement…" : "Enregistrer"}</button>
+                  <button className="buy-btn" onClick={toggleEdit} disabled={saving}>Annuler</button>
+                </>
+              ) : (
+                <button className="buy-btn" aria-label="Modifier le jeu" onClick={toggleEdit}>Modifier le jeu</button>
+              )}
             </div>
 
             {actionMsg && (
@@ -332,24 +413,68 @@ export default function GameDetail() {
               <div>
                 <strong>Plateformes:</strong> {platforms.join(", ") || "—"}
               </div>
+              {editMode && (
+                <div style={{ gridColumn: "1 / -1" }}>
+                  <input style={{ width: "100%" }} placeholder="Plateformes (séparées par des virgules)" value={edited.platform} onChange={onField("platform")} />
+                </div>
+              )}
               <div>
                 <strong>Date de sortie:</strong> {game.release_date || "—"}
               </div>
               <div>
-                <strong>Développeur:</strong> {game.developer || "—"}
+                <strong>Développeur:</strong> {editMode ? (
+                  <input value={edited.developer} onChange={onField("developer")} />
+                ) : (game.developer || "—")}
               </div>
               <div>
-                <strong>Éditeur:</strong> {game.publisher || "—"}
+                <strong>Éditeur:</strong> {editMode ? (
+                  <input value={edited.publisher} onChange={onField("publisher")} />
+                ) : (game.publisher || "—")}
               </div>
               <div className="rating-cell">
                 <strong>Note:</strong>
-                <span className="rating-num">
-                  {rating10 > 0
-                    ? `${rating10.toFixed(1)}/10`
-                    : "Aucune pour le moment"}
-                </span>
+                {editMode ? (
+                  <input type="number" min="0" max="10" step="0.1" style={{ width: 90 }} value={edited.rating} onChange={onField("rating")} />
+                ) : (
+                  <span className="rating-num">{rating10 > 0 ? `${rating10.toFixed(1)}/10` : "Aucune pour le moment"}</span>
+                )}
               </div>
             </div>
+
+            {editMode && (
+              <div className="media-edit" style={{ marginTop: 12 }}>
+                <h3 className="section-title" style={{ marginTop: 0 }}>
+                  <span className="bar" /> Médias
+                </h3>
+                <div className="media-field">
+                  <label>Image de couverture (URL)</label>
+                  <input
+                    placeholder="https://exemple.com/cover.jpg"
+                    value={edited.cover_url}
+                    onChange={onField("cover_url")}
+                    style={{ width: "100%" }}
+                  />
+                  <div className="cover-preview">
+                    { (edited.cover_url || game.cover_url) ? (
+                      <img src={edited.cover_url || game.cover_url} alt="Aperçu couverture" />
+                    ) : (
+                      <div className="thumb-fallback" style={{ minHeight: 80 }}>Aucune image</div>
+                    )}
+                  </div>
+                </div>
+
+                <div className="media-field">
+                  <label>URL de bande‑annonce (YouTube/MP4)</label>
+                  <input
+                    placeholder="https://youtu.be/… ou https://site/video.mp4"
+                    value={edited.trailer_url}
+                    onChange={onField("trailer_url")}
+                    style={{ width: "100%" }}
+                  />
+                  <small className="hint">YouTube: colle l’URL de la vidéo (le preview s’affiche si reconnu)</small>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </section>
