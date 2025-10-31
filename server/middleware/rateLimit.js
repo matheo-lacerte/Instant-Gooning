@@ -25,7 +25,7 @@ export const globalApiLimiter = createLimiter({
 
 
 export const loginLimiter = createLimiter({
-  windowMs: 1000, // 10 minutes
+  windowMs: 10 * 60 * 1000, // 10 minutes
   max: 5,
   message: "Trop de tentatives de connexion. Réessayez plus tard.",
 });
