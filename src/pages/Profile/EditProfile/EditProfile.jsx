@@ -1,9 +1,7 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-import "./Profile.css";
-
-export default function Profile() {
+export default function EditProfile() {
   const navigate = useNavigate();
   const [userParse, setUserParse] = useState(() => {
     const storedUser = localStorage.getItem("user");
@@ -14,22 +12,9 @@ export default function Profile() {
   const [first, setFirst] = useState(userParse.first_name || "");
   const [last, setLast] = useState(userParse.last_name || "");
   const [email, setEmail] = useState(userParse.email || "");
-  const [token, setToken] = useState(localStorage.getItem("token"));
+  const token = localStorage.getItem("token");
 
-  const editProfile = () => {
-    navigate("/profile/editProfile");
-  };
-
-  const editPassword = () => {
-    navigate("/profile/editPassword");
-  };
-
-  const annulation = () => {
-    setUsername(userParse.username);
-    setFirst(userParse.first_name);
-    setLast(userParse.last_name);
-    setEmail(userParse.email);
-    setEditProfile(false);
+  const backProfile = () => {
     navigate("/profile");
   };
 
@@ -67,7 +52,6 @@ export default function Profile() {
 
         alert(data.message);
         navigate("/profile");
-        setEditProfile(false);
       } else {
         alert(data.error);
       }
@@ -99,7 +83,7 @@ export default function Profile() {
           </ul>
         </div>
         <div className="colonnes userData">
-          <h1>Informations du compte</h1>
+          <h1>Modification du compte</h1>
 
           <div className="control no-margin">
             <label htmlFor="username">Nom d'utilisateur</label>
@@ -108,7 +92,6 @@ export default function Profile() {
               id="username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              readOnly
             />
           </div>
 
@@ -119,7 +102,6 @@ export default function Profile() {
               id="firstName"
               value={first}
               onChange={(e) => setFirst(e.target.value)}
-              readOnly
             />
           </div>
 
@@ -130,7 +112,6 @@ export default function Profile() {
               id="lastName"
               value={last}
               onChange={(e) => setLast(e.target.value)}
-              readOnly
             />
           </div>
 
@@ -141,16 +122,15 @@ export default function Profile() {
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              readOnly
             />
           </div>
 
           <div className="row-bottom">
-            <button className="edit-button" onClick={editProfile}>
-              Modifier les informations du compte
+            <button className="edit-button save" onClick={sauvegarde}>
+              Sauvegarder
             </button>
-            <button className="edit-button" onClick={editPassword}>
-              Modifier le mot de passe
+            <button className="edit-button cancel" onClick={backProfile}>
+              Annuler
             </button>
           </div>
         </div>
