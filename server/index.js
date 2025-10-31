@@ -11,7 +11,20 @@ import stripeWebhookRoutes from "./routes/stripeWebhook.js";
 import { globalApiLimiter } from "./middleware/rateLimit.js";
 
 const app = express();
-app.use(cors());
+const allowedOrigins = (process.env.CORS_ORIGINS || "http://localhost:5173,http://127.0.0.1:5173").split(",").map(o => o.trim());
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true); // allow non-browser requests (curl, Postman)
+    if (allowedOrigins.includes(origin)) return callback(null, true);
+    return callback(null, false); // disallow others without throwing
+  },
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  optionsSuccessStatus: 204
+};
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
 
 // IMPORTANT: pas de app.use(express.json()) ici
 app.use((req, res, next) => {

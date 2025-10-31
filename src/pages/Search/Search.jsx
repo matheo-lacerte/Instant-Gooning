@@ -25,7 +25,7 @@ export default function Search() {
         );
         setListeJeux(filteredData);
       } catch (err) {
-        alert("Une erreur est survenue. Veuillez réessayer plus tard.");
+        console.error("Erreur recherche:", err);
         throw err;
       }
     };
