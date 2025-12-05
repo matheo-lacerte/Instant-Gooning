@@ -1,0 +1,89 @@
+<html>
+<head>
+    <title>server/index.js</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">server/index.js (<b>51</b> lines of code) (<a href="index.js">raw</a>):</h3>
+<div id="editor">import express from &quot;express&quot;;
+import cors from &quot;cors&quot;;
+import authRoutes from &quot;./routes/auth.js&quot;;
+import devRoutes from &quot;./routes/dev.js&quot;;
+import { supabase } from &quot;./config/supabase.js&quot;;
+import gamesRoutes from &quot;./routes/games.js&quot;;
+import adminRoutes from &quot;./routes/admin.js&quot;;
+import userRoutes from &quot;./routes/user.js&quot;;
+import paymentsRoutes from &quot;./routes/payments.js&quot;;
+import stripeWebhookRoutes from &quot;./routes/stripeWebhook.js&quot;;
+import { globalApiLimiter } from &quot;./middleware/rateLimit.js&quot;;
+
+const app = express();
+const allowedOrigins = (process.env.CORS_ORIGINS || &quot;http://localhost:5173,http://127.0.0.1:5173&quot;).split(&quot;,&quot;).map(o =&gt; o.trim());
+const corsOptions = {
+  origin: (origin, callback) =&gt; {
+    if (!origin) return callback(null, true); // allow non-browser requests (curl, Postman)
+    if (allowedOrigins.includes(origin)) return callback(null, true);
+    return callback(null, false); // disallow others without throwing
+  },
+  credentials: true,
+  methods: [&quot;GET&quot;, &quot;POST&quot;, &quot;PUT&quot;, &quot;PATCH&quot;, &quot;DELETE&quot;, &quot;OPTIONS&quot;],
+  allowedHeaders: [&quot;Content-Type&quot;, &quot;Authorization&quot;],
+  optionsSuccessStatus: 204
+};
+app.use(cors(corsOptions));
+app.options(&quot;*&quot;, cors(corsOptions));
+
+// IMPORTANT: pas de app.use(express.json()) ici
+app.use((req, res, next) =&gt; {
+  if (req.path === &quot;/api/webhook/stripe&quot;) return next(); // body brut pour Stripe
+  express.json()(req, res, next);                        // JSON pour le reste
+});
+
+// rate limit apr&egrave;s le wrapper
+app.use(&quot;/api&quot;, globalApiLimiter);
+
+// routes API
+app.use(&quot;/api/auth&quot;, authRoutes);
+app.use(&quot;/api/games&quot;, gamesRoutes);
+app.use(&quot;/api/dev&quot;, devRoutes);
+app.use(&quot;/api/admin&quot;, adminRoutes);
+app.use(&quot;/api/user&quot;, userRoutes);
+app.use(&quot;/api/payments&quot;, paymentsRoutes);
+
+// webhook &agrave; la fin
+app.use(&quot;/api&quot;, stripeWebhookRoutes);
+
+app.get(&quot;/api/health&quot;, (_req, res) =&gt; res.json({ ok: true }));
+
+app.get(&quot;/api/test-db&quot;, async (_req, res) =&gt; {
+  try {
+    const { data, error } = await supabase.from(&quot;users&quot;).select(&quot;id, role&quot;).limit(1);
+    if (error) throw error;
+    res.json({ db: &quot;OK&quot;, sampleUser: data });
+  } catch (err) {
+    console.error(&quot;DB error:&quot;, err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+const port = process.env.PORT || 5174;
+app.listen(port, () =&gt; console.log(`API server on http://localhost:${port}`));
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/javascript");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

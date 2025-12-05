@@ -1,0 +1,3636 @@
+<head>
+    <style> body {
+        margin: 0;
+    } </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/force-graph"></script>
+</head>
+
+<body>
+<div id="graph"></div>
+
+<script>
+    const gData = {
+  "nodes" : [ {
+    "id" : "[server/utils/keygen.js]",
+    "size" : 8
+  }, {
+    "id" : "[src/pages/Admin/Admin.css]",
+    "size" : 6
+  }, {
+    "id" : "[src/pages/oldDev/CreateGame/CreateGame.jsx]",
+    "size" : 14
+  }, {
+    "id" : "[server/controllers/userController.js]",
+    "size" : 25
+  }, {
+    "id" : "[src/App.jsx]",
+    "size" : 45
+  }, {
+    "id" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "size" : 27
+  }, {
+    "id" : "[server/controllers/devController.js]",
+    "size" : 16
+  }, {
+    "id" : "[src/pages/Profile/EditProfile/EditProfile.jsx]",
+    "size" : 3
+  }, {
+    "id" : "[vite.config.js]",
+    "size" : 7
+  }, {
+    "id" : "[src/pages/Profile/EditPassword/EditPassword.jsx]",
+    "size" : 3
+  }, {
+    "id" : "[src/pages/Register/Register.jsx]",
+    "size" : 15
+  }, {
+    "id" : "[server/routes/auth.js]",
+    "size" : 14
+  }, {
+    "id" : "[src/pages/Cart/Cart.css]",
+    "size" : 9
+  }, {
+    "id" : "[src/app/components/SearchBar.jsx]",
+    "size" : 17
+  }, {
+    "id" : "[src/pages/Navigation/Navigation.jsx]",
+    "size" : 19
+  }, {
+    "id" : "[server/controllers/adminController.js]",
+    "size" : 21
+  }, {
+    "id" : "[server/controllers/cartController.js]",
+    "size" : 21
+  }, {
+    "id" : "[server/routes/admin.js]",
+    "size" : 22
+  }, {
+    "id" : "[server/routes/dev.js]",
+    "size" : 15
+  }, {
+    "id" : "[src/pages/Dev/DevGameDetail/devGameDetail.jsx]",
+    "size" : 8
+  }, {
+    "id" : "[src/pages/Profile/Purchases.jsx]",
+    "size" : 8
+  }, {
+    "id" : "[src/pages/Admin/Admin.jsx]",
+    "size" : 7
+  }, {
+    "id" : "[src/pages/GameDetail/gameDetail.css]",
+    "size" : 25
+  }, {
+    "id" : "[src/pages/Search/Search.jsx]",
+    "size" : 18
+  }, {
+    "id" : "[server/routes/user.js]",
+    "size" : 20
+  }, {
+    "id" : "[src/pages/Profile/Profile.jsx]",
+    "size" : 35
+  }, {
+    "id" : "[server/middleware/rateLimit.js]",
+    "size" : 25
+  }, {
+    "id" : "[src/pages/Logout/Logout.jsx]",
+    "size" : 16
+  }, {
+    "id" : "[server/middleware/auth.js]",
+    "size" : 4
+  }, {
+    "id" : "[src/app/components/GameCard.jsx]",
+    "size" : 8
+  }, {
+    "id" : "[server/controllers/gamesController.js]",
+    "size" : 26
+  }, {
+    "id" : "[server/controllers/paymentsController.js]",
+    "size" : 32
+  }, {
+    "id" : "[src/pages/Login/Login.jsx]",
+    "size" : 5
+  }, {
+    "id" : "[src/pages/Dev/Dev.jsx]",
+    "size" : 33
+  }, {
+    "id" : "[server/controllers/stripeWebhookController.js]",
+    "size" : 23
+  }, {
+    "id" : "[src/pages/oldDev/Dev.jsx]",
+    "size" : 14
+  }, {
+    "id" : "[src/app/components/Guards/RequireDev.jsx]",
+    "size" : 14
+  }, {
+    "id" : "[src/pages/oldDev/Dev.css]",
+    "size" : 14
+  }, {
+    "id" : "[src/pages/Navigation/navigation.css]",
+    "size" : 12
+  }, {
+    "id" : "[src/pages/Support/support.css]",
+    "size" : 8
+  }, {
+    "id" : "[src/pages/Support/Support.jsx]",
+    "size" : 8
+  }, {
+    "id" : "[server/routes/games.js]",
+    "size" : 21
+  }, {
+    "id" : "[src/pages/Cart/Cart.jsx]",
+    "size" : 11
+  }, {
+    "id" : "[src/pages/Profile/Profile.css]",
+    "size" : 15
+  }, {
+    "id" : "[src/pages/oldDev/CreateGame/CreateGame.css]",
+    "size" : 14
+  }, {
+    "id" : "[src/pages/Purchase/Success.jsx]",
+    "size" : 15
+  }, {
+    "id" : "[server/utils/stripePricing.js]",
+    "size" : 15
+  }, {
+    "id" : "[src/pages/Purchase/success.css]",
+    "size" : 7
+  }, {
+    "id" : "[src/pages/Search/Search.css]",
+    "size" : 5
+  }, {
+    "id" : "[server/routes/stripeWebhook.js]",
+    "size" : 14
+  }, {
+    "id" : "[server/routes/payments.js]",
+    "size" : 27
+  }, {
+    "id" : "[src/app/components/searchBar.css]",
+    "size" : 7
+  }, {
+    "id" : "[src/app/Context/AuthContext.jsx]",
+    "size" : 5
+  }, {
+    "id" : "[server/index.js]",
+    "size" : 32
+  } ],
+  "links" : [ {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "[src/App.jsx]",
+    "count" : 14
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 14
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "[src/App.jsx]",
+    "count" : 12
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 12
+  }, {
+    "source" : "[server/routes/admin.js]",
+    "target" : "[server/controllers/adminController.js]",
+    "count" : 12
+  }, {
+    "source" : "[server/controllers/adminController.js]",
+    "target" : "[server/routes/admin.js]",
+    "count" : 12
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 8
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 8
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "[server/middleware/rateLimit.js]",
+    "count" : 8
+  }, {
+    "source" : "[server/middleware/rateLimit.js]",
+    "target" : "[src/App.jsx]",
+    "count" : 8
+  }, {
+    "source" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 8
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "count" : 8
+  }, {
+    "source" : "[server/routes/admin.js]",
+    "target" : "[server/middleware/rateLimit.js]",
+    "count" : 8
+  }, {
+    "source" : "[server/middleware/rateLimit.js]",
+    "target" : "[server/routes/admin.js]",
+    "count" : 8
+  }, {
+    "source" : "[server/routes/user.js]",
+    "target" : "[server/controllers/userController.js]",
+    "count" : 8
+  }, {
+    "source" : "[server/controllers/userController.js]",
+    "target" : "[server/routes/user.js]",
+    "count" : 8
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "[server/routes/admin.js]",
+    "count" : 7
+  }, {
+    "source" : "[server/routes/admin.js]",
+    "target" : "[src/App.jsx]",
+    "count" : 7
+  }, {
+    "source" : "[server/controllers/stripeWebhookController.js]",
+    "target" : "[server/controllers/paymentsController.js]",
+    "count" : 7
+  }, {
+    "source" : "[server/controllers/paymentsController.js]",
+    "target" : "[server/controllers/stripeWebhookController.js]",
+    "count" : 7
+  }, {
+    "source" : "[server/middleware/rateLimit.js]",
+    "target" : "[server/controllers/adminController.js]",
+    "count" : 7
+  }, {
+    "source" : "[server/controllers/adminController.js]",
+    "target" : "[server/middleware/rateLimit.js]",
+    "count" : 7
+  }, {
+    "source" : "[server/routes/payments.js]",
+    "target" : "[server/controllers/paymentsController.js]",
+    "count" : 7
+  }, {
+    "source" : "[server/controllers/paymentsController.js]",
+    "target" : "[server/routes/payments.js]",
+    "count" : 7
+  }, {
+    "source" : "[src/pages/Navigation/Navigation.jsx]",
+    "target" : "[src/App.jsx]",
+    "count" : 6
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "[src/pages/Navigation/Navigation.jsx]",
+    "count" : 6
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "[server/controllers/adminController.js]",
+    "count" : 6
+  }, {
+    "source" : "[server/controllers/adminController.js]",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 6
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "[server/controllers/userController.js]",
+    "count" : 6
+  }, {
+    "source" : "[server/controllers/userController.js]",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 6
+  }, {
+    "source" : "[src/pages/Admin/Admin.jsx]",
+    "target" : "[server/middleware/rateLimit.js]",
+    "count" : 6
+  }, {
+    "source" : "[server/middleware/rateLimit.js]",
+    "target" : "[src/pages/Admin/Admin.jsx]",
+    "count" : 6
+  }, {
+    "source" : "[src/pages/Admin/Admin.jsx]",
+    "target" : "[src/App.jsx]",
+    "count" : 6
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "[src/pages/Admin/Admin.jsx]",
+    "count" : 6
+  }, {
+    "source" : "[src/pages/GameDetail/gameDetail.css]",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 5
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "[src/pages/GameDetail/gameDetail.css]",
+    "count" : 5
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "[server/routes/admin.js]",
+    "count" : 5
+  }, {
+    "source" : "[server/routes/admin.js]",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 5
+  }, {
+    "source" : "[server/controllers/cartController.js]",
+    "target" : "[server/middleware/rateLimit.js]",
+    "count" : 5
+  }, {
+    "source" : "[server/middleware/rateLimit.js]",
+    "target" : "[server/controllers/cartController.js]",
+    "count" : 5
+  }, {
+    "source" : "[server/controllers/gamesController.js]",
+    "target" : "[server/controllers/paymentsController.js]",
+    "count" : 5
+  }, {
+    "source" : "[server/controllers/paymentsController.js]",
+    "target" : "[server/controllers/gamesController.js]",
+    "count" : 5
+  }, {
+    "source" : "[server/controllers/userController.js]",
+    "target" : "[server/controllers/paymentsController.js]",
+    "count" : 5
+  }, {
+    "source" : "[server/controllers/paymentsController.js]",
+    "target" : "[server/controllers/userController.js]",
+    "count" : 5
+  }, {
+    "source" : "[src/pages/Purchase/Success.jsx]",
+    "target" : "[server/controllers/paymentsController.js]",
+    "count" : 5
+  }, {
+    "source" : "[server/controllers/paymentsController.js]",
+    "target" : "[src/pages/Purchase/Success.jsx]",
+    "count" : 5
+  }, {
+    "source" : "[server/routes/payments.js]",
+    "target" : "[src/pages/Purchase/Success.jsx]",
+    "count" : 5
+  }, {
+    "source" : "[src/pages/Purchase/Success.jsx]",
+    "target" : "[server/routes/payments.js]",
+    "count" : 5
+  }, {
+    "source" : "[src/pages/GameDetail/gameDetail.css]",
+    "target" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "count" : 5
+  }, {
+    "source" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "target" : "[src/pages/GameDetail/gameDetail.css]",
+    "count" : 5
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "[server/controllers/adminController.js]",
+    "count" : 5
+  }, {
+    "source" : "[server/controllers/adminController.js]",
+    "target" : "[src/App.jsx]",
+    "count" : 5
+  }, {
+    "source" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "target" : "[src/App.jsx]",
+    "count" : 5
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "count" : 5
+  }, {
+    "source" : "[server/controllers/stripeWebhookController.js]",
+    "target" : "[server/controllers/gamesController.js]",
+    "count" : 5
+  }, {
+    "source" : "[server/controllers/gamesController.js]",
+    "target" : "[server/controllers/stripeWebhookController.js]",
+    "count" : 5
+  }, {
+    "source" : "[server/controllers/userController.js]",
+    "target" : "[server/controllers/stripeWebhookController.js]",
+    "count" : 5
+  }, {
+    "source" : "[server/controllers/stripeWebhookController.js]",
+    "target" : "[server/controllers/userController.js]",
+    "count" : 5
+  }, {
+    "source" : "[src/pages/GameDetail/gameDetail.css]",
+    "target" : "[src/App.jsx]",
+    "count" : 4
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "[src/pages/GameDetail/gameDetail.css]",
+    "count" : 4
+  }, {
+    "source" : "[server/index.js]",
+    "target" : "[server/controllers/paymentsController.js]",
+    "count" : 4
+  }, {
+    "source" : "[server/controllers/paymentsController.js]",
+    "target" : "[server/index.js]",
+    "count" : 4
+  }, {
+    "source" : "[src/pages/Admin/Admin.css]",
+    "target" : "[src/App.jsx]",
+    "count" : 4
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "[src/pages/Admin/Admin.css]",
+    "count" : 4
+  }, {
+    "source" : "[server/utils/stripePricing.js]",
+    "target" : "[server/controllers/gamesController.js]",
+    "count" : 4
+  }, {
+    "source" : "[server/controllers/gamesController.js]",
+    "target" : "[server/utils/stripePricing.js]",
+    "count" : 4
+  }, {
+    "source" : "[server/routes/payments.js]",
+    "target" : "[server/controllers/stripeWebhookController.js]",
+    "count" : 4
+  }, {
+    "source" : "[server/controllers/stripeWebhookController.js]",
+    "target" : "[server/routes/payments.js]",
+    "count" : 4
+  }, {
+    "source" : "[src/pages/Navigation/navigation.css]",
+    "target" : "[src/pages/Navigation/Navigation.jsx]",
+    "count" : 4
+  }, {
+    "source" : "[src/pages/Navigation/Navigation.jsx]",
+    "target" : "[src/pages/Navigation/navigation.css]",
+    "count" : 4
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "[server/middleware/rateLimit.js]",
+    "count" : 4
+  }, {
+    "source" : "[server/middleware/rateLimit.js]",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 4
+  }, {
+    "source" : "[src/pages/Profile/EditPassword/EditPassword.jsx]",
+    "target" : "[src/App.jsx]",
+    "count" : 4
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "[src/pages/Profile/EditPassword/EditPassword.jsx]",
+    "count" : 4
+  }, {
+    "source" : "[src/pages/Profile/Profile.css]",
+    "target" : "[src/App.jsx]",
+    "count" : 4
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "[src/pages/Profile/Profile.css]",
+    "count" : 4
+  }, {
+    "source" : "[server/routes/payments.js]",
+    "target" : "[server/index.js]",
+    "count" : 4
+  }, {
+    "source" : "[server/index.js]",
+    "target" : "[server/routes/payments.js]",
+    "count" : 4
+  }, {
+    "source" : "[src/pages/Admin/Admin.css]",
+    "target" : "[server/controllers/adminController.js]",
+    "count" : 4
+  }, {
+    "source" : "[server/controllers/adminController.js]",
+    "target" : "[src/pages/Admin/Admin.css]",
+    "count" : 4
+  }, {
+    "source" : "[server/controllers/cartController.js]",
+    "target" : "[server/controllers/gamesController.js]",
+    "count" : 4
+  }, {
+    "source" : "[server/controllers/gamesController.js]",
+    "target" : "[server/controllers/cartController.js]",
+    "count" : 4
+  }, {
+    "source" : "[src/pages/Admin/Admin.css]",
+    "target" : "[server/routes/admin.js]",
+    "count" : 4
+  }, {
+    "source" : "[server/routes/admin.js]",
+    "target" : "[src/pages/Admin/Admin.css]",
+    "count" : 4
+  }, {
+    "source" : "[server/routes/user.js]",
+    "target" : "[server/index.js]",
+    "count" : 4
+  }, {
+    "source" : "[server/index.js]",
+    "target" : "[server/routes/user.js]",
+    "count" : 4
+  }, {
+    "source" : "[src/pages/Profile/Profile.css]",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 4
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "[src/pages/Profile/Profile.css]",
+    "count" : 4
+  }, {
+    "source" : "[server/controllers/gamesController.js]",
+    "target" : "[src/App.jsx]",
+    "count" : 4
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "[server/controllers/gamesController.js]",
+    "count" : 4
+  }, {
+    "source" : "[src/pages/Admin/Admin.jsx]",
+    "target" : "[src/pages/Admin/Admin.css]",
+    "count" : 4
+  }, {
+    "source" : "[src/pages/Admin/Admin.css]",
+    "target" : "[src/pages/Admin/Admin.jsx]",
+    "count" : 4
+  }, {
+    "source" : "[src/pages/Admin/Admin.jsx]",
+    "target" : "[server/routes/admin.js]",
+    "count" : 4
+  }, {
+    "source" : "[server/routes/admin.js]",
+    "target" : "[src/pages/Admin/Admin.jsx]",
+    "count" : 4
+  }, {
+    "source" : "[src/pages/Navigation/Navigation.jsx]",
+    "target" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "count" : 4
+  }, {
+    "source" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "target" : "[src/pages/Navigation/Navigation.jsx]",
+    "count" : 4
+  }, {
+    "source" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "target" : "[server/controllers/gamesController.js]",
+    "count" : 4
+  }, {
+    "source" : "[server/controllers/gamesController.js]",
+    "target" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "count" : 4
+  }, {
+    "source" : "[src/pages/Navigation/Navigation.jsx]",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 4
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "[src/pages/Navigation/Navigation.jsx]",
+    "count" : 4
+  }, {
+    "source" : "[server/utils/stripePricing.js]",
+    "target" : "[server/controllers/cartController.js]",
+    "count" : 4
+  }, {
+    "source" : "[server/controllers/cartController.js]",
+    "target" : "[server/utils/stripePricing.js]",
+    "count" : 4
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "[server/controllers/devController.js]",
+    "count" : 4
+  }, {
+    "source" : "[server/controllers/devController.js]",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 4
+  }, {
+    "source" : "[server/index.js]",
+    "target" : "[server/controllers/userController.js]",
+    "count" : 4
+  }, {
+    "source" : "[server/controllers/userController.js]",
+    "target" : "[server/index.js]",
+    "count" : 4
+  }, {
+    "source" : "[src/app/components/SearchBar.jsx]",
+    "target" : "[src/App.jsx]",
+    "count" : 4
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "[src/app/components/SearchBar.jsx]",
+    "count" : 4
+  }, {
+    "source" : "[server/controllers/cartController.js]",
+    "target" : "[server/routes/payments.js]",
+    "count" : 4
+  }, {
+    "source" : "[server/routes/payments.js]",
+    "target" : "[server/controllers/cartController.js]",
+    "count" : 4
+  }, {
+    "source" : "[src/pages/Logout/Logout.jsx]",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 4
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "[src/pages/Logout/Logout.jsx]",
+    "count" : 4
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "[server/routes/admin.js]",
+    "count" : 4
+  }, {
+    "source" : "[server/routes/admin.js]",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 4
+  }, {
+    "source" : "[src/pages/Admin/Admin.css]",
+    "target" : "[server/middleware/rateLimit.js]",
+    "count" : 4
+  }, {
+    "source" : "[server/middleware/rateLimit.js]",
+    "target" : "[src/pages/Admin/Admin.css]",
+    "count" : 4
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "[server/middleware/rateLimit.js]",
+    "count" : 4
+  }, {
+    "source" : "[server/middleware/rateLimit.js]",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 4
+  }, {
+    "source" : "[src/pages/Profile/EditPassword/EditPassword.jsx]",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 4
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "[src/pages/Profile/EditPassword/EditPassword.jsx]",
+    "count" : 4
+  }, {
+    "source" : "[server/routes/dev.js]",
+    "target" : "[server/controllers/devController.js]",
+    "count" : 4
+  }, {
+    "source" : "[server/controllers/devController.js]",
+    "target" : "[server/routes/dev.js]",
+    "count" : 4
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "[server/controllers/paymentsController.js]",
+    "count" : 4
+  }, {
+    "source" : "[server/controllers/paymentsController.js]",
+    "target" : "[src/App.jsx]",
+    "count" : 4
+  }, {
+    "source" : "[src/pages/Admin/Admin.jsx]",
+    "target" : "[server/controllers/adminController.js]",
+    "count" : 4
+  }, {
+    "source" : "[server/controllers/adminController.js]",
+    "target" : "[src/pages/Admin/Admin.jsx]",
+    "count" : 4
+  }, {
+    "source" : "[server/index.js]",
+    "target" : "[server/routes/admin.js]",
+    "count" : 4
+  }, {
+    "source" : "[server/routes/admin.js]",
+    "target" : "[server/index.js]",
+    "count" : 4
+  }, {
+    "source" : "[server/routes/games.js]",
+    "target" : "[server/controllers/gamesController.js]",
+    "count" : 4
+  }, {
+    "source" : "[server/controllers/gamesController.js]",
+    "target" : "[server/routes/games.js]",
+    "count" : 4
+  }, {
+    "source" : "[server/routes/payments.js]",
+    "target" : "[src/App.jsx]",
+    "count" : 4
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "[server/routes/payments.js]",
+    "count" : 4
+  }, {
+    "source" : "[server/routes/payments.js]",
+    "target" : "[server/controllers/userController.js]",
+    "count" : 3
+  }, {
+    "source" : "[server/controllers/userController.js]",
+    "target" : "[server/routes/payments.js]",
+    "count" : 3
+  }, {
+    "source" : "[server/index.js]",
+    "target" : "[server/routes/games.js]",
+    "count" : 3
+  }, {
+    "source" : "[server/routes/games.js]",
+    "target" : "[server/index.js]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Support/Support.jsx]",
+    "target" : "[server/controllers/userController.js]",
+    "count" : 3
+  }, {
+    "source" : "[server/controllers/userController.js]",
+    "target" : "[src/pages/Support/Support.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/app/components/SearchBar.jsx]",
+    "target" : "[server/controllers/paymentsController.js]",
+    "count" : 3
+  }, {
+    "source" : "[server/controllers/paymentsController.js]",
+    "target" : "[src/app/components/SearchBar.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Support/Support.jsx]",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "[src/pages/Support/Support.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/GameDetail/gameDetail.css]",
+    "target" : "[src/pages/Dev/DevGameDetail/devGameDetail.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Dev/DevGameDetail/devGameDetail.jsx]",
+    "target" : "[src/pages/GameDetail/gameDetail.css]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Profile/EditProfile/EditProfile.jsx]",
+    "target" : "[src/App.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "[src/pages/Profile/EditProfile/EditProfile.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Profile/Profile.css]",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "[src/pages/Profile/Profile.css]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Profile/EditProfile/EditProfile.jsx]",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "[src/pages/Profile/EditProfile/EditProfile.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[server/routes/user.js]",
+    "target" : "[server/routes/payments.js]",
+    "count" : 3
+  }, {
+    "source" : "[server/routes/payments.js]",
+    "target" : "[server/routes/user.js]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Dev/DevGameDetail/devGameDetail.jsx]",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "[src/pages/Dev/DevGameDetail/devGameDetail.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/GameDetail/gameDetail.css]",
+    "target" : "[server/controllers/gamesController.js]",
+    "count" : 3
+  }, {
+    "source" : "[server/controllers/gamesController.js]",
+    "target" : "[src/pages/GameDetail/gameDetail.css]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Profile/EditProfile/EditProfile.jsx]",
+    "target" : "[src/pages/Profile/EditPassword/EditPassword.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Profile/EditPassword/EditPassword.jsx]",
+    "target" : "[src/pages/Profile/EditProfile/EditProfile.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Profile/Purchases.jsx]",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "[src/pages/Profile/Purchases.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "[server/controllers/gamesController.js]",
+    "count" : 3
+  }, {
+    "source" : "[server/controllers/gamesController.js]",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Support/support.css]",
+    "target" : "[server/controllers/userController.js]",
+    "count" : 3
+  }, {
+    "source" : "[server/controllers/userController.js]",
+    "target" : "[src/pages/Support/support.css]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Support/support.css]",
+    "target" : "[src/pages/Profile/Purchases.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Profile/Purchases.jsx]",
+    "target" : "[src/pages/Support/support.css]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Support/Support.jsx]",
+    "target" : "[src/pages/Profile/Purchases.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Profile/Purchases.jsx]",
+    "target" : "[src/pages/Support/Support.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[server/controllers/userController.js]",
+    "target" : "[src/App.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "[server/controllers/userController.js]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Search/Search.jsx]",
+    "target" : "[src/App.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "[src/pages/Search/Search.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Purchase/Success.jsx]",
+    "target" : "[src/app/components/SearchBar.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/app/components/SearchBar.jsx]",
+    "target" : "[src/pages/Purchase/Success.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[server/controllers/userController.js]",
+    "target" : "[server/controllers/gamesController.js]",
+    "count" : 3
+  }, {
+    "source" : "[server/controllers/gamesController.js]",
+    "target" : "[server/controllers/userController.js]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Dev/DevGameDetail/devGameDetail.jsx]",
+    "target" : "[server/controllers/gamesController.js]",
+    "count" : 3
+  }, {
+    "source" : "[server/controllers/gamesController.js]",
+    "target" : "[src/pages/Dev/DevGameDetail/devGameDetail.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[server/utils/stripePricing.js]",
+    "target" : "[server/middleware/rateLimit.js]",
+    "count" : 3
+  }, {
+    "source" : "[server/middleware/rateLimit.js]",
+    "target" : "[server/utils/stripePricing.js]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Support/support.css]",
+    "target" : "[src/App.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "[src/pages/Support/support.css]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Profile/Purchases.jsx]",
+    "target" : "[server/controllers/userController.js]",
+    "count" : 3
+  }, {
+    "source" : "[server/controllers/userController.js]",
+    "target" : "[src/pages/Profile/Purchases.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[server/index.js]",
+    "target" : "[server/controllers/adminController.js]",
+    "count" : 3
+  }, {
+    "source" : "[server/controllers/adminController.js]",
+    "target" : "[server/index.js]",
+    "count" : 3
+  }, {
+    "source" : "[server/routes/dev.js]",
+    "target" : "[server/controllers/gamesController.js]",
+    "count" : 3
+  }, {
+    "source" : "[server/controllers/gamesController.js]",
+    "target" : "[server/routes/dev.js]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Support/support.css]",
+    "target" : "[src/pages/Support/Support.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Support/Support.jsx]",
+    "target" : "[src/pages/Support/support.css]",
+    "count" : 3
+  }, {
+    "source" : "[server/routes/user.js]",
+    "target" : "[server/controllers/paymentsController.js]",
+    "count" : 3
+  }, {
+    "source" : "[server/controllers/paymentsController.js]",
+    "target" : "[server/routes/user.js]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Support/Support.jsx]",
+    "target" : "[src/App.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "[src/pages/Support/Support.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[server/routes/payments.js]",
+    "target" : "[server/middleware/rateLimit.js]",
+    "count" : 3
+  }, {
+    "source" : "[server/middleware/rateLimit.js]",
+    "target" : "[server/routes/payments.js]",
+    "count" : 3
+  }, {
+    "source" : "[server/index.js]",
+    "target" : "[src/App.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "[server/index.js]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Support/support.css]",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "[src/pages/Support/support.css]",
+    "count" : 3
+  }, {
+    "source" : "[server/controllers/cartController.js]",
+    "target" : "[server/routes/admin.js]",
+    "count" : 3
+  }, {
+    "source" : "[server/routes/admin.js]",
+    "target" : "[server/controllers/cartController.js]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Profile/Purchases.jsx]",
+    "target" : "[src/App.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "[src/pages/Profile/Purchases.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Navigation/navigation.css]",
+    "target" : "[src/app/components/GameCard.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/app/components/GameCard.jsx]",
+    "target" : "[src/pages/Navigation/navigation.css]",
+    "count" : 3
+  }, {
+    "source" : "[server/routes/user.js]",
+    "target" : "[server/controllers/stripeWebhookController.js]",
+    "count" : 3
+  }, {
+    "source" : "[server/controllers/stripeWebhookController.js]",
+    "target" : "[server/routes/user.js]",
+    "count" : 3
+  }, {
+    "source" : "[server/controllers/userController.js]",
+    "target" : "[server/middleware/rateLimit.js]",
+    "count" : 3
+  }, {
+    "source" : "[server/middleware/rateLimit.js]",
+    "target" : "[server/controllers/userController.js]",
+    "count" : 3
+  }, {
+    "source" : "[server/controllers/gamesController.js]",
+    "target" : "[server/middleware/rateLimit.js]",
+    "count" : 3
+  }, {
+    "source" : "[server/middleware/rateLimit.js]",
+    "target" : "[server/controllers/gamesController.js]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Cart/Cart.jsx]",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "[src/pages/Cart/Cart.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[server/routes/payments.js]",
+    "target" : "[server/routes/admin.js]",
+    "count" : 3
+  }, {
+    "source" : "[server/routes/admin.js]",
+    "target" : "[server/routes/payments.js]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/GameDetail/gameDetail.css]",
+    "target" : "[server/routes/games.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/games.js]",
+    "target" : "[src/pages/GameDetail/gameDetail.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Dev/DevGameDetail/devGameDetail.jsx]",
+    "target" : "[src/App.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "[src/pages/Dev/DevGameDetail/devGameDetail.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/payments.js]",
+    "target" : "[src/app/components/SearchBar.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/app/components/SearchBar.jsx]",
+    "target" : "[server/routes/payments.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/oldDev/Dev.jsx]",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "[src/pages/oldDev/Dev.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/auth.js]",
+    "target" : "[server/index.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/index.js]",
+    "target" : "[server/routes/auth.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Register/Register.jsx]",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "[src/pages/Register/Register.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/auth.js]",
+    "target" : "[server/controllers/userController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/userController.js]",
+    "target" : "[server/routes/auth.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "target" : "[server/controllers/paymentsController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/paymentsController.js]",
+    "target" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/stripeWebhook.js]",
+    "target" : "[server/index.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/index.js]",
+    "target" : "[server/routes/stripeWebhook.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Support/Support.jsx]",
+    "target" : "[server/controllers/gamesController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/gamesController.js]",
+    "target" : "[src/pages/Support/Support.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Profile/Purchases.jsx]",
+    "target" : "[server/controllers/stripeWebhookController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/stripeWebhookController.js]",
+    "target" : "[src/pages/Profile/Purchases.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/auth.js]",
+    "target" : "[server/routes/user.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/user.js]",
+    "target" : "[server/routes/auth.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/cartController.js]",
+    "target" : "[server/index.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/index.js]",
+    "target" : "[server/controllers/cartController.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Cart/Cart.css]",
+    "target" : "[src/App.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "[src/pages/Cart/Cart.css]",
+    "count" : 2
+  }, {
+    "source" : "[server/index.js]",
+    "target" : "[server/controllers/gamesController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/gamesController.js]",
+    "target" : "[server/index.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/stripeWebhook.js]",
+    "target" : "[server/controllers/paymentsController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/paymentsController.js]",
+    "target" : "[server/routes/stripeWebhook.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/oldDev/CreateGame/CreateGame.css]",
+    "target" : "[src/pages/GameDetail/gameDetail.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/GameDetail/gameDetail.css]",
+    "target" : "[src/pages/oldDev/CreateGame/CreateGame.css]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/cartController.js]",
+    "target" : "[src/pages/Cart/Cart.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Cart/Cart.jsx]",
+    "target" : "[server/controllers/cartController.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Logout/Logout.jsx]",
+    "target" : "[server/index.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/index.js]",
+    "target" : "[src/pages/Logout/Logout.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/oldDev/Dev.jsx]",
+    "target" : "[src/pages/oldDev/CreateGame/CreateGame.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/oldDev/CreateGame/CreateGame.jsx]",
+    "target" : "[src/pages/oldDev/Dev.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Login/Login.jsx]",
+    "target" : "[src/pages/Register/Register.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Register/Register.jsx]",
+    "target" : "[src/pages/Login/Login.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Login/Login.jsx]",
+    "target" : "[src/App.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "[src/pages/Login/Login.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/app/components/searchBar.css]",
+    "target" : "[src/pages/Navigation/Navigation.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Navigation/Navigation.jsx]",
+    "target" : "[src/app/components/searchBar.css]",
+    "count" : 2
+  }, {
+    "source" : "[server/index.js]",
+    "target" : "[server/middleware/rateLimit.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/middleware/rateLimit.js]",
+    "target" : "[server/index.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/middleware/auth.js]",
+    "target" : "[server/controllers/cartController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/cartController.js]",
+    "target" : "[server/middleware/auth.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/games.js]",
+    "target" : "[server/controllers/stripeWebhookController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/stripeWebhookController.js]",
+    "target" : "[server/routes/games.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Logout/Logout.jsx]",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "[src/pages/Logout/Logout.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Cart/Cart.jsx]",
+    "target" : "[server/middleware/rateLimit.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/middleware/rateLimit.js]",
+    "target" : "[src/pages/Cart/Cart.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "target" : "[src/pages/Dev/DevGameDetail/devGameDetail.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Dev/DevGameDetail/devGameDetail.jsx]",
+    "target" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[server/utils/keygen.js]",
+    "target" : "[server/routes/dev.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/dev.js]",
+    "target" : "[server/utils/keygen.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Purchase/success.css]",
+    "target" : "[src/pages/Purchase/Success.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Purchase/Success.jsx]",
+    "target" : "[src/pages/Purchase/success.css]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/games.js]",
+    "target" : "[server/routes/admin.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/admin.js]",
+    "target" : "[server/routes/games.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/oldDev/CreateGame/CreateGame.jsx]",
+    "target" : "[src/pages/oldDev/CreateGame/CreateGame.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/oldDev/CreateGame/CreateGame.css]",
+    "target" : "[src/pages/oldDev/CreateGame/CreateGame.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Register/Register.jsx]",
+    "target" : "[src/pages/Logout/Logout.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Logout/Logout.jsx]",
+    "target" : "[src/pages/Register/Register.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Register/Register.jsx]",
+    "target" : "[server/index.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/index.js]",
+    "target" : "[src/pages/Register/Register.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Navigation/Navigation.jsx]",
+    "target" : "[server/routes/payments.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/payments.js]",
+    "target" : "[src/pages/Navigation/Navigation.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[vite.config.js]",
+    "target" : "[server/index.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/index.js]",
+    "target" : "[vite.config.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/games.js]",
+    "target" : "[server/middleware/rateLimit.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/middleware/rateLimit.js]",
+    "target" : "[server/routes/games.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Cart/Cart.css]",
+    "target" : "[src/pages/Cart/Cart.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Cart/Cart.jsx]",
+    "target" : "[src/pages/Cart/Cart.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Navigation/navigation.css]",
+    "target" : "[src/app/components/SearchBar.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/app/components/SearchBar.jsx]",
+    "target" : "[src/pages/Navigation/navigation.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/oldDev/Dev.jsx]",
+    "target" : "[src/pages/Profile/Profile.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Profile/Profile.css]",
+    "target" : "[src/pages/oldDev/Dev.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[server/middleware/auth.js]",
+    "target" : "[server/controllers/gamesController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/gamesController.js]",
+    "target" : "[server/middleware/auth.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Login/Login.jsx]",
+    "target" : "[src/pages/Profile/Profile.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Profile/Profile.css]",
+    "target" : "[src/pages/Login/Login.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/oldDev/Dev.css]",
+    "target" : "[src/pages/oldDev/CreateGame/CreateGame.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/oldDev/CreateGame/CreateGame.css]",
+    "target" : "[src/pages/oldDev/Dev.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Search/Search.css]",
+    "target" : "[src/app/Context/AuthContext.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/app/Context/AuthContext.jsx]",
+    "target" : "[src/pages/Search/Search.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/oldDev/CreateGame/CreateGame.jsx]",
+    "target" : "[src/app/components/Guards/RequireDev.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/app/components/Guards/RequireDev.jsx]",
+    "target" : "[src/pages/oldDev/CreateGame/CreateGame.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Search/Search.jsx]",
+    "target" : "[src/pages/Register/Register.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Register/Register.jsx]",
+    "target" : "[src/pages/Search/Search.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[server/utils/stripePricing.js]",
+    "target" : "[server/middleware/auth.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/middleware/auth.js]",
+    "target" : "[server/utils/stripePricing.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/utils/keygen.js]",
+    "target" : "[server/controllers/userController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/userController.js]",
+    "target" : "[server/utils/keygen.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/utils/keygen.js]",
+    "target" : "[server/routes/payments.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/payments.js]",
+    "target" : "[server/utils/keygen.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Navigation/Navigation.jsx]",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "[src/pages/Navigation/Navigation.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/app/components/searchBar.css]",
+    "target" : "[src/app/components/GameCard.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/app/components/GameCard.jsx]",
+    "target" : "[src/app/components/searchBar.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Register/Register.jsx]",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "[src/pages/Register/Register.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Logout/Logout.jsx]",
+    "target" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "target" : "[src/pages/Logout/Logout.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/payments.js]",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "[server/routes/payments.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/cartController.js]",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "[server/controllers/cartController.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Profile/Purchases.jsx]",
+    "target" : "[server/controllers/gamesController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/gamesController.js]",
+    "target" : "[src/pages/Profile/Purchases.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[server/utils/stripePricing.js]",
+    "target" : "[server/index.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/index.js]",
+    "target" : "[server/utils/stripePricing.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "[server/controllers/paymentsController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/paymentsController.js]",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/app/components/SearchBar.jsx]",
+    "target" : "[server/middleware/rateLimit.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/middleware/rateLimit.js]",
+    "target" : "[src/app/components/SearchBar.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Logout/Logout.jsx]",
+    "target" : "[server/controllers/userController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/userController.js]",
+    "target" : "[src/pages/Logout/Logout.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/app/Context/AuthContext.jsx]",
+    "target" : "[src/App.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "[src/app/Context/AuthContext.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Purchase/Success.jsx]",
+    "target" : "[server/routes/dev.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/dev.js]",
+    "target" : "[src/pages/Purchase/Success.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Search/Search.jsx]",
+    "target" : "[server/index.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/index.js]",
+    "target" : "[src/pages/Search/Search.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/app/components/GameCard.jsx]",
+    "target" : "[src/app/components/SearchBar.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/app/components/SearchBar.jsx]",
+    "target" : "[src/app/components/GameCard.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/oldDev/CreateGame/CreateGame.css]",
+    "target" : "[src/app/components/Guards/RequireDev.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/app/components/Guards/RequireDev.jsx]",
+    "target" : "[src/pages/oldDev/CreateGame/CreateGame.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/oldDev/Dev.jsx]",
+    "target" : "[src/pages/GameDetail/gameDetail.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/GameDetail/gameDetail.css]",
+    "target" : "[src/pages/oldDev/Dev.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Cart/Cart.css]",
+    "target" : "[server/routes/payments.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/payments.js]",
+    "target" : "[src/pages/Cart/Cart.css]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/stripeWebhook.js]",
+    "target" : "[server/controllers/stripeWebhookController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/stripeWebhookController.js]",
+    "target" : "[server/routes/stripeWebhook.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Profile/Purchases.jsx]",
+    "target" : "[server/controllers/paymentsController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/paymentsController.js]",
+    "target" : "[src/pages/Profile/Purchases.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[vite.config.js]",
+    "target" : "[src/pages/Purchase/Success.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Purchase/Success.jsx]",
+    "target" : "[vite.config.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Search/Search.jsx]",
+    "target" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "target" : "[src/pages/Search/Search.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/payments.js]",
+    "target" : "[src/pages/Cart/Cart.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Cart/Cart.jsx]",
+    "target" : "[server/routes/payments.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/devController.js]",
+    "target" : "[server/controllers/stripeWebhookController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/stripeWebhookController.js]",
+    "target" : "[server/controllers/devController.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Navigation/Navigation.jsx]",
+    "target" : "[src/pages/Cart/Cart.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Cart/Cart.css]",
+    "target" : "[src/pages/Navigation/Navigation.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Purchase/Success.jsx]",
+    "target" : "[src/App.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "[src/pages/Purchase/Success.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "[server/controllers/adminController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/adminController.js]",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Login/Login.jsx]",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "[src/pages/Login/Login.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/auth.js]",
+    "target" : "[server/routes/games.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/games.js]",
+    "target" : "[server/routes/auth.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/oldDev/Dev.jsx]",
+    "target" : "[src/App.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "[src/pages/oldDev/Dev.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "[src/pages/Admin/Admin.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Admin/Admin.jsx]",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/games.js]",
+    "target" : "[src/App.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "[server/routes/games.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Purchase/success.css]",
+    "target" : "[src/app/components/SearchBar.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/app/components/SearchBar.jsx]",
+    "target" : "[src/pages/Purchase/success.css]",
+    "count" : 2
+  }, {
+    "source" : "[vite.config.js]",
+    "target" : "[server/controllers/paymentsController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/paymentsController.js]",
+    "target" : "[vite.config.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Purchase/Success.jsx]",
+    "target" : "[server/controllers/userController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/userController.js]",
+    "target" : "[src/pages/Purchase/Success.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Search/Search.css]",
+    "target" : "[src/pages/Navigation/navigation.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Navigation/navigation.css]",
+    "target" : "[src/pages/Search/Search.css]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/user.js]",
+    "target" : "[src/pages/Purchase/Success.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Purchase/Success.jsx]",
+    "target" : "[server/routes/user.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Purchase/Success.jsx]",
+    "target" : "[server/controllers/stripeWebhookController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/stripeWebhookController.js]",
+    "target" : "[src/pages/Purchase/Success.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[server/utils/keygen.js]",
+    "target" : "[server/controllers/devController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/devController.js]",
+    "target" : "[server/utils/keygen.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/app/components/searchBar.css]",
+    "target" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "target" : "[src/app/components/searchBar.css]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/stripeWebhook.js]",
+    "target" : "[server/routes/payments.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/payments.js]",
+    "target" : "[server/routes/stripeWebhook.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/oldDev/CreateGame/CreateGame.jsx]",
+    "target" : "[src/pages/Profile/Profile.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Profile/Profile.css]",
+    "target" : "[src/pages/oldDev/CreateGame/CreateGame.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/app/components/Guards/RequireDev.jsx]",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "[src/app/components/Guards/RequireDev.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/payments.js]",
+    "target" : "[server/routes/games.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/games.js]",
+    "target" : "[server/routes/payments.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/payments.js]",
+    "target" : "[server/routes/dev.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/dev.js]",
+    "target" : "[server/routes/payments.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/GameDetail/gameDetail.css]",
+    "target" : "[server/controllers/paymentsController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/paymentsController.js]",
+    "target" : "[src/pages/GameDetail/gameDetail.css]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/cartController.js]",
+    "target" : "[server/controllers/paymentsController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/paymentsController.js]",
+    "target" : "[server/controllers/cartController.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/oldDev/CreateGame/CreateGame.css]",
+    "target" : "[src/pages/Profile/Profile.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Profile/Profile.css]",
+    "target" : "[src/pages/oldDev/CreateGame/CreateGame.css]",
+    "count" : 2
+  }, {
+    "source" : "[server/index.js]",
+    "target" : "[src/app/components/SearchBar.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/app/components/SearchBar.jsx]",
+    "target" : "[server/index.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/app/components/GameCard.jsx]",
+    "target" : "[src/pages/Navigation/Navigation.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Navigation/Navigation.jsx]",
+    "target" : "[src/app/components/GameCard.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "[server/controllers/stripeWebhookController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/stripeWebhookController.js]",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "target" : "[server/controllers/adminController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/adminController.js]",
+    "target" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/oldDev/CreateGame/CreateGame.css]",
+    "target" : "[src/App.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "[src/pages/oldDev/CreateGame/CreateGame.css]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/user.js]",
+    "target" : "[server/routes/dev.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/dev.js]",
+    "target" : "[server/routes/user.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Purchase/success.css]",
+    "target" : "[server/controllers/paymentsController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/paymentsController.js]",
+    "target" : "[src/pages/Purchase/success.css]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/dev.js]",
+    "target" : "[server/controllers/paymentsController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/paymentsController.js]",
+    "target" : "[server/routes/dev.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/games.js]",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "[server/routes/games.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/oldDev/Dev.css]",
+    "target" : "[src/pages/oldDev/CreateGame/CreateGame.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/oldDev/CreateGame/CreateGame.jsx]",
+    "target" : "[src/pages/oldDev/Dev.css]",
+    "count" : 2
+  }, {
+    "source" : "[server/index.js]",
+    "target" : "[server/controllers/stripeWebhookController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/stripeWebhookController.js]",
+    "target" : "[server/index.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/oldDev/CreateGame/CreateGame.jsx]",
+    "target" : "[src/pages/GameDetail/gameDetail.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/GameDetail/gameDetail.css]",
+    "target" : "[src/pages/oldDev/CreateGame/CreateGame.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/oldDev/Dev.css]",
+    "target" : "[src/app/components/Guards/RequireDev.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/app/components/Guards/RequireDev.jsx]",
+    "target" : "[src/pages/oldDev/Dev.css]",
+    "count" : 2
+  }, {
+    "source" : "[server/utils/keygen.js]",
+    "target" : "[src/pages/Purchase/Success.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Purchase/Success.jsx]",
+    "target" : "[server/utils/keygen.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Navigation/navigation.css]",
+    "target" : "[src/pages/Search/Search.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Search/Search.jsx]",
+    "target" : "[src/pages/Navigation/navigation.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Navigation/Navigation.jsx]",
+    "target" : "[server/routes/admin.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/admin.js]",
+    "target" : "[src/pages/Navigation/Navigation.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Support/support.css]",
+    "target" : "[server/controllers/stripeWebhookController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/stripeWebhookController.js]",
+    "target" : "[src/pages/Support/support.css]",
+    "count" : 2
+  }, {
+    "source" : "[server/middleware/auth.js]",
+    "target" : "[server/middleware/rateLimit.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/middleware/rateLimit.js]",
+    "target" : "[server/middleware/auth.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/app/Context/AuthContext.jsx]",
+    "target" : "[src/pages/Search/Search.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Search/Search.jsx]",
+    "target" : "[src/app/Context/AuthContext.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "[src/pages/Admin/Admin.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Admin/Admin.css]",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Navigation/navigation.css]",
+    "target" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "target" : "[src/pages/Navigation/navigation.css]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/payments.js]",
+    "target" : "[server/controllers/gamesController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/gamesController.js]",
+    "target" : "[server/routes/payments.js]",
+    "count" : 2
+  }, {
+    "source" : "[vite.config.js]",
+    "target" : "[src/app/components/SearchBar.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/app/components/SearchBar.jsx]",
+    "target" : "[vite.config.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/oldDev/Dev.jsx]",
+    "target" : "[src/app/components/Guards/RequireDev.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/app/components/Guards/RequireDev.jsx]",
+    "target" : "[src/pages/oldDev/Dev.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Support/Support.jsx]",
+    "target" : "[server/controllers/stripeWebhookController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/stripeWebhookController.js]",
+    "target" : "[src/pages/Support/Support.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Search/Search.jsx]",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "[src/pages/Search/Search.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Cart/Cart.jsx]",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "[src/pages/Cart/Cart.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/devController.js]",
+    "target" : "[server/controllers/adminController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/adminController.js]",
+    "target" : "[server/controllers/devController.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Purchase/success.css]",
+    "target" : "[server/routes/payments.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/payments.js]",
+    "target" : "[src/pages/Purchase/success.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Profile/Profile.css]",
+    "target" : "[src/app/components/Guards/RequireDev.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/app/components/Guards/RequireDev.jsx]",
+    "target" : "[src/pages/Profile/Profile.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/oldDev/Dev.css]",
+    "target" : "[src/pages/GameDetail/gameDetail.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/GameDetail/gameDetail.css]",
+    "target" : "[src/pages/oldDev/Dev.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Cart/Cart.css]",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "[src/pages/Cart/Cart.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Search/Search.jsx]",
+    "target" : "[src/pages/Logout/Logout.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Logout/Logout.jsx]",
+    "target" : "[src/pages/Search/Search.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[vite.config.js]",
+    "target" : "[server/routes/payments.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/payments.js]",
+    "target" : "[vite.config.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Purchase/Success.jsx]",
+    "target" : "[server/index.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/index.js]",
+    "target" : "[src/pages/Purchase/Success.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/games.js]",
+    "target" : "[server/controllers/paymentsController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/paymentsController.js]",
+    "target" : "[server/routes/games.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Search/Search.jsx]",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "[src/pages/Search/Search.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/app/Context/AuthContext.jsx]",
+    "target" : "[src/pages/Navigation/Navigation.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Navigation/Navigation.jsx]",
+    "target" : "[src/app/Context/AuthContext.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/app/components/Guards/RequireDev.jsx]",
+    "target" : "[src/pages/GameDetail/gameDetail.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/GameDetail/gameDetail.css]",
+    "target" : "[src/app/components/Guards/RequireDev.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Purchase/Success.jsx]",
+    "target" : "[server/controllers/devController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/devController.js]",
+    "target" : "[src/pages/Purchase/Success.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Purchase/success.css]",
+    "target" : "[server/index.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/index.js]",
+    "target" : "[src/pages/Purchase/success.css]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/stripeWebhook.js]",
+    "target" : "[server/controllers/cartController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/cartController.js]",
+    "target" : "[server/routes/stripeWebhook.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/utils/stripePricing.js]",
+    "target" : "[server/routes/payments.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/payments.js]",
+    "target" : "[server/utils/stripePricing.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Cart/Cart.css]",
+    "target" : "[server/routes/admin.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/admin.js]",
+    "target" : "[src/pages/Cart/Cart.css]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/payments.js]",
+    "target" : "[server/controllers/devController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/devController.js]",
+    "target" : "[server/routes/payments.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "[server/controllers/gamesController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/gamesController.js]",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/dev.js]",
+    "target" : "[server/controllers/userController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/userController.js]",
+    "target" : "[server/routes/dev.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Register/Register.jsx]",
+    "target" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "target" : "[src/pages/Register/Register.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/auth.js]",
+    "target" : "[server/middleware/rateLimit.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/middleware/rateLimit.js]",
+    "target" : "[server/routes/auth.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Navigation/Navigation.jsx]",
+    "target" : "[server/controllers/cartController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/cartController.js]",
+    "target" : "[src/pages/Navigation/Navigation.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/cartController.js]",
+    "target" : "[server/routes/games.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/games.js]",
+    "target" : "[server/controllers/cartController.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/oldDev/CreateGame/CreateGame.jsx]",
+    "target" : "[src/App.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "[src/pages/oldDev/CreateGame/CreateGame.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/oldDev/Dev.jsx]",
+    "target" : "[src/pages/oldDev/CreateGame/CreateGame.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/oldDev/CreateGame/CreateGame.css]",
+    "target" : "[src/pages/oldDev/Dev.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[server/utils/stripePricing.js]",
+    "target" : "[server/controllers/paymentsController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/paymentsController.js]",
+    "target" : "[server/utils/stripePricing.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/cartController.js]",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "[server/controllers/cartController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/dev.js]",
+    "target" : "[server/controllers/stripeWebhookController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/stripeWebhookController.js]",
+    "target" : "[server/routes/dev.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/user.js]",
+    "target" : "[server/routes/games.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/games.js]",
+    "target" : "[server/routes/user.js]",
+    "count" : 2
+  }, {
+    "source" : "[vite.config.js]",
+    "target" : "[src/App.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "[vite.config.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/user.js]",
+    "target" : "[server/routes/admin.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/admin.js]",
+    "target" : "[server/routes/user.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "target" : "[server/middleware/rateLimit.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/middleware/rateLimit.js]",
+    "target" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/user.js]",
+    "target" : "[server/middleware/rateLimit.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/middleware/rateLimit.js]",
+    "target" : "[server/routes/user.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Support/support.css]",
+    "target" : "[server/controllers/paymentsController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/paymentsController.js]",
+    "target" : "[src/pages/Support/support.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/oldDev/CreateGame/CreateGame.jsx]",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "[src/pages/oldDev/CreateGame/CreateGame.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/app/components/GameCard.jsx]",
+    "target" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "target" : "[src/app/components/GameCard.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/oldDev/Dev.css]",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "[src/pages/oldDev/Dev.css]",
+    "count" : 2
+  }, {
+    "source" : "[vite.config.js]",
+    "target" : "[src/pages/Purchase/success.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Purchase/success.css]",
+    "target" : "[vite.config.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "target" : "[server/routes/games.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/games.js]",
+    "target" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/stripeWebhook.js]",
+    "target" : "[server/utils/stripePricing.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/utils/stripePricing.js]",
+    "target" : "[server/routes/stripeWebhook.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Search/Search.css]",
+    "target" : "[src/pages/Search/Search.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Search/Search.jsx]",
+    "target" : "[src/pages/Search/Search.css]",
+    "count" : 2
+  }, {
+    "source" : "[server/utils/keygen.js]",
+    "target" : "[server/controllers/stripeWebhookController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/stripeWebhookController.js]",
+    "target" : "[server/utils/keygen.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/stripeWebhookController.js]",
+    "target" : "[src/App.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "[server/controllers/stripeWebhookController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/stripeWebhook.js]",
+    "target" : "[server/routes/games.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/games.js]",
+    "target" : "[server/routes/stripeWebhook.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Navigation/navigation.css]",
+    "target" : "[src/App.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "[src/pages/Navigation/navigation.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Support/support.css]",
+    "target" : "[server/controllers/gamesController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/gamesController.js]",
+    "target" : "[src/pages/Support/support.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Purchase/success.css]",
+    "target" : "[src/App.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "[src/pages/Purchase/success.css]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/devController.js]",
+    "target" : "[server/controllers/paymentsController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/paymentsController.js]",
+    "target" : "[server/controllers/devController.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Navigation/Navigation.jsx]",
+    "target" : "[src/pages/Search/Search.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Search/Search.jsx]",
+    "target" : "[src/pages/Navigation/Navigation.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/cartController.js]",
+    "target" : "[src/App.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "[server/controllers/cartController.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/oldDev/Dev.css]",
+    "target" : "[src/pages/Profile/Profile.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Profile/Profile.css]",
+    "target" : "[src/pages/oldDev/Dev.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Search/Search.css]",
+    "target" : "[src/App.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "[src/pages/Search/Search.css]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/devController.js]",
+    "target" : "[server/controllers/userController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/userController.js]",
+    "target" : "[server/controllers/devController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/payments.js]",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "[server/routes/payments.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Cart/Cart.jsx]",
+    "target" : "[src/App.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "[src/pages/Cart/Cart.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Cart/Cart.jsx]",
+    "target" : "[server/routes/admin.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/admin.js]",
+    "target" : "[src/pages/Cart/Cart.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Search/Search.css]",
+    "target" : "[src/pages/Navigation/Navigation.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Navigation/Navigation.jsx]",
+    "target" : "[src/pages/Search/Search.css]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/auth.js]",
+    "target" : "[server/routes/admin.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/admin.js]",
+    "target" : "[server/routes/auth.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/index.js]",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "[server/index.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/utils/stripePricing.js]",
+    "target" : "[server/routes/games.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/games.js]",
+    "target" : "[server/utils/stripePricing.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Navigation/Navigation.jsx]",
+    "target" : "[server/middleware/rateLimit.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/middleware/rateLimit.js]",
+    "target" : "[src/pages/Navigation/Navigation.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Cart/Cart.css]",
+    "target" : "[server/controllers/cartController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/cartController.js]",
+    "target" : "[src/pages/Cart/Cart.css]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/user.js]",
+    "target" : "[server/controllers/devController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/devController.js]",
+    "target" : "[server/routes/user.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Dev/DevGameDetail/devGameDetail.jsx]",
+    "target" : "[server/routes/games.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/games.js]",
+    "target" : "[src/pages/Dev/DevGameDetail/devGameDetail.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Cart/Cart.css]",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "[src/pages/Cart/Cart.css]",
+    "count" : 2
+  }, {
+    "source" : "[server/utils/stripePricing.js]",
+    "target" : "[server/controllers/stripeWebhookController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/stripeWebhookController.js]",
+    "target" : "[server/utils/stripePricing.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/app/components/Guards/RequireDev.jsx]",
+    "target" : "[src/App.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "[src/app/components/Guards/RequireDev.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/stripeWebhook.js]",
+    "target" : "[server/controllers/gamesController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/gamesController.js]",
+    "target" : "[server/routes/stripeWebhook.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/games.js]",
+    "target" : "[server/controllers/userController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/userController.js]",
+    "target" : "[server/routes/games.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/cartController.js]",
+    "target" : "[server/controllers/stripeWebhookController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/stripeWebhookController.js]",
+    "target" : "[server/controllers/cartController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/index.js]",
+    "target" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "target" : "[server/index.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/user.js]",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "[server/routes/user.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/dev.js]",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "[server/routes/dev.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "target" : "[src/app/components/SearchBar.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/app/components/SearchBar.jsx]",
+    "target" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/oldDev/Dev.jsx]",
+    "target" : "[src/pages/oldDev/Dev.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/oldDev/Dev.css]",
+    "target" : "[src/pages/oldDev/Dev.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/app/components/searchBar.css]",
+    "target" : "[src/app/components/SearchBar.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/app/components/SearchBar.jsx]",
+    "target" : "[src/app/components/searchBar.css]",
+    "count" : 2
+  }, {
+    "source" : "[server/utils/keygen.js]",
+    "target" : "[server/routes/user.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/user.js]",
+    "target" : "[server/utils/keygen.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Login/Login.jsx]",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "[src/pages/Login/Login.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/user.js]",
+    "target" : "[src/pages/Logout/Logout.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Logout/Logout.jsx]",
+    "target" : "[server/routes/user.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Navigation/Navigation.jsx]",
+    "target" : "[src/pages/Cart/Cart.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Cart/Cart.jsx]",
+    "target" : "[src/pages/Navigation/Navigation.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/app/components/SearchBar.jsx]",
+    "target" : "[src/pages/Admin/Admin.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Admin/Admin.jsx]",
+    "target" : "[src/app/components/SearchBar.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/oldDev/Dev.css]",
+    "target" : "[src/App.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "[src/pages/oldDev/Dev.css]",
+    "count" : 2
+  }, {
+    "source" : "[server/index.js]",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "[server/index.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Profile/Profile.css]",
+    "target" : "[src/pages/GameDetail/gameDetail.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/GameDetail/gameDetail.css]",
+    "target" : "[src/pages/Profile/Profile.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Navigation/navigation.css]",
+    "target" : "[src/app/components/searchBar.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/app/components/searchBar.css]",
+    "target" : "[src/pages/Navigation/navigation.css]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/userController.js]",
+    "target" : "[server/routes/admin.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/admin.js]",
+    "target" : "[server/controllers/userController.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Navigation/Navigation.jsx]",
+    "target" : "[src/app/components/SearchBar.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/app/components/SearchBar.jsx]",
+    "target" : "[src/pages/Navigation/Navigation.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Cart/Cart.css]",
+    "target" : "[server/middleware/rateLimit.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/middleware/rateLimit.js]",
+    "target" : "[src/pages/Cart/Cart.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/oldDev/CreateGame/CreateGame.css]",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "[src/pages/oldDev/CreateGame/CreateGame.css]",
+    "count" : 2
+  }, {
+    "source" : "[server/utils/keygen.js]",
+    "target" : "[server/controllers/paymentsController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/paymentsController.js]",
+    "target" : "[server/utils/keygen.js]",
+    "count" : 2
+  }, {
+    "source" : "[src/app/Context/AuthContext.jsx]",
+    "target" : "[src/pages/Navigation/navigation.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Navigation/navigation.css]",
+    "target" : "[src/app/Context/AuthContext.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Support/Support.jsx]",
+    "target" : "[server/controllers/paymentsController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/paymentsController.js]",
+    "target" : "[src/pages/Support/Support.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Register/Register.jsx]",
+    "target" : "[src/pages/Profile/Profile.css]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Profile/Profile.css]",
+    "target" : "[src/pages/Register/Register.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/oldDev/Dev.css]",
+    "target" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "target" : "[src/pages/oldDev/Dev.css]",
+    "count" : 1
+  }, {
+    "source" : "[server/controllers/cartController.js]",
+    "target" : "[server/routes/user.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/routes/user.js]",
+    "target" : "[server/controllers/cartController.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/utils/stripePricing.js]",
+    "target" : "[server/controllers/userController.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/controllers/userController.js]",
+    "target" : "[server/utils/stripePricing.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/routes/stripeWebhook.js]",
+    "target" : "[server/controllers/userController.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/controllers/userController.js]",
+    "target" : "[server/routes/stripeWebhook.js]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Cart/Cart.jsx]",
+    "target" : "[src/app/components/SearchBar.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/app/components/SearchBar.jsx]",
+    "target" : "[src/pages/Cart/Cart.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/oldDev/Dev.jsx]",
+    "target" : "[src/pages/Register/Register.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Register/Register.jsx]",
+    "target" : "[src/pages/oldDev/Dev.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[server/controllers/gamesController.js]",
+    "target" : "[server/controllers/adminController.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/controllers/adminController.js]",
+    "target" : "[server/controllers/gamesController.js]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/oldDev/CreateGame/CreateGame.jsx]",
+    "target" : "[src/pages/Search/Search.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Search/Search.jsx]",
+    "target" : "[src/pages/oldDev/CreateGame/CreateGame.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "target" : "[server/routes/dev.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/routes/dev.js]",
+    "target" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[server/routes/auth.js]",
+    "target" : "[server/controllers/cartController.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/controllers/cartController.js]",
+    "target" : "[server/routes/auth.js]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/oldDev/Dev.css]",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "[src/pages/oldDev/Dev.css]",
+    "count" : 1
+  }, {
+    "source" : "[server/utils/stripePricing.js]",
+    "target" : "[server/routes/admin.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/routes/admin.js]",
+    "target" : "[server/utils/stripePricing.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/routes/user.js]",
+    "target" : "[server/controllers/gamesController.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/controllers/gamesController.js]",
+    "target" : "[server/routes/user.js]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Dev/DevGameDetail/devGameDetail.jsx]",
+    "target" : "[server/controllers/devController.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/controllers/devController.js]",
+    "target" : "[src/pages/Dev/DevGameDetail/devGameDetail.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/oldDev/Dev.css]",
+    "target" : "[src/pages/Search/Search.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Search/Search.jsx]",
+    "target" : "[src/pages/oldDev/Dev.css]",
+    "count" : 1
+  }, {
+    "source" : "[server/routes/auth.js]",
+    "target" : "[server/controllers/gamesController.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/controllers/gamesController.js]",
+    "target" : "[server/routes/auth.js]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Profile/Profile.css]",
+    "target" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "target" : "[src/pages/Profile/Profile.css]",
+    "count" : 1
+  }, {
+    "source" : "[server/index.js]",
+    "target" : "[src/pages/GameDetail/gameDetail.css]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/GameDetail/gameDetail.css]",
+    "target" : "[server/index.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/routes/payments.js]",
+    "target" : "[server/controllers/adminController.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/controllers/adminController.js]",
+    "target" : "[server/routes/payments.js]",
+    "count" : 1
+  }, {
+    "source" : "[src/app/components/searchBar.css]",
+    "target" : "[src/pages/GameDetail/gameDetail.css]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/GameDetail/gameDetail.css]",
+    "target" : "[src/app/components/searchBar.css]",
+    "count" : 1
+  }, {
+    "source" : "[server/routes/auth.js]",
+    "target" : "[server/utils/stripePricing.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/utils/stripePricing.js]",
+    "target" : "[server/routes/auth.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/controllers/gamesController.js]",
+    "target" : "[server/routes/admin.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/routes/admin.js]",
+    "target" : "[server/controllers/gamesController.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/routes/auth.js]",
+    "target" : "[server/controllers/adminController.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/controllers/adminController.js]",
+    "target" : "[server/routes/auth.js]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Navigation/navigation.css]",
+    "target" : "[src/pages/GameDetail/gameDetail.css]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/GameDetail/gameDetail.css]",
+    "target" : "[src/pages/Navigation/navigation.css]",
+    "count" : 1
+  }, {
+    "source" : "[server/routes/auth.js]",
+    "target" : "[server/controllers/paymentsController.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/controllers/paymentsController.js]",
+    "target" : "[server/routes/auth.js]",
+    "count" : 1
+  }, {
+    "source" : "[src/app/components/Guards/RequireDev.jsx]",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "[src/app/components/Guards/RequireDev.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/oldDev/CreateGame/CreateGame.css]",
+    "target" : "[src/pages/Search/Search.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Search/Search.jsx]",
+    "target" : "[src/pages/oldDev/CreateGame/CreateGame.css]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Navigation/navigation.css]",
+    "target" : "[server/controllers/paymentsController.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/controllers/paymentsController.js]",
+    "target" : "[src/pages/Navigation/navigation.css]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/oldDev/Dev.css]",
+    "target" : "[src/pages/Logout/Logout.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Logout/Logout.jsx]",
+    "target" : "[src/pages/oldDev/Dev.css]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Register/Register.jsx]",
+    "target" : "[src/pages/GameDetail/gameDetail.css]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/GameDetail/gameDetail.css]",
+    "target" : "[src/pages/Register/Register.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Navigation/Navigation.jsx]",
+    "target" : "[src/pages/GameDetail/gameDetail.css]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/GameDetail/gameDetail.css]",
+    "target" : "[src/pages/Navigation/Navigation.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Logout/Logout.jsx]",
+    "target" : "[src/pages/GameDetail/gameDetail.css]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/GameDetail/gameDetail.css]",
+    "target" : "[src/pages/Logout/Logout.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[server/controllers/stripeWebhookController.js]",
+    "target" : "[server/routes/admin.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/routes/admin.js]",
+    "target" : "[server/controllers/stripeWebhookController.js]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Search/Search.jsx]",
+    "target" : "[src/app/components/Guards/RequireDev.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/app/components/Guards/RequireDev.jsx]",
+    "target" : "[src/pages/Search/Search.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/oldDev/CreateGame/CreateGame.css]",
+    "target" : "[src/pages/Register/Register.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Register/Register.jsx]",
+    "target" : "[src/pages/oldDev/CreateGame/CreateGame.css]",
+    "count" : 1
+  }, {
+    "source" : "[server/controllers/userController.js]",
+    "target" : "[server/controllers/adminController.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/controllers/adminController.js]",
+    "target" : "[server/controllers/userController.js]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/GameDetail/gameDetail.css]",
+    "target" : "[src/app/components/SearchBar.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/app/components/SearchBar.jsx]",
+    "target" : "[src/pages/GameDetail/gameDetail.css]",
+    "count" : 1
+  }, {
+    "source" : "[server/utils/stripePricing.js]",
+    "target" : "[server/controllers/adminController.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/controllers/adminController.js]",
+    "target" : "[server/utils/stripePricing.js]",
+    "count" : 1
+  }, {
+    "source" : "[src/app/components/searchBar.css]",
+    "target" : "[server/controllers/paymentsController.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/controllers/paymentsController.js]",
+    "target" : "[src/app/components/searchBar.css]",
+    "count" : 1
+  }, {
+    "source" : "[server/routes/admin.js]",
+    "target" : "[server/controllers/paymentsController.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/controllers/paymentsController.js]",
+    "target" : "[server/routes/admin.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/routes/games.js]",
+    "target" : "[server/controllers/adminController.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/controllers/adminController.js]",
+    "target" : "[server/routes/games.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/routes/auth.js]",
+    "target" : "[server/routes/payments.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/routes/payments.js]",
+    "target" : "[server/routes/auth.js]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/oldDev/CreateGame/CreateGame.css]",
+    "target" : "[src/pages/Logout/Logout.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Logout/Logout.jsx]",
+    "target" : "[src/pages/oldDev/CreateGame/CreateGame.css]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Profile/Profile.css]",
+    "target" : "[src/pages/Logout/Logout.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Logout/Logout.jsx]",
+    "target" : "[src/pages/Profile/Profile.css]",
+    "count" : 1
+  }, {
+    "source" : "[server/controllers/stripeWebhookController.js]",
+    "target" : "[server/controllers/adminController.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/controllers/adminController.js]",
+    "target" : "[server/controllers/stripeWebhookController.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/controllers/cartController.js]",
+    "target" : "[server/controllers/userController.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/controllers/userController.js]",
+    "target" : "[server/controllers/cartController.js]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Search/Search.jsx]",
+    "target" : "[src/pages/GameDetail/gameDetail.css]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/GameDetail/gameDetail.css]",
+    "target" : "[src/pages/Search/Search.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/app/components/GameCard.jsx]",
+    "target" : "[server/controllers/paymentsController.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/controllers/paymentsController.js]",
+    "target" : "[src/app/components/GameCard.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/oldDev/CreateGame/CreateGame.jsx]",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "[src/pages/oldDev/CreateGame/CreateGame.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Purchase/Success.jsx]",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "[src/pages/Purchase/Success.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[server/routes/stripeWebhook.js]",
+    "target" : "[server/middleware/rateLimit.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/middleware/rateLimit.js]",
+    "target" : "[server/routes/stripeWebhook.js]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Search/Search.jsx]",
+    "target" : "[src/pages/Profile/Profile.css]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Profile/Profile.css]",
+    "target" : "[src/pages/Search/Search.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[server/routes/stripeWebhook.js]",
+    "target" : "[server/routes/auth.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/routes/auth.js]",
+    "target" : "[server/routes/stripeWebhook.js]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "target" : "[server/controllers/devController.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/controllers/devController.js]",
+    "target" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Navigation/navigation.css]",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "[src/pages/Navigation/navigation.css]",
+    "count" : 1
+  }, {
+    "source" : "[server/routes/auth.js]",
+    "target" : "[server/controllers/stripeWebhookController.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/controllers/stripeWebhookController.js]",
+    "target" : "[server/routes/auth.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/routes/stripeWebhook.js]",
+    "target" : "[server/routes/admin.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/routes/admin.js]",
+    "target" : "[server/routes/stripeWebhook.js]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Logout/Logout.jsx]",
+    "target" : "[src/app/components/Guards/RequireDev.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/app/components/Guards/RequireDev.jsx]",
+    "target" : "[src/pages/Logout/Logout.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/app/components/GameCard.jsx]",
+    "target" : "[src/pages/GameDetail/gameDetail.css]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/GameDetail/gameDetail.css]",
+    "target" : "[src/app/components/GameCard.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/oldDev/CreateGame/CreateGame.jsx]",
+    "target" : "[src/pages/Register/Register.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Register/Register.jsx]",
+    "target" : "[src/pages/oldDev/CreateGame/CreateGame.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[server/routes/stripeWebhook.js]",
+    "target" : "[server/controllers/adminController.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/controllers/adminController.js]",
+    "target" : "[server/routes/stripeWebhook.js]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/oldDev/CreateGame/CreateGame.css]",
+    "target" : "[server/index.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/index.js]",
+    "target" : "[src/pages/oldDev/CreateGame/CreateGame.css]",
+    "count" : 1
+  }, {
+    "source" : "[server/routes/stripeWebhook.js]",
+    "target" : "[server/routes/user.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/routes/user.js]",
+    "target" : "[server/routes/stripeWebhook.js]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/oldDev/Dev.jsx]",
+    "target" : "[src/pages/Logout/Logout.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Logout/Logout.jsx]",
+    "target" : "[src/pages/oldDev/Dev.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[server/controllers/stripeWebhookController.js]",
+    "target" : "[server/middleware/rateLimit.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/middleware/rateLimit.js]",
+    "target" : "[server/controllers/stripeWebhookController.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/routes/games.js]",
+    "target" : "[server/routes/dev.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/routes/dev.js]",
+    "target" : "[server/routes/games.js]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/oldDev/Dev.jsx]",
+    "target" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "target" : "[src/pages/oldDev/Dev.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/oldDev/CreateGame/CreateGame.css]",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "[src/pages/oldDev/CreateGame/CreateGame.css]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/GameDetail/gameDetail.css]",
+    "target" : "[server/controllers/devController.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/controllers/devController.js]",
+    "target" : "[src/pages/GameDetail/gameDetail.css]",
+    "count" : 1
+  }, {
+    "source" : "[server/routes/dev.js]",
+    "target" : "[src/App.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "[server/routes/dev.js]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/GameDetail/gameDetail.css]",
+    "target" : "[server/routes/dev.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/routes/dev.js]",
+    "target" : "[src/pages/GameDetail/gameDetail.css]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/oldDev/CreateGame/CreateGame.css]",
+    "target" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "target" : "[src/pages/oldDev/CreateGame/CreateGame.css]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/oldDev/Dev.css]",
+    "target" : "[src/pages/Register/Register.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Register/Register.jsx]",
+    "target" : "[src/pages/oldDev/Dev.css]",
+    "count" : 1
+  }, {
+    "source" : "[server/routes/games.js]",
+    "target" : "[server/controllers/devController.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/controllers/devController.js]",
+    "target" : "[server/routes/games.js]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Dev/DevGameDetail/devGameDetail.jsx]",
+    "target" : "[server/routes/dev.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/routes/dev.js]",
+    "target" : "[src/pages/Dev/DevGameDetail/devGameDetail.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[server/middleware/rateLimit.js]",
+    "target" : "[server/controllers/paymentsController.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/controllers/paymentsController.js]",
+    "target" : "[server/middleware/rateLimit.js]",
+    "count" : 1
+  }, {
+    "source" : "[src/app/components/GameCard.jsx]",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "[src/app/components/GameCard.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/oldDev/Dev.jsx]",
+    "target" : "[src/pages/Search/Search.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Search/Search.jsx]",
+    "target" : "[src/pages/oldDev/Dev.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Register/Register.jsx]",
+    "target" : "[src/App.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "[src/pages/Register/Register.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[server/controllers/devController.js]",
+    "target" : "[server/controllers/gamesController.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/controllers/gamesController.js]",
+    "target" : "[server/controllers/devController.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/controllers/adminController.js]",
+    "target" : "[server/controllers/paymentsController.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/controllers/paymentsController.js]",
+    "target" : "[server/controllers/adminController.js]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/oldDev/Dev.css]",
+    "target" : "[server/index.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/index.js]",
+    "target" : "[src/pages/oldDev/Dev.css]",
+    "count" : 1
+  }, {
+    "source" : "[src/app/components/Guards/RequireDev.jsx]",
+    "target" : "[server/index.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/index.js]",
+    "target" : "[src/app/components/Guards/RequireDev.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/oldDev/CreateGame/CreateGame.jsx]",
+    "target" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "target" : "[src/pages/oldDev/CreateGame/CreateGame.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Profile/Profile.css]",
+    "target" : "[server/index.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/index.js]",
+    "target" : "[src/pages/Profile/Profile.css]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/oldDev/CreateGame/CreateGame.jsx]",
+    "target" : "[src/pages/Logout/Logout.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Logout/Logout.jsx]",
+    "target" : "[src/pages/oldDev/CreateGame/CreateGame.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[server/controllers/devController.js]",
+    "target" : "[src/App.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "[server/controllers/devController.js]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Purchase/Success.jsx]",
+    "target" : "[src/pages/Cart/Cart.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Cart/Cart.jsx]",
+    "target" : "[src/pages/Purchase/Success.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Logout/Logout.jsx]",
+    "target" : "[src/App.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "[src/pages/Logout/Logout.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/oldDev/Dev.jsx]",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "[src/pages/oldDev/Dev.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Register/Register.jsx]",
+    "target" : "[src/app/components/Guards/RequireDev.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/app/components/Guards/RequireDev.jsx]",
+    "target" : "[src/pages/Register/Register.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "[server/controllers/userController.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/controllers/userController.js]",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[server/controllers/cartController.js]",
+    "target" : "[server/controllers/adminController.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/controllers/adminController.js]",
+    "target" : "[server/controllers/cartController.js]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "[src/app/components/SearchBar.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/app/components/SearchBar.jsx]",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/oldDev/Dev.jsx]",
+    "target" : "[server/index.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/index.js]",
+    "target" : "[src/pages/oldDev/Dev.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/app/components/Guards/RequireDev.jsx]",
+    "target" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "target" : "[src/app/components/Guards/RequireDev.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/oldDev/CreateGame/CreateGame.jsx]",
+    "target" : "[server/index.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/index.js]",
+    "target" : "[src/pages/oldDev/CreateGame/CreateGame.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[server/utils/stripePricing.js]",
+    "target" : "[server/routes/user.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/routes/user.js]",
+    "target" : "[server/utils/stripePricing.js]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Navigation/Navigation.jsx]",
+    "target" : "[server/controllers/paymentsController.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/controllers/paymentsController.js]",
+    "target" : "[src/pages/Navigation/Navigation.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[server/routes/user.js]",
+    "target" : "[server/controllers/adminController.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/controllers/adminController.js]",
+    "target" : "[server/routes/user.js]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/GameDetail/gameDetail.css]",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "[src/pages/GameDetail/gameDetail.css]",
+    "count" : 1
+  } ]
+}
+
+    const maxNodeSize = gData.nodes.map(n => n.size).reduce((a, b) => Math.max(a, b));
+    const maxCount = gData.links.map(l => l.count).reduce((a, b) => Math.max(a, b));
+
+    gData.links = gData.links.map(l => {
+        return {source: l.target, target: l.source, count: l.count}
+    });
+    const colorOf = (node) => {
+        if (!node.id.startsWith("[")) return "rgba(135, 206, 235, 0.6)";
+        return "rgba(100,100,100,0.6)";
+    }
+
+    const elem = document.getElementById('graph');
+    const Graph = ForceGraph()(elem)
+        .graphData(gData)
+        .nodeRelSize(4)
+        .nodeVal(n => Math.max(20 * n.size / maxNodeSize, 0.001))
+        .nodeLabel(n => n.id + " (" + n.size + ")")
+        .nodeColor(n => colorOf(n))
+        .linkDirectionalParticles(1)
+        .linkDirectionalParticleSpeed(d => d.count / maxCount * 0.01)
+        .linkOpacity(0.1)
+        .linkWidth(d => 3 * d.count / maxCount + 0.1);
+
+</script>
+</body>

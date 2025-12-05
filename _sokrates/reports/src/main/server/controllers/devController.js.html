@@ -1,0 +1,168 @@
+<html>
+<head>
+    <title>server/controllers/devController.js</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">server/controllers/devController.js (<b>120</b> lines of code) (<a href="devController.js">raw</a>):</h3>
+<div id="editor">import { supabase, supabaseAdmin } from &quot;../config/supabase.js&quot;;
+import { getDevGames as getDevGamesFromController } from &quot;./gamesController.js&quot;;
+import { archiveStripeForGame } from &quot;../utils/stripePricing.js&quot;;
+
+export async function leaveDev(req, res) {
+  try {
+    if (req.user.role === &quot;admin&quot;) {
+      return res
+        .status(400)
+        .json({ error: &quot;Un administrateur ne peut pas quitter via cette route.&quot; });
+    }
+    const client = supabaseAdmin || supabase;
+    const { error } = await client
+      .from(&quot;users&quot;)
+      .update({ role: &quot;user&quot; })
+      .eq(&quot;id&quot;, req.user.id);
+    if (error) throw error;
+    return res.json({ message: &quot;Votre r&ocirc;le est maintenant: utilisateur.&quot; });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+}
+
+export async function getDevStatus(req, res) {
+  try {
+    const { data: user, error } = await supabase
+      .from(&quot;users&quot;)
+      .select(&quot;role&quot;)
+      .eq(&quot;id&quot;, req.user.id)
+      .single();
+    if (error) return res.status(500).json({ error: error.message });
+    return res.json({ role: user.role, is_developer: user.role === &quot;dev&quot; });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+}
+
+export async function getDevGames(req, res) {
+  return getDevGamesFromController(req, res);
+}
+
+// D&eacute;sactiver tous les jeux du d&eacute;veloppeur courant
+export async function disableAllMyGames(req, res) {
+  const userId = req.user?.id;
+  if (!userId) return res.status(401).json({ error: &quot;Non authentifi&eacute;&quot; });
+  try {
+    const client = supabaseAdmin || supabase;
+    // R&eacute;cup&eacute;rer les jeux pour archivage Stripe
+    const { data: games, error: listErr } = await client
+      .from(&quot;games&quot;)
+      .select(&quot;id, stripe_product_id, stripe_price_id&quot;)
+      .eq(&quot;created_by&quot;, userId)
+      .eq(&quot;is_active&quot;, true);
+    if (listErr) throw listErr;
+
+    // Mettre tous les jeux &agrave; inactif
+    const { error: upErr } = await client
+      .from(&quot;games&quot;)
+      .update({ is_active: false })
+      .eq(&quot;created_by&quot;, userId)
+      .eq(&quot;is_active&quot;, true);
+    if (upErr) throw upErr;
+
+    // Nettoyer les paniers
+    if (games &amp;&amp; games.length) {
+      const ids = games.map((g) =&gt; g.id);
+      await client.from(&quot;cart_items&quot;).delete().in(&quot;game_id&quot;, ids);
+    }
+
+    // Archiver sur Stripe (best-effort)
+    try {
+      await Promise.all((games || []).map(g =&gt; archiveStripeForGame(g)));
+    } catch (e) {
+      console.error(&quot;[disableAllMyGames] archive stripe error&quot;, e);
+    }
+
+    return res.json({ ok: true, disabledCount: games?.length || 0 });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+}
+
+
+export async function transferGameOwnership(req, res) {
+  const { game_id, to_user_email, to_user_id } = req.body || {};
+  const id = Number(game_id);
+  if (Number.isNaN(id)) return res.status(400).json({ error: &quot;game_id invalide&quot; });
+  try {
+    const client = supabaseAdmin || supabase;
+
+    // Charger le jeu et v&eacute;rifier l'autorisation
+    const { data: game, error: gErr } = await client
+      .from(&quot;games&quot;)
+      .select(&quot;id, created_by&quot;)
+      .eq(&quot;id&quot;, id)
+      .single();
+    if (gErr) return res.status(gErr.code === &quot;PGRST116&quot; ? 404 : 500).json({ error: gErr.message });
+    if (req.user.role !== &quot;admin&quot; &amp;&amp; game.created_by !== req.user.id) {
+      return res.status(403).json({ error: &quot;Autorisation refus&eacute;e&quot; });
+    }
+
+    // R&eacute;soudre le compte cible
+    let targetUserId = to_user_id;
+    if (!targetUserId) {
+      if (!to_user_email) return res.status(400).json({ error: &quot;to_user_email requis si to_user_id absent&quot; });
+      const { data: u, error: uErr } = await client
+        .from(&quot;users&quot;)
+        .select(&quot;id, role&quot;)
+        .ilike(&quot;email&quot;, to_user_email)
+        .single();
+      if (uErr) return res.status(uErr.code === &quot;PGRST116&quot; ? 404 : 500).json({ error: uErr.message });
+      targetUserId = u.id;
+      if (u.role !== &quot;dev&quot; &amp;&amp; u.role !== &quot;admin&quot;) {
+        return res.status(400).json({ error: &quot;Le compte cible n'est pas d&eacute;veloppeur&quot; });
+      }
+    } else {
+      const { data: u, error: uErr } = await client
+        .from(&quot;users&quot;)
+        .select(&quot;id, role&quot;)
+        .eq(&quot;id&quot;, targetUserId)
+        .single();
+      if (uErr) return res.status(uErr.code === &quot;PGRST116&quot; ? 404 : 500).json({ error: uErr.message });
+      if (u.role !== &quot;dev&quot; &amp;&amp; u.role !== &quot;admin&quot;) {
+        return res.status(400).json({ error: &quot;Le compte cible n'est pas d&eacute;veloppeur&quot; });
+      }
+    }
+
+    if (targetUserId === game.created_by) {
+      return res.status(400).json({ error: &quot;Le jeu appartient d&eacute;j&agrave; &agrave; ce compte&quot; });
+    }
+
+    const { error: tErr } = await client
+      .from(&quot;games&quot;)
+      .update({ created_by: targetUserId })
+      .eq(&quot;id&quot;, id);
+    if (tErr) return res.status(500).json({ error: tErr.message });
+
+    return res.json({ ok: true });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+}
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/javascript");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

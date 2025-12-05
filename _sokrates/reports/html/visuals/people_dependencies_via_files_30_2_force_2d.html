@@ -1,0 +1,1478 @@
+<head>
+    <style> body {
+        margin: 0;
+    } </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/force-graph"></script>
+</head>
+
+<body>
+<div id="graph"></div>
+
+<script>
+    const gData = {
+  "nodes" : [ {
+    "id" : "[server/utils/keygen.js]",
+    "size" : 2
+  }, {
+    "id" : "[src/pages/Admin/Admin.css]",
+    "size" : 3
+  }, {
+    "id" : "[src/pages/oldDev/CreateGame/CreateGame.jsx]",
+    "size" : 2
+  }, {
+    "id" : "[server/controllers/userController.js]",
+    "size" : 3
+  }, {
+    "id" : "[src/App.jsx]",
+    "size" : 3
+  }, {
+    "id" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "size" : 3
+  }, {
+    "id" : "[src/pages/CartList/CartList.jsx]",
+    "size" : 1
+  }, {
+    "id" : "[server/controllers/devController.js]",
+    "size" : 2
+  }, {
+    "id" : "[src/pages/Profile/EditProfile/EditProfile.jsx]",
+    "size" : 2
+  }, {
+    "id" : "[vite.config.js]",
+    "size" : 2
+  }, {
+    "id" : "[src/pages/Profile/EditPassword/EditPassword.jsx]",
+    "size" : 2
+  }, {
+    "id" : "[src/pages/Register/Register.jsx]",
+    "size" : 3
+  }, {
+    "id" : "[server/routes/auth.js]",
+    "size" : 2
+  }, {
+    "id" : "[src/pages/Cart/Cart.css]",
+    "size" : 2
+  }, {
+    "id" : "[src/app/components/SearchBar.jsx]",
+    "size" : 3
+  }, {
+    "id" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "size" : 57
+  }, {
+    "id" : "[src/pages/Navigation/Navigation.jsx]",
+    "size" : 3
+  }, {
+    "id" : "[package-lock.json]",
+    "size" : 3
+  }, {
+    "id" : "[server/controllers/adminController.js]",
+    "size" : 3
+  }, {
+    "id" : "[src/pages/Dev/Dev.css]",
+    "size" : 3
+  }, {
+    "id" : "[server/controllers/cartController.js]",
+    "size" : 2
+  }, {
+    "id" : "[server/routes/admin.js]",
+    "size" : 3
+  }, {
+    "id" : "[server/routes/dev.js]",
+    "size" : 2
+  }, {
+    "id" : "[src/pages/Dev/DevGameDetail/devGameDetail.jsx]",
+    "size" : 2
+  }, {
+    "id" : "[src/pages/Profile/Purchases.jsx]",
+    "size" : 3
+  }, {
+    "id" : "[public/loupe.png]",
+    "size" : 1
+  }, {
+    "id" : "[src/pages/Admin/Admin.jsx]",
+    "size" : 3
+  }, {
+    "id" : "[src/pages/GameDetail/gameDetail.css]",
+    "size" : 2
+  }, {
+    "id" : "[src/pages/Search/Search.jsx]",
+    "size" : 3
+  }, {
+    "id" : "[server/routes/user.js]",
+    "size" : 3
+  }, {
+    "id" : "[src/pages/Profile/Profile.jsx]",
+    "size" : 3
+  }, {
+    "id" : "[server/middleware/rateLimit.js]",
+    "size" : 3
+  }, {
+    "id" : "2384229@cmontmorency.qc.ca",
+    "size" : 41
+  }, {
+    "id" : "[.env]",
+    "size" : 3
+  }, {
+    "id" : "mlacerte2013@gmail.com",
+    "size" : 56
+  }, {
+    "id" : "[src/pages/Logout/Logout.jsx]",
+    "size" : 3
+  }, {
+    "id" : "[server/middleware/auth.js]",
+    "size" : 2
+  }, {
+    "id" : "[src/app/components/GameCard.jsx]",
+    "size" : 3
+  }, {
+    "id" : "[server/controllers/gamesController.js]",
+    "size" : 3
+  }, {
+    "id" : "[server/controllers/paymentsController.js]",
+    "size" : 3
+  }, {
+    "id" : "[src/pages/Login/Login.jsx]",
+    "size" : 1
+  }, {
+    "id" : "[package.json]",
+    "size" : 2
+  }, {
+    "id" : "[src/pages/Dev/Dev.jsx]",
+    "size" : 3
+  }, {
+    "id" : "[server/controllers/stripeWebhookController.js]",
+    "size" : 3
+  }, {
+    "id" : "[src/pages/Dev/CreateGame/CreateGame.css]",
+    "size" : 1
+  }, {
+    "id" : "[src/pages/oldDev/Dev.jsx]",
+    "size" : 2
+  }, {
+    "id" : "[src/app/components/Guards/RequireDev.jsx]",
+    "size" : 2
+  }, {
+    "id" : "[src/pages/oldDev/Dev.css]",
+    "size" : 2
+  }, {
+    "id" : "[src/pages/CartList/CartList.css]",
+    "size" : 1
+  }, {
+    "id" : "[src/pages/Navigation/navigation.css]",
+    "size" : 3
+  }, {
+    "id" : "[src/pages/Support/support.css]",
+    "size" : 3
+  }, {
+    "id" : "[src/pages/home/home.css]",
+    "size" : 3
+  }, {
+    "id" : "[src/pages/Support/Support.jsx]",
+    "size" : 3
+  }, {
+    "id" : "[server/routes/games.js]",
+    "size" : 2
+  }, {
+    "id" : "[src/pages/Cart/Cart.jsx]",
+    "size" : 2
+  }, {
+    "id" : "[src/pages/Profile/Profile.css]",
+    "size" : 3
+  }, {
+    "id" : "[src/pages/oldDev/CreateGame/CreateGame.css]",
+    "size" : 2
+  }, {
+    "id" : "[src/pages/Purchase/Success.jsx]",
+    "size" : 2
+  }, {
+    "id" : "[src/pages/Dev/CreateGame/CreateGame.jsx]",
+    "size" : 2
+  }, {
+    "id" : "[server/utils/stripePricing.js]",
+    "size" : 2
+  }, {
+    "id" : "[src/pages/Purchase/success.css]",
+    "size" : 2
+  }, {
+    "id" : "[src/pages/Search/Search.css]",
+    "size" : 1
+  }, {
+    "id" : "[server/routes/stripeWebhook.js]",
+    "size" : 2
+  }, {
+    "id" : "[server/routes/payments.js]",
+    "size" : 2
+  }, {
+    "id" : "[src/app/components/searchBar.css]",
+    "size" : 2
+  }, {
+    "id" : "[src/pages/home/Home.jsx]",
+    "size" : 3
+  }, {
+    "id" : "[src/app/Context/AuthContext.jsx]",
+    "size" : 1
+  }, {
+    "id" : "[server/index.js]",
+    "size" : 3
+  } ],
+  "links" : [ {
+    "source" : "2384229@cmontmorency.qc.ca",
+    "target" : "[src/App.jsx]",
+    "count" : 17
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "2384229@cmontmorency.qc.ca",
+    "count" : 17
+  }, {
+    "source" : "2384229@cmontmorency.qc.ca",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 17
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "2384229@cmontmorency.qc.ca",
+    "count" : 17
+  }, {
+    "source" : "2384229@cmontmorency.qc.ca",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 14
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "2384229@cmontmorency.qc.ca",
+    "count" : 14
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[server/controllers/adminController.js]",
+    "count" : 11
+  }, {
+    "source" : "[server/controllers/adminController.js]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 11
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 10
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 10
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[server/controllers/adminController.js]",
+    "count" : 9
+  }, {
+    "source" : "[server/controllers/adminController.js]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 9
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[src/App.jsx]",
+    "count" : 9
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 9
+  }, {
+    "source" : "2384229@cmontmorency.qc.ca",
+    "target" : "[src/pages/Dev/Dev.css]",
+    "count" : 9
+  }, {
+    "source" : "[src/pages/Dev/Dev.css]",
+    "target" : "2384229@cmontmorency.qc.ca",
+    "count" : 9
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[server/controllers/paymentsController.js]",
+    "count" : 8
+  }, {
+    "source" : "[server/controllers/paymentsController.js]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 8
+  }, {
+    "source" : "2384229@cmontmorency.qc.ca",
+    "target" : "[server/controllers/adminController.js]",
+    "count" : 8
+  }, {
+    "source" : "[server/controllers/adminController.js]",
+    "target" : "2384229@cmontmorency.qc.ca",
+    "count" : 8
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[src/App.jsx]",
+    "count" : 8
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 8
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[server/controllers/gamesController.js]",
+    "count" : 8
+  }, {
+    "source" : "[server/controllers/gamesController.js]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 8
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[server/controllers/paymentsController.js]",
+    "count" : 7
+  }, {
+    "source" : "[server/controllers/paymentsController.js]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 7
+  }, {
+    "source" : "2384229@cmontmorency.qc.ca",
+    "target" : "[server/middleware/rateLimit.js]",
+    "count" : 7
+  }, {
+    "source" : "[server/middleware/rateLimit.js]",
+    "target" : "2384229@cmontmorency.qc.ca",
+    "count" : 7
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[server/routes/admin.js]",
+    "count" : 7
+  }, {
+    "source" : "[server/routes/admin.js]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 7
+  }, {
+    "source" : "2384229@cmontmorency.qc.ca",
+    "target" : "[server/routes/admin.js]",
+    "count" : 7
+  }, {
+    "source" : "[server/routes/admin.js]",
+    "target" : "2384229@cmontmorency.qc.ca",
+    "count" : 7
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[src/pages/home/Home.jsx]",
+    "count" : 7
+  }, {
+    "source" : "[src/pages/home/Home.jsx]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 7
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[src/pages/home/Home.jsx]",
+    "count" : 7
+  }, {
+    "source" : "[src/pages/home/Home.jsx]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 7
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[server/controllers/gamesController.js]",
+    "count" : 7
+  }, {
+    "source" : "[server/controllers/gamesController.js]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 7
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[server/index.js]",
+    "count" : 7
+  }, {
+    "source" : "[server/index.js]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 7
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[server/middleware/rateLimit.js]",
+    "count" : 6
+  }, {
+    "source" : "[server/middleware/rateLimit.js]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 6
+  }, {
+    "source" : "2384229@cmontmorency.qc.ca",
+    "target" : "[src/pages/home/Home.jsx]",
+    "count" : 6
+  }, {
+    "source" : "[src/pages/home/Home.jsx]",
+    "target" : "2384229@cmontmorency.qc.ca",
+    "count" : 6
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[server/controllers/userController.js]",
+    "count" : 6
+  }, {
+    "source" : "[server/controllers/userController.js]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 6
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[server/controllers/userController.js]",
+    "count" : 6
+  }, {
+    "source" : "[server/controllers/userController.js]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 6
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 6
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 6
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "count" : 6
+  }, {
+    "source" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 6
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[server/routes/payments.js]",
+    "count" : 6
+  }, {
+    "source" : "[server/routes/payments.js]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 6
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[server/middleware/rateLimit.js]",
+    "count" : 5
+  }, {
+    "source" : "[server/middleware/rateLimit.js]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 5
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[server/routes/admin.js]",
+    "count" : 5
+  }, {
+    "source" : "[server/routes/admin.js]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 5
+  }, {
+    "source" : "2384229@cmontmorency.qc.ca",
+    "target" : "[src/pages/Admin/Admin.jsx]",
+    "count" : 5
+  }, {
+    "source" : "[src/pages/Admin/Admin.jsx]",
+    "target" : "2384229@cmontmorency.qc.ca",
+    "count" : 5
+  }, {
+    "source" : "2384229@cmontmorency.qc.ca",
+    "target" : "[server/controllers/userController.js]",
+    "count" : 5
+  }, {
+    "source" : "[server/controllers/userController.js]",
+    "target" : "2384229@cmontmorency.qc.ca",
+    "count" : 5
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 5
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 5
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "count" : 5
+  }, {
+    "source" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 5
+  }, {
+    "source" : "2384229@cmontmorency.qc.ca",
+    "target" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "count" : 5
+  }, {
+    "source" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "target" : "2384229@cmontmorency.qc.ca",
+    "count" : 5
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[src/pages/GameDetail/gameDetail.css]",
+    "count" : 5
+  }, {
+    "source" : "[src/pages/GameDetail/gameDetail.css]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 5
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[server/index.js]",
+    "count" : 5
+  }, {
+    "source" : "[server/index.js]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 5
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[src/pages/Purchase/Success.jsx]",
+    "count" : 5
+  }, {
+    "source" : "[src/pages/Purchase/Success.jsx]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 5
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[server/routes/payments.js]",
+    "count" : 5
+  }, {
+    "source" : "[server/routes/payments.js]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 5
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[server/routes/user.js]",
+    "count" : 5
+  }, {
+    "source" : "[server/routes/user.js]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 5
+  }, {
+    "source" : "2384229@cmontmorency.qc.ca",
+    "target" : "[src/pages/Navigation/Navigation.jsx]",
+    "count" : 5
+  }, {
+    "source" : "[src/pages/Navigation/Navigation.jsx]",
+    "target" : "2384229@cmontmorency.qc.ca",
+    "count" : 5
+  }, {
+    "source" : "2384229@cmontmorency.qc.ca",
+    "target" : "[src/pages/Login/Login.jsx]",
+    "count" : 5
+  }, {
+    "source" : "[src/pages/Login/Login.jsx]",
+    "target" : "2384229@cmontmorency.qc.ca",
+    "count" : 5
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[src/pages/Dev/Dev.css]",
+    "count" : 4
+  }, {
+    "source" : "[src/pages/Dev/Dev.css]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 4
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[src/pages/Dev/Dev.css]",
+    "count" : 4
+  }, {
+    "source" : "[src/pages/Dev/Dev.css]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 4
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[src/app/components/SearchBar.jsx]",
+    "count" : 4
+  }, {
+    "source" : "[src/app/components/SearchBar.jsx]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 4
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[server/controllers/stripeWebhookController.js]",
+    "count" : 4
+  }, {
+    "source" : "[server/controllers/stripeWebhookController.js]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 4
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[server/controllers/stripeWebhookController.js]",
+    "count" : 4
+  }, {
+    "source" : "[server/controllers/stripeWebhookController.js]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 4
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 4
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 4
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[server/controllers/devController.js]",
+    "count" : 4
+  }, {
+    "source" : "[server/controllers/devController.js]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 4
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[server/controllers/devController.js]",
+    "count" : 4
+  }, {
+    "source" : "[server/controllers/devController.js]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 4
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[server/routes/dev.js]",
+    "count" : 4
+  }, {
+    "source" : "[server/routes/dev.js]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 4
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[server/routes/dev.js]",
+    "count" : 4
+  }, {
+    "source" : "[server/routes/dev.js]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 4
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[server/routes/games.js]",
+    "count" : 4
+  }, {
+    "source" : "[server/routes/games.js]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 4
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[src/pages/GameDetail/gameDetail.css]",
+    "count" : 4
+  }, {
+    "source" : "[src/pages/GameDetail/gameDetail.css]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 4
+  }, {
+    "source" : "2384229@cmontmorency.qc.ca",
+    "target" : "[src/pages/Profile/EditPassword/EditPassword.jsx]",
+    "count" : 4
+  }, {
+    "source" : "[src/pages/Profile/EditPassword/EditPassword.jsx]",
+    "target" : "2384229@cmontmorency.qc.ca",
+    "count" : 4
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[server/routes/user.js]",
+    "count" : 4
+  }, {
+    "source" : "[server/routes/user.js]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 4
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[server/controllers/cartController.js]",
+    "count" : 4
+  }, {
+    "source" : "[server/controllers/cartController.js]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 4
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[server/controllers/cartController.js]",
+    "count" : 4
+  }, {
+    "source" : "[server/controllers/cartController.js]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 4
+  }, {
+    "source" : "2384229@cmontmorency.qc.ca",
+    "target" : "[src/pages/Navigation/navigation.css]",
+    "count" : 4
+  }, {
+    "source" : "[src/pages/Navigation/navigation.css]",
+    "target" : "2384229@cmontmorency.qc.ca",
+    "count" : 4
+  }, {
+    "source" : "2384229@cmontmorency.qc.ca",
+    "target" : "[src/pages/Admin/Admin.css]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Admin/Admin.css]",
+    "target" : "2384229@cmontmorency.qc.ca",
+    "count" : 3
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[src/app/components/SearchBar.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/app/components/SearchBar.jsx]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 3
+  }, {
+    "source" : "2384229@cmontmorency.qc.ca",
+    "target" : "[src/app/components/SearchBar.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/app/components/SearchBar.jsx]",
+    "target" : "2384229@cmontmorency.qc.ca",
+    "count" : 3
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[.env]",
+    "count" : 3
+  }, {
+    "source" : "[.env]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 3
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[.env]",
+    "count" : 3
+  }, {
+    "source" : "[.env]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 3
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[server/routes/games.js]",
+    "count" : 3
+  }, {
+    "source" : "[server/routes/games.js]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 3
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[src/pages/Dev/DevGameDetail/devGameDetail.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Dev/DevGameDetail/devGameDetail.jsx]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 3
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[src/pages/Logout/Logout.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Logout/Logout.jsx]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 3
+  }, {
+    "source" : "2384229@cmontmorency.qc.ca",
+    "target" : "[src/pages/Profile/Profile.css]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Profile/Profile.css]",
+    "target" : "2384229@cmontmorency.qc.ca",
+    "count" : 3
+  }, {
+    "source" : "2384229@cmontmorency.qc.ca",
+    "target" : "[src/pages/Register/Register.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Register/Register.jsx]",
+    "target" : "2384229@cmontmorency.qc.ca",
+    "count" : 3
+  }, {
+    "source" : "2384229@cmontmorency.qc.ca",
+    "target" : "[src/pages/Search/Search.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Search/Search.jsx]",
+    "target" : "2384229@cmontmorency.qc.ca",
+    "count" : 3
+  }, {
+    "source" : "2384229@cmontmorency.qc.ca",
+    "target" : "[src/pages/Profile/EditProfile/EditProfile.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Profile/EditProfile/EditProfile.jsx]",
+    "target" : "2384229@cmontmorency.qc.ca",
+    "count" : 3
+  }, {
+    "source" : "2384229@cmontmorency.qc.ca",
+    "target" : "[src/pages/Dev/CreateGame/CreateGame.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Dev/CreateGame/CreateGame.jsx]",
+    "target" : "2384229@cmontmorency.qc.ca",
+    "count" : 3
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[src/pages/Cart/Cart.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Cart/Cart.jsx]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 3
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[src/pages/Purchase/Success.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Purchase/Success.jsx]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 3
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[src/pages/Navigation/Navigation.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Navigation/Navigation.jsx]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 3
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[src/pages/Navigation/Navigation.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Navigation/Navigation.jsx]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 3
+  }, {
+    "source" : "2384229@cmontmorency.qc.ca",
+    "target" : "[src/pages/CartList/CartList.css]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/CartList/CartList.css]",
+    "target" : "2384229@cmontmorency.qc.ca",
+    "count" : 3
+  }, {
+    "source" : "2384229@cmontmorency.qc.ca",
+    "target" : "[src/pages/CartList/CartList.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/CartList/CartList.jsx]",
+    "target" : "2384229@cmontmorency.qc.ca",
+    "count" : 3
+  }, {
+    "source" : "2384229@cmontmorency.qc.ca",
+    "target" : "[package-lock.json]",
+    "count" : 3
+  }, {
+    "source" : "[package-lock.json]",
+    "target" : "2384229@cmontmorency.qc.ca",
+    "count" : 3
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[package-lock.json]",
+    "count" : 3
+  }, {
+    "source" : "[package-lock.json]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 3
+  }, {
+    "source" : "2384229@cmontmorency.qc.ca",
+    "target" : "[src/pages/Dev/CreateGame/CreateGame.css]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Dev/CreateGame/CreateGame.css]",
+    "target" : "2384229@cmontmorency.qc.ca",
+    "count" : 3
+  }, {
+    "source" : "2384229@cmontmorency.qc.ca",
+    "target" : "[src/pages/home/home.css]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/home/home.css]",
+    "target" : "2384229@cmontmorency.qc.ca",
+    "count" : 3
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[src/pages/home/home.css]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/home/home.css]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 3
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[src/pages/home/home.css]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/home/home.css]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 3
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[server/utils/stripePricing.js]",
+    "count" : 3
+  }, {
+    "source" : "[server/utils/stripePricing.js]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 3
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[server/utils/stripePricing.js]",
+    "count" : 3
+  }, {
+    "source" : "[server/utils/stripePricing.js]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 3
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[package.json]",
+    "count" : 3
+  }, {
+    "source" : "[package.json]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 3
+  }, {
+    "source" : "2384229@cmontmorency.qc.ca",
+    "target" : "[public/loupe.png]",
+    "count" : 3
+  }, {
+    "source" : "[public/loupe.png]",
+    "target" : "2384229@cmontmorency.qc.ca",
+    "count" : 3
+  }, {
+    "source" : "2384229@cmontmorency.qc.ca",
+    "target" : "[src/app/Context/AuthContext.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/app/Context/AuthContext.jsx]",
+    "target" : "2384229@cmontmorency.qc.ca",
+    "count" : 3
+  }, {
+    "source" : "2384229@cmontmorency.qc.ca",
+    "target" : "[src/pages/Search/Search.css]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Search/Search.css]",
+    "target" : "2384229@cmontmorency.qc.ca",
+    "count" : 3
+  }, {
+    "source" : "2384229@cmontmorency.qc.ca",
+    "target" : "[server/controllers/paymentsController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/paymentsController.js]",
+    "target" : "2384229@cmontmorency.qc.ca",
+    "count" : 2
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[src/pages/Admin/Admin.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Admin/Admin.css]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 2
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[src/pages/Admin/Admin.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Admin/Admin.css]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 2
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[src/pages/Admin/Admin.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Admin/Admin.jsx]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 2
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[src/pages/Admin/Admin.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Admin/Admin.jsx]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 2
+  }, {
+    "source" : "2384229@cmontmorency.qc.ca",
+    "target" : "[.env]",
+    "count" : 2
+  }, {
+    "source" : "[.env]",
+    "target" : "2384229@cmontmorency.qc.ca",
+    "count" : 2
+  }, {
+    "source" : "2384229@cmontmorency.qc.ca",
+    "target" : "[server/controllers/gamesController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/gamesController.js]",
+    "target" : "2384229@cmontmorency.qc.ca",
+    "count" : 2
+  }, {
+    "source" : "2384229@cmontmorency.qc.ca",
+    "target" : "[server/controllers/stripeWebhookController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/stripeWebhookController.js]",
+    "target" : "2384229@cmontmorency.qc.ca",
+    "count" : 2
+  }, {
+    "source" : "2384229@cmontmorency.qc.ca",
+    "target" : "[src/pages/Profile/Purchases.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Profile/Purchases.jsx]",
+    "target" : "2384229@cmontmorency.qc.ca",
+    "count" : 2
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[src/pages/Profile/Purchases.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Profile/Purchases.jsx]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 2
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[src/pages/Profile/Purchases.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Profile/Purchases.jsx]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 2
+  }, {
+    "source" : "2384229@cmontmorency.qc.ca",
+    "target" : "[src/pages/Support/Support.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Support/Support.jsx]",
+    "target" : "2384229@cmontmorency.qc.ca",
+    "count" : 2
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[src/pages/Support/Support.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Support/Support.jsx]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 2
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[src/pages/Support/Support.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Support/Support.jsx]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 2
+  }, {
+    "source" : "2384229@cmontmorency.qc.ca",
+    "target" : "[src/pages/Support/support.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Support/support.css]",
+    "target" : "2384229@cmontmorency.qc.ca",
+    "count" : 2
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[src/pages/Support/support.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Support/support.css]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 2
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[src/pages/Support/support.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Support/support.css]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 2
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[src/pages/Dev/DevGameDetail/devGameDetail.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Dev/DevGameDetail/devGameDetail.jsx]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 2
+  }, {
+    "source" : "2384229@cmontmorency.qc.ca",
+    "target" : "[server/index.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/index.js]",
+    "target" : "2384229@cmontmorency.qc.ca",
+    "count" : 2
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[src/app/components/Guards/RequireDev.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/app/components/Guards/RequireDev.jsx]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 2
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[src/app/components/Guards/RequireDev.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/app/components/Guards/RequireDev.jsx]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 2
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[src/pages/Logout/Logout.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Logout/Logout.jsx]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 2
+  }, {
+    "source" : "2384229@cmontmorency.qc.ca",
+    "target" : "[src/pages/Logout/Logout.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Logout/Logout.jsx]",
+    "target" : "2384229@cmontmorency.qc.ca",
+    "count" : 2
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[src/pages/Profile/Profile.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Profile/Profile.css]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 2
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[src/pages/Profile/Profile.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Profile/Profile.css]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 2
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[src/pages/Register/Register.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Register/Register.jsx]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 2
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[src/pages/Register/Register.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Register/Register.jsx]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 2
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[src/pages/Search/Search.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Search/Search.jsx]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 2
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[src/pages/Search/Search.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Search/Search.jsx]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 2
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[src/pages/oldDev/CreateGame/CreateGame.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/oldDev/CreateGame/CreateGame.css]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 2
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[src/pages/oldDev/CreateGame/CreateGame.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/oldDev/CreateGame/CreateGame.css]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 2
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[src/pages/oldDev/CreateGame/CreateGame.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/oldDev/CreateGame/CreateGame.jsx]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 2
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[src/pages/oldDev/CreateGame/CreateGame.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/oldDev/CreateGame/CreateGame.jsx]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 2
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[src/pages/oldDev/Dev.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/oldDev/Dev.css]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 2
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[src/pages/oldDev/Dev.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/oldDev/Dev.css]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 2
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[src/pages/oldDev/Dev.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/oldDev/Dev.jsx]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 2
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[src/pages/oldDev/Dev.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/oldDev/Dev.jsx]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 2
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[src/pages/Profile/EditPassword/EditPassword.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Profile/EditPassword/EditPassword.jsx]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 2
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[src/pages/Profile/EditProfile/EditProfile.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Profile/EditProfile/EditProfile.jsx]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 2
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[src/pages/Dev/CreateGame/CreateGame.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Dev/CreateGame/CreateGame.jsx]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 2
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[src/pages/Cart/Cart.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Cart/Cart.jsx]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 2
+  }, {
+    "source" : "2384229@cmontmorency.qc.ca",
+    "target" : "[server/routes/user.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/user.js]",
+    "target" : "2384229@cmontmorency.qc.ca",
+    "count" : 2
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[server/utils/keygen.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/utils/keygen.js]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 2
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[server/utils/keygen.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/utils/keygen.js]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 2
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[src/pages/Cart/Cart.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Cart/Cart.css]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 2
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[src/pages/Cart/Cart.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Cart/Cart.css]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 2
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[package-lock.json]",
+    "count" : 2
+  }, {
+    "source" : "[package-lock.json]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 2
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[src/pages/Purchase/success.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Purchase/success.css]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 2
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[src/pages/Purchase/success.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Purchase/success.css]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 2
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[vite.config.js]",
+    "count" : 2
+  }, {
+    "source" : "[vite.config.js]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 2
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[vite.config.js]",
+    "count" : 2
+  }, {
+    "source" : "[vite.config.js]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 2
+  }, {
+    "source" : "2384229@cmontmorency.qc.ca",
+    "target" : "[src/app/components/GameCard.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/app/components/GameCard.jsx]",
+    "target" : "2384229@cmontmorency.qc.ca",
+    "count" : 2
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[src/app/components/GameCard.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/app/components/GameCard.jsx]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 2
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[src/app/components/GameCard.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/app/components/GameCard.jsx]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 2
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[src/app/components/searchBar.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/app/components/searchBar.css]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 2
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[src/app/components/searchBar.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/app/components/searchBar.css]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 2
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[src/pages/Navigation/navigation.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Navigation/navigation.css]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 2
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[src/pages/Navigation/navigation.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Navigation/navigation.css]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 2
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[server/middleware/auth.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/middleware/auth.js]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 2
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[server/middleware/auth.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/middleware/auth.js]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 2
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[package.json]",
+    "count" : 2
+  }, {
+    "source" : "[package.json]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 2
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[server/routes/auth.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/auth.js]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 2
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[server/routes/auth.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/auth.js]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 2
+  }, {
+    "source" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "target" : "[server/routes/stripeWebhook.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/stripeWebhook.js]",
+    "target" : "52897187+matheo-lacerte@users.noreply.github.com",
+    "count" : 2
+  }, {
+    "source" : "mlacerte2013@gmail.com",
+    "target" : "[server/routes/stripeWebhook.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/stripeWebhook.js]",
+    "target" : "mlacerte2013@gmail.com",
+    "count" : 2
+  } ]
+}
+
+    const maxNodeSize = gData.nodes.map(n => n.size).reduce((a, b) => Math.max(a, b));
+    const maxCount = gData.links.map(l => l.count).reduce((a, b) => Math.max(a, b));
+
+    gData.links = gData.links.map(l => {
+        return {source: l.target, target: l.source, count: l.count}
+    });
+    const colorOf = (node) => {
+        if (!node.id.startsWith("[")) return "rgba(135, 206, 235, 0.6)";
+        return "rgba(100,100,100,0.6)";
+    }
+
+    const elem = document.getElementById('graph');
+    const Graph = ForceGraph()(elem)
+        .graphData(gData)
+        .nodeRelSize(4)
+        .nodeVal(n => Math.max(20 * n.size / maxNodeSize, 0.001))
+        .nodeLabel(n => n.id + " (" + n.size + ")")
+        .nodeColor(n => colorOf(n))
+        .linkDirectionalParticles(1)
+        .linkDirectionalParticleSpeed(d => d.count / maxCount * 0.01)
+        .linkOpacity(0.1)
+        .linkWidth(d => 3 * d.count / maxCount + 0.1);
+
+</script>
+</body>

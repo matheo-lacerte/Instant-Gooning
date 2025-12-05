@@ -1,0 +1,206 @@
+<html>
+<head>
+    <title>server/controllers/paymentsController.js</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">server/controllers/paymentsController.js (<b>142</b> lines of code) (<a href="paymentsController.js">raw</a>):</h3>
+<div id="editor">import Stripe from &quot;stripe&quot;;
+import { supabaseAdmin } from &quot;../config/supabase.js&quot;;
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: &quot;2024-06-20&quot; });
+
+export async function checkoutCart(req, res) {
+  try {
+    const user_id = req.user?.id;
+    const email = req.user?.email;
+    if (!user_id || !email) return res.status(401).json({ error: &quot;Non authentifi&eacute;&quot; });
+
+    const { data: items } = await supabaseAdmin
+      .from(&quot;cart_items&quot;)
+      .select(&quot;quantity, game_id, games(*)&quot;)
+      .eq(&quot;cart_id&quot;, req.body.cart_id);
+
+    if (!items?.length) return res.status(400).json({ error: &quot;Panier vide&quot; });
+
+    const line_items = [];
+
+    for (const it of items) {
+      const game = it.games;
+      const priceId = game?.stripe_price_id;
+      if (!priceId) {
+        console.error(&quot;[checkoutCart] missing stripe_price_id for game:&quot;, game?.id);
+        return res.status(500).json({ error: `Stripe price missing for game ${game?.id}` });
+      }
+      line_items.push({ price: priceId, quantity: it.quantity });
+    }
+
+ 
+    let origin = req.get(&quot;origin&quot;);
+    if (!origin) {
+      const ref = req.get(&quot;referer&quot;);
+      if (ref) {
+        try { origin = new URL(ref).origin; } catch {}
+      }
+    }
+
+    if (origin &amp;&amp; /localhost:5174$/i.test(origin)) {
+      origin = &quot;http://localhost:5173&quot;;
+    }
+    
+    if ((!origin || /localhost/i.test(origin)) &amp;&amp; process.env.SITE_URL &amp;&amp; !/localhost/i.test(process.env.SITE_URL)) {
+      origin = process.env.SITE_URL;
+    }
+    if (!origin) origin = &quot;http://localhost:5173&quot;;
+    const session = await stripe.checkout.sessions.create({
+      mode: &quot;payment&quot;,
+      customer_email: email,
+      line_items,
+      allow_promotion_codes: true,
+
+      automatic_tax: { enabled: true },
+
+      customer_creation: &quot;always&quot;,
+      billing_address_collection: &quot;required&quot;,
+
+      success_url: `${origin}/purchase/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${origin}/cart`,
+      metadata: { user_id, cart_id: req.body.cart_id }
+    });
+
+    res.json({ url: session.url });
+  } catch (e) {
+    console.error(&quot;[checkoutCart] ERROR:&quot;, e);
+    res.status(500).json({ error: e.message, stack: e.stack });
+  }
+
+}
+
+export async function getCheckoutSessionDetails(req, res) {
+  try {
+    const session_id = req.query.session_id;
+    if (!session_id) return res.status(400).json({ error: &quot;session_id requis&quot; });
+    const { id: userId } = req.user || {};
+    if (!userId) return res.status(401).json({ error: &quot;Non authentifi&eacute;&quot; });
+
+    const sess = await stripe.checkout.sessions.retrieve(session_id, {
+      expand: [&quot;line_items.data.price.product&quot;],
+    });
+
+    // security: ensure session belongs to this user
+    if (String(sess.metadata?.user_id || &quot;&quot;) !== String(userId)) {
+      return res.status(403).json({ error: &quot;Acc&egrave;s refus&eacute; &agrave; cette session&quot; });
+    }
+
+    const items = (sess.line_items?.data || []).map((li) =&gt; ({
+      title: li.price?.product?.name || &quot;&quot;,
+      game_id: parseInt(li.price?.product?.metadata?.game_id || &quot;0&quot;),
+      quantity: li.quantity || 1,
+      unit_amount: li.price?.unit_amount || 0,
+      currency: (li.price?.currency || &quot;cad&quot;).toUpperCase(),
+    }));
+
+    return res.json({
+      id: sess.id,
+      payment_status: sess.payment_status,
+      amount_total: sess.amount_total,
+      currency: (sess.currency || &quot;cad&quot;).toUpperCase(),
+      items,
+    });
+  } catch (e) {
+    return res.status(500).json({ error: e.message });
+  }
+}
+
+export async function clearCartFromSession(req, res) {
+  try {
+    const session_id = req.query.session_id || req.body?.session_id;
+    if (!session_id) return res.status(400).json({ error: &quot;session_id requis&quot; });
+
+    const { id: userId } = req.user || {};
+    if (!userId) return res.status(401).json({ error: &quot;Non authentifi&eacute;&quot; });
+
+    const sess = await stripe.checkout.sessions.retrieve(session_id);
+
+    if (String(sess.metadata?.user_id || &quot;&quot;) !== String(userId)) {
+      return res.status(403).json({ error: &quot;Acc&egrave;s refus&eacute; &agrave; cette session&quot; });
+    }
+
+    const cart_id = sess.metadata?.cart_id;
+    if (!cart_id) return res.status(400).json({ error: &quot;cart_id manquant dans la session&quot; });
+
+    const { error } = await supabaseAdmin.from(&quot;cart_items&quot;).delete().eq(&quot;cart_id&quot;, cart_id);
+    if (error) return res.status(500).json({ error: error.message });
+
+    return res.json({ cleared: true, cart_id });
+  } catch (e) {
+    return res.status(500).json({ error: e.message });
+  }
+}
+
+export async function getKeysBySession(req, res) {
+  try {
+    const user_id = req.user.id;
+    const session_id = req.query.session_id;
+    if (!session_id) return res.status(400).json({ error: &quot;session_id requis&quot; });
+
+    // retrouver l'order via le webhook metadata
+    const session = await stripe.checkout.sessions.retrieve(session_id);
+    const cart_id = session.metadata?.cart_id; // optionnel, juste info
+
+    // r&eacute;cup&egrave;re la commande correspondante par session_id
+    const { data: order, error: oErr } = await supabaseAdmin
+      .from(&quot;orders&quot;)
+      .select(&quot;id&quot;)
+      .eq(&quot;stripe_checkout_session_id&quot;, session_id)
+      .eq(&quot;user_id&quot;, user_id)
+      .single();
+    if (oErr || !order) return res.status(404).json({ error: &quot;Commande introuvable&quot; });
+
+    const { data: keys, error: kErr } = await supabaseAdmin
+      .from(&quot;game_keys&quot;)
+      .select(&quot;game_id, key_code, status&quot;)
+      .eq(&quot;order_id&quot;, order.id);
+    if (kErr) throw kErr;
+
+    // optionnel: joindre titres
+    const gameIds = [...new Set(keys.map(k =&gt; k.game_id))];
+    let titles = {};
+    if (gameIds.length) {
+      const { data: games } = await supabaseAdmin
+        .from(&quot;games&quot;)
+        .select(&quot;id, title&quot;)
+        .in(&quot;id&quot;, gameIds);
+      titles = Object.fromEntries((games || []).map(g =&gt; [g.id, g.title]));
+    }
+
+    const items = keys.map(k =&gt; ({
+      title: titles[k.game_id] || `Jeu ${k.game_id}`,
+      key: k.key_code,
+      status: k.status
+    }));
+
+    return res.json({ items });
+  } catch (e) {
+    return res.status(500).json({ error: e.message });
+  }
+}
+
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/javascript");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

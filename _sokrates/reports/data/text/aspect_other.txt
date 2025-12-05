@@ -1,0 +1,6 @@
+Path	Lines of Code
+README.md	7
+git-history.txt	723
+package-lock.json	4661
+package.json	44
+public/ouvert.svg	2
