@@ -34,7 +34,7 @@ export default function GameDetail() {
       setError(null);
       try {
         const response = await fetch(
-          `http://localhost:5174/api/games/GetGameById/${id}`,
+          `/api/games/GetGameById/${id}`,
           { method: "GET" }
         );
         if (!response.ok) throw new Error("Réponse invalide du serveur");
@@ -135,7 +135,7 @@ export default function GameDetail() {
         setActionMsg("Aucun changement à enregistrer.");
         return;
       }
-      const res = await fetch(`http://localhost:5174/api/games/update/${game.id}`, {
+      const res = await fetch(`/api/games/update/${game.id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
         body: JSON.stringify(payload),
@@ -183,7 +183,7 @@ export default function GameDetail() {
   const deleteGame = async () => {
     if (token) {
       const response = await fetch(
-        "http://localhost:5174/api/games/delete/"+game.id,
+        "/api/games/delete/"+game.id,
         {
           method: "PATCH",
           headers: {
@@ -206,7 +206,7 @@ export default function GameDetail() {
   const restoreGame = async () => {
     if (token) {
       const response = await fetch(
-        "http://localhost:5174/api/games/restore/"+game.id,
+        "/api/games/restore/"+game.id,
         {
           method: "PATCH",
           headers: {

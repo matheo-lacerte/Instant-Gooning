@@ -1,12 +1,3 @@
-:root {
-	--nav-bg: #0a0a0a;
-	--nav-surface: #0f1115;
-	--nav-text: #e5e7eb;
-	--nav-muted: #9ca3af;
-	--nav-blue: #2563eb;
-	--nav-border: #1f2937;
-}
-
 .main-header {
 	position: sticky;
 	top: 0;
@@ -16,8 +7,8 @@
 	align-items: center;
 	gap: 12px;
 	padding: 14px 20px;
-	background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0)) , var(--nav-surface);
-	color: var(--nav-text);
+	background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0)) , var(--surface);
+	color: var(--text);
 	border-bottom: 1px solid var(--nav-border);
 	backdrop-filter: blur(6px);
 }
@@ -26,12 +17,12 @@
 	font-weight: 800;
 	font-size: 1.6rem;
 	letter-spacing: 0.3px;
-	color: var(--nav-text) !important;
+	color: var(--text) !important;
 	text-decoration: none;
 	flex: initial; 
 }
 
-.main-header .title:hover { color: var(--nav-text) !important; }
+.main-header .title:hover { color: var(--text) !important; }
 
 .nav-buttons {
 	display: flex;
@@ -50,7 +41,7 @@
 	border: 1px solid transparent;
 	border-radius: 10px;
 	padding: 8px 12px;
-	background: var(--nav-blue);
+	background: var(--blue);
 	color: #fff;
 	font-weight: 700;
 	letter-spacing: 0.2px;
@@ -62,10 +53,10 @@
 .nav-buttons button:active { transform: translateY(1px); }
 .nav-buttons .ghost {
 	background: transparent;
-	color: var(--nav-text);
+	color: var(--text);
 	border-color: var(--nav-border);
 }
-.nav-buttons .ghost:hover { border-color: var(--nav-blue); color: #fff; }
+.nav-buttons .ghost:hover { border-color: var(--blue); color: #fff; }
 @media (max-width: 980px) {
 	/* on medium screens keep two columns; no search in header */
 	.main-header { grid-template-columns: 1fr auto; }
@@ -87,7 +78,7 @@
 .main-header .search-bar button:focus-visible,
 .main-header .search-bar input:focus-visible,
 .title:focus-visible {
-  outline: 2px solid var(--nav-blue);
+  outline: 2px solid var(--blue);
   outline-offset: 2px;
   border-radius: 8px;
 }
@@ -113,7 +104,7 @@
 }
 
 .main-header .search-bar button {
-	background: var(--nav-blue);
+	background: var(--blue);
 	border: none;
 	cursor: pointer;
 	padding: 6px 10px;

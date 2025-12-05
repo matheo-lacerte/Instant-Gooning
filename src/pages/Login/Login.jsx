@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "../../app/Context/AuthContext";
-import "./login.css";
+import login from "./login.module.css";
 
 export default function Login() {
   const auth = useContext(AuthContext);
@@ -23,7 +23,7 @@ export default function Login() {
     };
 
     try {
-      const response = await fetch("http://localhost:5174/api/auth/login", {
+      const response = await fetch("/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -55,12 +55,12 @@ export default function Login() {
   };
 
   return (
-    <div className="login-page">
-      <div className="login-card">
+    <div className="page">
+      <div className={`${login.card} card`}>
         <h1>Connexion</h1>
 
         <div className="control-row">
-          <div className="control no-margin">
+          <div className="control">
             <label htmlFor="email">Courriel</label>
             <input
               id="email"
@@ -74,7 +74,7 @@ export default function Login() {
             />
           </div>
 
-          <div className="control no-margin">
+          <div className="control">
             <label htmlFor="password">Mot de passe</label>
             <div className="password-container">
               <input
@@ -96,13 +96,13 @@ export default function Login() {
 
         {error && <p className="error">{error}</p>}
 
-        <p className="form-actions">
+        <div className="form-actions">
           <button className="button" disabled={submitting} onClick={authSubmitHandler}>
             {submitting ? "Connexion..." : "Se connecter"}
           </button>
-        </p>
+        </div>
 
-        <Link className="muted-link" to="/register">
+        <Link className={`${login.witdh380px} muted-link`} to="/register">
           Aucun compte? Inscrivez-vous ici
         </Link>
       </div>

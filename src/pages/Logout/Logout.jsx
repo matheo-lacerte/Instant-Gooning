@@ -10,7 +10,7 @@ const Logout = () => {
 
   const deconnexion = async () => {
     try {
-      const reponse = await fetch("http://localhost:5174/api/auth/logout", {
+      const reponse = await fetch("/api/auth/logout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
       });

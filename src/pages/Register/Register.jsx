@@ -1,6 +1,6 @@
 import { useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
-import "./register.css";
+import register from "./register.module.css";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -9,6 +9,7 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
   const registerSubmitHandler = async (event) => {
@@ -23,7 +24,7 @@ export default function Register() {
     };
 
     try {
-      const response = await fetch("http://localhost:5174/api/auth/register", {
+      const response = await fetch("/api/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -31,6 +32,7 @@ export default function Register() {
 
       if (!response.ok) {
         const errorData = await response.json();
+        setError(errorData.error)
         console.error("Register error:", errorData.error);
         throw new Error("Données invalides");
       }
@@ -45,12 +47,12 @@ export default function Register() {
   };
 
   return (
-    <div className="register-page">
-      <div className="register-card">
+    <div className="page">
+      <div className={`${register.card} card`}>
         <h1>Inscription</h1>
 
-        <div className="control-row">
-          <div className="control no-margin">
+        <div className={register.witdh420px + " control-row"}>
+          <div className="control">
             <label htmlFor="email">Courriel</label>
             <input
               id="email"
@@ -63,7 +65,7 @@ export default function Register() {
             />
           </div>
 
-          <div className="control no-margin">
+          <div className="control">
             <label htmlFor="username">Nom d'utilisateur</label>
             <input
               id="username"
@@ -76,7 +78,7 @@ export default function Register() {
             />
           </div>
 
-          <div className="control no-margin">
+          <div className="control">
             <label htmlFor="username">Prénom</label>
             <input
               id="first_name"
@@ -89,7 +91,7 @@ export default function Register() {
             />
           </div>
 
-          <div className="control no-margin">
+          <div className="control">
             <label htmlFor="username">Nom</label>
             <input
               id="last_name"
@@ -102,7 +104,7 @@ export default function Register() {
             />
           </div>
 
-          <div className="control no-margin">
+          <div className="control">
             <label htmlFor="password">Mot de passe</label>
             <div className="password-container">
               <input
@@ -124,12 +126,14 @@ export default function Register() {
           </div>
         </div>
 
-        <div className="form-actions">
+        {error && <p className="error">{error}</p>}
+
+       <div className={register.witdh420px + " form-actions"}>
           <button className="button" onClick={registerSubmitHandler}>
             S'inscrire
           </button>
         </div>
-        <Link className="muted-link" to="/login">
+        <Link className={register.witdh420px + " muted-link"} to="/login">
           Déjà inscrit? Connectez-vous ici
         </Link>
       </div>

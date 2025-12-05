@@ -17,7 +17,7 @@ export default function GameDetail() {
       setError(null);
       try {
         const response = await fetch(
-          `http://localhost:5174/api/games/GetGameById/${id}`,
+          `/api/games/GetGameById/${id}`,
           { method: "GET" }
         );
         if (!response.ok) throw new Error("Réponse invalide du serveur");
@@ -96,7 +96,7 @@ export default function GameDetail() {
   const addGameToCart = async () => {
     if (token) {
       const response = await fetch(
-        "http://localhost:5174/api/payments/cart/items",
+        "/api/payments/cart/items",
         {
           method: "POST",
           headers: {

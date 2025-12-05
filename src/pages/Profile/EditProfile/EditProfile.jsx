@@ -21,7 +21,7 @@ export default function EditProfile() {
   const sauvegarde = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5174/api/user/changeUserProfile",
+        "/api/user/changeUserProfile",
         {
           method: "POST",
           headers: {
@@ -85,7 +85,7 @@ export default function EditProfile() {
         <div className="colonnes userData">
           <h1>Modification du compte</h1>
 
-          <div className="control no-margin">
+          <div className="control">
             <label htmlFor="username">Nom d'utilisateur</label>
             <input
               type="text"
@@ -95,7 +95,7 @@ export default function EditProfile() {
             />
           </div>
 
-          <div className="control no-margin">
+          <div className="control">
             <label htmlFor="firstName">Prénom</label>
             <input
               type="text"
@@ -105,7 +105,7 @@ export default function EditProfile() {
             />
           </div>
 
-          <div className="control no-margin">
+          <div className="control">
             <label htmlFor="lastName">Nom</label>
             <input
               type="text"
@@ -115,7 +115,7 @@ export default function EditProfile() {
             />
           </div>
 
-          <div className="control no-margin">
+          <div className="control">
             <label htmlFor="email">Adresse courriel</label>
             <input
               type="email"

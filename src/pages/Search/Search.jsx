@@ -13,7 +13,7 @@ export default function Search() {
     const fetchGames = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5174/api/games/GetAllGames",
+          "/api/games/GetAllGames",
           {
             method: "GET",
           }
