@@ -6,35 +6,30 @@
 </head>
 <body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
 <h3 style="margin-bottom: 0">export default defineConfig()</h3>
-<p style="margin-top: 4px">in <i>eslint.config.js [7:28]</i></p>
+<p style="margin-top: 4px">in <i>cypress.config.js [3:19]</i></p>
 <ul>
-    <li><b>22</b> lines of code</li>
+    <li><b>12</b> lines of code</li>
     <li><b>1</b> McCabe index (conditional complexity)</li>
 </ul>
 <pre>
 <code class="js">
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{js,jsx}'],
-    extends: [
-      js.configs.recommended,
-      reactHooks.configs['recommended-latest'],
-      reactRefresh.configs.vite,
-    ],
-    languageOptions: {
-      ecmaVersion: 2020,
-      globals: globals.browser,
-      parserOptions: {
-        ecmaVersion: 'latest',
-        ecmaFeatures: { jsx: true },
-        sourceType: 'module',
-      },
-    },
-    rules: {
-      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
+export default defineConfig({
+  e2e: {
+    setupNodeEvents(on, config) {
+      // implement node event listeners here
     },
   },
+
+  component: {
+    devServer: {
+      framework: &quot;react&quot;,
+      bundler: &quot;vite&quot;,
+    },
+    // Ensure Cypress loads the right support file for component tests
+    supportFile: &quot;cypress/support/component.js&quot;,
+    indexHtmlFile: &quot;cypress/support/component-index.html&quot;,
+  },
+});
 
 </code>
 </pre>

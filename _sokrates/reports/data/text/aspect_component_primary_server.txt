@@ -4,7 +4,7 @@ server/controllers/adminController.js	171
 server/controllers/cartController.js	170
 server/controllers/devController.js	120
 server/controllers/gamesController.js	180
-server/controllers/paymentsController.js	142
+server/controllers/paymentsController.js	152
 server/controllers/stripeWebhookController.js	103
 server/controllers/userController.js	123
 server/index.js	51

@@ -1,498 +1,288 @@
 duplicated block id: 1
-size: 126 cleaned lines of code
+size: 42 cleaned lines of code
 in 2 files:
- - src/pages/Profile/Profile.css (65:211)
- - src/pages/oldDev/Dev.css (1:147)
+ - src/pages/Dev/DevGameDetail/devGameDetail.jsx (263:313)
+ - src/pages/GameDetail/GameDetail.jsx (134:184)
 
 duplicated block id: 2
-size: 64 cleaned lines of code
-in 2 files:
- - src/pages/Dev/DevGameDetail/devGameDetail.jsx (224:302)
- - src/pages/GameDetail/GameDetail.jsx (114:192)
-
-duplicated block id: 3
 size: 29 cleaned lines of code
 in 2 files:
- - src/pages/Dev/DevGameDetail/devGameDetail.jsx (482:518)
- - src/pages/GameDetail/GameDetail.jsx (289:325)
+ - src/pages/Dev/DevGameDetail/devGameDetail.jsx (479:515)
+ - src/pages/GameDetail/GameDetail.jsx (267:303)
 
-duplicated block id: 4
-size: 28 cleaned lines of code
-in 2 files:
- - src/pages/Dev/DevGameDetail/devGameDetail.jsx (304:336)
- - src/pages/GameDetail/GameDetail.jsx (194:226)
-
-duplicated block id: 5
+duplicated block id: 3
 size: 24 cleaned lines of code
 in 2 files:
  - src/pages/Profile/EditPassword/EditPassword.jsx (41:73)
  - src/pages/Profile/EditProfile/EditProfile.jsx (53:85)
 
-duplicated block id: 6
+duplicated block id: 4
+size: 22 cleaned lines of code
+in 2 files:
+ - src/pages/Dev/DevGameDetail/devGameDetail.jsx (25:50)
+ - src/pages/GameDetail/GameDetail.jsx (5:30)
+
+duplicated block id: 5
 size: 20 cleaned lines of code
 in 2 files:
- - src/pages/Dev/DevGameDetail/devGameDetail.jsx (158:178)
- - src/pages/GameDetail/GameDetail.jsx (73:93)
+ - src/pages/Dev/DevGameDetail/devGameDetail.jsx (197:217)
+ - src/pages/GameDetail/GameDetail.jsx (93:113)
 
-duplicated block id: 7
+duplicated block id: 6
 size: 18 cleaned lines of code
 in 2 files:
  - src/app/components/SearchBar.jsx (150:167)
  - src/app/components/SearchBar.jsx (216:233)
 
-duplicated block id: 8
+duplicated block id: 7
 size: 18 cleaned lines of code
 in 2 files:
  - src/pages/Profile/Profile.jsx (25:52)
  - src/pages/Profile/Purchases.jsx (36:64)
 
+duplicated block id: 8
+size: 17 cleaned lines of code
+in 2 files:
+ - src/pages/Dev/DevGameDetail/devGameDetail.jsx (316:333)
+ - src/pages/GameDetail/GameDetail.jsx (187:204)
+
 duplicated block id: 9
-size: 14 cleaned lines of code
-in 2 files:
- - src/pages/GameDetail/GameDetail.jsx (139:154)
- - src/pages/GameDetail/GameDetail.jsx (191:206)
-
-duplicated block id: 10
-size: 14 cleaned lines of code
-in 2 files:
- - src/pages/Dev/DevGameDetail/devGameDetail.jsx (249:264)
- - src/pages/GameDetail/GameDetail.jsx (191:206)
-
-duplicated block id: 11
-size: 14 cleaned lines of code
-in 2 files:
- - src/pages/Profile/EditProfile/EditProfile.jsx (60:78)
- - src/pages/oldDev/CreateGame/CreateGame.jsx (73:91)
-
-duplicated block id: 12
-size: 14 cleaned lines of code
-in 2 files:
- - src/pages/Profile/EditPassword/EditPassword.jsx (48:66)
- - src/pages/oldDev/CreateGame/CreateGame.jsx (73:91)
-
-duplicated block id: 13
-size: 14 cleaned lines of code
-in 2 files:
- - src/pages/oldDev/CreateGame/CreateGame.jsx (73:91)
- - src/pages/oldDev/Dev.jsx (95:113)
-
-duplicated block id: 14
-size: 14 cleaned lines of code
-in 2 files:
- - src/pages/Profile/EditProfile/EditProfile.jsx (60:78)
- - src/pages/oldDev/Dev.jsx (95:113)
-
-duplicated block id: 15
-size: 14 cleaned lines of code
-in 2 files:
- - src/pages/Profile/EditPassword/EditPassword.jsx (48:66)
- - src/pages/oldDev/Dev.jsx (95:113)
-
-duplicated block id: 16
 size: 13 cleaned lines of code
 in 2 files:
- - src/pages/Logout/Logout.css (2:14)
- - src/pages/oldDev/Dev.css (59:71)
+ - src/pages/Dev/DevGameDetail/devGameDetail.jsx (97:110)
+ - src/pages/GameDetail/GameDetail.jsx (46:59)
 
-duplicated block id: 17
+duplicated block id: 10
+size: 13 cleaned lines of code
+in 2 files:
+ - src/pages/Dev/DevGameDetail/devGameDetail.jsx (8:23)
+ - src/pages/GameDetail/GameDetail.jsx (8:23)
+
+duplicated block id: 11
 size: 13 cleaned lines of code
 in 2 files:
  - src/pages/Logout/Logout.css (2:14)
  - src/pages/Profile/Profile.css (123:135)
 
-duplicated block id: 18
+duplicated block id: 12
 size: 13 cleaned lines of code
 in 2 files:
- - src/pages/Dev/DevGameDetail/devGameDetail.jsx (58:71)
- - src/pages/GameDetail/GameDetail.jsx (26:39)
+ - src/pages/Dev/DevGameDetail/devGameDetail.jsx (8:23)
+ - src/pages/Dev/DevGameDetail/devGameDetail.jsx (28:43)
 
-duplicated block id: 19
+duplicated block id: 13
 size: 12 cleaned lines of code
 in 2 files:
- - src/pages/GameDetail/GameDetail.jsx (141:154)
- - src/pages/GameDetail/GameDetail.jsx (172:185)
+ - src/pages/Dev/DevGameDetail/devGameDetail.jsx (69:80)
+ - src/pages/GameDetail/GameDetail.jsx (33:44)
 
-duplicated block id: 20
-size: 12 cleaned lines of code
-in 2 files:
- - src/pages/Dev/DevGameDetail/devGameDetail.jsx (251:264)
- - src/pages/Dev/DevGameDetail/devGameDetail.jsx (282:295)
-
-duplicated block id: 21
-size: 12 cleaned lines of code
-in 2 files:
- - src/pages/GameDetail/GameDetail.jsx (172:185)
- - src/pages/GameDetail/GameDetail.jsx (193:206)
-
-duplicated block id: 22
-size: 12 cleaned lines of code
-in 2 files:
- - src/pages/Dev/DevGameDetail/devGameDetail.jsx (282:295)
- - src/pages/GameDetail/GameDetail.jsx (141:154)
-
-duplicated block id: 23
-size: 12 cleaned lines of code
-in 2 files:
- - src/pages/Dev/DevGameDetail/devGameDetail.jsx (282:295)
- - src/pages/GameDetail/GameDetail.jsx (193:206)
-
-duplicated block id: 24
-size: 12 cleaned lines of code
-in 2 files:
- - src/pages/Dev/DevGameDetail/devGameDetail.jsx (30:41)
- - src/pages/GameDetail/GameDetail.jsx (13:24)
-
-duplicated block id: 25
-size: 12 cleaned lines of code
-in 2 files:
- - src/pages/Dev/DevGameDetail/devGameDetail.jsx (251:264)
- - src/pages/GameDetail/GameDetail.jsx (172:185)
-
-duplicated block id: 26
+duplicated block id: 14
 size: 11 cleaned lines of code
 in 2 files:
  - src/pages/Profile/EditPassword/EditPassword.jsx (49:62)
  - src/pages/Profile/Profile.jsx (23:36)
 
-duplicated block id: 27
-size: 11 cleaned lines of code
-in 2 files:
- - src/pages/Dev/DevGameDetail/devGameDetail.jsx (304:316)
- - src/pages/GameDetail/GameDetail.jsx (173:185)
-
-duplicated block id: 28
-size: 11 cleaned lines of code
-in 2 files:
- - src/pages/Dev/DevGameDetail/devGameDetail.jsx (252:264)
- - src/pages/Dev/DevGameDetail/devGameDetail.jsx (304:316)
-
-duplicated block id: 29
-size: 11 cleaned lines of code
-in 2 files:
- - src/pages/Profile/Profile.jsx (23:36)
- - src/pages/oldDev/CreateGame/CreateGame.jsx (74:87)
-
-duplicated block id: 30
+duplicated block id: 15
 size: 11 cleaned lines of code
 in 2 files:
  - src/pages/Profile/EditProfile/EditProfile.jsx (61:74)
  - src/pages/Profile/Profile.jsx (23:36)
 
-duplicated block id: 31
-size: 11 cleaned lines of code
-in 2 files:
- - src/pages/Dev/DevGameDetail/devGameDetail.jsx (283:295)
- - src/pages/Dev/DevGameDetail/devGameDetail.jsx (304:316)
-
-duplicated block id: 32
-size: 11 cleaned lines of code
-in 2 files:
- - src/pages/Dev/DevGameDetail/devGameDetail.jsx (304:316)
- - src/pages/GameDetail/GameDetail.jsx (142:154)
-
-duplicated block id: 33
-size: 11 cleaned lines of code
-in 2 files:
- - src/pages/Profile/Profile.jsx (23:36)
- - src/pages/oldDev/Dev.jsx (96:109)
-
-duplicated block id: 34
+duplicated block id: 16
 size: 10 cleaned lines of code
 in 2 files:
  - src/pages/Profile/EditProfile/EditProfile.jsx (63:74)
  - src/pages/Profile/Purchases.jsx (36:47)
 
-duplicated block id: 35
-size: 10 cleaned lines of code
-in 2 files:
- - src/pages/Profile/Purchases.jsx (36:47)
- - src/pages/oldDev/Dev.jsx (98:109)
-
-duplicated block id: 36
-size: 10 cleaned lines of code
-in 2 files:
- - src/pages/Profile/Purchases.jsx (36:47)
- - src/pages/oldDev/CreateGame/CreateGame.jsx (76:87)
-
-duplicated block id: 37
+duplicated block id: 17
 size: 10 cleaned lines of code
 in 2 files:
  - src/pages/Profile/EditPassword/EditPassword.jsx (51:62)
  - src/pages/Profile/Purchases.jsx (36:47)
 
-duplicated block id: 38
+duplicated block id: 18
 size: 9 cleaned lines of code
 in 2 files:
- - src/pages/Dev/DevGameDetail/devGameDetail.jsx (187:195)
- - src/pages/Dev/DevGameDetail/devGameDetail.jsx (210:218)
+ - src/pages/Dev/DevGameDetail/devGameDetail.jsx (226:234)
+ - src/pages/Dev/DevGameDetail/devGameDetail.jsx (249:257)
 
-duplicated block id: 39
-size: 8 cleaned lines of code
-in 2 files:
- - src/pages/Profile/EditProfile/EditProfile.jsx (115:124)
- - src/pages/Profile/Profile.jsx (85:94)
-
-duplicated block id: 40
-size: 8 cleaned lines of code
-in 2 files:
- - src/pages/Profile/EditProfile/EditProfile.jsx (105:114)
- - src/pages/Profile/Profile.jsx (74:83)
-
-duplicated block id: 41
+duplicated block id: 19
 size: 8 cleaned lines of code
 in 2 files:
  - src/pages/Profile/EditProfile/EditProfile.jsx (95:104)
  - src/pages/Profile/Profile.jsx (63:72)
 
-duplicated block id: 42
+duplicated block id: 20
 size: 8 cleaned lines of code
 in 2 files:
  - src/pages/Admin/Admin.jsx (156:167)
  - src/pages/Dev/Dev.jsx (406:417)
 
-duplicated block id: 43
+duplicated block id: 21
 size: 8 cleaned lines of code
 in 2 files:
- - src/pages/Dev/DevGameDetail/devGameDetail.jsx (101:108)
- - src/pages/GameDetail/GameDetail.jsx (62:69)
+ - src/pages/Profile/EditProfile/EditProfile.jsx (115:124)
+ - src/pages/Profile/Profile.jsx (85:94)
 
-duplicated block id: 44
+duplicated block id: 22
+size: 8 cleaned lines of code
+in 2 files:
+ - src/pages/Dev/DevGameDetail/devGameDetail.jsx (140:147)
+ - src/pages/GameDetail/GameDetail.jsx (82:89)
+
+duplicated block id: 23
+size: 8 cleaned lines of code
+in 2 files:
+ - src/pages/Profile/EditProfile/EditProfile.jsx (105:114)
+ - src/pages/Profile/Profile.jsx (74:83)
+
+duplicated block id: 24
 size: 7 cleaned lines of code
 in 2 files:
  - src/pages/Profile/EditPassword/EditPassword.jsx (61:73)
  - src/pages/Profile/Purchases.jsx (51:64)
 
-duplicated block id: 45
+duplicated block id: 25
 size: 7 cleaned lines of code
 in 2 files:
  - src/App.css (146:152)
  - src/pages/Logout/Logout.css (6:12)
 
-duplicated block id: 46
+duplicated block id: 26
 size: 7 cleaned lines of code
 in 2 files:
  - src/App.css (146:152)
  - src/pages/Profile/Profile.css (127:133)
 
-duplicated block id: 47
+duplicated block id: 27
 size: 7 cleaned lines of code
 in 2 files:
  - server/controllers/gamesController.js (49:55)
  - server/controllers/gamesController.js (86:92)
 
-duplicated block id: 48
+duplicated block id: 28
 size: 7 cleaned lines of code
 in 2 files:
  - src/pages/Login/Login.jsx (50:58)
  - src/pages/Register/Register.jsx (42:50)
 
-duplicated block id: 49
+duplicated block id: 29
 size: 7 cleaned lines of code
 in 2 files:
  - src/pages/Profile/EditPassword/EditPassword.jsx (61:73)
  - src/pages/Profile/Profile.jsx (40:52)
 
-duplicated block id: 50
+duplicated block id: 30
 size: 7 cleaned lines of code
 in 2 files:
  - src/pages/Profile/EditProfile/EditProfile.jsx (73:85)
  - src/pages/Profile/Purchases.jsx (51:64)
 
-duplicated block id: 51
+duplicated block id: 31
 size: 7 cleaned lines of code
 in 2 files:
  - src/pages/Profile/EditPassword/EditPassword.jsx (126:139)
  - src/pages/Profile/EditProfile/EditProfile.jsx (130:144)
 
-duplicated block id: 52
-size: 7 cleaned lines of code
-in 2 files:
- - src/App.css (146:152)
- - src/pages/oldDev/Dev.css (63:69)
-
-duplicated block id: 53
+duplicated block id: 32
 size: 7 cleaned lines of code
 in 2 files:
  - src/pages/Profile/EditProfile/EditProfile.jsx (73:85)
  - src/pages/Profile/Profile.jsx (40:52)
 
-duplicated block id: 54
+duplicated block id: 33
 size: 7 cleaned lines of code
 in 2 files:
  - src/pages/Profile/EditProfile/EditProfile.jsx (88:94)
  - src/pages/Profile/Profile.jsx (55:61)
 
-duplicated block id: 55
+duplicated block id: 34
 size: 7 cleaned lines of code
 in 2 files:
  - src/app/components/SearchBar.jsx (47:53)
  - src/pages/Purchase/Success.jsx (97:103)
 
-duplicated block id: 56
+duplicated block id: 35
 size: 7 cleaned lines of code
 in 2 files:
  - server/controllers/cartController.js (139:147)
  - server/controllers/cartController.js (189:196)
 
-duplicated block id: 57
-size: 6 cleaned lines of code
-in 2 files:
- - src/pages/Dev/Dev.jsx (156:161)
- - src/pages/Dev/DevGameDetail/devGameDetail.jsx (17:22)
-
-duplicated block id: 58
-size: 6 cleaned lines of code
-in 2 files:
- - src/pages/Profile/EditPassword/EditPassword.jsx (27:32)
- - src/pages/oldDev/CreateGame/CreateGame.jsx (56:61)
-
-duplicated block id: 59
-size: 6 cleaned lines of code
-in 2 files:
- - src/pages/GameDetail/GameDetail.jsx (100:105)
- - src/pages/oldDev/Dev.jsx (78:83)
-
-duplicated block id: 60
-size: 6 cleaned lines of code
-in 2 files:
- - server/controllers/gamesController.js (49:54)
- - src/pages/oldDev/CreateGame/CreateGame.jsx (39:44)
-
-duplicated block id: 61
-size: 6 cleaned lines of code
-in 2 files:
- - src/pages/Profile/EditPassword/EditPassword.jsx (27:32)
- - src/pages/Profile/EditProfile/EditProfile.jsx (25:30)
-
-duplicated block id: 62
-size: 6 cleaned lines of code
-in 2 files:
- - src/pages/Dev/Dev.jsx (230:235)
- - src/pages/Dev/Dev.jsx (283:288)
-
-duplicated block id: 63
-size: 6 cleaned lines of code
-in 2 files:
- - server/controllers/gamesController.js (86:91)
- - src/pages/oldDev/CreateGame/CreateGame.jsx (39:44)
-
-duplicated block id: 64
-size: 6 cleaned lines of code
-in 2 files:
- - src/pages/Dev/DevGameDetail/devGameDetail.jsx (6:11)
- - src/pages/GameDetail/GameDetail.jsx (5:10)
-
-duplicated block id: 65
-size: 6 cleaned lines of code
-in 2 files:
- - src/pages/Profile/EditPassword/EditPassword.jsx (27:32)
- - src/pages/oldDev/Dev.jsx (78:83)
-
-duplicated block id: 66
-size: 6 cleaned lines of code
-in 2 files:
- - src/pages/Profile/EditProfile/EditProfile.jsx (25:30)
- - src/pages/oldDev/CreateGame/CreateGame.jsx (56:61)
-
-duplicated block id: 67
+duplicated block id: 36
 size: 6 cleaned lines of code
 in 2 files:
  - src/pages/Admin/Admin.jsx (121:126)
- - src/pages/oldDev/CreateGame/CreateGame.jsx (56:61)
+ - src/pages/GameDetail/GameDetail.jsx (120:125)
 
-duplicated block id: 68
+duplicated block id: 37
 size: 6 cleaned lines of code
 in 2 files:
- - src/pages/Dev/DevGameDetail/devGameDetail.jsx (212:217)
- - src/pages/oldDev/Dev.jsx (33:38)
+ - src/pages/GameDetail/GameDetail.jsx (120:125)
+ - src/pages/Profile/EditProfile/EditProfile.jsx (25:30)
 
-duplicated block id: 69
-size: 6 cleaned lines of code
-in 2 files:
- - src/pages/Admin/Admin.jsx (121:126)
- - src/pages/oldDev/Dev.jsx (78:83)
-
-duplicated block id: 70
-size: 6 cleaned lines of code
-in 2 files:
- - src/pages/GameDetail/GameDetail.jsx (100:105)
- - src/pages/Profile/EditPassword/EditPassword.jsx (27:32)
-
-duplicated block id: 71
-size: 6 cleaned lines of code
-in 2 files:
- - src/pages/GameDetail/GameDetail.jsx (100:105)
- - src/pages/oldDev/CreateGame/CreateGame.jsx (56:61)
-
-duplicated block id: 72
-size: 6 cleaned lines of code
-in 2 files:
- - src/pages/Dev/DevGameDetail/devGameDetail.jsx (349:356)
- - src/pages/GameDetail/GameDetail.jsx (231:238)
-
-duplicated block id: 73
+duplicated block id: 38
 size: 6 cleaned lines of code
 in 2 files:
  - src/App.css (1:6)
  - src/index.css (1:6)
 
-duplicated block id: 74
+duplicated block id: 39
 size: 6 cleaned lines of code
 in 2 files:
- - src/pages/oldDev/CreateGame/CreateGame.jsx (56:61)
- - src/pages/oldDev/Dev.jsx (78:83)
+ - cypress/e2e/test2.cy.js (7:12)
+ - cypress/e2e/test3.cy.js (6:11)
 
-duplicated block id: 75
+duplicated block id: 40
 size: 6 cleaned lines of code
 in 2 files:
- - src/pages/Dev/DevGameDetail/devGameDetail.jsx (189:194)
- - src/pages/oldDev/Dev.jsx (33:38)
+ - src/pages/Dev/DevGameDetail/devGameDetail.jsx (346:353)
+ - src/pages/GameDetail/GameDetail.jsx (209:216)
 
-duplicated block id: 76
+duplicated block id: 41
+size: 6 cleaned lines of code
+in 2 files:
+ - src/pages/Dev/Dev.jsx (156:161)
+ - src/pages/Dev/DevGameDetail/devGameDetail.jsx (56:61)
+
+duplicated block id: 42
+size: 6 cleaned lines of code
+in 2 files:
+ - src/pages/Profile/EditPassword/EditPassword.jsx (27:32)
+ - src/pages/Profile/EditProfile/EditProfile.jsx (25:30)
+
+duplicated block id: 43
+size: 6 cleaned lines of code
+in 2 files:
+ - src/pages/Dev/Dev.jsx (230:235)
+ - src/pages/Dev/Dev.jsx (283:288)
+
+duplicated block id: 44
+size: 6 cleaned lines of code
+in 2 files:
+ - src/pages/GameDetail/GameDetail.jsx (120:125)
+ - src/pages/Profile/EditPassword/EditPassword.jsx (27:32)
+
+duplicated block id: 45
 size: 6 cleaned lines of code
 in 2 files:
  - src/pages/Admin/Admin.jsx (121:126)
  - src/pages/Profile/EditProfile/EditProfile.jsx (25:30)
 
-duplicated block id: 77
+duplicated block id: 46
 size: 6 cleaned lines of code
 in 2 files:
  - src/pages/Login/Login.jsx (74:81)
  - src/pages/Register/Register.jsx (104:111)
 
-duplicated block id: 78
+duplicated block id: 47
 size: 6 cleaned lines of code
 in 2 files:
  - src/pages/Admin/Admin.jsx (121:126)
  - src/pages/Profile/EditPassword/EditPassword.jsx (27:32)
 
-duplicated block id: 79
-size: 6 cleaned lines of code
-in 2 files:
- - src/pages/Dev/Dev.jsx (270:275)
- - src/pages/oldDev/Dev.jsx (79:84)
-
-duplicated block id: 80
+duplicated block id: 48
 size: 6 cleaned lines of code
 in 2 files:
  - src/app/components/SearchBar.jsx (27:33)
  - src/pages/Home/Home.jsx (21:26)
-
-duplicated block id: 81
-size: 6 cleaned lines of code
-in 2 files:
- - src/pages/Admin/Admin.jsx (121:126)
- - src/pages/GameDetail/GameDetail.jsx (100:105)
-
-duplicated block id: 82
-size: 6 cleaned lines of code
-in 2 files:
- - src/pages/GameDetail/GameDetail.jsx (100:105)
- - src/pages/Profile/EditProfile/EditProfile.jsx (25:30)
-
-duplicated block id: 83
-size: 6 cleaned lines of code
-in 2 files:
- - src/pages/Profile/EditProfile/EditProfile.jsx (25:30)
- - src/pages/oldDev/Dev.jsx (78:83)
 

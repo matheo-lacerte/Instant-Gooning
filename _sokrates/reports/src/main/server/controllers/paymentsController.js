@@ -1,5 +1,6 @@
 import Stripe from "stripe";
 import { supabaseAdmin } from "../config/supabase.js";
+import { syncStripeForGame } from "../utils/stripePricing.js";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: "2024-06-20" });
 
 export async function checkoutCart(req, res) {
@@ -19,11 +20,23 @@ export async function checkoutCart(req, res) {
 
     for (const it of items) {
       const game = it.games;
-      const priceId = game?.stripe_price_id;
-      if (!priceId) {
-        console.error("[checkoutCart] missing stripe_price_id for game:", game?.id);
-        return res.status(500).json({ error: `Stripe price missing for game ${game?.id}` });
+      let priceId = game?.stripe_price_id;
+
+      // Ensure we have an ACTIVE price; auto-sync if missing/inactive
+      try {
+        if (!priceId) {
+          priceId = await syncStripeForGame(game);
+        } else {
+          const pr = await stripe.prices.retrieve(priceId);
+          if (!pr.active) {
+            priceId = await syncStripeForGame(game);
+          }
+        }
+      } catch (syncErr) {
+        console.error("[checkoutCart] price sync failed for game", game?.id, syncErr);
+        return res.status(500).json({ error: `Échec de préparation du prix Stripe pour le jeu ${game?.id}` });
       }
+
       line_items.push({ price: priceId, quantity: it.quantity });
     }
 

@@ -1,0 +1,68 @@
+<html>
+<head>
+    <title>cypress/e2e/test3.cy.js</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">cypress/e2e/test3.cy.js (<b>27</b> lines of code) (<a href="test3.cy.js">raw</a>):</h3>
+<div id="editor">// Parcours critique: &eacute;dition du profil utilisateur (persistance et reflet UI)
+
+describe(&quot;Profil: modifier informations et persistance&quot;, () =&gt; {
+  it(&quot;se connecte, modifie le pr&eacute;nom et sauvegarde&quot;, () =&gt; {
+    // LOGIN
+    cy.visit(&quot;http://localhost:5173/login&quot;);
+    cy.get('#email').type('test@test.com');
+    cy.get('#password').type('Abcde123456!');
+    cy.intercept('POST', 'http://localhost:5174/api/auth/login').as('login');
+    cy.contains('Se connecter').click();
+    cy.wait('@login').its('response.statusCode').should('eq', 200);
+
+    // Aller au profil
+    cy.visit('http://localhost:5173/profile');
+    cy.contains('Informations du compte').should('be.visible');
+
+    // Aller &agrave; la page d'&eacute;dition
+    cy.contains('Modifier les informations du compte').click();
+    cy.url().should('include', '/profile/editProfile');
+
+    // Modifier le pr&eacute;nom
+    const newFirst = `Test-${Date.now()}`;
+    cy.get('#firstName').clear().type(newFirst);
+
+    // Sauvegarder
+    cy.intercept('POST', 'http://localhost:5174/api/user/changeUserProfile').as('saveProfile');
+    cy.contains('Sauvegarder').click();
+    cy.wait('@saveProfile').its('response.statusCode').should('eq', 200);
+
+    // Retour profil et v&eacute;rifications
+    cy.url().should('include', '/profile');
+    cy.get('#firstName').should('have.value', newFirst);
+
+    // V&eacute;rifier localStorage persiste
+    cy.window().then(win =&gt; {
+      const userRaw = win.localStorage.getItem('user');
+      expect(userRaw).to.be.a('string');
+      const user = JSON.parse(userRaw);
+      expect(user.first_name).to.eq(newFirst);
+    });
+  });
+});
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/javascript");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

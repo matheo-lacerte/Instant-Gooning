@@ -1,26 +1,27 @@
 <html>
 <head>
-    <title>export default defineConfig()</title>
+    <title>export async function archiveStripeForGame()</title>
     <link rel="stylesheet" charset="UTF-8" href="https://d2bb1mtyn3kglb.cloudfront.net/lib/highlight/styles/docco.min.css">
     <script charset="UTF-8" type="application/javascript" src="https://d2bb1mtyn3kglb.cloudfront.net/lib/highlight/highlight.min.js"></script>
 </head>
 <body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
-<h3 style="margin-bottom: 0">export default defineConfig()</h3>
-<p style="margin-top: 4px">in <i>vite.config.js [5:12]</i></p>
+<h3 style="margin-bottom: 0">export async function archiveStripeForGame()</h3>
+<p style="margin-top: 4px">in <i>server/utils/stripePricing.js [47:55]</i></p>
 <ul>
     <li><b>8</b> lines of code</li>
-    <li><b>1</b> McCabe index (conditional complexity)</li>
+    <li><b>5</b> McCabe index (conditional complexity)</li>
 </ul>
 <pre>
 <code class="js">
-export default defineConfig({
-  plugins: [react()],
-  server: {
-    proxy: {
-      '/api': 'http://localhost:5174'
-    }
+export async function archiveStripeForGame(game) {
+
+  if (game.stripe_price_id) {
+    try { await stripe.prices.update(game.stripe_price_id, { active: false }); } catch {}
   }
-})
+  if (game.stripe_product_id) {
+    try { await stripe.products.update(game.stripe_product_id, { active: false }); } catch {}
+  }
+}
 
 </code>
 </pre>

@@ -1,63 +1,34 @@
 {
   "title" : "Duplication",
-  "timestamp" : "2025-11-22 14:17:49",
+  "timestamp" : "2025-12-05 15:09:09",
   "duplicates" : [ {
-    "blockSize" : 126,
-    "duplicatedFileBlocks" : [ {
-      "file" : {
-        "relativePath" : "src/pages/Profile/Profile.css",
-        "extension" : "css",
-        "linesOfCode" : 180,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 180,
-      "startLine" : 65,
-      "endLine" : 211,
-      "cleanedStartLine" : 55,
-      "cleanedEndLine" : 180
-    }, {
-      "file" : {
-        "relativePath" : "src/pages/oldDev/Dev.css",
-        "extension" : "css",
-        "linesOfCode" : 126,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 126,
-      "startLine" : 1,
-      "endLine" : 147,
-      "cleanedStartLine" : 1,
-      "cleanedEndLine" : 126
-    } ]
-  }, {
-    "blockSize" : 64,
+    "blockSize" : 42,
     "duplicatedFileBlocks" : [ {
       "file" : {
         "relativePath" : "src/pages/Dev/DevGameDetail/devGameDetail.jsx",
         "extension" : "jsx",
-        "linesOfCode" : 489,
+        "linesOfCode" : 485,
         "components" : [ "primary::src" ],
         "concerns" : [ "::Unclassified" ]
       },
-      "sourceFileCleanedLinesOfCode" : 444,
-      "startLine" : 224,
-      "endLine" : 302,
-      "cleanedStartLine" : 209,
-      "cleanedEndLine" : 272
+      "sourceFileCleanedLinesOfCode" : 443,
+      "startLine" : 263,
+      "endLine" : 313,
+      "cleanedStartLine" : 241,
+      "cleanedEndLine" : 282
     }, {
       "file" : {
         "relativePath" : "src/pages/GameDetail/GameDetail.jsx",
         "extension" : "jsx",
-        "linesOfCode" : 305,
+        "linesOfCode" : 282,
         "components" : [ "primary::src" ],
         "concerns" : [ "::Unclassified" ]
       },
-      "sourceFileCleanedLinesOfCode" : 268,
-      "startLine" : 114,
-      "endLine" : 192,
-      "cleanedStartLine" : 105,
-      "cleanedEndLine" : 168
+      "sourceFileCleanedLinesOfCode" : 251,
+      "startLine" : 134,
+      "endLine" : 184,
+      "cleanedStartLine" : 121,
+      "cleanedEndLine" : 162
     } ]
   }, {
     "blockSize" : 29,
@@ -65,57 +36,28 @@
       "file" : {
         "relativePath" : "src/pages/Dev/DevGameDetail/devGameDetail.jsx",
         "extension" : "jsx",
-        "linesOfCode" : 489,
+        "linesOfCode" : 485,
         "components" : [ "primary::src" ],
         "concerns" : [ "::Unclassified" ]
       },
-      "sourceFileCleanedLinesOfCode" : 444,
-      "startLine" : 482,
-      "endLine" : 518,
-      "cleanedStartLine" : 416,
-      "cleanedEndLine" : 444
+      "sourceFileCleanedLinesOfCode" : 443,
+      "startLine" : 479,
+      "endLine" : 515,
+      "cleanedStartLine" : 415,
+      "cleanedEndLine" : 443
     }, {
       "file" : {
         "relativePath" : "src/pages/GameDetail/GameDetail.jsx",
         "extension" : "jsx",
-        "linesOfCode" : 305,
+        "linesOfCode" : 282,
         "components" : [ "primary::src" ],
         "concerns" : [ "::Unclassified" ]
       },
-      "sourceFileCleanedLinesOfCode" : 268,
-      "startLine" : 289,
-      "endLine" : 325,
-      "cleanedStartLine" : 240,
-      "cleanedEndLine" : 268
-    } ]
-  }, {
-    "blockSize" : 28,
-    "duplicatedFileBlocks" : [ {
-      "file" : {
-        "relativePath" : "src/pages/Dev/DevGameDetail/devGameDetail.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 489,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 444,
-      "startLine" : 304,
-      "endLine" : 336,
-      "cleanedStartLine" : 274,
-      "cleanedEndLine" : 301
-    }, {
-      "file" : {
-        "relativePath" : "src/pages/GameDetail/GameDetail.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 305,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 268,
-      "startLine" : 194,
-      "endLine" : 226,
-      "cleanedStartLine" : 170,
-      "cleanedEndLine" : 197
+      "sourceFileCleanedLinesOfCode" : 251,
+      "startLine" : 267,
+      "endLine" : 303,
+      "cleanedStartLine" : 223,
+      "cleanedEndLine" : 251
     } ]
   }, {
     "blockSize" : 24,
@@ -147,33 +89,62 @@
       "cleanedEndLine" : 69
     } ]
   }, {
+    "blockSize" : 22,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "src/pages/Dev/DevGameDetail/devGameDetail.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 485,
+        "components" : [ "primary::src" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 443,
+      "startLine" : 25,
+      "endLine" : 50,
+      "cleanedStartLine" : 20,
+      "cleanedEndLine" : 41
+    }, {
+      "file" : {
+        "relativePath" : "src/pages/GameDetail/GameDetail.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 282,
+        "components" : [ "primary::src" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 251,
+      "startLine" : 5,
+      "endLine" : 30,
+      "cleanedStartLine" : 4,
+      "cleanedEndLine" : 25
+    } ]
+  }, {
     "blockSize" : 20,
     "duplicatedFileBlocks" : [ {
       "file" : {
         "relativePath" : "src/pages/Dev/DevGameDetail/devGameDetail.jsx",
         "extension" : "jsx",
-        "linesOfCode" : 489,
+        "linesOfCode" : 485,
         "components" : [ "primary::src" ],
         "concerns" : [ "::Unclassified" ]
       },
-      "sourceFileCleanedLinesOfCode" : 444,
-      "startLine" : 158,
-      "endLine" : 178,
-      "cleanedStartLine" : 147,
-      "cleanedEndLine" : 166
+      "sourceFileCleanedLinesOfCode" : 443,
+      "startLine" : 197,
+      "endLine" : 217,
+      "cleanedStartLine" : 179,
+      "cleanedEndLine" : 198
     }, {
       "file" : {
         "relativePath" : "src/pages/GameDetail/GameDetail.jsx",
         "extension" : "jsx",
-        "linesOfCode" : 305,
+        "linesOfCode" : 282,
         "components" : [ "primary::src" ],
         "concerns" : [ "::Unclassified" ]
       },
-      "sourceFileCleanedLinesOfCode" : 268,
-      "startLine" : 73,
-      "endLine" : 93,
-      "cleanedStartLine" : 66,
-      "cleanedEndLine" : 85
+      "sourceFileCleanedLinesOfCode" : 251,
+      "startLine" : 93,
+      "endLine" : 113,
+      "cleanedStartLine" : 82,
+      "cleanedEndLine" : 101
     } ]
   }, {
     "blockSize" : 18,
@@ -234,236 +205,91 @@
       "cleanedEndLine" : 49
     } ]
   }, {
-    "blockSize" : 14,
-    "duplicatedFileBlocks" : [ {
-      "file" : {
-        "relativePath" : "src/pages/GameDetail/GameDetail.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 305,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 268,
-      "startLine" : 139,
-      "endLine" : 154,
-      "cleanedStartLine" : 127,
-      "cleanedEndLine" : 140
-    }, {
-      "file" : {
-        "relativePath" : "src/pages/GameDetail/GameDetail.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 305,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 268,
-      "startLine" : 191,
-      "endLine" : 206,
-      "cleanedStartLine" : 167,
-      "cleanedEndLine" : 180
-    } ]
-  }, {
-    "blockSize" : 14,
+    "blockSize" : 17,
     "duplicatedFileBlocks" : [ {
       "file" : {
         "relativePath" : "src/pages/Dev/DevGameDetail/devGameDetail.jsx",
         "extension" : "jsx",
-        "linesOfCode" : 489,
+        "linesOfCode" : 485,
         "components" : [ "primary::src" ],
         "concerns" : [ "::Unclassified" ]
       },
-      "sourceFileCleanedLinesOfCode" : 444,
-      "startLine" : 249,
-      "endLine" : 264,
-      "cleanedStartLine" : 231,
-      "cleanedEndLine" : 244
+      "sourceFileCleanedLinesOfCode" : 443,
+      "startLine" : 316,
+      "endLine" : 333,
+      "cleanedStartLine" : 284,
+      "cleanedEndLine" : 300
     }, {
       "file" : {
         "relativePath" : "src/pages/GameDetail/GameDetail.jsx",
         "extension" : "jsx",
-        "linesOfCode" : 305,
+        "linesOfCode" : 282,
         "components" : [ "primary::src" ],
         "concerns" : [ "::Unclassified" ]
       },
-      "sourceFileCleanedLinesOfCode" : 268,
-      "startLine" : 191,
-      "endLine" : 206,
-      "cleanedStartLine" : 167,
+      "sourceFileCleanedLinesOfCode" : 251,
+      "startLine" : 187,
+      "endLine" : 204,
+      "cleanedStartLine" : 164,
       "cleanedEndLine" : 180
-    } ]
-  }, {
-    "blockSize" : 14,
-    "duplicatedFileBlocks" : [ {
-      "file" : {
-        "relativePath" : "src/pages/Profile/EditProfile/EditProfile.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 130,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 111,
-      "startLine" : 60,
-      "endLine" : 78,
-      "cleanedStartLine" : 53,
-      "cleanedEndLine" : 66
-    }, {
-      "file" : {
-        "relativePath" : "src/pages/oldDev/CreateGame/CreateGame.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 252,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 220,
-      "startLine" : 73,
-      "endLine" : 91,
-      "cleanedStartLine" : 67,
-      "cleanedEndLine" : 80
-    } ]
-  }, {
-    "blockSize" : 14,
-    "duplicatedFileBlocks" : [ {
-      "file" : {
-        "relativePath" : "src/pages/Profile/EditPassword/EditPassword.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 132,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 111,
-      "startLine" : 48,
-      "endLine" : 66,
-      "cleanedStartLine" : 43,
-      "cleanedEndLine" : 56
-    }, {
-      "file" : {
-        "relativePath" : "src/pages/oldDev/CreateGame/CreateGame.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 252,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 220,
-      "startLine" : 73,
-      "endLine" : 91,
-      "cleanedStartLine" : 67,
-      "cleanedEndLine" : 80
-    } ]
-  }, {
-    "blockSize" : 14,
-    "duplicatedFileBlocks" : [ {
-      "file" : {
-        "relativePath" : "src/pages/oldDev/CreateGame/CreateGame.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 252,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 220,
-      "startLine" : 73,
-      "endLine" : 91,
-      "cleanedStartLine" : 67,
-      "cleanedEndLine" : 80
-    }, {
-      "file" : {
-        "relativePath" : "src/pages/oldDev/Dev.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 223,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 186,
-      "startLine" : 95,
-      "endLine" : 113,
-      "cleanedStartLine" : 85,
-      "cleanedEndLine" : 98
-    } ]
-  }, {
-    "blockSize" : 14,
-    "duplicatedFileBlocks" : [ {
-      "file" : {
-        "relativePath" : "src/pages/Profile/EditProfile/EditProfile.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 130,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 111,
-      "startLine" : 60,
-      "endLine" : 78,
-      "cleanedStartLine" : 53,
-      "cleanedEndLine" : 66
-    }, {
-      "file" : {
-        "relativePath" : "src/pages/oldDev/Dev.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 223,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 186,
-      "startLine" : 95,
-      "endLine" : 113,
-      "cleanedStartLine" : 85,
-      "cleanedEndLine" : 98
-    } ]
-  }, {
-    "blockSize" : 14,
-    "duplicatedFileBlocks" : [ {
-      "file" : {
-        "relativePath" : "src/pages/Profile/EditPassword/EditPassword.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 132,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 111,
-      "startLine" : 48,
-      "endLine" : 66,
-      "cleanedStartLine" : 43,
-      "cleanedEndLine" : 56
-    }, {
-      "file" : {
-        "relativePath" : "src/pages/oldDev/Dev.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 223,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 186,
-      "startLine" : 95,
-      "endLine" : 113,
-      "cleanedStartLine" : 85,
-      "cleanedEndLine" : 98
     } ]
   }, {
     "blockSize" : 13,
     "duplicatedFileBlocks" : [ {
       "file" : {
-        "relativePath" : "src/pages/Logout/Logout.css",
-        "extension" : "css",
-        "linesOfCode" : 27,
+        "relativePath" : "src/pages/Dev/DevGameDetail/devGameDetail.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 485,
         "components" : [ "primary::src" ],
         "concerns" : [ "::Unclassified" ]
       },
-      "sourceFileCleanedLinesOfCode" : 27,
-      "startLine" : 2,
-      "endLine" : 14,
-      "cleanedStartLine" : 2,
-      "cleanedEndLine" : 14
+      "sourceFileCleanedLinesOfCode" : 443,
+      "startLine" : 97,
+      "endLine" : 110,
+      "cleanedStartLine" : 87,
+      "cleanedEndLine" : 99
     }, {
       "file" : {
-        "relativePath" : "src/pages/oldDev/Dev.css",
-        "extension" : "css",
-        "linesOfCode" : 126,
+        "relativePath" : "src/pages/GameDetail/GameDetail.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 282,
         "components" : [ "primary::src" ],
         "concerns" : [ "::Unclassified" ]
       },
-      "sourceFileCleanedLinesOfCode" : 126,
-      "startLine" : 59,
-      "endLine" : 71,
-      "cleanedStartLine" : 52,
-      "cleanedEndLine" : 64
+      "sourceFileCleanedLinesOfCode" : 251,
+      "startLine" : 46,
+      "endLine" : 59,
+      "cleanedStartLine" : 40,
+      "cleanedEndLine" : 52
+    } ]
+  }, {
+    "blockSize" : 13,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "src/pages/Dev/DevGameDetail/devGameDetail.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 485,
+        "components" : [ "primary::src" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 443,
+      "startLine" : 8,
+      "endLine" : 23,
+      "cleanedStartLine" : 7,
+      "cleanedEndLine" : 19
+    }, {
+      "file" : {
+        "relativePath" : "src/pages/GameDetail/GameDetail.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 282,
+        "components" : [ "primary::src" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 251,
+      "startLine" : 8,
+      "endLine" : 23,
+      "cleanedStartLine" : 7,
+      "cleanedEndLine" : 19
     } ]
   }, {
     "blockSize" : 13,
@@ -500,57 +326,28 @@
       "file" : {
         "relativePath" : "src/pages/Dev/DevGameDetail/devGameDetail.jsx",
         "extension" : "jsx",
-        "linesOfCode" : 489,
+        "linesOfCode" : 485,
         "components" : [ "primary::src" ],
         "concerns" : [ "::Unclassified" ]
       },
-      "sourceFileCleanedLinesOfCode" : 444,
-      "startLine" : 58,
-      "endLine" : 71,
-      "cleanedStartLine" : 55,
-      "cleanedEndLine" : 67
+      "sourceFileCleanedLinesOfCode" : 443,
+      "startLine" : 8,
+      "endLine" : 23,
+      "cleanedStartLine" : 7,
+      "cleanedEndLine" : 19
     }, {
       "file" : {
-        "relativePath" : "src/pages/GameDetail/GameDetail.jsx",
+        "relativePath" : "src/pages/Dev/DevGameDetail/devGameDetail.jsx",
         "extension" : "jsx",
-        "linesOfCode" : 305,
+        "linesOfCode" : 485,
         "components" : [ "primary::src" ],
         "concerns" : [ "::Unclassified" ]
       },
-      "sourceFileCleanedLinesOfCode" : 268,
-      "startLine" : 26,
-      "endLine" : 39,
-      "cleanedStartLine" : 24,
-      "cleanedEndLine" : 36
-    } ]
-  }, {
-    "blockSize" : 12,
-    "duplicatedFileBlocks" : [ {
-      "file" : {
-        "relativePath" : "src/pages/GameDetail/GameDetail.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 305,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 268,
-      "startLine" : 141,
-      "endLine" : 154,
-      "cleanedStartLine" : 129,
-      "cleanedEndLine" : 140
-    }, {
-      "file" : {
-        "relativePath" : "src/pages/GameDetail/GameDetail.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 305,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 268,
-      "startLine" : 172,
-      "endLine" : 185,
-      "cleanedStartLine" : 153,
-      "cleanedEndLine" : 164
+      "sourceFileCleanedLinesOfCode" : 443,
+      "startLine" : 28,
+      "endLine" : 43,
+      "cleanedStartLine" : 23,
+      "cleanedEndLine" : 35
     } ]
   }, {
     "blockSize" : 12,
@@ -558,173 +355,28 @@
       "file" : {
         "relativePath" : "src/pages/Dev/DevGameDetail/devGameDetail.jsx",
         "extension" : "jsx",
-        "linesOfCode" : 489,
+        "linesOfCode" : 485,
         "components" : [ "primary::src" ],
         "concerns" : [ "::Unclassified" ]
       },
-      "sourceFileCleanedLinesOfCode" : 444,
-      "startLine" : 251,
-      "endLine" : 264,
-      "cleanedStartLine" : 233,
-      "cleanedEndLine" : 244
-    }, {
-      "file" : {
-        "relativePath" : "src/pages/Dev/DevGameDetail/devGameDetail.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 489,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 444,
-      "startLine" : 282,
-      "endLine" : 295,
-      "cleanedStartLine" : 257,
-      "cleanedEndLine" : 268
-    } ]
-  }, {
-    "blockSize" : 12,
-    "duplicatedFileBlocks" : [ {
-      "file" : {
-        "relativePath" : "src/pages/GameDetail/GameDetail.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 305,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 268,
-      "startLine" : 172,
-      "endLine" : 185,
-      "cleanedStartLine" : 153,
-      "cleanedEndLine" : 164
+      "sourceFileCleanedLinesOfCode" : 443,
+      "startLine" : 69,
+      "endLine" : 80,
+      "cleanedStartLine" : 59,
+      "cleanedEndLine" : 70
     }, {
       "file" : {
         "relativePath" : "src/pages/GameDetail/GameDetail.jsx",
         "extension" : "jsx",
-        "linesOfCode" : 305,
+        "linesOfCode" : 282,
         "components" : [ "primary::src" ],
         "concerns" : [ "::Unclassified" ]
       },
-      "sourceFileCleanedLinesOfCode" : 268,
-      "startLine" : 193,
-      "endLine" : 206,
-      "cleanedStartLine" : 169,
-      "cleanedEndLine" : 180
-    } ]
-  }, {
-    "blockSize" : 12,
-    "duplicatedFileBlocks" : [ {
-      "file" : {
-        "relativePath" : "src/pages/Dev/DevGameDetail/devGameDetail.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 489,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 444,
-      "startLine" : 282,
-      "endLine" : 295,
-      "cleanedStartLine" : 257,
-      "cleanedEndLine" : 268
-    }, {
-      "file" : {
-        "relativePath" : "src/pages/GameDetail/GameDetail.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 305,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 268,
-      "startLine" : 141,
-      "endLine" : 154,
-      "cleanedStartLine" : 129,
-      "cleanedEndLine" : 140
-    } ]
-  }, {
-    "blockSize" : 12,
-    "duplicatedFileBlocks" : [ {
-      "file" : {
-        "relativePath" : "src/pages/Dev/DevGameDetail/devGameDetail.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 489,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 444,
-      "startLine" : 282,
-      "endLine" : 295,
-      "cleanedStartLine" : 257,
-      "cleanedEndLine" : 268
-    }, {
-      "file" : {
-        "relativePath" : "src/pages/GameDetail/GameDetail.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 305,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 268,
-      "startLine" : 193,
-      "endLine" : 206,
-      "cleanedStartLine" : 169,
-      "cleanedEndLine" : 180
-    } ]
-  }, {
-    "blockSize" : 12,
-    "duplicatedFileBlocks" : [ {
-      "file" : {
-        "relativePath" : "src/pages/Dev/DevGameDetail/devGameDetail.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 489,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 444,
-      "startLine" : 30,
-      "endLine" : 41,
+      "sourceFileCleanedLinesOfCode" : 251,
+      "startLine" : 33,
+      "endLine" : 44,
       "cleanedStartLine" : 27,
       "cleanedEndLine" : 38
-    }, {
-      "file" : {
-        "relativePath" : "src/pages/GameDetail/GameDetail.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 305,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 268,
-      "startLine" : 13,
-      "endLine" : 24,
-      "cleanedStartLine" : 11,
-      "cleanedEndLine" : 22
-    } ]
-  }, {
-    "blockSize" : 12,
-    "duplicatedFileBlocks" : [ {
-      "file" : {
-        "relativePath" : "src/pages/Dev/DevGameDetail/devGameDetail.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 489,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 444,
-      "startLine" : 251,
-      "endLine" : 264,
-      "cleanedStartLine" : 233,
-      "cleanedEndLine" : 244
-    }, {
-      "file" : {
-        "relativePath" : "src/pages/GameDetail/GameDetail.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 305,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 268,
-      "startLine" : 172,
-      "endLine" : 185,
-      "cleanedStartLine" : 153,
-      "cleanedEndLine" : 164
     } ]
   }, {
     "blockSize" : 11,
@@ -759,93 +411,6 @@
     "blockSize" : 11,
     "duplicatedFileBlocks" : [ {
       "file" : {
-        "relativePath" : "src/pages/Dev/DevGameDetail/devGameDetail.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 489,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 444,
-      "startLine" : 304,
-      "endLine" : 316,
-      "cleanedStartLine" : 274,
-      "cleanedEndLine" : 284
-    }, {
-      "file" : {
-        "relativePath" : "src/pages/GameDetail/GameDetail.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 305,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 268,
-      "startLine" : 173,
-      "endLine" : 185,
-      "cleanedStartLine" : 154,
-      "cleanedEndLine" : 164
-    } ]
-  }, {
-    "blockSize" : 11,
-    "duplicatedFileBlocks" : [ {
-      "file" : {
-        "relativePath" : "src/pages/Dev/DevGameDetail/devGameDetail.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 489,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 444,
-      "startLine" : 252,
-      "endLine" : 264,
-      "cleanedStartLine" : 234,
-      "cleanedEndLine" : 244
-    }, {
-      "file" : {
-        "relativePath" : "src/pages/Dev/DevGameDetail/devGameDetail.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 489,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 444,
-      "startLine" : 304,
-      "endLine" : 316,
-      "cleanedStartLine" : 274,
-      "cleanedEndLine" : 284
-    } ]
-  }, {
-    "blockSize" : 11,
-    "duplicatedFileBlocks" : [ {
-      "file" : {
-        "relativePath" : "src/pages/Profile/Profile.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 103,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 82,
-      "startLine" : 23,
-      "endLine" : 36,
-      "cleanedStartLine" : 18,
-      "cleanedEndLine" : 28
-    }, {
-      "file" : {
-        "relativePath" : "src/pages/oldDev/CreateGame/CreateGame.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 252,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 220,
-      "startLine" : 74,
-      "endLine" : 87,
-      "cleanedStartLine" : 68,
-      "cleanedEndLine" : 78
-    } ]
-  }, {
-    "blockSize" : 11,
-    "duplicatedFileBlocks" : [ {
-      "file" : {
         "relativePath" : "src/pages/Profile/EditProfile/EditProfile.jsx",
         "extension" : "jsx",
         "linesOfCode" : 130,
@@ -870,93 +435,6 @@
       "endLine" : 36,
       "cleanedStartLine" : 18,
       "cleanedEndLine" : 28
-    } ]
-  }, {
-    "blockSize" : 11,
-    "duplicatedFileBlocks" : [ {
-      "file" : {
-        "relativePath" : "src/pages/Dev/DevGameDetail/devGameDetail.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 489,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 444,
-      "startLine" : 283,
-      "endLine" : 295,
-      "cleanedStartLine" : 258,
-      "cleanedEndLine" : 268
-    }, {
-      "file" : {
-        "relativePath" : "src/pages/Dev/DevGameDetail/devGameDetail.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 489,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 444,
-      "startLine" : 304,
-      "endLine" : 316,
-      "cleanedStartLine" : 274,
-      "cleanedEndLine" : 284
-    } ]
-  }, {
-    "blockSize" : 11,
-    "duplicatedFileBlocks" : [ {
-      "file" : {
-        "relativePath" : "src/pages/Dev/DevGameDetail/devGameDetail.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 489,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 444,
-      "startLine" : 304,
-      "endLine" : 316,
-      "cleanedStartLine" : 274,
-      "cleanedEndLine" : 284
-    }, {
-      "file" : {
-        "relativePath" : "src/pages/GameDetail/GameDetail.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 305,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 268,
-      "startLine" : 142,
-      "endLine" : 154,
-      "cleanedStartLine" : 130,
-      "cleanedEndLine" : 140
-    } ]
-  }, {
-    "blockSize" : 11,
-    "duplicatedFileBlocks" : [ {
-      "file" : {
-        "relativePath" : "src/pages/Profile/Profile.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 103,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 82,
-      "startLine" : 23,
-      "endLine" : 36,
-      "cleanedStartLine" : 18,
-      "cleanedEndLine" : 28
-    }, {
-      "file" : {
-        "relativePath" : "src/pages/oldDev/Dev.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 223,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 186,
-      "startLine" : 96,
-      "endLine" : 109,
-      "cleanedStartLine" : 86,
-      "cleanedEndLine" : 96
     } ]
   }, {
     "blockSize" : 10,
@@ -986,64 +464,6 @@
       "endLine" : 47,
       "cleanedStartLine" : 32,
       "cleanedEndLine" : 41
-    } ]
-  }, {
-    "blockSize" : 10,
-    "duplicatedFileBlocks" : [ {
-      "file" : {
-        "relativePath" : "src/pages/Profile/Purchases.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 91,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 73,
-      "startLine" : 36,
-      "endLine" : 47,
-      "cleanedStartLine" : 32,
-      "cleanedEndLine" : 41
-    }, {
-      "file" : {
-        "relativePath" : "src/pages/oldDev/Dev.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 223,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 186,
-      "startLine" : 98,
-      "endLine" : 109,
-      "cleanedStartLine" : 87,
-      "cleanedEndLine" : 96
-    } ]
-  }, {
-    "blockSize" : 10,
-    "duplicatedFileBlocks" : [ {
-      "file" : {
-        "relativePath" : "src/pages/Profile/Purchases.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 91,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 73,
-      "startLine" : 36,
-      "endLine" : 47,
-      "cleanedStartLine" : 32,
-      "cleanedEndLine" : 41
-    }, {
-      "file" : {
-        "relativePath" : "src/pages/oldDev/CreateGame/CreateGame.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 252,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 220,
-      "startLine" : 76,
-      "endLine" : 87,
-      "cleanedStartLine" : 69,
-      "cleanedEndLine" : 78
     } ]
   }, {
     "blockSize" : 10,
@@ -1080,86 +500,28 @@
       "file" : {
         "relativePath" : "src/pages/Dev/DevGameDetail/devGameDetail.jsx",
         "extension" : "jsx",
-        "linesOfCode" : 489,
+        "linesOfCode" : 485,
         "components" : [ "primary::src" ],
         "concerns" : [ "::Unclassified" ]
       },
-      "sourceFileCleanedLinesOfCode" : 444,
-      "startLine" : 187,
-      "endLine" : 195,
-      "cleanedStartLine" : 173,
-      "cleanedEndLine" : 181
+      "sourceFileCleanedLinesOfCode" : 443,
+      "startLine" : 226,
+      "endLine" : 234,
+      "cleanedStartLine" : 205,
+      "cleanedEndLine" : 213
     }, {
       "file" : {
         "relativePath" : "src/pages/Dev/DevGameDetail/devGameDetail.jsx",
         "extension" : "jsx",
-        "linesOfCode" : 489,
+        "linesOfCode" : 485,
         "components" : [ "primary::src" ],
         "concerns" : [ "::Unclassified" ]
       },
-      "sourceFileCleanedLinesOfCode" : 444,
-      "startLine" : 210,
-      "endLine" : 218,
-      "cleanedStartLine" : 195,
-      "cleanedEndLine" : 203
-    } ]
-  }, {
-    "blockSize" : 8,
-    "duplicatedFileBlocks" : [ {
-      "file" : {
-        "relativePath" : "src/pages/Profile/EditProfile/EditProfile.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 130,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 111,
-      "startLine" : 115,
-      "endLine" : 124,
-      "cleanedStartLine" : 94,
-      "cleanedEndLine" : 101
-    }, {
-      "file" : {
-        "relativePath" : "src/pages/Profile/Profile.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 103,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 82,
-      "startLine" : 85,
-      "endLine" : 94,
-      "cleanedStartLine" : 64,
-      "cleanedEndLine" : 71
-    } ]
-  }, {
-    "blockSize" : 8,
-    "duplicatedFileBlocks" : [ {
-      "file" : {
-        "relativePath" : "src/pages/Profile/EditProfile/EditProfile.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 130,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 111,
-      "startLine" : 105,
-      "endLine" : 114,
-      "cleanedStartLine" : 86,
-      "cleanedEndLine" : 93
-    }, {
-      "file" : {
-        "relativePath" : "src/pages/Profile/Profile.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 103,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 82,
-      "startLine" : 74,
-      "endLine" : 83,
-      "cleanedStartLine" : 55,
-      "cleanedEndLine" : 62
+      "sourceFileCleanedLinesOfCode" : 443,
+      "startLine" : 249,
+      "endLine" : 257,
+      "cleanedStartLine" : 227,
+      "cleanedEndLine" : 235
     } ]
   }, {
     "blockSize" : 8,
@@ -1223,30 +585,88 @@
     "blockSize" : 8,
     "duplicatedFileBlocks" : [ {
       "file" : {
-        "relativePath" : "src/pages/Dev/DevGameDetail/devGameDetail.jsx",
+        "relativePath" : "src/pages/Profile/EditProfile/EditProfile.jsx",
         "extension" : "jsx",
-        "linesOfCode" : 489,
+        "linesOfCode" : 130,
         "components" : [ "primary::src" ],
         "concerns" : [ "::Unclassified" ]
       },
-      "sourceFileCleanedLinesOfCode" : 444,
-      "startLine" : 101,
-      "endLine" : 108,
+      "sourceFileCleanedLinesOfCode" : 111,
+      "startLine" : 115,
+      "endLine" : 124,
       "cleanedStartLine" : 94,
       "cleanedEndLine" : 101
     }, {
       "file" : {
-        "relativePath" : "src/pages/GameDetail/GameDetail.jsx",
+        "relativePath" : "src/pages/Profile/Profile.jsx",
         "extension" : "jsx",
-        "linesOfCode" : 305,
+        "linesOfCode" : 103,
         "components" : [ "primary::src" ],
         "concerns" : [ "::Unclassified" ]
       },
-      "sourceFileCleanedLinesOfCode" : 268,
-      "startLine" : 62,
-      "endLine" : 69,
-      "cleanedStartLine" : 56,
-      "cleanedEndLine" : 63
+      "sourceFileCleanedLinesOfCode" : 82,
+      "startLine" : 85,
+      "endLine" : 94,
+      "cleanedStartLine" : 64,
+      "cleanedEndLine" : 71
+    } ]
+  }, {
+    "blockSize" : 8,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "src/pages/Dev/DevGameDetail/devGameDetail.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 485,
+        "components" : [ "primary::src" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 443,
+      "startLine" : 140,
+      "endLine" : 147,
+      "cleanedStartLine" : 126,
+      "cleanedEndLine" : 133
+    }, {
+      "file" : {
+        "relativePath" : "src/pages/GameDetail/GameDetail.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 282,
+        "components" : [ "primary::src" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 251,
+      "startLine" : 82,
+      "endLine" : 89,
+      "cleanedStartLine" : 72,
+      "cleanedEndLine" : 79
+    } ]
+  }, {
+    "blockSize" : 8,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "src/pages/Profile/EditProfile/EditProfile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 130,
+        "components" : [ "primary::src" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 111,
+      "startLine" : 105,
+      "endLine" : 114,
+      "cleanedStartLine" : 86,
+      "cleanedEndLine" : 93
+    }, {
+      "file" : {
+        "relativePath" : "src/pages/Profile/Profile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 103,
+        "components" : [ "primary::src" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 82,
+      "startLine" : 74,
+      "endLine" : 83,
+      "cleanedStartLine" : 55,
+      "cleanedEndLine" : 62
     } ]
   }, {
     "blockSize" : 7,
@@ -1484,35 +904,6 @@
     "blockSize" : 7,
     "duplicatedFileBlocks" : [ {
       "file" : {
-        "relativePath" : "src/App.css",
-        "extension" : "css",
-        "linesOfCode" : 480,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 480,
-      "startLine" : 146,
-      "endLine" : 152,
-      "cleanedStartLine" : 129,
-      "cleanedEndLine" : 135
-    }, {
-      "file" : {
-        "relativePath" : "src/pages/oldDev/Dev.css",
-        "extension" : "css",
-        "linesOfCode" : 126,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 126,
-      "startLine" : 63,
-      "endLine" : 69,
-      "cleanedStartLine" : 56,
-      "cleanedEndLine" : 62
-    } ]
-  }, {
-    "blockSize" : 7,
-    "duplicatedFileBlocks" : [ {
-      "file" : {
         "relativePath" : "src/pages/Profile/EditProfile/EditProfile.jsx",
         "extension" : "jsx",
         "linesOfCode" : 130,
@@ -1629,6 +1020,151 @@
     "blockSize" : 6,
     "duplicatedFileBlocks" : [ {
       "file" : {
+        "relativePath" : "src/pages/Admin/Admin.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 215,
+        "components" : [ "primary::src" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 200,
+      "startLine" : 121,
+      "endLine" : 126,
+      "cleanedStartLine" : 111,
+      "cleanedEndLine" : 116
+    }, {
+      "file" : {
+        "relativePath" : "src/pages/GameDetail/GameDetail.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 282,
+        "components" : [ "primary::src" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 251,
+      "startLine" : 120,
+      "endLine" : 125,
+      "cleanedStartLine" : 107,
+      "cleanedEndLine" : 112
+    } ]
+  }, {
+    "blockSize" : 6,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "src/pages/GameDetail/GameDetail.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 282,
+        "components" : [ "primary::src" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 251,
+      "startLine" : 120,
+      "endLine" : 125,
+      "cleanedStartLine" : 107,
+      "cleanedEndLine" : 112
+    }, {
+      "file" : {
+        "relativePath" : "src/pages/Profile/EditProfile/EditProfile.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 130,
+        "components" : [ "primary::src" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 111,
+      "startLine" : 25,
+      "endLine" : 30,
+      "cleanedStartLine" : 21,
+      "cleanedEndLine" : 26
+    } ]
+  }, {
+    "blockSize" : 6,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "src/App.css",
+        "extension" : "css",
+        "linesOfCode" : 480,
+        "components" : [ "primary::src" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 480,
+      "startLine" : 1,
+      "endLine" : 6,
+      "cleanedStartLine" : 1,
+      "cleanedEndLine" : 6
+    }, {
+      "file" : {
+        "relativePath" : "src/index.css",
+        "extension" : "css",
+        "linesOfCode" : 33,
+        "components" : [ "primary::src" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 33,
+      "startLine" : 1,
+      "endLine" : 6,
+      "cleanedStartLine" : 1,
+      "cleanedEndLine" : 6
+    } ]
+  }, {
+    "blockSize" : 6,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "cypress/e2e/test2.cy.js",
+        "extension" : "js",
+        "linesOfCode" : 48,
+        "components" : [ "primary::cypress" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 48,
+      "startLine" : 7,
+      "endLine" : 12,
+      "cleanedStartLine" : 3,
+      "cleanedEndLine" : 8
+    }, {
+      "file" : {
+        "relativePath" : "cypress/e2e/test3.cy.js",
+        "extension" : "js",
+        "linesOfCode" : 27,
+        "components" : [ "primary::cypress" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 27,
+      "startLine" : 6,
+      "endLine" : 11,
+      "cleanedStartLine" : 3,
+      "cleanedEndLine" : 8
+    } ]
+  }, {
+    "blockSize" : 6,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
+        "relativePath" : "src/pages/Dev/DevGameDetail/devGameDetail.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 485,
+        "components" : [ "primary::src" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 443,
+      "startLine" : 346,
+      "endLine" : 353,
+      "cleanedStartLine" : 312,
+      "cleanedEndLine" : 317
+    }, {
+      "file" : {
+        "relativePath" : "src/pages/GameDetail/GameDetail.jsx",
+        "extension" : "jsx",
+        "linesOfCode" : 282,
+        "components" : [ "primary::src" ],
+        "concerns" : [ "::Unclassified" ]
+      },
+      "sourceFileCleanedLinesOfCode" : 251,
+      "startLine" : 209,
+      "endLine" : 216,
+      "cleanedStartLine" : 184,
+      "cleanedEndLine" : 189
+    } ]
+  }, {
+    "blockSize" : 6,
+    "duplicatedFileBlocks" : [ {
+      "file" : {
         "relativePath" : "src/pages/Dev/Dev.jsx",
         "extension" : "jsx",
         "linesOfCode" : 615,
@@ -1644,102 +1180,15 @@
       "file" : {
         "relativePath" : "src/pages/Dev/DevGameDetail/devGameDetail.jsx",
         "extension" : "jsx",
-        "linesOfCode" : 489,
+        "linesOfCode" : 485,
         "components" : [ "primary::src" ],
         "concerns" : [ "::Unclassified" ]
       },
-      "sourceFileCleanedLinesOfCode" : 444,
-      "startLine" : 17,
-      "endLine" : 22,
-      "cleanedStartLine" : 15,
-      "cleanedEndLine" : 20
-    } ]
-  }, {
-    "blockSize" : 6,
-    "duplicatedFileBlocks" : [ {
-      "file" : {
-        "relativePath" : "src/pages/Profile/EditPassword/EditPassword.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 132,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 111,
-      "startLine" : 27,
-      "endLine" : 32,
-      "cleanedStartLine" : 23,
-      "cleanedEndLine" : 28
-    }, {
-      "file" : {
-        "relativePath" : "src/pages/oldDev/CreateGame/CreateGame.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 252,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 220,
+      "sourceFileCleanedLinesOfCode" : 443,
       "startLine" : 56,
       "endLine" : 61,
-      "cleanedStartLine" : 50,
-      "cleanedEndLine" : 55
-    } ]
-  }, {
-    "blockSize" : 6,
-    "duplicatedFileBlocks" : [ {
-      "file" : {
-        "relativePath" : "src/pages/GameDetail/GameDetail.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 305,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 268,
-      "startLine" : 100,
-      "endLine" : 105,
-      "cleanedStartLine" : 91,
-      "cleanedEndLine" : 96
-    }, {
-      "file" : {
-        "relativePath" : "src/pages/oldDev/Dev.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 223,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 186,
-      "startLine" : 78,
-      "endLine" : 83,
-      "cleanedStartLine" : 68,
-      "cleanedEndLine" : 73
-    } ]
-  }, {
-    "blockSize" : 6,
-    "duplicatedFileBlocks" : [ {
-      "file" : {
-        "relativePath" : "server/controllers/gamesController.js",
-        "extension" : "js",
-        "linesOfCode" : 180,
-        "components" : [ "primary::server" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 151,
-      "startLine" : 49,
-      "endLine" : 54,
-      "cleanedStartLine" : 38,
-      "cleanedEndLine" : 43
-    }, {
-      "file" : {
-        "relativePath" : "src/pages/oldDev/CreateGame/CreateGame.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 252,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 220,
-      "startLine" : 39,
-      "endLine" : 44,
-      "cleanedStartLine" : 34,
-      "cleanedEndLine" : 39
+      "cleanedStartLine" : 47,
+      "cleanedEndLine" : 52
     } ]
   }, {
     "blockSize" : 6,
@@ -1803,220 +1252,17 @@
     "blockSize" : 6,
     "duplicatedFileBlocks" : [ {
       "file" : {
-        "relativePath" : "server/controllers/gamesController.js",
-        "extension" : "js",
-        "linesOfCode" : 180,
-        "components" : [ "primary::server" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 151,
-      "startLine" : 86,
-      "endLine" : 91,
-      "cleanedStartLine" : 69,
-      "cleanedEndLine" : 74
-    }, {
-      "file" : {
-        "relativePath" : "src/pages/oldDev/CreateGame/CreateGame.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 252,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 220,
-      "startLine" : 39,
-      "endLine" : 44,
-      "cleanedStartLine" : 34,
-      "cleanedEndLine" : 39
-    } ]
-  }, {
-    "blockSize" : 6,
-    "duplicatedFileBlocks" : [ {
-      "file" : {
-        "relativePath" : "src/pages/Dev/DevGameDetail/devGameDetail.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 489,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 444,
-      "startLine" : 6,
-      "endLine" : 11,
-      "cleanedStartLine" : 4,
-      "cleanedEndLine" : 9
-    }, {
-      "file" : {
         "relativePath" : "src/pages/GameDetail/GameDetail.jsx",
         "extension" : "jsx",
-        "linesOfCode" : 305,
+        "linesOfCode" : 282,
         "components" : [ "primary::src" ],
         "concerns" : [ "::Unclassified" ]
       },
-      "sourceFileCleanedLinesOfCode" : 268,
-      "startLine" : 5,
-      "endLine" : 10,
-      "cleanedStartLine" : 4,
-      "cleanedEndLine" : 9
-    } ]
-  }, {
-    "blockSize" : 6,
-    "duplicatedFileBlocks" : [ {
-      "file" : {
-        "relativePath" : "src/pages/Profile/EditPassword/EditPassword.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 132,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 111,
-      "startLine" : 27,
-      "endLine" : 32,
-      "cleanedStartLine" : 23,
-      "cleanedEndLine" : 28
-    }, {
-      "file" : {
-        "relativePath" : "src/pages/oldDev/Dev.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 223,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 186,
-      "startLine" : 78,
-      "endLine" : 83,
-      "cleanedStartLine" : 68,
-      "cleanedEndLine" : 73
-    } ]
-  }, {
-    "blockSize" : 6,
-    "duplicatedFileBlocks" : [ {
-      "file" : {
-        "relativePath" : "src/pages/Profile/EditProfile/EditProfile.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 130,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 111,
-      "startLine" : 25,
-      "endLine" : 30,
-      "cleanedStartLine" : 21,
-      "cleanedEndLine" : 26
-    }, {
-      "file" : {
-        "relativePath" : "src/pages/oldDev/CreateGame/CreateGame.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 252,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 220,
-      "startLine" : 56,
-      "endLine" : 61,
-      "cleanedStartLine" : 50,
-      "cleanedEndLine" : 55
-    } ]
-  }, {
-    "blockSize" : 6,
-    "duplicatedFileBlocks" : [ {
-      "file" : {
-        "relativePath" : "src/pages/Admin/Admin.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 215,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 200,
-      "startLine" : 121,
-      "endLine" : 126,
-      "cleanedStartLine" : 111,
-      "cleanedEndLine" : 116
-    }, {
-      "file" : {
-        "relativePath" : "src/pages/oldDev/CreateGame/CreateGame.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 252,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 220,
-      "startLine" : 56,
-      "endLine" : 61,
-      "cleanedStartLine" : 50,
-      "cleanedEndLine" : 55
-    } ]
-  }, {
-    "blockSize" : 6,
-    "duplicatedFileBlocks" : [ {
-      "file" : {
-        "relativePath" : "src/pages/Dev/DevGameDetail/devGameDetail.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 489,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 444,
-      "startLine" : 212,
-      "endLine" : 217,
-      "cleanedStartLine" : 197,
-      "cleanedEndLine" : 202
-    }, {
-      "file" : {
-        "relativePath" : "src/pages/oldDev/Dev.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 223,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 186,
-      "startLine" : 33,
-      "endLine" : 38,
-      "cleanedStartLine" : 29,
-      "cleanedEndLine" : 34
-    } ]
-  }, {
-    "blockSize" : 6,
-    "duplicatedFileBlocks" : [ {
-      "file" : {
-        "relativePath" : "src/pages/Admin/Admin.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 215,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 200,
-      "startLine" : 121,
-      "endLine" : 126,
-      "cleanedStartLine" : 111,
-      "cleanedEndLine" : 116
-    }, {
-      "file" : {
-        "relativePath" : "src/pages/oldDev/Dev.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 223,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 186,
-      "startLine" : 78,
-      "endLine" : 83,
-      "cleanedStartLine" : 68,
-      "cleanedEndLine" : 73
-    } ]
-  }, {
-    "blockSize" : 6,
-    "duplicatedFileBlocks" : [ {
-      "file" : {
-        "relativePath" : "src/pages/GameDetail/GameDetail.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 305,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 268,
-      "startLine" : 100,
-      "endLine" : 105,
-      "cleanedStartLine" : 91,
-      "cleanedEndLine" : 96
+      "sourceFileCleanedLinesOfCode" : 251,
+      "startLine" : 120,
+      "endLine" : 125,
+      "cleanedStartLine" : 107,
+      "cleanedEndLine" : 112
     }, {
       "file" : {
         "relativePath" : "src/pages/Profile/EditPassword/EditPassword.jsx",
@@ -2030,151 +1276,6 @@
       "endLine" : 32,
       "cleanedStartLine" : 23,
       "cleanedEndLine" : 28
-    } ]
-  }, {
-    "blockSize" : 6,
-    "duplicatedFileBlocks" : [ {
-      "file" : {
-        "relativePath" : "src/pages/GameDetail/GameDetail.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 305,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 268,
-      "startLine" : 100,
-      "endLine" : 105,
-      "cleanedStartLine" : 91,
-      "cleanedEndLine" : 96
-    }, {
-      "file" : {
-        "relativePath" : "src/pages/oldDev/CreateGame/CreateGame.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 252,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 220,
-      "startLine" : 56,
-      "endLine" : 61,
-      "cleanedStartLine" : 50,
-      "cleanedEndLine" : 55
-    } ]
-  }, {
-    "blockSize" : 6,
-    "duplicatedFileBlocks" : [ {
-      "file" : {
-        "relativePath" : "src/pages/Dev/DevGameDetail/devGameDetail.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 489,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 444,
-      "startLine" : 349,
-      "endLine" : 356,
-      "cleanedStartLine" : 313,
-      "cleanedEndLine" : 318
-    }, {
-      "file" : {
-        "relativePath" : "src/pages/GameDetail/GameDetail.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 305,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 268,
-      "startLine" : 231,
-      "endLine" : 238,
-      "cleanedStartLine" : 201,
-      "cleanedEndLine" : 206
-    } ]
-  }, {
-    "blockSize" : 6,
-    "duplicatedFileBlocks" : [ {
-      "file" : {
-        "relativePath" : "src/App.css",
-        "extension" : "css",
-        "linesOfCode" : 480,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 480,
-      "startLine" : 1,
-      "endLine" : 6,
-      "cleanedStartLine" : 1,
-      "cleanedEndLine" : 6
-    }, {
-      "file" : {
-        "relativePath" : "src/index.css",
-        "extension" : "css",
-        "linesOfCode" : 33,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 33,
-      "startLine" : 1,
-      "endLine" : 6,
-      "cleanedStartLine" : 1,
-      "cleanedEndLine" : 6
-    } ]
-  }, {
-    "blockSize" : 6,
-    "duplicatedFileBlocks" : [ {
-      "file" : {
-        "relativePath" : "src/pages/oldDev/CreateGame/CreateGame.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 252,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 220,
-      "startLine" : 56,
-      "endLine" : 61,
-      "cleanedStartLine" : 50,
-      "cleanedEndLine" : 55
-    }, {
-      "file" : {
-        "relativePath" : "src/pages/oldDev/Dev.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 223,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 186,
-      "startLine" : 78,
-      "endLine" : 83,
-      "cleanedStartLine" : 68,
-      "cleanedEndLine" : 73
-    } ]
-  }, {
-    "blockSize" : 6,
-    "duplicatedFileBlocks" : [ {
-      "file" : {
-        "relativePath" : "src/pages/Dev/DevGameDetail/devGameDetail.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 489,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 444,
-      "startLine" : 189,
-      "endLine" : 194,
-      "cleanedStartLine" : 175,
-      "cleanedEndLine" : 180
-    }, {
-      "file" : {
-        "relativePath" : "src/pages/oldDev/Dev.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 223,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 186,
-      "startLine" : 33,
-      "endLine" : 38,
-      "cleanedStartLine" : 29,
-      "cleanedEndLine" : 34
     } ]
   }, {
     "blockSize" : 6,
@@ -2267,35 +1368,6 @@
     "blockSize" : 6,
     "duplicatedFileBlocks" : [ {
       "file" : {
-        "relativePath" : "src/pages/Dev/Dev.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 615,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 579,
-      "startLine" : 270,
-      "endLine" : 275,
-      "cleanedStartLine" : 257,
-      "cleanedEndLine" : 262
-    }, {
-      "file" : {
-        "relativePath" : "src/pages/oldDev/Dev.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 223,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 186,
-      "startLine" : 79,
-      "endLine" : 84,
-      "cleanedStartLine" : 69,
-      "cleanedEndLine" : 74
-    } ]
-  }, {
-    "blockSize" : 6,
-    "duplicatedFileBlocks" : [ {
-      "file" : {
         "relativePath" : "src/app/components/SearchBar.jsx",
         "extension" : "jsx",
         "linesOfCode" : 245,
@@ -2320,93 +1392,6 @@
       "endLine" : 26,
       "cleanedStartLine" : 19,
       "cleanedEndLine" : 24
-    } ]
-  }, {
-    "blockSize" : 6,
-    "duplicatedFileBlocks" : [ {
-      "file" : {
-        "relativePath" : "src/pages/Admin/Admin.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 215,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 200,
-      "startLine" : 121,
-      "endLine" : 126,
-      "cleanedStartLine" : 111,
-      "cleanedEndLine" : 116
-    }, {
-      "file" : {
-        "relativePath" : "src/pages/GameDetail/GameDetail.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 305,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 268,
-      "startLine" : 100,
-      "endLine" : 105,
-      "cleanedStartLine" : 91,
-      "cleanedEndLine" : 96
-    } ]
-  }, {
-    "blockSize" : 6,
-    "duplicatedFileBlocks" : [ {
-      "file" : {
-        "relativePath" : "src/pages/GameDetail/GameDetail.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 305,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 268,
-      "startLine" : 100,
-      "endLine" : 105,
-      "cleanedStartLine" : 91,
-      "cleanedEndLine" : 96
-    }, {
-      "file" : {
-        "relativePath" : "src/pages/Profile/EditProfile/EditProfile.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 130,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 111,
-      "startLine" : 25,
-      "endLine" : 30,
-      "cleanedStartLine" : 21,
-      "cleanedEndLine" : 26
-    } ]
-  }, {
-    "blockSize" : 6,
-    "duplicatedFileBlocks" : [ {
-      "file" : {
-        "relativePath" : "src/pages/Profile/EditProfile/EditProfile.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 130,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 111,
-      "startLine" : 25,
-      "endLine" : 30,
-      "cleanedStartLine" : 21,
-      "cleanedEndLine" : 26
-    }, {
-      "file" : {
-        "relativePath" : "src/pages/oldDev/Dev.jsx",
-        "extension" : "jsx",
-        "linesOfCode" : 223,
-        "components" : [ "primary::src" ],
-        "concerns" : [ "::Unclassified" ]
-      },
-      "sourceFileCleanedLinesOfCode" : 186,
-      "startLine" : 78,
-      "endLine" : 83,
-      "cleanedStartLine" : 68,
-      "cleanedEndLine" : 73
     } ]
   } ],
   "overallDuplication" : null

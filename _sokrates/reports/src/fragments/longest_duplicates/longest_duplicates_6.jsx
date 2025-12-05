@@ -1,53 +1,47 @@
-src/pages/Dev/DevGameDetail/devGameDetail.jsx [158:178]:
+src/app/components/SearchBar.jsx [150:167]:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    if (!url) return null;
-    try {
-      const u = new URL(url);
-      const isYouTube =
-        u.hostname.includes("youtube.com") || u.hostname.includes("youtu.be");
-      if (isYouTube) {
-        let idParam = "";
-        if (u.hostname.includes("youtu.be")) {
-          idParam = u.pathname.replace("/", "");
-        } else if (u.searchParams.has("v")) {
-          idParam = u.searchParams.get("v") || "";
-        }
-        if (idParam) {
-          return `https://www.youtube.com/embed/${idParam}?rel=0&modestbranding=1&color=white`;
-        }
-      }
-
-      return url;
-    } catch {
-      return url;
-    }
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16Z"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+            <path
+              d="m21 21-4.3-4.3"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+            />
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
 
-src/pages/GameDetail/GameDetail.jsx [73:93]:
+src/app/components/SearchBar.jsx [216:233]:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    if (!url) return null;
-    try {
-      const u = new URL(url);
-      const isYouTube =
-        u.hostname.includes("youtube.com") || u.hostname.includes("youtu.be");
-      if (isYouTube) {
-        let idParam = "";
-        if (u.hostname.includes("youtu.be")) {
-          idParam = u.pathname.replace("/", "");
-        } else if (u.searchParams.has("v")) {
-          idParam = u.searchParams.get("v") || "";
-        }
-        if (idParam) {
-          return `https://www.youtube.com/embed/${idParam}?rel=0&modestbranding=1&color=white`;
-        }
-      }
-
-      return url;
-    } catch {
-      return url;
-    }
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16Z"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+            <path
+              d="m21 21-4.3-4.3"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+            />
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 

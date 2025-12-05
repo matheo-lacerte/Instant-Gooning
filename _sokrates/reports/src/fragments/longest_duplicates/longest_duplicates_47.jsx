@@ -1,29 +1,23 @@
-src/pages/Dev/DevGameDetail/devGameDetail.jsx [187:195]:
+src/pages/Admin/Admin.jsx [121:126]:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         {
-          method: "PATCH",
+          method: "POST",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-        }
-      );
-      if (!response.ok) {
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
 
-src/pages/Dev/DevGameDetail/devGameDetail.jsx [210:218]:
+src/pages/Profile/EditPassword/EditPassword.jsx [27:32]:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         {
-          method: "PATCH",
+          method: "POST",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-        }
-      );
-      if (!response.ok) {
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 

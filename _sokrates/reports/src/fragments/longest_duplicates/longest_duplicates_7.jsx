@@ -1,47 +1,68 @@
-src/app/components/SearchBar.jsx [150:167]:
+src/pages/Profile/Profile.jsx [25:52]:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-          <svg
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16Z"
-              stroke="currentColor"
-              strokeWidth="2"
-            />
-            <path
-              d="m21 21-4.3-4.3"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-            />
+  return (
+    <div className="dev">
+      <div className="rangee">
+        <div className="colonnes">
+          <ul>
+            <li>
+              <h1>
+                <Link to="/profile">Profil</Link>
+              </h1>
+            </li>
+            <li>
+              <h1>
+                <Link to="/profile/purchases">Mes achats</Link>
+              </h1>
+            </li>
+            <li>
+              <h1>
+                <Link to="/dev">Développeur</Link>
+              </h1>
+            </li>
+            <li>
+              <h1>
+                <Link to="/cart">Panier</Link>
+              </h1>
+            </li>
+          </ul>
+        </div>
+        <div className="colonnes userData">
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
 
-src/app/components/SearchBar.jsx [216:233]:
+src/pages/Profile/Purchases.jsx [36:64]:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-          <svg
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16Z"
-              stroke="currentColor"
-              strokeWidth="2"
-            />
-            <path
-              d="m21 21-4.3-4.3"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-            />
+  return (
+    <div className="dev">
+      <div className="rangee">
+        <div className="colonnes">
+          <ul>
+            <li>
+              <h1>
+                <Link to="/profile">Profil</Link>
+              </h1>
+            </li>
+            <li>
+              <h1>
+                <Link to="/profile/purchases">Mes achats</Link>
+              </h1>
+            </li>
+            <li>
+              <h1>
+                <Link to="/dev">Développeur</Link>
+              </h1>
+            </li>
+            <li>
+              <h1>
+                <Link to="/cart">Panier</Link>
+              </h1>
+            </li>
+          </ul>
+        </div>
+
+        <div className="colonnes userData">
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 

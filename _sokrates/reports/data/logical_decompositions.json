@@ -1,13 +1,13 @@
 [ {
   "key" : "primary",
   "components" : [ {
-    "name" : "ROOT",
-    "filesCount" : 3,
-    "linesOfCode" : 51,
+    "name" : "cypress",
+    "filesCount" : 7,
+    "linesOfCode" : 112,
     "numberOfRegexLineMatches" : 0,
     "fileCountPerExtension" : [ {
       "name" : "  *.js",
-      "value" : 2,
+      "value" : 6,
       "description" : [ ]
     }, {
       "name" : "  *.html",
@@ -16,7 +16,30 @@
     } ],
     "linesOfCodePerExtension" : [ {
       "name" : "  *.js",
-      "value" : 38,
+      "value" : 100,
+      "description" : [ ]
+    }, {
+      "name" : "  *.html",
+      "value" : 12,
+      "description" : [ ]
+    } ]
+  }, {
+    "name" : "ROOT",
+    "filesCount" : 4,
+    "linesOfCode" : 66,
+    "numberOfRegexLineMatches" : 0,
+    "fileCountPerExtension" : [ {
+      "name" : "  *.js",
+      "value" : 3,
+      "description" : [ ]
+    }, {
+      "name" : "  *.html",
+      "value" : 1,
+      "description" : [ ]
+    } ],
+    "linesOfCodePerExtension" : [ {
+      "name" : "  *.js",
+      "value" : 53,
       "description" : [ ]
     }, {
       "name" : "  *.html",
@@ -26,7 +49,7 @@
   }, {
     "name" : "server",
     "filesCount" : 21,
-    "linesOfCode" : 1432,
+    "linesOfCode" : 1442,
     "numberOfRegexLineMatches" : 0,
     "fileCountPerExtension" : [ {
       "name" : "  *.js",
@@ -35,30 +58,30 @@
     } ],
     "linesOfCodePerExtension" : [ {
       "name" : "  *.js",
-      "value" : 1432,
+      "value" : 1442,
       "description" : [ ]
     } ]
   }, {
     "name" : "src",
     "filesCount" : 46,
-    "linesOfCode" : 5819,
+    "linesOfCode" : 5181,
     "numberOfRegexLineMatches" : 0,
     "fileCountPerExtension" : [ {
       "name" : "  *.jsx",
-      "value" : 28,
+      "value" : 30,
       "description" : [ ]
     }, {
       "name" : "  *.css",
-      "value" : 18,
+      "value" : 16,
       "description" : [ ]
     } ],
     "linesOfCodePerExtension" : [ {
       "name" : "  *.jsx",
-      "value" : 4085,
+      "value" : 3615,
       "description" : [ ]
     }, {
       "name" : "  *.css",
-      "value" : 1734,
+      "value" : 1566,
       "description" : [ ]
     } ]
   } ],
@@ -71,11 +94,25 @@
     "componentsFolderDepth" : 1,
     "minComponentsCount" : 0,
     "components" : [ {
+      "name" : "cypress",
+      "sourceFileFilters" : [ {
+        "pathPattern" : "./cypress/.*",
+        "contentPattern" : "",
+        "exception" : false,
+        "note" : ""
+      } ],
+      "files" : [ ]
+    }, {
       "name" : "ROOT",
       "sourceFileFilters" : [ {
         "pathPattern" : "./.*",
         "contentPattern" : "",
         "exception" : false,
+        "note" : ""
+      }, {
+        "pathPattern" : "./cypress/.*",
+        "contentPattern" : "",
+        "exception" : true,
         "note" : ""
       }, {
         "pathPattern" : "./server/.*",
@@ -131,21 +168,29 @@
     "maxSearchDepthLines" : 200
   },
   "linesOfCodePerComponent" : [ {
+    "name" : "cypress",
+    "value" : 112,
+    "description" : [ ]
+  }, {
     "name" : "ROOT",
-    "value" : 51,
+    "value" : 66,
     "description" : [ ]
   }, {
     "name" : "server",
-    "value" : 1432,
+    "value" : 1442,
     "description" : [ ]
   }, {
     "name" : "src",
-    "value" : 5819,
+    "value" : 5181,
     "description" : [ ]
   } ],
   "fileCountPerComponent" : [ {
+    "name" : "cypress",
+    "value" : 7,
+    "description" : [ ]
+  }, {
     "name" : "ROOT",
-    "value" : 3,
+    "value" : 4,
     "description" : [ ]
   }, {
     "name" : "server",
