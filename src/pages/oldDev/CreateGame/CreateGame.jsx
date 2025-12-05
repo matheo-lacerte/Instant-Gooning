@@ -52,7 +52,7 @@ export default function CreateGame() {
 
     try {
       const response = await fetch(
-        "http://localhost:5174/api/games/createGame",
+        "/api/games/createGame",
         {
           method: "POST",
           headers: {
@@ -98,7 +98,7 @@ export default function CreateGame() {
           <div className="create-game-container">
             <h1 className="create-title">Créer un nouveau jeu</h1>
             <form className="form-dev" onSubmit={addGame}>
-              <div className="control no-margin space">
+              <div className="control space">
                 <label htmlFor="titre">Titre du jeu*</label>
                 <input
                   id="titre"
@@ -110,7 +110,7 @@ export default function CreateGame() {
                 />
               </div>
 
-              <div className="control no-margin space">
+              <div className="control space">
                 <label htmlFor="description">Description*</label>
                 <input
                   id="description"
@@ -123,7 +123,7 @@ export default function CreateGame() {
               </div>
 
               <div className="row">
-                <div className="control no-margin">
+                <div className="control">
                   <label htmlFor="genre">Genre</label>
                   <input
                     id="genre"
@@ -134,7 +134,7 @@ export default function CreateGame() {
                   />
                 </div>
 
-                <div className="control no-margin">
+                <div className="control">
                   <label htmlFor="platform">Plateforme*</label>
                   <input
                     id="platform"
@@ -148,7 +148,7 @@ export default function CreateGame() {
               </div>
 
               <div className="row">
-                <div className="control no-margin">
+                <div className="control">
                   <label htmlFor="developer">Développeur*</label>
                   <input
                     id="developer"
@@ -160,7 +160,7 @@ export default function CreateGame() {
                   />
                 </div>
 
-                <div className="control no-margin">
+                <div className="control">
                   <label htmlFor="publisher">Éditeur*</label>
                   <input
                     id="publisher"
@@ -174,7 +174,7 @@ export default function CreateGame() {
               </div>
 
               <div className="row">
-                <div className="control no-margin">
+                <div className="control">
                   <label htmlFor="releaseDate">Date de sortie</label>
                   <input
                     id="releaseDate"
@@ -184,7 +184,7 @@ export default function CreateGame() {
                   />
                 </div>
 
-                <div className="control no-margin">
+                <div className="control">
                   <label htmlFor="price">Prix*</label>
                   <input
                     id="price"
@@ -199,7 +199,7 @@ export default function CreateGame() {
               </div>
 
               <div className="row">
-                <div className="control no-margin">
+                <div className="control">
                   <label htmlFor="rating">Note</label>
                   <input
                     id="rating"
@@ -217,7 +217,7 @@ export default function CreateGame() {
                   />
                 </div>
 
-                <div className="control no-margin">
+                <div className="control">
                   <label htmlFor="cover_url">URL de la couverture</label>
                   <input
                     id="cover_url"
@@ -230,7 +230,7 @@ export default function CreateGame() {
               </div>
 
               <div className="row">
-                <div className="control no-margin">
+                <div className="control">
                   <label htmlFor="trailer_url">URL de la bande-annonce</label>
                   <input
                     id="trailer_url"
@@ -241,7 +241,7 @@ export default function CreateGame() {
                   />
                 </div>
 
-                <div className="control no-margin">
+                <div className="control">
                   <label htmlFor="discount">Réduction (%)*</label>
                   <input
                     id="discount"

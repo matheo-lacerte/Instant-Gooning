@@ -16,7 +16,7 @@ export default function Purchases() {
       setLoading(true);
       setError(null);
       try {
-        const res = await fetch("http://localhost:5174/api/user/keys", {
+        const res = await fetch("/api/user/keys", {
           headers: { Authorization: `Bearer ${token}` },
         });
         const data = await res.json();

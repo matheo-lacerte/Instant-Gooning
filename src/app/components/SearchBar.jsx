@@ -32,7 +32,7 @@ export default function SearchBar({
 
         let data = null;
 
-        const res = await fetch("http://localhost:5174/api/games/getAllGames", {
+        const res = await fetch("/api/games/getAllGames", {
           method: "GET",
         });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
