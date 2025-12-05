@@ -1,0 +1,75 @@
+<html>
+<head>
+    <title>src/pages/Search/Search.jsx</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">src/pages/Search/Search.jsx (<b>43</b> lines of code) (<a href="Search.jsx">raw</a>):</h3>
+<div id="editor">import { useState, useEffect } from &quot;react&quot;;
+import { useSearchParams } from &quot;react-router-dom&quot;;
+import GameCard from &quot;../../app/components/GameCard&quot;;
+
+import &quot;./Search.css&quot;;
+
+export default function Search() {
+  const [searchParams] = useSearchParams();
+  const searchTerm = searchParams.get(&quot;search&quot;) || &quot;&quot;;
+  const [listeJeux, setListeJeux] = useState([]);
+
+  useEffect(() =&gt; {
+    const fetchGames = async () =&gt; {
+      try {
+        const response = await fetch(
+          &quot;/api/games/GetAllGames&quot;,
+          {
+            method: &quot;GET&quot;,
+          }
+        );
+
+        const reponseData = await response.json();
+        const filteredData = reponseData.filter((game) =&gt;
+          game.title.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+        setListeJeux(filteredData);
+      } catch (err) {
+        console.error(&quot;Erreur recherche:&quot;, err);
+        throw err;
+      }
+    };
+
+    fetchGames();
+  }, [searchTerm]);
+
+  return (
+    &lt;div className=&quot;wrap&quot;&gt;
+      &lt;h1 className=&quot;search-result&quot;&gt;R&eacute;sultats de recherche pour &quot;{searchTerm}&quot;&lt;/h1&gt;
+      {listeJeux.length === 0 &amp;&amp; searchTerm &amp;&amp; (
+        &lt;p&gt;Aucun jeu trouv&eacute; pour &quot;{searchTerm}&quot;.&lt;/p&gt;
+      )}
+        &lt;div className=&quot;games-grid ig-grid&quot;&gt;
+          {listeJeux.map((game) =&gt; (
+            &lt;GameCard key={game.id} game={game} /&gt;
+          ))}
+        &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/html");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

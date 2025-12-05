@@ -1,0 +1,60 @@
+Start of analysis
+Found 6837 files
+70 are in the main's scope  (7302 lines of code)
+  *.jsx: 28 files, (4085 lines of code)
+  *.css: 18 files, (1734 lines of code)
+  *.js: 23 files, (1470 lines of code)
+  *.html: 1 files, (13 lines of code)
+0 are in the test's scope  (0 lines of code)
+1 are in the generated's scope  (4661 lines of code)
+  *.json: 1 files, (4661 lines of code)
+0 are in the build and deployment's scope  (0 lines of code)
+5 are in the other's scope  (5437 lines of code)
+  *.json: 2 files, (4705 lines of code)
+  *.txt: 1 files, (723 lines of code)
+  *.md: 1 files, (7 lines of code)
+  *.svg: 1 files, (2 lines of code)
+Excluded from analyses 6762 files
+Analysing dependencies...
+3 are in the DECOMPOSITION_primary\ROOT's scope  (51 lines of code)
+  *.js: 2 files, (38 lines of code)
+  *.html: 1 files, (13 lines of code)
+21 are in the DECOMPOSITION_primary\server's scope  (1432 lines of code)
+  *.js: 21 files, (1432 lines of code)
+46 are in the DECOMPOSITION_primary\src's scope  (5819 lines of code)
+  *.jsx: 28 files, (4085 lines of code)
+  *.css: 18 files, (1734 lines of code)
+  - "primary", found 0 dependencies (0 component dependencies)
+0 are in the CONCERN_general\TODOs's scope  (0 lines of code)
+70 are in the CONCERN_general\Unclassified's scope  (7302 lines of code)
+  *.jsx: 28 files, (4085 lines of code)
+  *.css: 18 files, (1734 lines of code)
+  *.js: 23 files, (1470 lines of code)
+  *.html: 1 files, (13 lines of code)
+Analysing units...
+Basic unit metrics...
+  - found 38 units (1051 lines of code in units)
+Unit size 38 / 173 / 509 / 331 / 0
+Unit size per component:
+Unit Size Component ROOT: 8 / 0 / 22 / 0 / 0
+Unit Size Component server: 30 / 173 / 487 / 331 / 0
+Unit size per extension:
+Unit Size Extension js: 38 / 173 / 509 / 331 / 0
+Conditional complexity: 220 / 435 / 297 / 99 / 0
+Conditional complexity per component:
+Conditional Complexity Component ROOT 30 / 0 / 0 / 0 / 0
+Conditional Complexity Component server 190 / 435 / 297 / 99 / 0
+Conditional complexity per extension:
+Conditional Complexity Component js: 220 / 435 / 297 / 99 / 0
+Analysing duplication...
+  - found 83 duplicates (1075 duplicated lines vs. 6636 cleaned lines) in 22 files
+  - per component:primary
+     - "src": 1047 duplicated lines vs. 5400 total lines
+     - "server": 28 duplicated lines vs. 1198 total lines
+     - "ROOT": 0 duplicated lines vs. 38 total lines
+  - per extension:
+     - "css": 284 duplicated lines vs. 1734 total lines
+     - "jsx": 763 duplicated lines vs. 3666 total lines
+     - "js": 28 duplicated lines vs. 1226 total lines
+Total analysis time: 3.88s
+

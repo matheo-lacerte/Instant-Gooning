@@ -1,0 +1,22 @@
+Path	Lines of Code
+server/config/supabase.js	11
+server/controllers/adminController.js	171
+server/controllers/cartController.js	170
+server/controllers/devController.js	120
+server/controllers/gamesController.js	180
+server/controllers/paymentsController.js	142
+server/controllers/stripeWebhookController.js	103
+server/controllers/userController.js	123
+server/index.js	51
+server/middleware/auth.js	41
+server/middleware/rateLimit.js	61
+server/routes/admin.js	13
+server/routes/auth.js	123
+server/routes/dev.js	11
+server/routes/games.js	13
+server/routes/payments.js	16
+server/routes/stripeWebhook.js	10
+server/routes/user.js	11
+server/utils/keygen.js	10
+server/utils/stripePricing.js	45
+server/utils/validatePassword.js	7

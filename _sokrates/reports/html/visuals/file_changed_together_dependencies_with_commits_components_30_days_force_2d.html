@@ -1,0 +1,3230 @@
+<head>
+    <style> body {
+        margin: 0;
+    } </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/force-graph"></script>
+</head>
+
+<body>
+<div id="graph"></div>
+
+<script>
+    const gData = {
+  "nodes" : [ {
+    "id" : "commit_d73436a6dd137731af1d9b1947ca2e3ebfdfda28",
+    "size" : 6
+  }, {
+    "id" : "commit_b10d856fe05cf19ddd9ed3930630a1b69ce95157",
+    "size" : 6
+  }, {
+    "id" : "[server/utils/keygen.js]",
+    "size" : 2
+  }, {
+    "id" : "[src/pages/oldDev/CreateGame/CreateGame.jsx]",
+    "size" : 2
+  }, {
+    "id" : "commit_9fc47826f2cf3936b790778f99c98dbff169df96",
+    "size" : 9
+  }, {
+    "id" : "commit_0b1e3eee0423d12a48a8ad0db49dd56bbf0c2f1e",
+    "size" : 4
+  }, {
+    "id" : "commit_f8e6d419d887c8a5949f960a53aba8d220c1956e",
+    "size" : 7
+  }, {
+    "id" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "size" : 13
+  }, {
+    "id" : "[server/controllers/devController.js]",
+    "size" : 6
+  }, {
+    "id" : "commit_524d86bf0bd465af0221186c88c83a7d6fd9f047",
+    "size" : 4
+  }, {
+    "id" : "[src/pages/Cart/Cart.css]",
+    "size" : 2
+  }, {
+    "id" : "commit_dda92c392150fb859fa3a3c96bf29401f60b1da5",
+    "size" : 8
+  }, {
+    "id" : "commit_08dafe462e8d243030ceae5b0582b3eab3907307",
+    "size" : 3
+  }, {
+    "id" : "[src/app/components/SearchBar.jsx]",
+    "size" : 7
+  }, {
+    "id" : "commit_c21716d5e644c480735bc6999ec5932f21ada4a4",
+    "size" : 3
+  }, {
+    "id" : "[server/controllers/cartController.js]",
+    "size" : 6
+  }, {
+    "id" : "[server/routes/admin.js]",
+    "size" : 16
+  }, {
+    "id" : "[server/routes/dev.js]",
+    "size" : 6
+  }, {
+    "id" : "commit_85c8e2f516e744358c99ed49853054b94c3e5510",
+    "size" : 2
+  }, {
+    "id" : "[src/pages/Dev/DevGameDetail/devGameDetail.jsx]",
+    "size" : 3
+  }, {
+    "id" : "[src/pages/Profile/Purchases.jsx]",
+    "size" : 3
+  }, {
+    "id" : "commit_c555ceaf00800f745d85d149b8ae6f731c4e31e9",
+    "size" : 15
+  }, {
+    "id" : "commit_86052ca5463028fe8dafb0ebe45cdeefbf2c8b50",
+    "size" : 4
+  }, {
+    "id" : "commit_20f2a88a6050ed068978113abce858581db94ad3",
+    "size" : 7
+  }, {
+    "id" : "commit_4e9dfa9b00b166013926dd4484db43394fde7be2",
+    "size" : 2
+  }, {
+    "id" : "[src/pages/Search/Search.jsx]",
+    "size" : 4
+  }, {
+    "id" : "commit_28dc473b17fc894b66d3afa1e74765ba36623b13",
+    "size" : 2
+  }, {
+    "id" : "commit_3ee408b5a2f49083a9d4e11d333509a057059bf5",
+    "size" : 4
+  }, {
+    "id" : "[src/pages/Profile/Profile.jsx]",
+    "size" : 19
+  }, {
+    "id" : "commit_baf597c9c39dbf8b96b117f7c264f491ecb53994",
+    "size" : 3
+  }, {
+    "id" : "[src/pages/Logout/Logout.jsx]",
+    "size" : 4
+  }, {
+    "id" : "commit_0a6d867fda1c02c7931ac0869161808fec6377a3",
+    "size" : 2
+  }, {
+    "id" : "commit_27817368b0f76c16d576688eec1c8880aa7268e3",
+    "size" : 3
+  }, {
+    "id" : "commit_7b5eba5d533ebee77b3082ee7a7d50563bdd45f8",
+    "size" : 4
+  }, {
+    "id" : "commit_c0652f8504a691c1671060eb876760cc28a5cd00",
+    "size" : 3
+  }, {
+    "id" : "commit_245f7a693100d04e0f986d6d32083f5963e53755",
+    "size" : 6
+  }, {
+    "id" : "[server/controllers/paymentsController.js]",
+    "size" : 12
+  }, {
+    "id" : "[server/controllers/stripeWebhookController.js]",
+    "size" : 7
+  }, {
+    "id" : "commit_665857674a3528957aca8d4a1c703484aa36b666",
+    "size" : 6
+  }, {
+    "id" : "[src/app/components/Guards/RequireDev.jsx]",
+    "size" : 2
+  }, {
+    "id" : "[src/pages/oldDev/Dev.css]",
+    "size" : 2
+  }, {
+    "id" : "[src/pages/Navigation/navigation.css]",
+    "size" : 5
+  }, {
+    "id" : "commit_3c8f08ba5974106e8f9bb3b29699304c253c5042",
+    "size" : 2
+  }, {
+    "id" : "commit_b8817c02715ccf5155e8f104c56642fdac9f065c",
+    "size" : 2
+  }, {
+    "id" : "commit_378abf70e509104a8d5ab2b1820b86544b3e962f",
+    "size" : 2
+  }, {
+    "id" : "commit_5a31e00a8a7c472249af8429d27849a066a87119",
+    "size" : 4
+  }, {
+    "id" : "commit_68be4110df23933edd2bba878db084d80cf6f456",
+    "size" : 2
+  }, {
+    "id" : "commit_986230bf8fa207bb3fa2e89a4e451acacd7529c6",
+    "size" : 10
+  }, {
+    "id" : "[src/pages/Search/Search.css]",
+    "size" : 2
+  }, {
+    "id" : "commit_403dda4bd396fac79075d985ba3428dca6de260f",
+    "size" : 4
+  }, {
+    "id" : "commit_3a0dcc5fa8761b0183c48a6e7d1788d8a27e5d7b",
+    "size" : 9
+  }, {
+    "id" : "commit_ee46eea6405233abf48eecbbf9bed7aa4350c84e",
+    "size" : 6
+  }, {
+    "id" : "[server/routes/payments.js]",
+    "size" : 9
+  }, {
+    "id" : "[src/app/components/searchBar.css]",
+    "size" : 2
+  }, {
+    "id" : "[src/app/Context/AuthContext.jsx]",
+    "size" : 2
+  }, {
+    "id" : "commit_ff25a09d39ee6918eb64d6447cadaa83af6f9951",
+    "size" : 6
+  }, {
+    "id" : "[server/index.js]",
+    "size" : 11
+  }, {
+    "id" : "commit_0f84a39756bcb22d06e2524d251d7b290050c99e",
+    "size" : 3
+  }, {
+    "id" : "commit_fe9d4d9f5ba7e1aa44ebedaea415ca2238267840",
+    "size" : 3
+  }, {
+    "id" : "commit_5d35512b09822b6e2ae0cda989658896ca2c6100",
+    "size" : 2
+  }, {
+    "id" : "commit_0fa64bce2288d6d4a360f6f2b0ca7991d25eef4a",
+    "size" : 3
+  }, {
+    "id" : "commit_2e0b78ab57f65947cca6d0af26b3ad3c73b2cd47",
+    "size" : 5
+  }, {
+    "id" : "[src/pages/Admin/Admin.css]",
+    "size" : 4
+  }, {
+    "id" : "commit_28a0c81fbd53f4ce56b4dbfee0149e8ddb327e4a",
+    "size" : 2
+  }, {
+    "id" : "[server/controllers/userController.js]",
+    "size" : 13
+  }, {
+    "id" : "[src/App.jsx]",
+    "size" : 29
+  }, {
+    "id" : "[src/pages/Profile/EditProfile/EditProfile.jsx]",
+    "size" : 3
+  }, {
+    "id" : "commit_c1a12de17dd422679beb1cf6390c102972f4a756",
+    "size" : 8
+  }, {
+    "id" : "[vite.config.js]",
+    "size" : 2
+  }, {
+    "id" : "[src/pages/Profile/EditPassword/EditPassword.jsx]",
+    "size" : 4
+  }, {
+    "id" : "[src/pages/Register/Register.jsx]",
+    "size" : 4
+  }, {
+    "id" : "commit_d800eda95def5ce4a3c09d01a04ae5225efa4dce",
+    "size" : 4
+  }, {
+    "id" : "[server/routes/auth.js]",
+    "size" : 2
+  }, {
+    "id" : "[src/pages/Navigation/Navigation.jsx]",
+    "size" : 8
+  }, {
+    "id" : "[server/controllers/adminController.js]",
+    "size" : 16
+  }, {
+    "id" : "commit_3a7e1425c9e540b74cc01d6a568cd6bc43e27a8a",
+    "size" : 7
+  }, {
+    "id" : "commit_ce56593d09df98383ac7982aa67b28a0fbed92ff",
+    "size" : 9
+  }, {
+    "id" : "commit_d9fdc4d42b585b7d2d0aac77c3d9b11ca0b1300a",
+    "size" : 5
+  }, {
+    "id" : "commit_9662a21fc65300ae9b596fd81eda3192984452ca",
+    "size" : 3
+  }, {
+    "id" : "commit_f513f71cfd5fc349ecf745b969298c130ee00005",
+    "size" : 9
+  }, {
+    "id" : "commit_3541761a1e5c9eee3d9552739a7d648700689c7a",
+    "size" : 7
+  }, {
+    "id" : "commit_a6e7731dffd8b24cf4578b43b474e95847542fd1",
+    "size" : 3
+  }, {
+    "id" : "commit_57b945362ac71a1f66192e3d28302724ffcdd1eb",
+    "size" : 4
+  }, {
+    "id" : "[src/pages/Admin/Admin.jsx]",
+    "size" : 6
+  }, {
+    "id" : "[src/pages/GameDetail/gameDetail.css]",
+    "size" : 7
+  }, {
+    "id" : "[server/routes/user.js]",
+    "size" : 8
+  }, {
+    "id" : "commit_9026cf234d45fc4160216c72395585dbd58cd666",
+    "size" : 5
+  }, {
+    "id" : "[server/middleware/rateLimit.js]",
+    "size" : 15
+  }, {
+    "id" : "commit_40bce5bf43f2a7e8c080a09c0250e4cc945a027f",
+    "size" : 10
+  }, {
+    "id" : "commit_8a058609e13d9144046ceb3b1eb5604c29b294bc",
+    "size" : 9
+  }, {
+    "id" : "commit_b9f6aeab745dfd9f0d049bc6ce3fe0e3d87bbd3b",
+    "size" : 4
+  }, {
+    "id" : "[server/middleware/auth.js]",
+    "size" : 2
+  }, {
+    "id" : "commit_b0c42c2d0992ca333e5020c855550798febf4b72",
+    "size" : 4
+  }, {
+    "id" : "commit_cb43b5d1919c124ca78206db1282d4a268ba3164",
+    "size" : 3
+  }, {
+    "id" : "[src/app/components/GameCard.jsx]",
+    "size" : 3
+  }, {
+    "id" : "[server/controllers/gamesController.js]",
+    "size" : 14
+  }, {
+    "id" : "[src/pages/Login/Login.jsx]",
+    "size" : 4
+  }, {
+    "id" : "[src/pages/Dev/Dev.jsx]",
+    "size" : 25
+  }, {
+    "id" : "commit_e850e4513591c28da804b87b69282b24034bd59d",
+    "size" : 3
+  }, {
+    "id" : "[src/pages/oldDev/Dev.jsx]",
+    "size" : 2
+  }, {
+    "id" : "commit_b14b3076a3cecfa40859464aa94eb8ea2c364cf4",
+    "size" : 3
+  }, {
+    "id" : "commit_0ee0ab20e3d734cd8b009001e834d36e794907df",
+    "size" : 2
+  }, {
+    "id" : "[src/pages/Support/support.css]",
+    "size" : 3
+  }, {
+    "id" : "commit_790997387d4106bcb451bd1d6763024282ee6726",
+    "size" : 15
+  }, {
+    "id" : "[src/pages/Support/Support.jsx]",
+    "size" : 3
+  }, {
+    "id" : "[server/routes/games.js]",
+    "size" : 5
+  }, {
+    "id" : "[src/pages/Cart/Cart.jsx]",
+    "size" : 3
+  }, {
+    "id" : "[src/pages/Profile/Profile.css]",
+    "size" : 4
+  }, {
+    "id" : "[src/pages/oldDev/CreateGame/CreateGame.css]",
+    "size" : 2
+  }, {
+    "id" : "commit_4cfab7a500a1443e3567281609eb12411f7c9774",
+    "size" : 4
+  }, {
+    "id" : "commit_47f421481616ebbfc1997cf0cd6a9d483ef7fcd4",
+    "size" : 4
+  }, {
+    "id" : "[src/pages/Purchase/Success.jsx]",
+    "size" : 6
+  }, {
+    "id" : "commit_00d9e0670888f46cc14ddc1a395fbf829cd6a7db",
+    "size" : 5
+  }, {
+    "id" : "commit_a09779e13c50e3a1757170a0428b33dcf4a6dc9f",
+    "size" : 9
+  }, {
+    "id" : "commit_1a069473778cbf4f670f7188e8a2613093933498",
+    "size" : 8
+  }, {
+    "id" : "commit_f32fe157f3cbd41f2421f24ff81fb720f4eaab02",
+    "size" : 2
+  }, {
+    "id" : "[server/utils/stripePricing.js]",
+    "size" : 4
+  }, {
+    "id" : "[src/pages/Purchase/success.css]",
+    "size" : 2
+  }, {
+    "id" : "commit_8e25046f5ec5f9600613ba721fa7f7875aa6e29c",
+    "size" : 7
+  }, {
+    "id" : "commit_d38c963f4d82c729f01ae0dda24bacd5a7489aa3",
+    "size" : 3
+  }, {
+    "id" : "commit_fcc30bbd1971653ad63d81ff2708366cf4d7c68e",
+    "size" : 2
+  }, {
+    "id" : "commit_845f70b9f66c23acba0143c1106ab1a0d419e8f8",
+    "size" : 9
+  }, {
+    "id" : "[server/routes/stripeWebhook.js]",
+    "size" : 2
+  }, {
+    "id" : "commit_4e852726ac6cb1a1f78e330ef095df089308f8cc",
+    "size" : 4
+  } ],
+  "links" : [ {
+    "source" : "commit_d9fdc4d42b585b7d2d0aac77c3d9b11ca0b1300a",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 4
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "commit_d9fdc4d42b585b7d2d0aac77c3d9b11ca0b1300a",
+    "count" : 4
+  }, {
+    "source" : "commit_d9fdc4d42b585b7d2d0aac77c3d9b11ca0b1300a",
+    "target" : "[src/App.jsx]",
+    "count" : 4
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "commit_d9fdc4d42b585b7d2d0aac77c3d9b11ca0b1300a",
+    "count" : 4
+  }, {
+    "source" : "commit_2e0b78ab57f65947cca6d0af26b3ad3c73b2cd47",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 4
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "commit_2e0b78ab57f65947cca6d0af26b3ad3c73b2cd47",
+    "count" : 4
+  }, {
+    "source" : "commit_2e0b78ab57f65947cca6d0af26b3ad3c73b2cd47",
+    "target" : "[src/App.jsx]",
+    "count" : 4
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "commit_2e0b78ab57f65947cca6d0af26b3ad3c73b2cd47",
+    "count" : 4
+  }, {
+    "source" : "commit_c555ceaf00800f745d85d149b8ae6f731c4e31e9",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 14
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "commit_c555ceaf00800f745d85d149b8ae6f731c4e31e9",
+    "count" : 14
+  }, {
+    "source" : "commit_c555ceaf00800f745d85d149b8ae6f731c4e31e9",
+    "target" : "[src/App.jsx]",
+    "count" : 14
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "commit_c555ceaf00800f745d85d149b8ae6f731c4e31e9",
+    "count" : 14
+  }, {
+    "source" : "commit_d800eda95def5ce4a3c09d01a04ae5225efa4dce",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "commit_d800eda95def5ce4a3c09d01a04ae5225efa4dce",
+    "count" : 3
+  }, {
+    "source" : "commit_d800eda95def5ce4a3c09d01a04ae5225efa4dce",
+    "target" : "[src/App.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "commit_d800eda95def5ce4a3c09d01a04ae5225efa4dce",
+    "count" : 3
+  }, {
+    "source" : "commit_0b1e3eee0423d12a48a8ad0db49dd56bbf0c2f1e",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "commit_0b1e3eee0423d12a48a8ad0db49dd56bbf0c2f1e",
+    "count" : 3
+  }, {
+    "source" : "commit_0b1e3eee0423d12a48a8ad0db49dd56bbf0c2f1e",
+    "target" : "[src/App.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "commit_0b1e3eee0423d12a48a8ad0db49dd56bbf0c2f1e",
+    "count" : 3
+  }, {
+    "source" : "commit_b0c42c2d0992ca333e5020c855550798febf4b72",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "commit_b0c42c2d0992ca333e5020c855550798febf4b72",
+    "count" : 3
+  }, {
+    "source" : "commit_b0c42c2d0992ca333e5020c855550798febf4b72",
+    "target" : "[src/App.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "commit_b0c42c2d0992ca333e5020c855550798febf4b72",
+    "count" : 3
+  }, {
+    "source" : "commit_e850e4513591c28da804b87b69282b24034bd59d",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "commit_e850e4513591c28da804b87b69282b24034bd59d",
+    "count" : 2
+  }, {
+    "source" : "commit_e850e4513591c28da804b87b69282b24034bd59d",
+    "target" : "[src/App.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "commit_e850e4513591c28da804b87b69282b24034bd59d",
+    "count" : 2
+  }, {
+    "source" : "commit_986230bf8fa207bb3fa2e89a4e451acacd7529c6",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 9
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "commit_986230bf8fa207bb3fa2e89a4e451acacd7529c6",
+    "count" : 9
+  }, {
+    "source" : "commit_986230bf8fa207bb3fa2e89a4e451acacd7529c6",
+    "target" : "[src/App.jsx]",
+    "count" : 9
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "commit_986230bf8fa207bb3fa2e89a4e451acacd7529c6",
+    "count" : 9
+  }, {
+    "source" : "commit_40bce5bf43f2a7e8c080a09c0250e4cc945a027f",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 9
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "commit_40bce5bf43f2a7e8c080a09c0250e4cc945a027f",
+    "count" : 9
+  }, {
+    "source" : "commit_40bce5bf43f2a7e8c080a09c0250e4cc945a027f",
+    "target" : "[src/App.jsx]",
+    "count" : 9
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "commit_40bce5bf43f2a7e8c080a09c0250e4cc945a027f",
+    "count" : 9
+  }, {
+    "source" : "commit_f513f71cfd5fc349ecf745b969298c130ee00005",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 8
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "commit_f513f71cfd5fc349ecf745b969298c130ee00005",
+    "count" : 8
+  }, {
+    "source" : "commit_f513f71cfd5fc349ecf745b969298c130ee00005",
+    "target" : "[src/App.jsx]",
+    "count" : 8
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "commit_f513f71cfd5fc349ecf745b969298c130ee00005",
+    "count" : 8
+  }, {
+    "source" : "commit_3a0dcc5fa8761b0183c48a6e7d1788d8a27e5d7b",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 8
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "commit_3a0dcc5fa8761b0183c48a6e7d1788d8a27e5d7b",
+    "count" : 8
+  }, {
+    "source" : "commit_3a0dcc5fa8761b0183c48a6e7d1788d8a27e5d7b",
+    "target" : "[src/App.jsx]",
+    "count" : 8
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "commit_3a0dcc5fa8761b0183c48a6e7d1788d8a27e5d7b",
+    "count" : 8
+  }, {
+    "source" : "commit_3a7e1425c9e540b74cc01d6a568cd6bc43e27a8a",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 6
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "commit_3a7e1425c9e540b74cc01d6a568cd6bc43e27a8a",
+    "count" : 6
+  }, {
+    "source" : "commit_3a7e1425c9e540b74cc01d6a568cd6bc43e27a8a",
+    "target" : "[src/App.jsx]",
+    "count" : 6
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "commit_3a7e1425c9e540b74cc01d6a568cd6bc43e27a8a",
+    "count" : 6
+  }, {
+    "source" : "commit_3541761a1e5c9eee3d9552739a7d648700689c7a",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 6
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "commit_3541761a1e5c9eee3d9552739a7d648700689c7a",
+    "count" : 6
+  }, {
+    "source" : "commit_3541761a1e5c9eee3d9552739a7d648700689c7a",
+    "target" : "[src/App.jsx]",
+    "count" : 6
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "commit_3541761a1e5c9eee3d9552739a7d648700689c7a",
+    "count" : 6
+  }, {
+    "source" : "commit_ee46eea6405233abf48eecbbf9bed7aa4350c84e",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 5
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "commit_ee46eea6405233abf48eecbbf9bed7aa4350c84e",
+    "count" : 5
+  }, {
+    "source" : "commit_ee46eea6405233abf48eecbbf9bed7aa4350c84e",
+    "target" : "[src/App.jsx]",
+    "count" : 5
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "commit_ee46eea6405233abf48eecbbf9bed7aa4350c84e",
+    "count" : 5
+  }, {
+    "source" : "commit_d9fdc4d42b585b7d2d0aac77c3d9b11ca0b1300a",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 4
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "commit_d9fdc4d42b585b7d2d0aac77c3d9b11ca0b1300a",
+    "count" : 4
+  }, {
+    "source" : "commit_2e0b78ab57f65947cca6d0af26b3ad3c73b2cd47",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 4
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "commit_2e0b78ab57f65947cca6d0af26b3ad3c73b2cd47",
+    "count" : 4
+  }, {
+    "source" : "commit_8a058609e13d9144046ceb3b1eb5604c29b294bc",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 8
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "commit_8a058609e13d9144046ceb3b1eb5604c29b294bc",
+    "count" : 8
+  }, {
+    "source" : "commit_8a058609e13d9144046ceb3b1eb5604c29b294bc",
+    "target" : "[src/App.jsx]",
+    "count" : 8
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "commit_8a058609e13d9144046ceb3b1eb5604c29b294bc",
+    "count" : 8
+  }, {
+    "source" : "commit_8e25046f5ec5f9600613ba721fa7f7875aa6e29c",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 6
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "commit_8e25046f5ec5f9600613ba721fa7f7875aa6e29c",
+    "count" : 6
+  }, {
+    "source" : "commit_8e25046f5ec5f9600613ba721fa7f7875aa6e29c",
+    "target" : "[src/App.jsx]",
+    "count" : 6
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "commit_8e25046f5ec5f9600613ba721fa7f7875aa6e29c",
+    "count" : 6
+  }, {
+    "source" : "commit_c555ceaf00800f745d85d149b8ae6f731c4e31e9",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 14
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "commit_c555ceaf00800f745d85d149b8ae6f731c4e31e9",
+    "count" : 14
+  }, {
+    "source" : "commit_ce56593d09df98383ac7982aa67b28a0fbed92ff",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 8
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "commit_ce56593d09df98383ac7982aa67b28a0fbed92ff",
+    "count" : 8
+  }, {
+    "source" : "commit_ce56593d09df98383ac7982aa67b28a0fbed92ff",
+    "target" : "[src/App.jsx]",
+    "count" : 8
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "commit_ce56593d09df98383ac7982aa67b28a0fbed92ff",
+    "count" : 8
+  }, {
+    "source" : "commit_986230bf8fa207bb3fa2e89a4e451acacd7529c6",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 9
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "commit_986230bf8fa207bb3fa2e89a4e451acacd7529c6",
+    "count" : 9
+  }, {
+    "source" : "commit_40bce5bf43f2a7e8c080a09c0250e4cc945a027f",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 9
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "commit_40bce5bf43f2a7e8c080a09c0250e4cc945a027f",
+    "count" : 9
+  }, {
+    "source" : "commit_86052ca5463028fe8dafb0ebe45cdeefbf2c8b50",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "commit_86052ca5463028fe8dafb0ebe45cdeefbf2c8b50",
+    "count" : 3
+  }, {
+    "source" : "commit_86052ca5463028fe8dafb0ebe45cdeefbf2c8b50",
+    "target" : "[src/App.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "commit_86052ca5463028fe8dafb0ebe45cdeefbf2c8b50",
+    "count" : 3
+  }, {
+    "source" : "commit_5a31e00a8a7c472249af8429d27849a066a87119",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "commit_5a31e00a8a7c472249af8429d27849a066a87119",
+    "count" : 3
+  }, {
+    "source" : "commit_5a31e00a8a7c472249af8429d27849a066a87119",
+    "target" : "[src/App.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "commit_5a31e00a8a7c472249af8429d27849a066a87119",
+    "count" : 3
+  }, {
+    "source" : "commit_403dda4bd396fac79075d985ba3428dca6de260f",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "commit_403dda4bd396fac79075d985ba3428dca6de260f",
+    "count" : 3
+  }, {
+    "source" : "commit_403dda4bd396fac79075d985ba3428dca6de260f",
+    "target" : "[src/App.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "commit_403dda4bd396fac79075d985ba3428dca6de260f",
+    "count" : 3
+  }, {
+    "source" : "commit_68be4110df23933edd2bba878db084d80cf6f456",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "commit_68be4110df23933edd2bba878db084d80cf6f456",
+    "count" : 1
+  }, {
+    "source" : "commit_68be4110df23933edd2bba878db084d80cf6f456",
+    "target" : "[src/App.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "commit_68be4110df23933edd2bba878db084d80cf6f456",
+    "count" : 1
+  }, {
+    "source" : "commit_0ee0ab20e3d734cd8b009001e834d36e794907df",
+    "target" : "[server/routes/admin.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/routes/admin.js]",
+    "target" : "commit_0ee0ab20e3d734cd8b009001e834d36e794907df",
+    "count" : 1
+  }, {
+    "source" : "commit_0ee0ab20e3d734cd8b009001e834d36e794907df",
+    "target" : "[server/controllers/adminController.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/controllers/adminController.js]",
+    "target" : "commit_0ee0ab20e3d734cd8b009001e834d36e794907df",
+    "count" : 1
+  }, {
+    "source" : "commit_f32fe157f3cbd41f2421f24ff81fb720f4eaab02",
+    "target" : "[server/routes/admin.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/routes/admin.js]",
+    "target" : "commit_f32fe157f3cbd41f2421f24ff81fb720f4eaab02",
+    "count" : 1
+  }, {
+    "source" : "commit_f32fe157f3cbd41f2421f24ff81fb720f4eaab02",
+    "target" : "[server/controllers/adminController.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/controllers/adminController.js]",
+    "target" : "commit_f32fe157f3cbd41f2421f24ff81fb720f4eaab02",
+    "count" : 1
+  }, {
+    "source" : "commit_4e9dfa9b00b166013926dd4484db43394fde7be2",
+    "target" : "[server/routes/admin.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/routes/admin.js]",
+    "target" : "commit_4e9dfa9b00b166013926dd4484db43394fde7be2",
+    "count" : 1
+  }, {
+    "source" : "commit_4e9dfa9b00b166013926dd4484db43394fde7be2",
+    "target" : "[server/controllers/adminController.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/controllers/adminController.js]",
+    "target" : "commit_4e9dfa9b00b166013926dd4484db43394fde7be2",
+    "count" : 1
+  }, {
+    "source" : "commit_9662a21fc65300ae9b596fd81eda3192984452ca",
+    "target" : "[server/routes/admin.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/admin.js]",
+    "target" : "commit_9662a21fc65300ae9b596fd81eda3192984452ca",
+    "count" : 2
+  }, {
+    "source" : "commit_9662a21fc65300ae9b596fd81eda3192984452ca",
+    "target" : "[server/controllers/adminController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/adminController.js]",
+    "target" : "commit_9662a21fc65300ae9b596fd81eda3192984452ca",
+    "count" : 2
+  }, {
+    "source" : "commit_0f84a39756bcb22d06e2524d251d7b290050c99e",
+    "target" : "[server/routes/admin.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/admin.js]",
+    "target" : "commit_0f84a39756bcb22d06e2524d251d7b290050c99e",
+    "count" : 2
+  }, {
+    "source" : "commit_0f84a39756bcb22d06e2524d251d7b290050c99e",
+    "target" : "[server/controllers/adminController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/adminController.js]",
+    "target" : "commit_0f84a39756bcb22d06e2524d251d7b290050c99e",
+    "count" : 2
+  }, {
+    "source" : "commit_790997387d4106bcb451bd1d6763024282ee6726",
+    "target" : "[server/routes/admin.js]",
+    "count" : 14
+  }, {
+    "source" : "[server/routes/admin.js]",
+    "target" : "commit_790997387d4106bcb451bd1d6763024282ee6726",
+    "count" : 14
+  }, {
+    "source" : "commit_790997387d4106bcb451bd1d6763024282ee6726",
+    "target" : "[server/controllers/adminController.js]",
+    "count" : 14
+  }, {
+    "source" : "[server/controllers/adminController.js]",
+    "target" : "commit_790997387d4106bcb451bd1d6763024282ee6726",
+    "count" : 14
+  }, {
+    "source" : "commit_403dda4bd396fac79075d985ba3428dca6de260f",
+    "target" : "[server/routes/admin.js]",
+    "count" : 3
+  }, {
+    "source" : "[server/routes/admin.js]",
+    "target" : "commit_403dda4bd396fac79075d985ba3428dca6de260f",
+    "count" : 3
+  }, {
+    "source" : "commit_403dda4bd396fac79075d985ba3428dca6de260f",
+    "target" : "[server/controllers/adminController.js]",
+    "count" : 3
+  }, {
+    "source" : "[server/controllers/adminController.js]",
+    "target" : "commit_403dda4bd396fac79075d985ba3428dca6de260f",
+    "count" : 3
+  }, {
+    "source" : "commit_d38c963f4d82c729f01ae0dda24bacd5a7489aa3",
+    "target" : "[server/routes/admin.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/admin.js]",
+    "target" : "commit_d38c963f4d82c729f01ae0dda24bacd5a7489aa3",
+    "count" : 2
+  }, {
+    "source" : "commit_d38c963f4d82c729f01ae0dda24bacd5a7489aa3",
+    "target" : "[server/controllers/adminController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/adminController.js]",
+    "target" : "commit_d38c963f4d82c729f01ae0dda24bacd5a7489aa3",
+    "count" : 2
+  }, {
+    "source" : "commit_665857674a3528957aca8d4a1c703484aa36b666",
+    "target" : "[server/routes/admin.js]",
+    "count" : 5
+  }, {
+    "source" : "[server/routes/admin.js]",
+    "target" : "commit_665857674a3528957aca8d4a1c703484aa36b666",
+    "count" : 5
+  }, {
+    "source" : "commit_665857674a3528957aca8d4a1c703484aa36b666",
+    "target" : "[server/controllers/adminController.js]",
+    "count" : 5
+  }, {
+    "source" : "[server/controllers/adminController.js]",
+    "target" : "commit_665857674a3528957aca8d4a1c703484aa36b666",
+    "count" : 5
+  }, {
+    "source" : "commit_ff25a09d39ee6918eb64d6447cadaa83af6f9951",
+    "target" : "[server/routes/admin.js]",
+    "count" : 5
+  }, {
+    "source" : "[server/routes/admin.js]",
+    "target" : "commit_ff25a09d39ee6918eb64d6447cadaa83af6f9951",
+    "count" : 5
+  }, {
+    "source" : "commit_ff25a09d39ee6918eb64d6447cadaa83af6f9951",
+    "target" : "[server/controllers/adminController.js]",
+    "count" : 5
+  }, {
+    "source" : "[server/controllers/adminController.js]",
+    "target" : "commit_ff25a09d39ee6918eb64d6447cadaa83af6f9951",
+    "count" : 5
+  }, {
+    "source" : "commit_3a7e1425c9e540b74cc01d6a568cd6bc43e27a8a",
+    "target" : "[server/routes/admin.js]",
+    "count" : 6
+  }, {
+    "source" : "[server/routes/admin.js]",
+    "target" : "commit_3a7e1425c9e540b74cc01d6a568cd6bc43e27a8a",
+    "count" : 6
+  }, {
+    "source" : "commit_3a7e1425c9e540b74cc01d6a568cd6bc43e27a8a",
+    "target" : "[server/controllers/adminController.js]",
+    "count" : 6
+  }, {
+    "source" : "[server/controllers/adminController.js]",
+    "target" : "commit_3a7e1425c9e540b74cc01d6a568cd6bc43e27a8a",
+    "count" : 6
+  }, {
+    "source" : "commit_3541761a1e5c9eee3d9552739a7d648700689c7a",
+    "target" : "[server/routes/admin.js]",
+    "count" : 6
+  }, {
+    "source" : "[server/routes/admin.js]",
+    "target" : "commit_3541761a1e5c9eee3d9552739a7d648700689c7a",
+    "count" : 6
+  }, {
+    "source" : "commit_3541761a1e5c9eee3d9552739a7d648700689c7a",
+    "target" : "[server/controllers/adminController.js]",
+    "count" : 6
+  }, {
+    "source" : "[server/controllers/adminController.js]",
+    "target" : "commit_3541761a1e5c9eee3d9552739a7d648700689c7a",
+    "count" : 6
+  }, {
+    "source" : "commit_f8e6d419d887c8a5949f960a53aba8d220c1956e",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 6
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "commit_f8e6d419d887c8a5949f960a53aba8d220c1956e",
+    "count" : 6
+  }, {
+    "source" : "commit_f8e6d419d887c8a5949f960a53aba8d220c1956e",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 6
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "commit_f8e6d419d887c8a5949f960a53aba8d220c1956e",
+    "count" : 6
+  }, {
+    "source" : "commit_fe9d4d9f5ba7e1aa44ebedaea415ca2238267840",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "commit_fe9d4d9f5ba7e1aa44ebedaea415ca2238267840",
+    "count" : 2
+  }, {
+    "source" : "commit_fe9d4d9f5ba7e1aa44ebedaea415ca2238267840",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "commit_fe9d4d9f5ba7e1aa44ebedaea415ca2238267840",
+    "count" : 2
+  }, {
+    "source" : "commit_3c8f08ba5974106e8f9bb3b29699304c253c5042",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "commit_3c8f08ba5974106e8f9bb3b29699304c253c5042",
+    "count" : 1
+  }, {
+    "source" : "commit_3c8f08ba5974106e8f9bb3b29699304c253c5042",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "commit_3c8f08ba5974106e8f9bb3b29699304c253c5042",
+    "count" : 1
+  }, {
+    "source" : "commit_986230bf8fa207bb3fa2e89a4e451acacd7529c6",
+    "target" : "[server/middleware/rateLimit.js]",
+    "count" : 9
+  }, {
+    "source" : "[server/middleware/rateLimit.js]",
+    "target" : "commit_986230bf8fa207bb3fa2e89a4e451acacd7529c6",
+    "count" : 9
+  }, {
+    "source" : "commit_40bce5bf43f2a7e8c080a09c0250e4cc945a027f",
+    "target" : "[server/middleware/rateLimit.js]",
+    "count" : 9
+  }, {
+    "source" : "[server/middleware/rateLimit.js]",
+    "target" : "commit_40bce5bf43f2a7e8c080a09c0250e4cc945a027f",
+    "count" : 9
+  }, {
+    "source" : "commit_665857674a3528957aca8d4a1c703484aa36b666",
+    "target" : "[src/App.jsx]",
+    "count" : 5
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "commit_665857674a3528957aca8d4a1c703484aa36b666",
+    "count" : 5
+  }, {
+    "source" : "commit_665857674a3528957aca8d4a1c703484aa36b666",
+    "target" : "[server/middleware/rateLimit.js]",
+    "count" : 5
+  }, {
+    "source" : "[server/middleware/rateLimit.js]",
+    "target" : "commit_665857674a3528957aca8d4a1c703484aa36b666",
+    "count" : 5
+  }, {
+    "source" : "commit_7b5eba5d533ebee77b3082ee7a7d50563bdd45f8",
+    "target" : "[src/App.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "commit_7b5eba5d533ebee77b3082ee7a7d50563bdd45f8",
+    "count" : 3
+  }, {
+    "source" : "commit_7b5eba5d533ebee77b3082ee7a7d50563bdd45f8",
+    "target" : "[server/middleware/rateLimit.js]",
+    "count" : 3
+  }, {
+    "source" : "[server/middleware/rateLimit.js]",
+    "target" : "commit_7b5eba5d533ebee77b3082ee7a7d50563bdd45f8",
+    "count" : 3
+  }, {
+    "source" : "commit_57b945362ac71a1f66192e3d28302724ffcdd1eb",
+    "target" : "[src/App.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "commit_57b945362ac71a1f66192e3d28302724ffcdd1eb",
+    "count" : 3
+  }, {
+    "source" : "commit_57b945362ac71a1f66192e3d28302724ffcdd1eb",
+    "target" : "[server/middleware/rateLimit.js]",
+    "count" : 3
+  }, {
+    "source" : "[server/middleware/rateLimit.js]",
+    "target" : "commit_57b945362ac71a1f66192e3d28302724ffcdd1eb",
+    "count" : 3
+  }, {
+    "source" : "commit_ff25a09d39ee6918eb64d6447cadaa83af6f9951",
+    "target" : "[src/App.jsx]",
+    "count" : 5
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "commit_ff25a09d39ee6918eb64d6447cadaa83af6f9951",
+    "count" : 5
+  }, {
+    "source" : "commit_ff25a09d39ee6918eb64d6447cadaa83af6f9951",
+    "target" : "[server/middleware/rateLimit.js]",
+    "count" : 5
+  }, {
+    "source" : "[server/middleware/rateLimit.js]",
+    "target" : "commit_ff25a09d39ee6918eb64d6447cadaa83af6f9951",
+    "count" : 5
+  }, {
+    "source" : "commit_3a7e1425c9e540b74cc01d6a568cd6bc43e27a8a",
+    "target" : "[server/middleware/rateLimit.js]",
+    "count" : 6
+  }, {
+    "source" : "[server/middleware/rateLimit.js]",
+    "target" : "commit_3a7e1425c9e540b74cc01d6a568cd6bc43e27a8a",
+    "count" : 6
+  }, {
+    "source" : "commit_3541761a1e5c9eee3d9552739a7d648700689c7a",
+    "target" : "[server/middleware/rateLimit.js]",
+    "count" : 6
+  }, {
+    "source" : "[server/middleware/rateLimit.js]",
+    "target" : "commit_3541761a1e5c9eee3d9552739a7d648700689c7a",
+    "count" : 6
+  }, {
+    "source" : "commit_8a058609e13d9144046ceb3b1eb5604c29b294bc",
+    "target" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "count" : 8
+  }, {
+    "source" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "target" : "commit_8a058609e13d9144046ceb3b1eb5604c29b294bc",
+    "count" : 8
+  }, {
+    "source" : "commit_8e25046f5ec5f9600613ba721fa7f7875aa6e29c",
+    "target" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "count" : 6
+  }, {
+    "source" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "target" : "commit_8e25046f5ec5f9600613ba721fa7f7875aa6e29c",
+    "count" : 6
+  }, {
+    "source" : "commit_c555ceaf00800f745d85d149b8ae6f731c4e31e9",
+    "target" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "count" : 14
+  }, {
+    "source" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "target" : "commit_c555ceaf00800f745d85d149b8ae6f731c4e31e9",
+    "count" : 14
+  }, {
+    "source" : "commit_f8e6d419d887c8a5949f960a53aba8d220c1956e",
+    "target" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "count" : 6
+  }, {
+    "source" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "target" : "commit_f8e6d419d887c8a5949f960a53aba8d220c1956e",
+    "count" : 6
+  }, {
+    "source" : "commit_86052ca5463028fe8dafb0ebe45cdeefbf2c8b50",
+    "target" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "target" : "commit_86052ca5463028fe8dafb0ebe45cdeefbf2c8b50",
+    "count" : 3
+  }, {
+    "source" : "commit_5a31e00a8a7c472249af8429d27849a066a87119",
+    "target" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "target" : "commit_5a31e00a8a7c472249af8429d27849a066a87119",
+    "count" : 3
+  }, {
+    "source" : "commit_3ee408b5a2f49083a9d4e11d333509a057059bf5",
+    "target" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "target" : "commit_3ee408b5a2f49083a9d4e11d333509a057059bf5",
+    "count" : 3
+  }, {
+    "source" : "commit_3ee408b5a2f49083a9d4e11d333509a057059bf5",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "commit_3ee408b5a2f49083a9d4e11d333509a057059bf5",
+    "count" : 3
+  }, {
+    "source" : "commit_4cfab7a500a1443e3567281609eb12411f7c9774",
+    "target" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "target" : "commit_4cfab7a500a1443e3567281609eb12411f7c9774",
+    "count" : 3
+  }, {
+    "source" : "commit_4cfab7a500a1443e3567281609eb12411f7c9774",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "commit_4cfab7a500a1443e3567281609eb12411f7c9774",
+    "count" : 3
+  }, {
+    "source" : "commit_20f2a88a6050ed068978113abce858581db94ad3",
+    "target" : "[server/routes/admin.js]",
+    "count" : 6
+  }, {
+    "source" : "[server/routes/admin.js]",
+    "target" : "commit_20f2a88a6050ed068978113abce858581db94ad3",
+    "count" : 6
+  }, {
+    "source" : "commit_20f2a88a6050ed068978113abce858581db94ad3",
+    "target" : "[server/middleware/rateLimit.js]",
+    "count" : 6
+  }, {
+    "source" : "[server/middleware/rateLimit.js]",
+    "target" : "commit_20f2a88a6050ed068978113abce858581db94ad3",
+    "count" : 6
+  }, {
+    "source" : "commit_790997387d4106bcb451bd1d6763024282ee6726",
+    "target" : "[server/middleware/rateLimit.js]",
+    "count" : 14
+  }, {
+    "source" : "[server/middleware/rateLimit.js]",
+    "target" : "commit_790997387d4106bcb451bd1d6763024282ee6726",
+    "count" : 14
+  }, {
+    "source" : "commit_986230bf8fa207bb3fa2e89a4e451acacd7529c6",
+    "target" : "[server/routes/admin.js]",
+    "count" : 9
+  }, {
+    "source" : "[server/routes/admin.js]",
+    "target" : "commit_986230bf8fa207bb3fa2e89a4e451acacd7529c6",
+    "count" : 9
+  }, {
+    "source" : "commit_40bce5bf43f2a7e8c080a09c0250e4cc945a027f",
+    "target" : "[server/routes/admin.js]",
+    "count" : 9
+  }, {
+    "source" : "[server/routes/admin.js]",
+    "target" : "commit_40bce5bf43f2a7e8c080a09c0250e4cc945a027f",
+    "count" : 9
+  }, {
+    "source" : "commit_20f2a88a6050ed068978113abce858581db94ad3",
+    "target" : "[server/routes/user.js]",
+    "count" : 6
+  }, {
+    "source" : "[server/routes/user.js]",
+    "target" : "commit_20f2a88a6050ed068978113abce858581db94ad3",
+    "count" : 6
+  }, {
+    "source" : "commit_20f2a88a6050ed068978113abce858581db94ad3",
+    "target" : "[server/controllers/userController.js]",
+    "count" : 6
+  }, {
+    "source" : "[server/controllers/userController.js]",
+    "target" : "commit_20f2a88a6050ed068978113abce858581db94ad3",
+    "count" : 6
+  }, {
+    "source" : "commit_27817368b0f76c16d576688eec1c8880aa7268e3",
+    "target" : "[server/routes/user.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/user.js]",
+    "target" : "commit_27817368b0f76c16d576688eec1c8880aa7268e3",
+    "count" : 2
+  }, {
+    "source" : "commit_27817368b0f76c16d576688eec1c8880aa7268e3",
+    "target" : "[server/controllers/userController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/userController.js]",
+    "target" : "commit_27817368b0f76c16d576688eec1c8880aa7268e3",
+    "count" : 2
+  }, {
+    "source" : "commit_c0652f8504a691c1671060eb876760cc28a5cd00",
+    "target" : "[server/routes/user.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/user.js]",
+    "target" : "commit_c0652f8504a691c1671060eb876760cc28a5cd00",
+    "count" : 2
+  }, {
+    "source" : "commit_c0652f8504a691c1671060eb876760cc28a5cd00",
+    "target" : "[server/controllers/userController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/userController.js]",
+    "target" : "commit_c0652f8504a691c1671060eb876760cc28a5cd00",
+    "count" : 2
+  }, {
+    "source" : "commit_790997387d4106bcb451bd1d6763024282ee6726",
+    "target" : "[server/routes/user.js]",
+    "count" : 14
+  }, {
+    "source" : "[server/routes/user.js]",
+    "target" : "commit_790997387d4106bcb451bd1d6763024282ee6726",
+    "count" : 14
+  }, {
+    "source" : "commit_790997387d4106bcb451bd1d6763024282ee6726",
+    "target" : "[server/controllers/userController.js]",
+    "count" : 14
+  }, {
+    "source" : "[server/controllers/userController.js]",
+    "target" : "commit_790997387d4106bcb451bd1d6763024282ee6726",
+    "count" : 14
+  }, {
+    "source" : "commit_9fc47826f2cf3936b790778f99c98dbff169df96",
+    "target" : "[server/routes/user.js]",
+    "count" : 8
+  }, {
+    "source" : "[server/routes/user.js]",
+    "target" : "commit_9fc47826f2cf3936b790778f99c98dbff169df96",
+    "count" : 8
+  }, {
+    "source" : "commit_9fc47826f2cf3936b790778f99c98dbff169df96",
+    "target" : "[server/controllers/userController.js]",
+    "count" : 8
+  }, {
+    "source" : "[server/controllers/userController.js]",
+    "target" : "commit_9fc47826f2cf3936b790778f99c98dbff169df96",
+    "count" : 8
+  }, {
+    "source" : "commit_47f421481616ebbfc1997cf0cd6a9d483ef7fcd4",
+    "target" : "[server/routes/user.js]",
+    "count" : 3
+  }, {
+    "source" : "[server/routes/user.js]",
+    "target" : "commit_47f421481616ebbfc1997cf0cd6a9d483ef7fcd4",
+    "count" : 3
+  }, {
+    "source" : "commit_47f421481616ebbfc1997cf0cd6a9d483ef7fcd4",
+    "target" : "[server/controllers/userController.js]",
+    "count" : 3
+  }, {
+    "source" : "[server/controllers/userController.js]",
+    "target" : "commit_47f421481616ebbfc1997cf0cd6a9d483ef7fcd4",
+    "count" : 3
+  }, {
+    "source" : "commit_845f70b9f66c23acba0143c1106ab1a0d419e8f8",
+    "target" : "[server/routes/user.js]",
+    "count" : 8
+  }, {
+    "source" : "[server/routes/user.js]",
+    "target" : "commit_845f70b9f66c23acba0143c1106ab1a0d419e8f8",
+    "count" : 8
+  }, {
+    "source" : "commit_845f70b9f66c23acba0143c1106ab1a0d419e8f8",
+    "target" : "[server/controllers/userController.js]",
+    "count" : 8
+  }, {
+    "source" : "[server/controllers/userController.js]",
+    "target" : "commit_845f70b9f66c23acba0143c1106ab1a0d419e8f8",
+    "count" : 8
+  }, {
+    "source" : "commit_b9f6aeab745dfd9f0d049bc6ce3fe0e3d87bbd3b",
+    "target" : "[server/routes/user.js]",
+    "count" : 3
+  }, {
+    "source" : "[server/routes/user.js]",
+    "target" : "commit_b9f6aeab745dfd9f0d049bc6ce3fe0e3d87bbd3b",
+    "count" : 3
+  }, {
+    "source" : "commit_b9f6aeab745dfd9f0d049bc6ce3fe0e3d87bbd3b",
+    "target" : "[server/controllers/userController.js]",
+    "count" : 3
+  }, {
+    "source" : "[server/controllers/userController.js]",
+    "target" : "commit_b9f6aeab745dfd9f0d049bc6ce3fe0e3d87bbd3b",
+    "count" : 3
+  }, {
+    "source" : "commit_790997387d4106bcb451bd1d6763024282ee6726",
+    "target" : "[server/controllers/stripeWebhookController.js]",
+    "count" : 14
+  }, {
+    "source" : "[server/controllers/stripeWebhookController.js]",
+    "target" : "commit_790997387d4106bcb451bd1d6763024282ee6726",
+    "count" : 14
+  }, {
+    "source" : "commit_790997387d4106bcb451bd1d6763024282ee6726",
+    "target" : "[server/controllers/paymentsController.js]",
+    "count" : 14
+  }, {
+    "source" : "[server/controllers/paymentsController.js]",
+    "target" : "commit_790997387d4106bcb451bd1d6763024282ee6726",
+    "count" : 14
+  }, {
+    "source" : "commit_a09779e13c50e3a1757170a0428b33dcf4a6dc9f",
+    "target" : "[server/controllers/stripeWebhookController.js]",
+    "count" : 8
+  }, {
+    "source" : "[server/controllers/stripeWebhookController.js]",
+    "target" : "commit_a09779e13c50e3a1757170a0428b33dcf4a6dc9f",
+    "count" : 8
+  }, {
+    "source" : "commit_a09779e13c50e3a1757170a0428b33dcf4a6dc9f",
+    "target" : "[server/controllers/paymentsController.js]",
+    "count" : 8
+  }, {
+    "source" : "[server/controllers/paymentsController.js]",
+    "target" : "commit_a09779e13c50e3a1757170a0428b33dcf4a6dc9f",
+    "count" : 8
+  }, {
+    "source" : "commit_9fc47826f2cf3936b790778f99c98dbff169df96",
+    "target" : "[server/controllers/stripeWebhookController.js]",
+    "count" : 8
+  }, {
+    "source" : "[server/controllers/stripeWebhookController.js]",
+    "target" : "commit_9fc47826f2cf3936b790778f99c98dbff169df96",
+    "count" : 8
+  }, {
+    "source" : "commit_9fc47826f2cf3936b790778f99c98dbff169df96",
+    "target" : "[server/controllers/paymentsController.js]",
+    "count" : 8
+  }, {
+    "source" : "[server/controllers/paymentsController.js]",
+    "target" : "commit_9fc47826f2cf3936b790778f99c98dbff169df96",
+    "count" : 8
+  }, {
+    "source" : "commit_845f70b9f66c23acba0143c1106ab1a0d419e8f8",
+    "target" : "[server/controllers/stripeWebhookController.js]",
+    "count" : 8
+  }, {
+    "source" : "[server/controllers/stripeWebhookController.js]",
+    "target" : "commit_845f70b9f66c23acba0143c1106ab1a0d419e8f8",
+    "count" : 8
+  }, {
+    "source" : "commit_845f70b9f66c23acba0143c1106ab1a0d419e8f8",
+    "target" : "[server/controllers/paymentsController.js]",
+    "count" : 8
+  }, {
+    "source" : "[server/controllers/paymentsController.js]",
+    "target" : "commit_845f70b9f66c23acba0143c1106ab1a0d419e8f8",
+    "count" : 8
+  }, {
+    "source" : "commit_f513f71cfd5fc349ecf745b969298c130ee00005",
+    "target" : "[server/controllers/stripeWebhookController.js]",
+    "count" : 8
+  }, {
+    "source" : "[server/controllers/stripeWebhookController.js]",
+    "target" : "commit_f513f71cfd5fc349ecf745b969298c130ee00005",
+    "count" : 8
+  }, {
+    "source" : "commit_f513f71cfd5fc349ecf745b969298c130ee00005",
+    "target" : "[server/controllers/paymentsController.js]",
+    "count" : 8
+  }, {
+    "source" : "[server/controllers/paymentsController.js]",
+    "target" : "commit_f513f71cfd5fc349ecf745b969298c130ee00005",
+    "count" : 8
+  }, {
+    "source" : "commit_3a0dcc5fa8761b0183c48a6e7d1788d8a27e5d7b",
+    "target" : "[server/controllers/stripeWebhookController.js]",
+    "count" : 8
+  }, {
+    "source" : "[server/controllers/stripeWebhookController.js]",
+    "target" : "commit_3a0dcc5fa8761b0183c48a6e7d1788d8a27e5d7b",
+    "count" : 8
+  }, {
+    "source" : "commit_3a0dcc5fa8761b0183c48a6e7d1788d8a27e5d7b",
+    "target" : "[server/controllers/paymentsController.js]",
+    "count" : 8
+  }, {
+    "source" : "[server/controllers/paymentsController.js]",
+    "target" : "commit_3a0dcc5fa8761b0183c48a6e7d1788d8a27e5d7b",
+    "count" : 8
+  }, {
+    "source" : "commit_0fa64bce2288d6d4a360f6f2b0ca7991d25eef4a",
+    "target" : "[server/controllers/stripeWebhookController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/stripeWebhookController.js]",
+    "target" : "commit_0fa64bce2288d6d4a360f6f2b0ca7991d25eef4a",
+    "count" : 2
+  }, {
+    "source" : "commit_0fa64bce2288d6d4a360f6f2b0ca7991d25eef4a",
+    "target" : "[server/controllers/paymentsController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/paymentsController.js]",
+    "target" : "commit_0fa64bce2288d6d4a360f6f2b0ca7991d25eef4a",
+    "count" : 2
+  }, {
+    "source" : "commit_3ee408b5a2f49083a9d4e11d333509a057059bf5",
+    "target" : "[server/middleware/rateLimit.js]",
+    "count" : 3
+  }, {
+    "source" : "[server/middleware/rateLimit.js]",
+    "target" : "commit_3ee408b5a2f49083a9d4e11d333509a057059bf5",
+    "count" : 3
+  }, {
+    "source" : "commit_3ee408b5a2f49083a9d4e11d333509a057059bf5",
+    "target" : "[server/controllers/adminController.js]",
+    "count" : 3
+  }, {
+    "source" : "[server/controllers/adminController.js]",
+    "target" : "commit_3ee408b5a2f49083a9d4e11d333509a057059bf5",
+    "count" : 3
+  }, {
+    "source" : "commit_4cfab7a500a1443e3567281609eb12411f7c9774",
+    "target" : "[server/middleware/rateLimit.js]",
+    "count" : 3
+  }, {
+    "source" : "[server/middleware/rateLimit.js]",
+    "target" : "commit_4cfab7a500a1443e3567281609eb12411f7c9774",
+    "count" : 3
+  }, {
+    "source" : "commit_4cfab7a500a1443e3567281609eb12411f7c9774",
+    "target" : "[server/controllers/adminController.js]",
+    "count" : 3
+  }, {
+    "source" : "[server/controllers/adminController.js]",
+    "target" : "commit_4cfab7a500a1443e3567281609eb12411f7c9774",
+    "count" : 3
+  }, {
+    "source" : "commit_790997387d4106bcb451bd1d6763024282ee6726",
+    "target" : "[server/routes/payments.js]",
+    "count" : 14
+  }, {
+    "source" : "[server/routes/payments.js]",
+    "target" : "commit_790997387d4106bcb451bd1d6763024282ee6726",
+    "count" : 14
+  }, {
+    "source" : "commit_a09779e13c50e3a1757170a0428b33dcf4a6dc9f",
+    "target" : "[server/routes/payments.js]",
+    "count" : 8
+  }, {
+    "source" : "[server/routes/payments.js]",
+    "target" : "commit_a09779e13c50e3a1757170a0428b33dcf4a6dc9f",
+    "count" : 8
+  }, {
+    "source" : "commit_dda92c392150fb859fa3a3c96bf29401f60b1da5",
+    "target" : "[server/routes/payments.js]",
+    "count" : 7
+  }, {
+    "source" : "[server/routes/payments.js]",
+    "target" : "commit_dda92c392150fb859fa3a3c96bf29401f60b1da5",
+    "count" : 7
+  }, {
+    "source" : "commit_dda92c392150fb859fa3a3c96bf29401f60b1da5",
+    "target" : "[server/controllers/paymentsController.js]",
+    "count" : 7
+  }, {
+    "source" : "[server/controllers/paymentsController.js]",
+    "target" : "commit_dda92c392150fb859fa3a3c96bf29401f60b1da5",
+    "count" : 7
+  }, {
+    "source" : "commit_b14b3076a3cecfa40859464aa94eb8ea2c364cf4",
+    "target" : "[server/routes/payments.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/payments.js]",
+    "target" : "commit_b14b3076a3cecfa40859464aa94eb8ea2c364cf4",
+    "count" : 2
+  }, {
+    "source" : "commit_b14b3076a3cecfa40859464aa94eb8ea2c364cf4",
+    "target" : "[server/controllers/paymentsController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/paymentsController.js]",
+    "target" : "commit_b14b3076a3cecfa40859464aa94eb8ea2c364cf4",
+    "count" : 2
+  }, {
+    "source" : "commit_c1a12de17dd422679beb1cf6390c102972f4a756",
+    "target" : "[server/routes/payments.js]",
+    "count" : 7
+  }, {
+    "source" : "[server/routes/payments.js]",
+    "target" : "commit_c1a12de17dd422679beb1cf6390c102972f4a756",
+    "count" : 7
+  }, {
+    "source" : "commit_c1a12de17dd422679beb1cf6390c102972f4a756",
+    "target" : "[server/controllers/paymentsController.js]",
+    "count" : 7
+  }, {
+    "source" : "[server/controllers/paymentsController.js]",
+    "target" : "commit_c1a12de17dd422679beb1cf6390c102972f4a756",
+    "count" : 7
+  }, {
+    "source" : "commit_9fc47826f2cf3936b790778f99c98dbff169df96",
+    "target" : "[server/routes/payments.js]",
+    "count" : 8
+  }, {
+    "source" : "[server/routes/payments.js]",
+    "target" : "commit_9fc47826f2cf3936b790778f99c98dbff169df96",
+    "count" : 8
+  }, {
+    "source" : "commit_845f70b9f66c23acba0143c1106ab1a0d419e8f8",
+    "target" : "[server/routes/payments.js]",
+    "count" : 8
+  }, {
+    "source" : "[server/routes/payments.js]",
+    "target" : "commit_845f70b9f66c23acba0143c1106ab1a0d419e8f8",
+    "count" : 8
+  }, {
+    "source" : "commit_245f7a693100d04e0f986d6d32083f5963e53755",
+    "target" : "[src/pages/Navigation/Navigation.jsx]",
+    "count" : 5
+  }, {
+    "source" : "[src/pages/Navigation/Navigation.jsx]",
+    "target" : "commit_245f7a693100d04e0f986d6d32083f5963e53755",
+    "count" : 5
+  }, {
+    "source" : "commit_245f7a693100d04e0f986d6d32083f5963e53755",
+    "target" : "[src/App.jsx]",
+    "count" : 5
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "commit_245f7a693100d04e0f986d6d32083f5963e53755",
+    "count" : 5
+  }, {
+    "source" : "commit_d73436a6dd137731af1d9b1947ca2e3ebfdfda28",
+    "target" : "[src/pages/Navigation/Navigation.jsx]",
+    "count" : 5
+  }, {
+    "source" : "[src/pages/Navigation/Navigation.jsx]",
+    "target" : "commit_d73436a6dd137731af1d9b1947ca2e3ebfdfda28",
+    "count" : 5
+  }, {
+    "source" : "commit_d73436a6dd137731af1d9b1947ca2e3ebfdfda28",
+    "target" : "[src/App.jsx]",
+    "count" : 5
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "commit_d73436a6dd137731af1d9b1947ca2e3ebfdfda28",
+    "count" : 5
+  }, {
+    "source" : "commit_986230bf8fa207bb3fa2e89a4e451acacd7529c6",
+    "target" : "[src/pages/Navigation/Navigation.jsx]",
+    "count" : 9
+  }, {
+    "source" : "[src/pages/Navigation/Navigation.jsx]",
+    "target" : "commit_986230bf8fa207bb3fa2e89a4e451acacd7529c6",
+    "count" : 9
+  }, {
+    "source" : "commit_40bce5bf43f2a7e8c080a09c0250e4cc945a027f",
+    "target" : "[src/pages/Navigation/Navigation.jsx]",
+    "count" : 9
+  }, {
+    "source" : "[src/pages/Navigation/Navigation.jsx]",
+    "target" : "commit_40bce5bf43f2a7e8c080a09c0250e4cc945a027f",
+    "count" : 9
+  }, {
+    "source" : "commit_86052ca5463028fe8dafb0ebe45cdeefbf2c8b50",
+    "target" : "[src/pages/Navigation/Navigation.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Navigation/Navigation.jsx]",
+    "target" : "commit_86052ca5463028fe8dafb0ebe45cdeefbf2c8b50",
+    "count" : 3
+  }, {
+    "source" : "commit_5a31e00a8a7c472249af8429d27849a066a87119",
+    "target" : "[src/pages/Navigation/Navigation.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Navigation/Navigation.jsx]",
+    "target" : "commit_5a31e00a8a7c472249af8429d27849a066a87119",
+    "count" : 3
+  }, {
+    "source" : "commit_d38c963f4d82c729f01ae0dda24bacd5a7489aa3",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "commit_d38c963f4d82c729f01ae0dda24bacd5a7489aa3",
+    "count" : 2
+  }, {
+    "source" : "commit_baf597c9c39dbf8b96b117f7c264f491ecb53994",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "commit_baf597c9c39dbf8b96b117f7c264f491ecb53994",
+    "count" : 2
+  }, {
+    "source" : "commit_baf597c9c39dbf8b96b117f7c264f491ecb53994",
+    "target" : "[server/controllers/adminController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/adminController.js]",
+    "target" : "commit_baf597c9c39dbf8b96b117f7c264f491ecb53994",
+    "count" : 2
+  }, {
+    "source" : "commit_08dafe462e8d243030ceae5b0582b3eab3907307",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "commit_08dafe462e8d243030ceae5b0582b3eab3907307",
+    "count" : 2
+  }, {
+    "source" : "commit_08dafe462e8d243030ceae5b0582b3eab3907307",
+    "target" : "[server/controllers/adminController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/adminController.js]",
+    "target" : "commit_08dafe462e8d243030ceae5b0582b3eab3907307",
+    "count" : 2
+  }, {
+    "source" : "commit_47f421481616ebbfc1997cf0cd6a9d483ef7fcd4",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "commit_47f421481616ebbfc1997cf0cd6a9d483ef7fcd4",
+    "count" : 3
+  }, {
+    "source" : "commit_b9f6aeab745dfd9f0d049bc6ce3fe0e3d87bbd3b",
+    "target" : "[src/pages/Profile/Profile.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Profile/Profile.jsx]",
+    "target" : "commit_b9f6aeab745dfd9f0d049bc6ce3fe0e3d87bbd3b",
+    "count" : 3
+  }, {
+    "source" : "commit_fe9d4d9f5ba7e1aa44ebedaea415ca2238267840",
+    "target" : "[server/controllers/userController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/userController.js]",
+    "target" : "commit_fe9d4d9f5ba7e1aa44ebedaea415ca2238267840",
+    "count" : 2
+  }, {
+    "source" : "commit_f513f71cfd5fc349ecf745b969298c130ee00005",
+    "target" : "[server/controllers/userController.js]",
+    "count" : 8
+  }, {
+    "source" : "[server/controllers/userController.js]",
+    "target" : "commit_f513f71cfd5fc349ecf745b969298c130ee00005",
+    "count" : 8
+  }, {
+    "source" : "commit_3a0dcc5fa8761b0183c48a6e7d1788d8a27e5d7b",
+    "target" : "[server/controllers/userController.js]",
+    "count" : 8
+  }, {
+    "source" : "[server/controllers/userController.js]",
+    "target" : "commit_3a0dcc5fa8761b0183c48a6e7d1788d8a27e5d7b",
+    "count" : 8
+  }, {
+    "source" : "commit_ee46eea6405233abf48eecbbf9bed7aa4350c84e",
+    "target" : "[server/controllers/userController.js]",
+    "count" : 5
+  }, {
+    "source" : "[server/controllers/userController.js]",
+    "target" : "commit_ee46eea6405233abf48eecbbf9bed7aa4350c84e",
+    "count" : 5
+  }, {
+    "source" : "commit_665857674a3528957aca8d4a1c703484aa36b666",
+    "target" : "[src/pages/Admin/Admin.jsx]",
+    "count" : 5
+  }, {
+    "source" : "[src/pages/Admin/Admin.jsx]",
+    "target" : "commit_665857674a3528957aca8d4a1c703484aa36b666",
+    "count" : 5
+  }, {
+    "source" : "commit_7b5eba5d533ebee77b3082ee7a7d50563bdd45f8",
+    "target" : "[src/pages/Admin/Admin.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Admin/Admin.jsx]",
+    "target" : "commit_7b5eba5d533ebee77b3082ee7a7d50563bdd45f8",
+    "count" : 3
+  }, {
+    "source" : "commit_57b945362ac71a1f66192e3d28302724ffcdd1eb",
+    "target" : "[src/pages/Admin/Admin.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Admin/Admin.jsx]",
+    "target" : "commit_57b945362ac71a1f66192e3d28302724ffcdd1eb",
+    "count" : 3
+  }, {
+    "source" : "commit_ff25a09d39ee6918eb64d6447cadaa83af6f9951",
+    "target" : "[src/pages/Admin/Admin.jsx]",
+    "count" : 5
+  }, {
+    "source" : "[src/pages/Admin/Admin.jsx]",
+    "target" : "commit_ff25a09d39ee6918eb64d6447cadaa83af6f9951",
+    "count" : 5
+  }, {
+    "source" : "commit_3a7e1425c9e540b74cc01d6a568cd6bc43e27a8a",
+    "target" : "[src/pages/Admin/Admin.jsx]",
+    "count" : 6
+  }, {
+    "source" : "[src/pages/Admin/Admin.jsx]",
+    "target" : "commit_3a7e1425c9e540b74cc01d6a568cd6bc43e27a8a",
+    "count" : 6
+  }, {
+    "source" : "commit_3541761a1e5c9eee3d9552739a7d648700689c7a",
+    "target" : "[src/pages/Admin/Admin.jsx]",
+    "count" : 6
+  }, {
+    "source" : "[src/pages/Admin/Admin.jsx]",
+    "target" : "commit_3541761a1e5c9eee3d9552739a7d648700689c7a",
+    "count" : 6
+  }, {
+    "source" : "commit_8a058609e13d9144046ceb3b1eb5604c29b294bc",
+    "target" : "[src/pages/GameDetail/gameDetail.css]",
+    "count" : 8
+  }, {
+    "source" : "[src/pages/GameDetail/gameDetail.css]",
+    "target" : "commit_8a058609e13d9144046ceb3b1eb5604c29b294bc",
+    "count" : 8
+  }, {
+    "source" : "commit_4e852726ac6cb1a1f78e330ef095df089308f8cc",
+    "target" : "[src/pages/GameDetail/gameDetail.css]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/GameDetail/gameDetail.css]",
+    "target" : "commit_4e852726ac6cb1a1f78e330ef095df089308f8cc",
+    "count" : 3
+  }, {
+    "source" : "commit_4e852726ac6cb1a1f78e330ef095df089308f8cc",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "commit_4e852726ac6cb1a1f78e330ef095df089308f8cc",
+    "count" : 3
+  }, {
+    "source" : "commit_8e25046f5ec5f9600613ba721fa7f7875aa6e29c",
+    "target" : "[src/pages/GameDetail/gameDetail.css]",
+    "count" : 6
+  }, {
+    "source" : "[src/pages/GameDetail/gameDetail.css]",
+    "target" : "commit_8e25046f5ec5f9600613ba721fa7f7875aa6e29c",
+    "count" : 6
+  }, {
+    "source" : "commit_c555ceaf00800f745d85d149b8ae6f731c4e31e9",
+    "target" : "[src/pages/GameDetail/gameDetail.css]",
+    "count" : 14
+  }, {
+    "source" : "[src/pages/GameDetail/gameDetail.css]",
+    "target" : "commit_c555ceaf00800f745d85d149b8ae6f731c4e31e9",
+    "count" : 14
+  }, {
+    "source" : "commit_ce56593d09df98383ac7982aa67b28a0fbed92ff",
+    "target" : "[src/pages/GameDetail/gameDetail.css]",
+    "count" : 8
+  }, {
+    "source" : "[src/pages/GameDetail/gameDetail.css]",
+    "target" : "commit_ce56593d09df98383ac7982aa67b28a0fbed92ff",
+    "count" : 8
+  }, {
+    "source" : "commit_0a6d867fda1c02c7931ac0869161808fec6377a3",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "commit_0a6d867fda1c02c7931ac0869161808fec6377a3",
+    "count" : 1
+  }, {
+    "source" : "commit_0a6d867fda1c02c7931ac0869161808fec6377a3",
+    "target" : "[server/routes/admin.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/routes/admin.js]",
+    "target" : "commit_0a6d867fda1c02c7931ac0869161808fec6377a3",
+    "count" : 1
+  }, {
+    "source" : "commit_00d9e0670888f46cc14ddc1a395fbf829cd6a7db",
+    "target" : "[server/controllers/cartController.js]",
+    "count" : 4
+  }, {
+    "source" : "[server/controllers/cartController.js]",
+    "target" : "commit_00d9e0670888f46cc14ddc1a395fbf829cd6a7db",
+    "count" : 4
+  }, {
+    "source" : "commit_00d9e0670888f46cc14ddc1a395fbf829cd6a7db",
+    "target" : "[server/middleware/rateLimit.js]",
+    "count" : 4
+  }, {
+    "source" : "[server/middleware/rateLimit.js]",
+    "target" : "commit_00d9e0670888f46cc14ddc1a395fbf829cd6a7db",
+    "count" : 4
+  }, {
+    "source" : "commit_790997387d4106bcb451bd1d6763024282ee6726",
+    "target" : "[server/controllers/cartController.js]",
+    "count" : 14
+  }, {
+    "source" : "[server/controllers/cartController.js]",
+    "target" : "commit_790997387d4106bcb451bd1d6763024282ee6726",
+    "count" : 14
+  }, {
+    "source" : "commit_9026cf234d45fc4160216c72395585dbd58cd666",
+    "target" : "[server/controllers/cartController.js]",
+    "count" : 4
+  }, {
+    "source" : "[server/controllers/cartController.js]",
+    "target" : "commit_9026cf234d45fc4160216c72395585dbd58cd666",
+    "count" : 4
+  }, {
+    "source" : "commit_9026cf234d45fc4160216c72395585dbd58cd666",
+    "target" : "[server/middleware/rateLimit.js]",
+    "count" : 4
+  }, {
+    "source" : "[server/middleware/rateLimit.js]",
+    "target" : "commit_9026cf234d45fc4160216c72395585dbd58cd666",
+    "count" : 4
+  }, {
+    "source" : "commit_986230bf8fa207bb3fa2e89a4e451acacd7529c6",
+    "target" : "[server/controllers/cartController.js]",
+    "count" : 9
+  }, {
+    "source" : "[server/controllers/cartController.js]",
+    "target" : "commit_986230bf8fa207bb3fa2e89a4e451acacd7529c6",
+    "count" : 9
+  }, {
+    "source" : "commit_40bce5bf43f2a7e8c080a09c0250e4cc945a027f",
+    "target" : "[server/controllers/cartController.js]",
+    "count" : 9
+  }, {
+    "source" : "[server/controllers/cartController.js]",
+    "target" : "commit_40bce5bf43f2a7e8c080a09c0250e4cc945a027f",
+    "count" : 9
+  }, {
+    "source" : "commit_790997387d4106bcb451bd1d6763024282ee6726",
+    "target" : "[server/controllers/gamesController.js]",
+    "count" : 14
+  }, {
+    "source" : "[server/controllers/gamesController.js]",
+    "target" : "commit_790997387d4106bcb451bd1d6763024282ee6726",
+    "count" : 14
+  }, {
+    "source" : "commit_a09779e13c50e3a1757170a0428b33dcf4a6dc9f",
+    "target" : "[server/controllers/gamesController.js]",
+    "count" : 8
+  }, {
+    "source" : "[server/controllers/gamesController.js]",
+    "target" : "commit_a09779e13c50e3a1757170a0428b33dcf4a6dc9f",
+    "count" : 8
+  }, {
+    "source" : "commit_f513f71cfd5fc349ecf745b969298c130ee00005",
+    "target" : "[server/controllers/gamesController.js]",
+    "count" : 8
+  }, {
+    "source" : "[server/controllers/gamesController.js]",
+    "target" : "commit_f513f71cfd5fc349ecf745b969298c130ee00005",
+    "count" : 8
+  }, {
+    "source" : "commit_3a0dcc5fa8761b0183c48a6e7d1788d8a27e5d7b",
+    "target" : "[server/controllers/gamesController.js]",
+    "count" : 8
+  }, {
+    "source" : "[server/controllers/gamesController.js]",
+    "target" : "commit_3a0dcc5fa8761b0183c48a6e7d1788d8a27e5d7b",
+    "count" : 8
+  }, {
+    "source" : "commit_0fa64bce2288d6d4a360f6f2b0ca7991d25eef4a",
+    "target" : "[server/controllers/gamesController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/gamesController.js]",
+    "target" : "commit_0fa64bce2288d6d4a360f6f2b0ca7991d25eef4a",
+    "count" : 2
+  }, {
+    "source" : "commit_dda92c392150fb859fa3a3c96bf29401f60b1da5",
+    "target" : "[src/pages/Purchase/Success.jsx]",
+    "count" : 7
+  }, {
+    "source" : "[src/pages/Purchase/Success.jsx]",
+    "target" : "commit_dda92c392150fb859fa3a3c96bf29401f60b1da5",
+    "count" : 7
+  }, {
+    "source" : "commit_b14b3076a3cecfa40859464aa94eb8ea2c364cf4",
+    "target" : "[src/pages/Purchase/Success.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Purchase/Success.jsx]",
+    "target" : "commit_b14b3076a3cecfa40859464aa94eb8ea2c364cf4",
+    "count" : 2
+  }, {
+    "source" : "commit_c1a12de17dd422679beb1cf6390c102972f4a756",
+    "target" : "[src/pages/Purchase/Success.jsx]",
+    "count" : 7
+  }, {
+    "source" : "[src/pages/Purchase/Success.jsx]",
+    "target" : "commit_c1a12de17dd422679beb1cf6390c102972f4a756",
+    "count" : 7
+  }, {
+    "source" : "commit_9fc47826f2cf3936b790778f99c98dbff169df96",
+    "target" : "[src/pages/Purchase/Success.jsx]",
+    "count" : 8
+  }, {
+    "source" : "[src/pages/Purchase/Success.jsx]",
+    "target" : "commit_9fc47826f2cf3936b790778f99c98dbff169df96",
+    "count" : 8
+  }, {
+    "source" : "commit_845f70b9f66c23acba0143c1106ab1a0d419e8f8",
+    "target" : "[src/pages/Purchase/Success.jsx]",
+    "count" : 8
+  }, {
+    "source" : "[src/pages/Purchase/Success.jsx]",
+    "target" : "commit_845f70b9f66c23acba0143c1106ab1a0d419e8f8",
+    "count" : 8
+  }, {
+    "source" : "commit_a6e7731dffd8b24cf4578b43b474e95847542fd1",
+    "target" : "[src/pages/GameDetail/gameDetail.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/GameDetail/gameDetail.css]",
+    "target" : "commit_a6e7731dffd8b24cf4578b43b474e95847542fd1",
+    "count" : 2
+  }, {
+    "source" : "commit_a6e7731dffd8b24cf4578b43b474e95847542fd1",
+    "target" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "target" : "commit_a6e7731dffd8b24cf4578b43b474e95847542fd1",
+    "count" : 2
+  }, {
+    "source" : "commit_1a069473778cbf4f670f7188e8a2613093933498",
+    "target" : "[src/pages/GameDetail/gameDetail.css]",
+    "count" : 7
+  }, {
+    "source" : "[src/pages/GameDetail/gameDetail.css]",
+    "target" : "commit_1a069473778cbf4f670f7188e8a2613093933498",
+    "count" : 7
+  }, {
+    "source" : "commit_1a069473778cbf4f670f7188e8a2613093933498",
+    "target" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "count" : 7
+  }, {
+    "source" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "target" : "commit_1a069473778cbf4f670f7188e8a2613093933498",
+    "count" : 7
+  }, {
+    "source" : "commit_790997387d4106bcb451bd1d6763024282ee6726",
+    "target" : "[server/index.js]",
+    "count" : 14
+  }, {
+    "source" : "[server/index.js]",
+    "target" : "commit_790997387d4106bcb451bd1d6763024282ee6726",
+    "count" : 14
+  }, {
+    "source" : "commit_a09779e13c50e3a1757170a0428b33dcf4a6dc9f",
+    "target" : "[server/index.js]",
+    "count" : 8
+  }, {
+    "source" : "[server/index.js]",
+    "target" : "commit_a09779e13c50e3a1757170a0428b33dcf4a6dc9f",
+    "count" : 8
+  }, {
+    "source" : "commit_dda92c392150fb859fa3a3c96bf29401f60b1da5",
+    "target" : "[server/index.js]",
+    "count" : 7
+  }, {
+    "source" : "[server/index.js]",
+    "target" : "commit_dda92c392150fb859fa3a3c96bf29401f60b1da5",
+    "count" : 7
+  }, {
+    "source" : "commit_c1a12de17dd422679beb1cf6390c102972f4a756",
+    "target" : "[server/index.js]",
+    "count" : 7
+  }, {
+    "source" : "[server/index.js]",
+    "target" : "commit_c1a12de17dd422679beb1cf6390c102972f4a756",
+    "count" : 7
+  }, {
+    "source" : "commit_665857674a3528957aca8d4a1c703484aa36b666",
+    "target" : "[src/pages/Admin/Admin.css]",
+    "count" : 5
+  }, {
+    "source" : "[src/pages/Admin/Admin.css]",
+    "target" : "commit_665857674a3528957aca8d4a1c703484aa36b666",
+    "count" : 5
+  }, {
+    "source" : "commit_ff25a09d39ee6918eb64d6447cadaa83af6f9951",
+    "target" : "[src/pages/Admin/Admin.css]",
+    "count" : 5
+  }, {
+    "source" : "[src/pages/Admin/Admin.css]",
+    "target" : "commit_ff25a09d39ee6918eb64d6447cadaa83af6f9951",
+    "count" : 5
+  }, {
+    "source" : "commit_3a7e1425c9e540b74cc01d6a568cd6bc43e27a8a",
+    "target" : "[src/pages/Admin/Admin.css]",
+    "count" : 6
+  }, {
+    "source" : "[src/pages/Admin/Admin.css]",
+    "target" : "commit_3a7e1425c9e540b74cc01d6a568cd6bc43e27a8a",
+    "count" : 6
+  }, {
+    "source" : "commit_3541761a1e5c9eee3d9552739a7d648700689c7a",
+    "target" : "[src/pages/Admin/Admin.css]",
+    "count" : 6
+  }, {
+    "source" : "[src/pages/Admin/Admin.css]",
+    "target" : "commit_3541761a1e5c9eee3d9552739a7d648700689c7a",
+    "count" : 6
+  }, {
+    "source" : "commit_00d9e0670888f46cc14ddc1a395fbf829cd6a7db",
+    "target" : "[server/utils/stripePricing.js]",
+    "count" : 4
+  }, {
+    "source" : "[server/utils/stripePricing.js]",
+    "target" : "commit_00d9e0670888f46cc14ddc1a395fbf829cd6a7db",
+    "count" : 4
+  }, {
+    "source" : "commit_00d9e0670888f46cc14ddc1a395fbf829cd6a7db",
+    "target" : "[server/controllers/gamesController.js]",
+    "count" : 4
+  }, {
+    "source" : "[server/controllers/gamesController.js]",
+    "target" : "commit_00d9e0670888f46cc14ddc1a395fbf829cd6a7db",
+    "count" : 4
+  }, {
+    "source" : "commit_790997387d4106bcb451bd1d6763024282ee6726",
+    "target" : "[server/utils/stripePricing.js]",
+    "count" : 14
+  }, {
+    "source" : "[server/utils/stripePricing.js]",
+    "target" : "commit_790997387d4106bcb451bd1d6763024282ee6726",
+    "count" : 14
+  }, {
+    "source" : "commit_9026cf234d45fc4160216c72395585dbd58cd666",
+    "target" : "[server/utils/stripePricing.js]",
+    "count" : 4
+  }, {
+    "source" : "[server/utils/stripePricing.js]",
+    "target" : "commit_9026cf234d45fc4160216c72395585dbd58cd666",
+    "count" : 4
+  }, {
+    "source" : "commit_9026cf234d45fc4160216c72395585dbd58cd666",
+    "target" : "[server/controllers/gamesController.js]",
+    "count" : 4
+  }, {
+    "source" : "[server/controllers/gamesController.js]",
+    "target" : "commit_9026cf234d45fc4160216c72395585dbd58cd666",
+    "count" : 4
+  }, {
+    "source" : "commit_a09779e13c50e3a1757170a0428b33dcf4a6dc9f",
+    "target" : "[server/utils/stripePricing.js]",
+    "count" : 8
+  }, {
+    "source" : "[server/utils/stripePricing.js]",
+    "target" : "commit_a09779e13c50e3a1757170a0428b33dcf4a6dc9f",
+    "count" : 8
+  }, {
+    "source" : "commit_245f7a693100d04e0f986d6d32083f5963e53755",
+    "target" : "[src/pages/Navigation/navigation.css]",
+    "count" : 5
+  }, {
+    "source" : "[src/pages/Navigation/navigation.css]",
+    "target" : "commit_245f7a693100d04e0f986d6d32083f5963e53755",
+    "count" : 5
+  }, {
+    "source" : "commit_d73436a6dd137731af1d9b1947ca2e3ebfdfda28",
+    "target" : "[src/pages/Navigation/navigation.css]",
+    "count" : 5
+  }, {
+    "source" : "[src/pages/Navigation/navigation.css]",
+    "target" : "commit_d73436a6dd137731af1d9b1947ca2e3ebfdfda28",
+    "count" : 5
+  }, {
+    "source" : "commit_1a069473778cbf4f670f7188e8a2613093933498",
+    "target" : "[src/pages/Navigation/navigation.css]",
+    "count" : 7
+  }, {
+    "source" : "[src/pages/Navigation/navigation.css]",
+    "target" : "commit_1a069473778cbf4f670f7188e8a2613093933498",
+    "count" : 7
+  }, {
+    "source" : "commit_1a069473778cbf4f670f7188e8a2613093933498",
+    "target" : "[src/pages/Navigation/Navigation.jsx]",
+    "count" : 7
+  }, {
+    "source" : "[src/pages/Navigation/Navigation.jsx]",
+    "target" : "commit_1a069473778cbf4f670f7188e8a2613093933498",
+    "count" : 7
+  }, {
+    "source" : "commit_b10d856fe05cf19ddd9ed3930630a1b69ce95157",
+    "target" : "[src/pages/Navigation/navigation.css]",
+    "count" : 5
+  }, {
+    "source" : "[src/pages/Navigation/navigation.css]",
+    "target" : "commit_b10d856fe05cf19ddd9ed3930630a1b69ce95157",
+    "count" : 5
+  }, {
+    "source" : "commit_b10d856fe05cf19ddd9ed3930630a1b69ce95157",
+    "target" : "[src/pages/Navigation/Navigation.jsx]",
+    "count" : 5
+  }, {
+    "source" : "[src/pages/Navigation/Navigation.jsx]",
+    "target" : "commit_b10d856fe05cf19ddd9ed3930630a1b69ce95157",
+    "count" : 5
+  }, {
+    "source" : "commit_d800eda95def5ce4a3c09d01a04ae5225efa4dce",
+    "target" : "[src/pages/Profile/EditPassword/EditPassword.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Profile/EditPassword/EditPassword.jsx]",
+    "target" : "commit_d800eda95def5ce4a3c09d01a04ae5225efa4dce",
+    "count" : 3
+  }, {
+    "source" : "commit_0b1e3eee0423d12a48a8ad0db49dd56bbf0c2f1e",
+    "target" : "[src/pages/Profile/EditPassword/EditPassword.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Profile/EditPassword/EditPassword.jsx]",
+    "target" : "commit_0b1e3eee0423d12a48a8ad0db49dd56bbf0c2f1e",
+    "count" : 3
+  }, {
+    "source" : "commit_b0c42c2d0992ca333e5020c855550798febf4b72",
+    "target" : "[src/pages/Profile/EditPassword/EditPassword.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Profile/EditPassword/EditPassword.jsx]",
+    "target" : "commit_b0c42c2d0992ca333e5020c855550798febf4b72",
+    "count" : 3
+  }, {
+    "source" : "commit_e850e4513591c28da804b87b69282b24034bd59d",
+    "target" : "[src/pages/Profile/EditPassword/EditPassword.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Profile/EditPassword/EditPassword.jsx]",
+    "target" : "commit_e850e4513591c28da804b87b69282b24034bd59d",
+    "count" : 2
+  }, {
+    "source" : "commit_d9fdc4d42b585b7d2d0aac77c3d9b11ca0b1300a",
+    "target" : "[src/pages/Profile/Profile.css]",
+    "count" : 4
+  }, {
+    "source" : "[src/pages/Profile/Profile.css]",
+    "target" : "commit_d9fdc4d42b585b7d2d0aac77c3d9b11ca0b1300a",
+    "count" : 4
+  }, {
+    "source" : "commit_2e0b78ab57f65947cca6d0af26b3ad3c73b2cd47",
+    "target" : "[src/pages/Profile/Profile.css]",
+    "count" : 4
+  }, {
+    "source" : "[src/pages/Profile/Profile.css]",
+    "target" : "commit_2e0b78ab57f65947cca6d0af26b3ad3c73b2cd47",
+    "count" : 4
+  }, {
+    "source" : "commit_c555ceaf00800f745d85d149b8ae6f731c4e31e9",
+    "target" : "[src/pages/Profile/Profile.css]",
+    "count" : 14
+  }, {
+    "source" : "[src/pages/Profile/Profile.css]",
+    "target" : "commit_c555ceaf00800f745d85d149b8ae6f731c4e31e9",
+    "count" : 14
+  }, {
+    "source" : "commit_ce56593d09df98383ac7982aa67b28a0fbed92ff",
+    "target" : "[src/pages/Profile/Profile.css]",
+    "count" : 8
+  }, {
+    "source" : "[src/pages/Profile/Profile.css]",
+    "target" : "commit_ce56593d09df98383ac7982aa67b28a0fbed92ff",
+    "count" : 8
+  }, {
+    "source" : "commit_a09779e13c50e3a1757170a0428b33dcf4a6dc9f",
+    "target" : "[server/controllers/cartController.js]",
+    "count" : 8
+  }, {
+    "source" : "[server/controllers/cartController.js]",
+    "target" : "commit_a09779e13c50e3a1757170a0428b33dcf4a6dc9f",
+    "count" : 8
+  }, {
+    "source" : "commit_20f2a88a6050ed068978113abce858581db94ad3",
+    "target" : "[server/index.js]",
+    "count" : 6
+  }, {
+    "source" : "[server/index.js]",
+    "target" : "commit_20f2a88a6050ed068978113abce858581db94ad3",
+    "count" : 6
+  }, {
+    "source" : "commit_27817368b0f76c16d576688eec1c8880aa7268e3",
+    "target" : "[server/index.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/index.js]",
+    "target" : "commit_27817368b0f76c16d576688eec1c8880aa7268e3",
+    "count" : 2
+  }, {
+    "source" : "commit_c0652f8504a691c1671060eb876760cc28a5cd00",
+    "target" : "[server/index.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/index.js]",
+    "target" : "commit_c0652f8504a691c1671060eb876760cc28a5cd00",
+    "count" : 2
+  }, {
+    "source" : "commit_8a058609e13d9144046ceb3b1eb5604c29b294bc",
+    "target" : "[server/controllers/gamesController.js]",
+    "count" : 8
+  }, {
+    "source" : "[server/controllers/gamesController.js]",
+    "target" : "commit_8a058609e13d9144046ceb3b1eb5604c29b294bc",
+    "count" : 8
+  }, {
+    "source" : "commit_8e25046f5ec5f9600613ba721fa7f7875aa6e29c",
+    "target" : "[server/controllers/gamesController.js]",
+    "count" : 6
+  }, {
+    "source" : "[server/controllers/gamesController.js]",
+    "target" : "commit_8e25046f5ec5f9600613ba721fa7f7875aa6e29c",
+    "count" : 6
+  }, {
+    "source" : "commit_b10d856fe05cf19ddd9ed3930630a1b69ce95157",
+    "target" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "count" : 5
+  }, {
+    "source" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "target" : "commit_b10d856fe05cf19ddd9ed3930630a1b69ce95157",
+    "count" : 5
+  }, {
+    "source" : "commit_fcc30bbd1971653ad63d81ff2708366cf4d7c68e",
+    "target" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "target" : "commit_fcc30bbd1971653ad63d81ff2708366cf4d7c68e",
+    "count" : 1
+  }, {
+    "source" : "commit_fcc30bbd1971653ad63d81ff2708366cf4d7c68e",
+    "target" : "[server/controllers/gamesController.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/controllers/gamesController.js]",
+    "target" : "commit_fcc30bbd1971653ad63d81ff2708366cf4d7c68e",
+    "count" : 1
+  }, {
+    "source" : "commit_28a0c81fbd53f4ce56b4dbfee0149e8ddb327e4a",
+    "target" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/GameDetail/GameDetail.jsx]",
+    "target" : "commit_28a0c81fbd53f4ce56b4dbfee0149e8ddb327e4a",
+    "count" : 1
+  }, {
+    "source" : "commit_28a0c81fbd53f4ce56b4dbfee0149e8ddb327e4a",
+    "target" : "[server/controllers/gamesController.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/controllers/gamesController.js]",
+    "target" : "commit_28a0c81fbd53f4ce56b4dbfee0149e8ddb327e4a",
+    "count" : 1
+  }, {
+    "source" : "commit_8a058609e13d9144046ceb3b1eb5604c29b294bc",
+    "target" : "[server/controllers/devController.js]",
+    "count" : 8
+  }, {
+    "source" : "[server/controllers/devController.js]",
+    "target" : "commit_8a058609e13d9144046ceb3b1eb5604c29b294bc",
+    "count" : 8
+  }, {
+    "source" : "commit_cb43b5d1919c124ca78206db1282d4a268ba3164",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "commit_cb43b5d1919c124ca78206db1282d4a268ba3164",
+    "count" : 2
+  }, {
+    "source" : "commit_cb43b5d1919c124ca78206db1282d4a268ba3164",
+    "target" : "[server/controllers/devController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/devController.js]",
+    "target" : "commit_cb43b5d1919c124ca78206db1282d4a268ba3164",
+    "count" : 2
+  }, {
+    "source" : "commit_baf597c9c39dbf8b96b117f7c264f491ecb53994",
+    "target" : "[server/controllers/devController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/devController.js]",
+    "target" : "commit_baf597c9c39dbf8b96b117f7c264f491ecb53994",
+    "count" : 2
+  }, {
+    "source" : "commit_08dafe462e8d243030ceae5b0582b3eab3907307",
+    "target" : "[server/controllers/devController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/devController.js]",
+    "target" : "commit_08dafe462e8d243030ceae5b0582b3eab3907307",
+    "count" : 2
+  }, {
+    "source" : "commit_dda92c392150fb859fa3a3c96bf29401f60b1da5",
+    "target" : "[src/app/components/SearchBar.jsx]",
+    "count" : 7
+  }, {
+    "source" : "[src/app/components/SearchBar.jsx]",
+    "target" : "commit_dda92c392150fb859fa3a3c96bf29401f60b1da5",
+    "count" : 7
+  }, {
+    "source" : "commit_dda92c392150fb859fa3a3c96bf29401f60b1da5",
+    "target" : "[src/App.jsx]",
+    "count" : 7
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "commit_dda92c392150fb859fa3a3c96bf29401f60b1da5",
+    "count" : 7
+  }, {
+    "source" : "commit_c1a12de17dd422679beb1cf6390c102972f4a756",
+    "target" : "[src/app/components/SearchBar.jsx]",
+    "count" : 7
+  }, {
+    "source" : "[src/app/components/SearchBar.jsx]",
+    "target" : "commit_c1a12de17dd422679beb1cf6390c102972f4a756",
+    "count" : 7
+  }, {
+    "source" : "commit_c1a12de17dd422679beb1cf6390c102972f4a756",
+    "target" : "[src/App.jsx]",
+    "count" : 7
+  }, {
+    "source" : "[src/App.jsx]",
+    "target" : "commit_c1a12de17dd422679beb1cf6390c102972f4a756",
+    "count" : 7
+  }, {
+    "source" : "commit_7b5eba5d533ebee77b3082ee7a7d50563bdd45f8",
+    "target" : "[src/app/components/SearchBar.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/app/components/SearchBar.jsx]",
+    "target" : "commit_7b5eba5d533ebee77b3082ee7a7d50563bdd45f8",
+    "count" : 3
+  }, {
+    "source" : "commit_57b945362ac71a1f66192e3d28302724ffcdd1eb",
+    "target" : "[src/app/components/SearchBar.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/app/components/SearchBar.jsx]",
+    "target" : "commit_57b945362ac71a1f66192e3d28302724ffcdd1eb",
+    "count" : 3
+  }, {
+    "source" : "commit_986230bf8fa207bb3fa2e89a4e451acacd7529c6",
+    "target" : "[server/routes/payments.js]",
+    "count" : 9
+  }, {
+    "source" : "[server/routes/payments.js]",
+    "target" : "commit_986230bf8fa207bb3fa2e89a4e451acacd7529c6",
+    "count" : 9
+  }, {
+    "source" : "commit_40bce5bf43f2a7e8c080a09c0250e4cc945a027f",
+    "target" : "[server/routes/payments.js]",
+    "count" : 9
+  }, {
+    "source" : "[server/routes/payments.js]",
+    "target" : "commit_40bce5bf43f2a7e8c080a09c0250e4cc945a027f",
+    "count" : 9
+  }, {
+    "source" : "commit_c555ceaf00800f745d85d149b8ae6f731c4e31e9",
+    "target" : "[src/pages/Logout/Logout.jsx]",
+    "count" : 14
+  }, {
+    "source" : "[src/pages/Logout/Logout.jsx]",
+    "target" : "commit_c555ceaf00800f745d85d149b8ae6f731c4e31e9",
+    "count" : 14
+  }, {
+    "source" : "commit_f8e6d419d887c8a5949f960a53aba8d220c1956e",
+    "target" : "[src/pages/Logout/Logout.jsx]",
+    "count" : 6
+  }, {
+    "source" : "[src/pages/Logout/Logout.jsx]",
+    "target" : "commit_f8e6d419d887c8a5949f960a53aba8d220c1956e",
+    "count" : 6
+  }, {
+    "source" : "commit_47f421481616ebbfc1997cf0cd6a9d483ef7fcd4",
+    "target" : "[src/pages/Logout/Logout.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Logout/Logout.jsx]",
+    "target" : "commit_47f421481616ebbfc1997cf0cd6a9d483ef7fcd4",
+    "count" : 3
+  }, {
+    "source" : "commit_b9f6aeab745dfd9f0d049bc6ce3fe0e3d87bbd3b",
+    "target" : "[src/pages/Logout/Logout.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Logout/Logout.jsx]",
+    "target" : "commit_b9f6aeab745dfd9f0d049bc6ce3fe0e3d87bbd3b",
+    "count" : 3
+  }, {
+    "source" : "commit_8a058609e13d9144046ceb3b1eb5604c29b294bc",
+    "target" : "[server/routes/dev.js]",
+    "count" : 8
+  }, {
+    "source" : "[server/routes/dev.js]",
+    "target" : "commit_8a058609e13d9144046ceb3b1eb5604c29b294bc",
+    "count" : 8
+  }, {
+    "source" : "commit_cb43b5d1919c124ca78206db1282d4a268ba3164",
+    "target" : "[server/routes/dev.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/routes/dev.js]",
+    "target" : "commit_cb43b5d1919c124ca78206db1282d4a268ba3164",
+    "count" : 2
+  }, {
+    "source" : "commit_9fc47826f2cf3936b790778f99c98dbff169df96",
+    "target" : "[server/routes/dev.js]",
+    "count" : 8
+  }, {
+    "source" : "[server/routes/dev.js]",
+    "target" : "commit_9fc47826f2cf3936b790778f99c98dbff169df96",
+    "count" : 8
+  }, {
+    "source" : "commit_9fc47826f2cf3936b790778f99c98dbff169df96",
+    "target" : "[server/controllers/devController.js]",
+    "count" : 8
+  }, {
+    "source" : "[server/controllers/devController.js]",
+    "target" : "commit_9fc47826f2cf3936b790778f99c98dbff169df96",
+    "count" : 8
+  }, {
+    "source" : "commit_845f70b9f66c23acba0143c1106ab1a0d419e8f8",
+    "target" : "[server/routes/dev.js]",
+    "count" : 8
+  }, {
+    "source" : "[server/routes/dev.js]",
+    "target" : "commit_845f70b9f66c23acba0143c1106ab1a0d419e8f8",
+    "count" : 8
+  }, {
+    "source" : "commit_845f70b9f66c23acba0143c1106ab1a0d419e8f8",
+    "target" : "[server/controllers/devController.js]",
+    "count" : 8
+  }, {
+    "source" : "[server/controllers/devController.js]",
+    "target" : "commit_845f70b9f66c23acba0143c1106ab1a0d419e8f8",
+    "count" : 8
+  }, {
+    "source" : "commit_9662a21fc65300ae9b596fd81eda3192984452ca",
+    "target" : "[server/index.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/index.js]",
+    "target" : "commit_9662a21fc65300ae9b596fd81eda3192984452ca",
+    "count" : 2
+  }, {
+    "source" : "commit_0f84a39756bcb22d06e2524d251d7b290050c99e",
+    "target" : "[server/index.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/index.js]",
+    "target" : "commit_0f84a39756bcb22d06e2524d251d7b290050c99e",
+    "count" : 2
+  }, {
+    "source" : "commit_790997387d4106bcb451bd1d6763024282ee6726",
+    "target" : "[server/routes/games.js]",
+    "count" : 14
+  }, {
+    "source" : "[server/routes/games.js]",
+    "target" : "commit_790997387d4106bcb451bd1d6763024282ee6726",
+    "count" : 14
+  }, {
+    "source" : "commit_a09779e13c50e3a1757170a0428b33dcf4a6dc9f",
+    "target" : "[server/routes/games.js]",
+    "count" : 8
+  }, {
+    "source" : "[server/routes/games.js]",
+    "target" : "commit_a09779e13c50e3a1757170a0428b33dcf4a6dc9f",
+    "count" : 8
+  }, {
+    "source" : "commit_8a058609e13d9144046ceb3b1eb5604c29b294bc",
+    "target" : "[server/routes/games.js]",
+    "count" : 8
+  }, {
+    "source" : "[server/routes/games.js]",
+    "target" : "commit_8a058609e13d9144046ceb3b1eb5604c29b294bc",
+    "count" : 8
+  }, {
+    "source" : "commit_8e25046f5ec5f9600613ba721fa7f7875aa6e29c",
+    "target" : "[server/routes/games.js]",
+    "count" : 6
+  }, {
+    "source" : "[server/routes/games.js]",
+    "target" : "commit_8e25046f5ec5f9600613ba721fa7f7875aa6e29c",
+    "count" : 6
+  }, {
+    "source" : "commit_20f2a88a6050ed068978113abce858581db94ad3",
+    "target" : "[server/routes/games.js]",
+    "count" : 6
+  }, {
+    "source" : "[server/routes/games.js]",
+    "target" : "commit_20f2a88a6050ed068978113abce858581db94ad3",
+    "count" : 6
+  }, {
+    "source" : "commit_f513f71cfd5fc349ecf745b969298c130ee00005",
+    "target" : "[src/pages/Support/Support.jsx]",
+    "count" : 8
+  }, {
+    "source" : "[src/pages/Support/Support.jsx]",
+    "target" : "commit_f513f71cfd5fc349ecf745b969298c130ee00005",
+    "count" : 8
+  }, {
+    "source" : "commit_3a0dcc5fa8761b0183c48a6e7d1788d8a27e5d7b",
+    "target" : "[src/pages/Support/Support.jsx]",
+    "count" : 8
+  }, {
+    "source" : "[src/pages/Support/Support.jsx]",
+    "target" : "commit_3a0dcc5fa8761b0183c48a6e7d1788d8a27e5d7b",
+    "count" : 8
+  }, {
+    "source" : "commit_ee46eea6405233abf48eecbbf9bed7aa4350c84e",
+    "target" : "[src/pages/Support/Support.jsx]",
+    "count" : 5
+  }, {
+    "source" : "[src/pages/Support/Support.jsx]",
+    "target" : "commit_ee46eea6405233abf48eecbbf9bed7aa4350c84e",
+    "count" : 5
+  }, {
+    "source" : "commit_1a069473778cbf4f670f7188e8a2613093933498",
+    "target" : "[src/app/components/SearchBar.jsx]",
+    "count" : 7
+  }, {
+    "source" : "[src/app/components/SearchBar.jsx]",
+    "target" : "commit_1a069473778cbf4f670f7188e8a2613093933498",
+    "count" : 7
+  }, {
+    "source" : "commit_1a069473778cbf4f670f7188e8a2613093933498",
+    "target" : "[server/controllers/paymentsController.js]",
+    "count" : 7
+  }, {
+    "source" : "[server/controllers/paymentsController.js]",
+    "target" : "commit_1a069473778cbf4f670f7188e8a2613093933498",
+    "count" : 7
+  }, {
+    "source" : "commit_8a058609e13d9144046ceb3b1eb5604c29b294bc",
+    "target" : "[src/pages/Dev/DevGameDetail/devGameDetail.jsx]",
+    "count" : 8
+  }, {
+    "source" : "[src/pages/Dev/DevGameDetail/devGameDetail.jsx]",
+    "target" : "commit_8a058609e13d9144046ceb3b1eb5604c29b294bc",
+    "count" : 8
+  }, {
+    "source" : "commit_4e852726ac6cb1a1f78e330ef095df089308f8cc",
+    "target" : "[src/pages/Dev/DevGameDetail/devGameDetail.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Dev/DevGameDetail/devGameDetail.jsx]",
+    "target" : "commit_4e852726ac6cb1a1f78e330ef095df089308f8cc",
+    "count" : 3
+  }, {
+    "source" : "commit_8e25046f5ec5f9600613ba721fa7f7875aa6e29c",
+    "target" : "[src/pages/Dev/DevGameDetail/devGameDetail.jsx]",
+    "count" : 6
+  }, {
+    "source" : "[src/pages/Dev/DevGameDetail/devGameDetail.jsx]",
+    "target" : "commit_8e25046f5ec5f9600613ba721fa7f7875aa6e29c",
+    "count" : 6
+  }, {
+    "source" : "commit_d800eda95def5ce4a3c09d01a04ae5225efa4dce",
+    "target" : "[src/pages/Profile/EditProfile/EditProfile.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Profile/EditProfile/EditProfile.jsx]",
+    "target" : "commit_d800eda95def5ce4a3c09d01a04ae5225efa4dce",
+    "count" : 3
+  }, {
+    "source" : "commit_0b1e3eee0423d12a48a8ad0db49dd56bbf0c2f1e",
+    "target" : "[src/pages/Profile/EditProfile/EditProfile.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Profile/EditProfile/EditProfile.jsx]",
+    "target" : "commit_0b1e3eee0423d12a48a8ad0db49dd56bbf0c2f1e",
+    "count" : 3
+  }, {
+    "source" : "commit_b0c42c2d0992ca333e5020c855550798febf4b72",
+    "target" : "[src/pages/Profile/EditProfile/EditProfile.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Profile/EditProfile/EditProfile.jsx]",
+    "target" : "commit_b0c42c2d0992ca333e5020c855550798febf4b72",
+    "count" : 3
+  }, {
+    "source" : "commit_4e852726ac6cb1a1f78e330ef095df089308f8cc",
+    "target" : "[server/controllers/gamesController.js]",
+    "count" : 3
+  }, {
+    "source" : "[server/controllers/gamesController.js]",
+    "target" : "commit_4e852726ac6cb1a1f78e330ef095df089308f8cc",
+    "count" : 3
+  }, {
+    "source" : "commit_f513f71cfd5fc349ecf745b969298c130ee00005",
+    "target" : "[src/pages/Profile/Purchases.jsx]",
+    "count" : 8
+  }, {
+    "source" : "[src/pages/Profile/Purchases.jsx]",
+    "target" : "commit_f513f71cfd5fc349ecf745b969298c130ee00005",
+    "count" : 8
+  }, {
+    "source" : "commit_3a0dcc5fa8761b0183c48a6e7d1788d8a27e5d7b",
+    "target" : "[src/pages/Profile/Purchases.jsx]",
+    "count" : 8
+  }, {
+    "source" : "[src/pages/Profile/Purchases.jsx]",
+    "target" : "commit_3a0dcc5fa8761b0183c48a6e7d1788d8a27e5d7b",
+    "count" : 8
+  }, {
+    "source" : "commit_ee46eea6405233abf48eecbbf9bed7aa4350c84e",
+    "target" : "[src/pages/Profile/Purchases.jsx]",
+    "count" : 5
+  }, {
+    "source" : "[src/pages/Profile/Purchases.jsx]",
+    "target" : "commit_ee46eea6405233abf48eecbbf9bed7aa4350c84e",
+    "count" : 5
+  }, {
+    "source" : "commit_f513f71cfd5fc349ecf745b969298c130ee00005",
+    "target" : "[src/pages/Support/support.css]",
+    "count" : 8
+  }, {
+    "source" : "[src/pages/Support/support.css]",
+    "target" : "commit_f513f71cfd5fc349ecf745b969298c130ee00005",
+    "count" : 8
+  }, {
+    "source" : "commit_3a0dcc5fa8761b0183c48a6e7d1788d8a27e5d7b",
+    "target" : "[src/pages/Support/support.css]",
+    "count" : 8
+  }, {
+    "source" : "[src/pages/Support/support.css]",
+    "target" : "commit_3a0dcc5fa8761b0183c48a6e7d1788d8a27e5d7b",
+    "count" : 8
+  }, {
+    "source" : "commit_ee46eea6405233abf48eecbbf9bed7aa4350c84e",
+    "target" : "[src/pages/Support/support.css]",
+    "count" : 5
+  }, {
+    "source" : "[src/pages/Support/support.css]",
+    "target" : "commit_ee46eea6405233abf48eecbbf9bed7aa4350c84e",
+    "count" : 5
+  }, {
+    "source" : "commit_245f7a693100d04e0f986d6d32083f5963e53755",
+    "target" : "[src/pages/Search/Search.jsx]",
+    "count" : 5
+  }, {
+    "source" : "[src/pages/Search/Search.jsx]",
+    "target" : "commit_245f7a693100d04e0f986d6d32083f5963e53755",
+    "count" : 5
+  }, {
+    "source" : "commit_d73436a6dd137731af1d9b1947ca2e3ebfdfda28",
+    "target" : "[src/pages/Search/Search.jsx]",
+    "count" : 5
+  }, {
+    "source" : "[src/pages/Search/Search.jsx]",
+    "target" : "commit_d73436a6dd137731af1d9b1947ca2e3ebfdfda28",
+    "count" : 5
+  }, {
+    "source" : "commit_c555ceaf00800f745d85d149b8ae6f731c4e31e9",
+    "target" : "[src/pages/Search/Search.jsx]",
+    "count" : 14
+  }, {
+    "source" : "[src/pages/Search/Search.jsx]",
+    "target" : "commit_c555ceaf00800f745d85d149b8ae6f731c4e31e9",
+    "count" : 14
+  }, {
+    "source" : "commit_524d86bf0bd465af0221186c88c83a7d6fd9f047",
+    "target" : "[src/pages/Purchase/Success.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Purchase/Success.jsx]",
+    "target" : "commit_524d86bf0bd465af0221186c88c83a7d6fd9f047",
+    "count" : 3
+  }, {
+    "source" : "commit_524d86bf0bd465af0221186c88c83a7d6fd9f047",
+    "target" : "[src/app/components/SearchBar.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/app/components/SearchBar.jsx]",
+    "target" : "commit_524d86bf0bd465af0221186c88c83a7d6fd9f047",
+    "count" : 3
+  }, {
+    "source" : "commit_85c8e2f516e744358c99ed49853054b94c3e5510",
+    "target" : "[server/routes/dev.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/routes/dev.js]",
+    "target" : "commit_85c8e2f516e744358c99ed49853054b94c3e5510",
+    "count" : 1
+  }, {
+    "source" : "commit_85c8e2f516e744358c99ed49853054b94c3e5510",
+    "target" : "[server/controllers/gamesController.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/controllers/gamesController.js]",
+    "target" : "commit_85c8e2f516e744358c99ed49853054b94c3e5510",
+    "count" : 1
+  }, {
+    "source" : "commit_28dc473b17fc894b66d3afa1e74765ba36623b13",
+    "target" : "[server/routes/dev.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/routes/dev.js]",
+    "target" : "commit_28dc473b17fc894b66d3afa1e74765ba36623b13",
+    "count" : 1
+  }, {
+    "source" : "commit_28dc473b17fc894b66d3afa1e74765ba36623b13",
+    "target" : "[server/controllers/gamesController.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/controllers/gamesController.js]",
+    "target" : "commit_28dc473b17fc894b66d3afa1e74765ba36623b13",
+    "count" : 1
+  }, {
+    "source" : "commit_c555ceaf00800f745d85d149b8ae6f731c4e31e9",
+    "target" : "[server/index.js]",
+    "count" : 14
+  }, {
+    "source" : "[server/index.js]",
+    "target" : "commit_c555ceaf00800f745d85d149b8ae6f731c4e31e9",
+    "count" : 14
+  }, {
+    "source" : "commit_c21716d5e644c480735bc6999ec5932f21ada4a4",
+    "target" : "[src/pages/Navigation/navigation.css]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Navigation/navigation.css]",
+    "target" : "commit_c21716d5e644c480735bc6999ec5932f21ada4a4",
+    "count" : 2
+  }, {
+    "source" : "commit_c21716d5e644c480735bc6999ec5932f21ada4a4",
+    "target" : "[src/app/components/GameCard.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/app/components/GameCard.jsx]",
+    "target" : "commit_c21716d5e644c480735bc6999ec5932f21ada4a4",
+    "count" : 2
+  }, {
+    "source" : "commit_1a069473778cbf4f670f7188e8a2613093933498",
+    "target" : "[src/app/components/GameCard.jsx]",
+    "count" : 7
+  }, {
+    "source" : "[src/app/components/GameCard.jsx]",
+    "target" : "commit_1a069473778cbf4f670f7188e8a2613093933498",
+    "count" : 7
+  }, {
+    "source" : "commit_b10d856fe05cf19ddd9ed3930630a1b69ce95157",
+    "target" : "[src/app/components/GameCard.jsx]",
+    "count" : 5
+  }, {
+    "source" : "[src/app/components/GameCard.jsx]",
+    "target" : "commit_b10d856fe05cf19ddd9ed3930630a1b69ce95157",
+    "count" : 5
+  }, {
+    "source" : "commit_5d35512b09822b6e2ae0cda989658896ca2c6100",
+    "target" : "[server/controllers/userController.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/controllers/userController.js]",
+    "target" : "commit_5d35512b09822b6e2ae0cda989658896ca2c6100",
+    "count" : 1
+  }, {
+    "source" : "commit_5d35512b09822b6e2ae0cda989658896ca2c6100",
+    "target" : "[server/middleware/rateLimit.js]",
+    "count" : 1
+  }, {
+    "source" : "[server/middleware/rateLimit.js]",
+    "target" : "commit_5d35512b09822b6e2ae0cda989658896ca2c6100",
+    "count" : 1
+  }, {
+    "source" : "commit_524d86bf0bd465af0221186c88c83a7d6fd9f047",
+    "target" : "[src/pages/Cart/Cart.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Cart/Cart.jsx]",
+    "target" : "commit_524d86bf0bd465af0221186c88c83a7d6fd9f047",
+    "count" : 3
+  }, {
+    "source" : "commit_524d86bf0bd465af0221186c88c83a7d6fd9f047",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 3
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "commit_524d86bf0bd465af0221186c88c83a7d6fd9f047",
+    "count" : 3
+  }, {
+    "source" : "commit_986230bf8fa207bb3fa2e89a4e451acacd7529c6",
+    "target" : "[src/pages/Cart/Cart.jsx]",
+    "count" : 9
+  }, {
+    "source" : "[src/pages/Cart/Cart.jsx]",
+    "target" : "commit_986230bf8fa207bb3fa2e89a4e451acacd7529c6",
+    "count" : 9
+  }, {
+    "source" : "commit_40bce5bf43f2a7e8c080a09c0250e4cc945a027f",
+    "target" : "[src/pages/Cart/Cart.jsx]",
+    "count" : 9
+  }, {
+    "source" : "[src/pages/Cart/Cart.jsx]",
+    "target" : "commit_40bce5bf43f2a7e8c080a09c0250e4cc945a027f",
+    "count" : 9
+  }, {
+    "source" : "commit_c555ceaf00800f745d85d149b8ae6f731c4e31e9",
+    "target" : "[src/pages/oldDev/Dev.jsx]",
+    "count" : 14
+  }, {
+    "source" : "[src/pages/oldDev/Dev.jsx]",
+    "target" : "commit_c555ceaf00800f745d85d149b8ae6f731c4e31e9",
+    "count" : 14
+  }, {
+    "source" : "commit_ce56593d09df98383ac7982aa67b28a0fbed92ff",
+    "target" : "[src/pages/oldDev/Dev.jsx]",
+    "count" : 8
+  }, {
+    "source" : "[src/pages/oldDev/Dev.jsx]",
+    "target" : "commit_ce56593d09df98383ac7982aa67b28a0fbed92ff",
+    "count" : 8
+  }, {
+    "source" : "commit_20f2a88a6050ed068978113abce858581db94ad3",
+    "target" : "[server/routes/auth.js]",
+    "count" : 6
+  }, {
+    "source" : "[server/routes/auth.js]",
+    "target" : "commit_20f2a88a6050ed068978113abce858581db94ad3",
+    "count" : 6
+  }, {
+    "source" : "commit_790997387d4106bcb451bd1d6763024282ee6726",
+    "target" : "[server/routes/auth.js]",
+    "count" : 14
+  }, {
+    "source" : "[server/routes/auth.js]",
+    "target" : "commit_790997387d4106bcb451bd1d6763024282ee6726",
+    "count" : 14
+  }, {
+    "source" : "commit_c555ceaf00800f745d85d149b8ae6f731c4e31e9",
+    "target" : "[src/pages/Register/Register.jsx]",
+    "count" : 14
+  }, {
+    "source" : "[src/pages/Register/Register.jsx]",
+    "target" : "commit_c555ceaf00800f745d85d149b8ae6f731c4e31e9",
+    "count" : 14
+  }, {
+    "source" : "commit_f8e6d419d887c8a5949f960a53aba8d220c1956e",
+    "target" : "[src/pages/Register/Register.jsx]",
+    "count" : 6
+  }, {
+    "source" : "[src/pages/Register/Register.jsx]",
+    "target" : "commit_f8e6d419d887c8a5949f960a53aba8d220c1956e",
+    "count" : 6
+  }, {
+    "source" : "commit_a6e7731dffd8b24cf4578b43b474e95847542fd1",
+    "target" : "[server/controllers/paymentsController.js]",
+    "count" : 2
+  }, {
+    "source" : "[server/controllers/paymentsController.js]",
+    "target" : "commit_a6e7731dffd8b24cf4578b43b474e95847542fd1",
+    "count" : 2
+  }, {
+    "source" : "commit_790997387d4106bcb451bd1d6763024282ee6726",
+    "target" : "[server/routes/stripeWebhook.js]",
+    "count" : 14
+  }, {
+    "source" : "[server/routes/stripeWebhook.js]",
+    "target" : "commit_790997387d4106bcb451bd1d6763024282ee6726",
+    "count" : 14
+  }, {
+    "source" : "commit_a09779e13c50e3a1757170a0428b33dcf4a6dc9f",
+    "target" : "[server/routes/stripeWebhook.js]",
+    "count" : 8
+  }, {
+    "source" : "[server/routes/stripeWebhook.js]",
+    "target" : "commit_a09779e13c50e3a1757170a0428b33dcf4a6dc9f",
+    "count" : 8
+  }, {
+    "source" : "commit_986230bf8fa207bb3fa2e89a4e451acacd7529c6",
+    "target" : "[src/pages/Cart/Cart.css]",
+    "count" : 9
+  }, {
+    "source" : "[src/pages/Cart/Cart.css]",
+    "target" : "commit_986230bf8fa207bb3fa2e89a4e451acacd7529c6",
+    "count" : 9
+  }, {
+    "source" : "commit_40bce5bf43f2a7e8c080a09c0250e4cc945a027f",
+    "target" : "[src/pages/Cart/Cart.css]",
+    "count" : 9
+  }, {
+    "source" : "[src/pages/Cart/Cart.css]",
+    "target" : "commit_40bce5bf43f2a7e8c080a09c0250e4cc945a027f",
+    "count" : 9
+  }, {
+    "source" : "commit_c555ceaf00800f745d85d149b8ae6f731c4e31e9",
+    "target" : "[src/pages/oldDev/CreateGame/CreateGame.css]",
+    "count" : 14
+  }, {
+    "source" : "[src/pages/oldDev/CreateGame/CreateGame.css]",
+    "target" : "commit_c555ceaf00800f745d85d149b8ae6f731c4e31e9",
+    "count" : 14
+  }, {
+    "source" : "commit_ce56593d09df98383ac7982aa67b28a0fbed92ff",
+    "target" : "[src/pages/oldDev/CreateGame/CreateGame.css]",
+    "count" : 8
+  }, {
+    "source" : "[src/pages/oldDev/CreateGame/CreateGame.css]",
+    "target" : "commit_ce56593d09df98383ac7982aa67b28a0fbed92ff",
+    "count" : 8
+  }, {
+    "source" : "commit_f8e6d419d887c8a5949f960a53aba8d220c1956e",
+    "target" : "[server/index.js]",
+    "count" : 6
+  }, {
+    "source" : "[server/index.js]",
+    "target" : "commit_f8e6d419d887c8a5949f960a53aba8d220c1956e",
+    "count" : 6
+  }, {
+    "source" : "commit_c555ceaf00800f745d85d149b8ae6f731c4e31e9",
+    "target" : "[src/pages/oldDev/CreateGame/CreateGame.jsx]",
+    "count" : 14
+  }, {
+    "source" : "[src/pages/oldDev/CreateGame/CreateGame.jsx]",
+    "target" : "commit_c555ceaf00800f745d85d149b8ae6f731c4e31e9",
+    "count" : 14
+  }, {
+    "source" : "commit_ce56593d09df98383ac7982aa67b28a0fbed92ff",
+    "target" : "[src/pages/oldDev/CreateGame/CreateGame.jsx]",
+    "count" : 8
+  }, {
+    "source" : "[src/pages/oldDev/CreateGame/CreateGame.jsx]",
+    "target" : "commit_ce56593d09df98383ac7982aa67b28a0fbed92ff",
+    "count" : 8
+  }, {
+    "source" : "commit_378abf70e509104a8d5ab2b1820b86544b3e962f",
+    "target" : "[src/pages/Login/Login.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Login/Login.jsx]",
+    "target" : "commit_378abf70e509104a8d5ab2b1820b86544b3e962f",
+    "count" : 1
+  }, {
+    "source" : "commit_378abf70e509104a8d5ab2b1820b86544b3e962f",
+    "target" : "[src/pages/Register/Register.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Register/Register.jsx]",
+    "target" : "commit_378abf70e509104a8d5ab2b1820b86544b3e962f",
+    "count" : 1
+  }, {
+    "source" : "commit_b8817c02715ccf5155e8f104c56642fdac9f065c",
+    "target" : "[src/pages/Login/Login.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Login/Login.jsx]",
+    "target" : "commit_b8817c02715ccf5155e8f104c56642fdac9f065c",
+    "count" : 1
+  }, {
+    "source" : "commit_b8817c02715ccf5155e8f104c56642fdac9f065c",
+    "target" : "[src/pages/Register/Register.jsx]",
+    "count" : 1
+  }, {
+    "source" : "[src/pages/Register/Register.jsx]",
+    "target" : "commit_b8817c02715ccf5155e8f104c56642fdac9f065c",
+    "count" : 1
+  }, {
+    "source" : "commit_d9fdc4d42b585b7d2d0aac77c3d9b11ca0b1300a",
+    "target" : "[src/pages/Login/Login.jsx]",
+    "count" : 4
+  }, {
+    "source" : "[src/pages/Login/Login.jsx]",
+    "target" : "commit_d9fdc4d42b585b7d2d0aac77c3d9b11ca0b1300a",
+    "count" : 4
+  }, {
+    "source" : "commit_2e0b78ab57f65947cca6d0af26b3ad3c73b2cd47",
+    "target" : "[src/pages/Login/Login.jsx]",
+    "count" : 4
+  }, {
+    "source" : "[src/pages/Login/Login.jsx]",
+    "target" : "commit_2e0b78ab57f65947cca6d0af26b3ad3c73b2cd47",
+    "count" : 4
+  }, {
+    "source" : "commit_1a069473778cbf4f670f7188e8a2613093933498",
+    "target" : "[src/app/components/searchBar.css]",
+    "count" : 7
+  }, {
+    "source" : "[src/app/components/searchBar.css]",
+    "target" : "commit_1a069473778cbf4f670f7188e8a2613093933498",
+    "count" : 7
+  }, {
+    "source" : "commit_b10d856fe05cf19ddd9ed3930630a1b69ce95157",
+    "target" : "[src/app/components/searchBar.css]",
+    "count" : 5
+  }, {
+    "source" : "[src/app/components/searchBar.css]",
+    "target" : "commit_b10d856fe05cf19ddd9ed3930630a1b69ce95157",
+    "count" : 5
+  }, {
+    "source" : "commit_00d9e0670888f46cc14ddc1a395fbf829cd6a7db",
+    "target" : "[server/middleware/auth.js]",
+    "count" : 4
+  }, {
+    "source" : "[server/middleware/auth.js]",
+    "target" : "commit_00d9e0670888f46cc14ddc1a395fbf829cd6a7db",
+    "count" : 4
+  }, {
+    "source" : "commit_9026cf234d45fc4160216c72395585dbd58cd666",
+    "target" : "[server/middleware/auth.js]",
+    "count" : 4
+  }, {
+    "source" : "[server/middleware/auth.js]",
+    "target" : "commit_9026cf234d45fc4160216c72395585dbd58cd666",
+    "count" : 4
+  }, {
+    "source" : "commit_9fc47826f2cf3936b790778f99c98dbff169df96",
+    "target" : "[server/utils/keygen.js]",
+    "count" : 8
+  }, {
+    "source" : "[server/utils/keygen.js]",
+    "target" : "commit_9fc47826f2cf3936b790778f99c98dbff169df96",
+    "count" : 8
+  }, {
+    "source" : "commit_845f70b9f66c23acba0143c1106ab1a0d419e8f8",
+    "target" : "[server/utils/keygen.js]",
+    "count" : 8
+  }, {
+    "source" : "[server/utils/keygen.js]",
+    "target" : "commit_845f70b9f66c23acba0143c1106ab1a0d419e8f8",
+    "count" : 8
+  }, {
+    "source" : "commit_dda92c392150fb859fa3a3c96bf29401f60b1da5",
+    "target" : "[src/pages/Purchase/success.css]",
+    "count" : 7
+  }, {
+    "source" : "[src/pages/Purchase/success.css]",
+    "target" : "commit_dda92c392150fb859fa3a3c96bf29401f60b1da5",
+    "count" : 7
+  }, {
+    "source" : "commit_c1a12de17dd422679beb1cf6390c102972f4a756",
+    "target" : "[src/pages/Purchase/success.css]",
+    "count" : 7
+  }, {
+    "source" : "[src/pages/Purchase/success.css]",
+    "target" : "commit_c1a12de17dd422679beb1cf6390c102972f4a756",
+    "count" : 7
+  }, {
+    "source" : "commit_dda92c392150fb859fa3a3c96bf29401f60b1da5",
+    "target" : "[vite.config.js]",
+    "count" : 7
+  }, {
+    "source" : "[vite.config.js]",
+    "target" : "commit_dda92c392150fb859fa3a3c96bf29401f60b1da5",
+    "count" : 7
+  }, {
+    "source" : "commit_c1a12de17dd422679beb1cf6390c102972f4a756",
+    "target" : "[vite.config.js]",
+    "count" : 7
+  }, {
+    "source" : "[vite.config.js]",
+    "target" : "commit_c1a12de17dd422679beb1cf6390c102972f4a756",
+    "count" : 7
+  }, {
+    "source" : "commit_b10d856fe05cf19ddd9ed3930630a1b69ce95157",
+    "target" : "[src/app/components/SearchBar.jsx]",
+    "count" : 5
+  }, {
+    "source" : "[src/app/components/SearchBar.jsx]",
+    "target" : "commit_b10d856fe05cf19ddd9ed3930630a1b69ce95157",
+    "count" : 5
+  }, {
+    "source" : "commit_c555ceaf00800f745d85d149b8ae6f731c4e31e9",
+    "target" : "[src/pages/oldDev/Dev.css]",
+    "count" : 14
+  }, {
+    "source" : "[src/pages/oldDev/Dev.css]",
+    "target" : "commit_c555ceaf00800f745d85d149b8ae6f731c4e31e9",
+    "count" : 14
+  }, {
+    "source" : "commit_ce56593d09df98383ac7982aa67b28a0fbed92ff",
+    "target" : "[src/pages/oldDev/Dev.css]",
+    "count" : 8
+  }, {
+    "source" : "[src/pages/oldDev/Dev.css]",
+    "target" : "commit_ce56593d09df98383ac7982aa67b28a0fbed92ff",
+    "count" : 8
+  }, {
+    "source" : "commit_245f7a693100d04e0f986d6d32083f5963e53755",
+    "target" : "[src/pages/Search/Search.css]",
+    "count" : 5
+  }, {
+    "source" : "[src/pages/Search/Search.css]",
+    "target" : "commit_245f7a693100d04e0f986d6d32083f5963e53755",
+    "count" : 5
+  }, {
+    "source" : "commit_245f7a693100d04e0f986d6d32083f5963e53755",
+    "target" : "[src/app/Context/AuthContext.jsx]",
+    "count" : 5
+  }, {
+    "source" : "[src/app/Context/AuthContext.jsx]",
+    "target" : "commit_245f7a693100d04e0f986d6d32083f5963e53755",
+    "count" : 5
+  }, {
+    "source" : "commit_d73436a6dd137731af1d9b1947ca2e3ebfdfda28",
+    "target" : "[src/pages/Search/Search.css]",
+    "count" : 5
+  }, {
+    "source" : "[src/pages/Search/Search.css]",
+    "target" : "commit_d73436a6dd137731af1d9b1947ca2e3ebfdfda28",
+    "count" : 5
+  }, {
+    "source" : "commit_d73436a6dd137731af1d9b1947ca2e3ebfdfda28",
+    "target" : "[src/app/Context/AuthContext.jsx]",
+    "count" : 5
+  }, {
+    "source" : "[src/app/Context/AuthContext.jsx]",
+    "target" : "commit_d73436a6dd137731af1d9b1947ca2e3ebfdfda28",
+    "count" : 5
+  }, {
+    "source" : "commit_c555ceaf00800f745d85d149b8ae6f731c4e31e9",
+    "target" : "[src/app/components/Guards/RequireDev.jsx]",
+    "count" : 14
+  }, {
+    "source" : "[src/app/components/Guards/RequireDev.jsx]",
+    "target" : "commit_c555ceaf00800f745d85d149b8ae6f731c4e31e9",
+    "count" : 14
+  }, {
+    "source" : "commit_ce56593d09df98383ac7982aa67b28a0fbed92ff",
+    "target" : "[src/app/components/Guards/RequireDev.jsx]",
+    "count" : 8
+  }, {
+    "source" : "[src/app/components/Guards/RequireDev.jsx]",
+    "target" : "commit_ce56593d09df98383ac7982aa67b28a0fbed92ff",
+    "count" : 8
+  }, {
+    "source" : "commit_f8e6d419d887c8a5949f960a53aba8d220c1956e",
+    "target" : "[src/pages/Search/Search.jsx]",
+    "count" : 6
+  }, {
+    "source" : "[src/pages/Search/Search.jsx]",
+    "target" : "commit_f8e6d419d887c8a5949f960a53aba8d220c1956e",
+    "count" : 6
+  }, {
+    "source" : "commit_c21716d5e644c480735bc6999ec5932f21ada4a4",
+    "target" : "[src/pages/Dev/Dev.jsx]",
+    "count" : 2
+  }, {
+    "source" : "[src/pages/Dev/Dev.jsx]",
+    "target" : "commit_c21716d5e644c480735bc6999ec5932f21ada4a4",
+    "count" : 2
+  } ]
+}
+
+    const maxNodeSize = gData.nodes.map(n => n.size).reduce((a, b) => Math.max(a, b));
+    const maxCount = gData.links.map(l => l.count).reduce((a, b) => Math.max(a, b));
+
+    gData.links = gData.links.map(l => {
+        return {source: l.target, target: l.source, count: l.count}
+    });
+    const colorOf = (node) => {
+        if (!node.id.startsWith("[")) return "rgba(135, 206, 235, 0.6)";
+        return "rgba(100,100,100,0.6)";
+    }
+
+    const elem = document.getElementById('graph');
+    const Graph = ForceGraph()(elem)
+        .graphData(gData)
+        .nodeRelSize(4)
+        .nodeVal(n => Math.max(20 * n.size / maxNodeSize, 0.001))
+        .nodeLabel(n => n.id + " (" + n.size + ")")
+        .nodeColor(n => colorOf(n))
+        .linkDirectionalParticles(1)
+        .linkDirectionalParticleSpeed(d => d.count / maxCount * 0.01)
+        .linkOpacity(0.1)
+        .linkWidth(d => 3 * d.count / maxCount + 0.1);
+
+</script>
+</body>

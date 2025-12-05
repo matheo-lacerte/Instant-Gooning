@@ -1,0 +1,14 @@
+import express from "express";
+import { getAllGames, getGameById, createGame, updateGame, deleteGame, restoreGame } from "../controllers/gamesController.js";
+import authMiddleware from "../middleware/auth.js";
+import requireUser from "../middleware/requireUser.js";
+import { writeLimiter } from "../middleware/rateLimit.js";
+const router = express.Router();
+
+router.get("/getAllGames", getAllGames);
+router.get("/getGameById/:id", getGameById);
+router.post("/createGame", authMiddleware, requireUser, writeLimiter, createGame);
+router.patch("/update/:id", authMiddleware, requireUser, writeLimiter, updateGame);
+router.patch("/delete/:id", authMiddleware, requireUser, writeLimiter, deleteGame);
+router.patch("/restore/:id", authMiddleware, requireUser, writeLimiter, restoreGame);
+export default router;

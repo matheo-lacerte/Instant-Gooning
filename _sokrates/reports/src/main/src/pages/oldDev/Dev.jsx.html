@@ -1,0 +1,266 @@
+<html>
+<head>
+    <title>src/pages/oldDev/Dev.jsx</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">src/pages/oldDev/Dev.jsx (<b>223</b> lines of code) (<a href="Dev.jsx">raw</a>):</h3>
+<div id="editor">import { Link, useNavigate, useLocation } from &quot;react-router-dom&quot;;
+import { useEffect, useRef, useState } from &quot;react&quot;;
+import &quot;./Dev.css&quot;;
+
+export default function Dev() {
+  const navigate = useNavigate();
+  const token = localStorage.getItem(&quot;token&quot;);
+  const user = JSON.parse(localStorage.getItem(&quot;user&quot;));
+
+  const [title, setTitle] = useState(&quot;&quot;);
+  const [description, setDescription] = useState(&quot;&quot;);
+  const [errorMsg, setErrorMsg] = useState(&quot;&quot;);
+  const [requests, setRequests] = useState([]);
+  const [isPendingRequest, setIsPendingRequest] = useState(false);
+  const lastCheckRef = useRef(0);
+
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const isFormRequest = queryParams.has(&quot;formRequest&quot;);
+  const isViewRequest = queryParams.has(&quot;viewRequest&quot;);
+
+  useEffect(() =&gt; {
+    const fetchData = async () =&gt; {
+      try {
+        // throttle isPendingRequest checks: at most once every 10s
+        const now = Date.now();
+        if (now - lastCheckRef.current &lt; 10000) return;
+        lastCheckRef.current = now;
+        if (user.role !== &quot;dev&quot;) {
+          const checkResponse = await fetch(
+            &quot;/api/admin/isPendingRequest&quot;,
+            {
+              headers: {
+                &quot;Content-Type&quot;: &quot;application/json&quot;,
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+
+          const checkData = await checkResponse.json();
+
+          if (checkResponse.ok) {
+            setIsPendingRequest(checkData.hasPendingRequest);
+            setErrorMsg(checkData.message);
+          } else {
+            setErrorMsg(checkResponse.error);
+          }
+        }
+
+        if (isViewRequest) {
+          const response = await fetch(
+            &quot;/api/user/getAllRequests&quot;,
+            {
+              headers: { Authorization: `Bearer ${token}` },
+            }
+          );
+
+          const data = await response.json();
+          if (response.ok) {
+            setRequests(data);
+          } else {
+            setErrorMsg(data.error);
+          }
+        }
+      } catch (error) {
+        setErrorMsg(error);
+      }
+    };
+
+    fetchData();
+  }, [isFormRequest, isViewRequest, token]);
+
+  const formSubmitDev = async (e) =&gt; {
+    e.preventDefault();
+    try {
+      const response = await fetch(
+        &quot;/api/admin/request-dev&quot;,
+        {
+          method: &quot;POST&quot;,
+          headers: {
+            &quot;Content-Type&quot;: &quot;application/json&quot;,
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ title, description, checkExisting: false }),
+        }
+      );
+      const data = await response.json();
+      if (!response.ok) {
+        setErrorMsg(data.error || &quot;Erreur&quot;);
+        return;
+      }
+      navigate(&quot;/dev&quot;);
+    } catch (error) {
+      setErrorMsg(String(error));
+    }
+  };
+
+  return (
+    &lt;div className=&quot;dev&quot;&gt;
+      &lt;div className=&quot;rangee&quot;&gt;
+        &lt;div className=&quot;colonnes&quot;&gt;
+          &lt;ul&gt;
+            &lt;li&gt;
+              &lt;h1&gt;
+                &lt;Link to=&quot;/profile&quot;&gt;Profil&lt;/Link&gt;
+              &lt;/h1&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;h1&gt;
+                &lt;Link to=&quot;/dev&quot;&gt;D&eacute;veloppeur&lt;/Link&gt;
+              &lt;/h1&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;h1&gt;&lt;Link to=&quot;/cart&quot;&gt;Panier&lt;/Link&gt;&lt;/h1&gt;
+            &lt;/li&gt;
+          &lt;/ul&gt;
+        &lt;/div&gt;
+
+        &lt;div className=&quot;colonnes&quot;&gt;
+          {isFormRequest &amp;&amp; (
+            &lt;div className=&quot;margin-colonne&quot;&gt;
+              {errorMsg ? (
+                &lt;div className=&quot;error&quot;&gt;
+                  &lt;h1&gt;{errorMsg}&lt;/h1&gt;
+                &lt;/div&gt;
+              ) : (
+                &lt;&gt;
+                  &lt;h1 className=&quot;top&quot;&gt;
+                    Formulaire de demande pour &ecirc;tre d&eacute;veloppeur
+                  &lt;/h1&gt;
+                  &lt;form onSubmit={formSubmitDev} className=&quot;form-dev&quot;&gt;
+                    &lt;div className=&quot;control space&quot;&gt;
+                      &lt;label htmlFor=&quot;titre&quot;&gt;Titre&lt;/label&gt;
+                      &lt;input
+                        id=&quot;titre&quot;
+                        type=&quot;text&quot;
+                        name=&quot;titre&quot;
+                        placeholder=&quot;Entrez le titre de la demande&quot;
+                        required
+                        value={title}
+                        onChange={(e) =&gt; setTitle(e.target.value)}
+                      /&gt;
+                    &lt;/div&gt;
+
+                    &lt;div className=&quot;control space&quot;&gt;
+                      &lt;label htmlFor=&quot;contenu&quot;&gt;Contenu&lt;/label&gt;
+                      &lt;textarea
+                        id=&quot;contenu&quot;
+                        name=&quot;contenu&quot;
+                        placeholder=&quot;Entrez le contenu de votre demande&quot;
+                        required
+                        value={description}
+                        onChange={(e) =&gt; setDescription(e.target.value)}
+                        rows={7}
+                      /&gt;
+                    &lt;/div&gt;
+                    &lt;div className=&quot;btn-envoyer&quot;&gt;
+                      &lt;button type=&quot;submit&quot; className=&quot;button_dev&quot;&gt;
+                        Envoyer la demande
+                      &lt;/button&gt;
+                    &lt;/div&gt;
+                  &lt;/form&gt;
+                &lt;/&gt;
+              )}
+            &lt;/div&gt;
+          )}
+
+          {isViewRequest &amp;&amp; (
+            &lt;div className=&quot;margin-colonne&quot;&gt;
+              &lt;h1 className=&quot;space request&quot;&gt;
+                Vos demandes pour devenir d&eacute;veloppeur
+              &lt;/h1&gt;
+
+              {requests.length &gt; 0 ? (
+                &lt;div className=&quot;cards-container&quot;&gt;
+                  {requests.map((req) =&gt; (
+                    &lt;div key={req.id} className=&quot;request-card&quot;&gt;
+                      &lt;h1 className=&quot;request-title&quot;&gt;{req.title}&lt;/h1&gt;
+                      &lt;h2 className=&quot;request-state&quot;&gt;
+                        &Eacute;tat : &lt;strong&gt;{req.requestState}&lt;/strong&gt;
+                      &lt;/h2&gt;
+                      &lt;p className=&quot;request-desc&quot;&gt;{req.description}&lt;/p&gt;
+                    &lt;/div&gt;
+                  ))}
+                &lt;/div&gt;
+              ) : (
+                &lt;p&gt;Aucune demande trouv&eacute;e.&lt;/p&gt;
+              )}
+            &lt;/div&gt;
+          )}
+
+          {!isFormRequest &amp;&amp;
+            !isViewRequest &amp;&amp;
+            (user.role !== &quot;dev&quot; ? (
+              &lt;div className=&quot;link-dev&quot;&gt;
+                {!isPendingRequest ? (
+                  &lt;&gt;
+                    &lt;h1 className=&quot;centre&quot;&gt;
+                      Bienvenue sur la page d&eacute;veloppeur.
+                    &lt;/h1&gt;
+                    &lt;h2 className=&quot;space&quot;&gt;
+                      &lt;Link to=&quot;/dev?formRequest&quot;&gt;
+                        Faire une demande pour devenir d&eacute;veloppeur
+                      &lt;/Link&gt;
+                    &lt;/h2&gt;
+                  &lt;/&gt;
+                ) : (
+                  &lt;h2 className=&quot;space&quot;&gt;
+                    Veuillez patienter jusqu&rsquo;&agrave; l&rsquo;acceptation de votre demande.
+                  &lt;/h2&gt;
+                )}
+                &lt;h2&gt;
+                  &lt;Link to=&quot;/dev?viewRequest&quot;&gt;
+                    Consulter mes demandes envoy&eacute;es
+                  &lt;/Link&gt;
+                &lt;/h2&gt;
+              &lt;/div&gt;
+            ) : (
+              &lt;div className=&quot;link-dev&quot;&gt;
+                &lt;h2 className=&quot;space&quot;&gt;
+                  &lt;Link to=&quot;/dev/create&quot;&gt;Ajouter un jeu&lt;/Link&gt;
+                &lt;/h2&gt;
+                &lt;h2 className=&quot;space&quot;&gt;Modifier un de mes jeux&lt;/h2&gt;
+                &lt;h2 className=&quot;space&quot;&gt;Supprimer un de mes jeux&lt;/h2&gt;
+                &lt;h2&gt;
+                  &lt;Link to=&quot;/dev?viewRequest&quot;&gt;
+                    Consulter mes demandes envoy&eacute;es
+                  &lt;/Link&gt;
+                &lt;/h2&gt;
+              &lt;/div&gt;
+            ))}
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;Link to=&quot;/logout&quot; className=&quot;button_dev&quot;&gt;
+        D&eacute;connexion
+      &lt;/Link&gt;
+    &lt;/div&gt;
+  );
+}
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/html");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

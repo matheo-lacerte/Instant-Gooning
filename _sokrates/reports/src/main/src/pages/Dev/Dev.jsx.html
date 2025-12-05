@@ -1,0 +1,689 @@
+<html>
+<head>
+    <title>src/pages/Dev/Dev.jsx</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">src/pages/Dev/Dev.jsx (<b>615</b> lines of code) (<a href="Dev.jsx">raw</a>):</h3>
+<div id="editor">import { useEffect, useMemo, useState } from &quot;react&quot;;
+import { useNavigate, useLocation } from &quot;react-router-dom&quot;;
+
+// Hub D&eacute;veloppeur page with sidebar navigation and main preview card
+export default function Dev() {
+    const [gamesLoading, setGamesLoading] = useState(false);
+    const [gamesError, setGamesError] = useState(&quot;&quot;);
+    const [devGames, setDevGames] = useState([]);
+    const stateClass = {
+        &quot;Accept&eacute;&quot;: &quot;is-accepted&quot;,
+        &quot;En examination&quot;: &quot;is-pending&quot;,
+        &quot;Refus&eacute;&quot;: &quot;is-declined&quot;,
+    };
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    // R&ocirc;le d&eacute;veloppeur (initialis&eacute; depuis localStorage, puis rafra&icirc;chi c&ocirc;t&eacute; serveur)
+    const [isDev, setIsDev] = useState(() =&gt; {
+        try {
+            if (typeof window === &quot;undefined&quot;) return false;
+            const u = JSON.parse(localStorage.getItem(&quot;user&quot;) || &quot;null&quot;);
+            return u?.role === &quot;dev&quot; || u?.role === &quot;admin&quot;;
+        } catch {
+            return false;
+        }
+    });
+
+    // Rafra&icirc;chir le r&ocirc;le courant depuis l'API (utile apr&egrave;s acceptation sans reconnexion)
+    useEffect(() =&gt; {
+        const refreshRole = async () =&gt; {
+            try {
+                const token = localStorage.getItem(&quot;token&quot;);
+                if (!token) return;
+                const res = await fetch(&quot;/api/dev&quot;, {
+                    headers: { Authorization: `Bearer ${token}` },
+                });
+                const data = await res.json();
+                if (!res.ok) return;
+                if (data?.role) {
+                    const flag = data.role === &quot;dev&quot; || data.role === &quot;admin&quot;;
+                    setIsDev(flag);
+                    try {
+                        const u = JSON.parse(localStorage.getItem(&quot;user&quot;) || &quot;null&quot;) || {};
+                        if (u.role !== data.role) {
+                            u.role = data.role;
+                            localStorage.setItem(&quot;user&quot;, JSON.stringify(u));
+                        }
+                    } catch(e) {
+                        console.log(e);
+                    }
+                }
+            } catch(e) {
+                console.log(e);
+            }
+        };
+        refreshRole();
+        // on ne d&eacute;pend pas de isDev ici volontairement (rafra&icirc;chissement ponctuel)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+    const quickActions = useMemo(() =&gt; {
+        // visibleFor: 'all' | 'dev' | 'non-dev'
+        const actions = [
+            { id: &quot;view-requests&quot;, label: &quot;Voir mes requ&ecirc;tes&quot;, desc: &quot;Consultez l&rsquo;historique et l&rsquo;&eacute;tat de vos demandes.&quot;, visibleFor: &quot;all&quot; },
+            { id: &quot;request-dev&quot;, label: &quot;Envoyer une requ&ecirc;te&quot;, desc: &quot;Soumettre une demande pour devenir d&eacute;veloppeur.&quot;, visibleFor: &quot;non-dev&quot; },
+            { id: &quot;my-games&quot;, label: &quot;Mes jeux&quot;, desc: &quot;G&eacute;rer vos jeux publi&eacute;s et brouillons.&quot;, visibleFor: &quot;dev&quot; },
+            { id: &quot;add-game&quot;, label: &quot;Ajouter un jeu&quot;, desc: &quot;Cr&eacute;er et publier un nouveau jeu.&quot;, visibleFor: &quot;dev&quot; },
+            { id: &quot;dev-settings&quot;, label: &quot;Param&egrave;tres d&eacute;veloppeur&quot;, desc: &quot;Configurer votre profil d&eacute;veloppeur et vos pr&eacute;f&eacute;rences.&quot;, visibleFor: &quot;all&quot; },
+        ];
+        // Filtrer selon le r&ocirc;le
+        return actions.filter((a) =&gt;
+            a.visibleFor === &quot;all&quot; || (a.visibleFor === &quot;dev&quot; &amp;&amp; isDev) || (a.visibleFor === &quot;non-dev&quot; &amp;&amp; !isDev)
+        );
+    }, [isDev]);
+
+    const sections = useMemo(() =&gt; {
+        const base = [
+            {
+                id: &quot;home&quot;,
+                label: &quot;Accueil&quot;,
+                description:
+                    &quot;Bienvenue dans votre espace d&eacute;veloppeur. Consultez un aper&ccedil;u rapide de vos jeux, ajoutez-en de nouveaux ou g&eacute;rez vos param&egrave;tres.&quot;,
+            },
+            // Visible uniquement pour NON-dev: permettre d'envoyer une demande pour devenir d&eacute;veloppeur
+            ...(!isDev
+                ? [
+                    {
+                        id: &quot;request-dev&quot;,
+                        label: &quot;Envoyer une requ&ecirc;te&quot;,
+                        description:
+                            &quot;Soumettez une demande pour devenir d&eacute;veloppeur. Une fois envoy&eacute;e, un administrateur l'examinera.&quot;,
+                    },
+                ]
+                : []),
+            // Accessible &agrave; tous: voir l'historique de mes requ&ecirc;tes envoy&eacute;es
+            {
+                id: &quot;view-requests&quot;,
+                label: &quot;Voir mes requ&ecirc;tes&quot;,
+                description:
+                    &quot;Consultez l'historique de vos demandes pour devenir d&eacute;veloppeur et leur statut.&quot;,
+            },
+
+            ...(isDev
+                ? [
+                    {
+                        id: &quot;my-games&quot;,
+                        label: &quot;Mes jeux&quot;,
+                        description:
+                            &quot;Retrouvez la liste de vos jeux publi&eacute;s et brouillons. Visualisez les statistiques et g&eacute;rez les mises &agrave; jour.&quot;,
+                    },
+                    {
+                        id: &quot;add-game&quot;,
+                        label: &quot;Ajouter un jeu&quot;,
+                        description:
+                            &quot;D&eacute;marrez la publication d&rsquo;un nouveau titre: informations, images, prix et param&egrave;tres de distribution.&quot;,
+                    },
+                ]
+                : []),
+            {
+                id: &quot;dev-settings&quot;,
+                label: &quot;Param&egrave;tres d&eacute;veloppeur&quot;,
+                description:
+                    &quot;Configurez votre profil d&eacute;veloppeur, les cl&eacute;s API, les webhooks et les pr&eacute;f&eacute;rences du compte.&quot;,
+            },
+        ];
+        return base;
+    }, [isDev]);
+
+    const [activeId, setActiveId] = useState(&quot;home&quot;);
+    const active = useMemo(
+        () =&gt; sections.find((s) =&gt; s.id === activeId) ?? sections[0],
+        [activeId, sections]
+    );
+
+    // If a query parameter ?section=... is present, open that section on load
+    useEffect(() =&gt; {
+        const params = new URLSearchParams(location.search);
+        const q = params.get(&quot;section&quot;);
+        if (!q) return;
+        const exists = sections.some((s) =&gt; s.id === q);
+        if (exists) setActiveId(q);
+    }, [location.search, sections]);
+
+    // Etats pour la demande dev (uniquement non-dev)
+    const [title, setTitle] = useState(&quot;&quot;);
+    const [description, setDescription] = useState(&quot;&quot;);
+    const [isPendingRequest, setIsPendingRequest] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [errorMsg, setErrorMsg] = useState(&quot;&quot;);
+    const [successMsg, setSuccessMsg] = useState(&quot;&quot;);
+
+    // Formulaire d'ajout de jeu (dev seulement)
+    const [addLoading, setAddLoading] = useState(false);
+    const [addError, setAddError] = useState(&quot;&quot;);
+    const [addSuccess, setAddSuccess] = useState(&quot;&quot;);
+    const [addForm, setAddForm] = useState({
+        title: &quot;&quot;,
+        description: &quot;&quot;,
+        genre: &quot;&quot;,
+        platform: &quot;&quot;,
+        developer: &quot;&quot;,
+        publisher: &quot;&quot;,
+        release_date: &quot;&quot;,
+        price: &quot;&quot;,
+        rating: &quot;&quot;,
+        cover_url: &quot;&quot;,
+        trailer_url: &quot;&quot;,
+        discount: &quot;0&quot;,
+    });
+    const onAddChange = (k) =&gt; (e) =&gt; setAddForm((p) =&gt; ({ ...p, [k]: e.target.value }));
+    const submitAddGame = async (e) =&gt; {
+        e.preventDefault();
+        setAddError(&quot;&quot;);
+        setAddSuccess(&quot;&quot;);
+        try {
+            setAddLoading(true);
+            const token = localStorage.getItem(&quot;token&quot;);
+            const payload = {
+                ...addForm,
+                price: addForm.price === &quot;&quot; ? undefined : Number(addForm.price),
+                rating: addForm.rating === &quot;&quot; ? undefined : Number(addForm.rating),
+                discount: addForm.discount === &quot;&quot; ? 0 : Number(addForm.discount),
+            };
+            if (!payload.title || payload.price == null) {
+                throw new Error(&quot;Titre et prix sont requis&quot;);
+            }
+            const res = await fetch(&quot;/api/games/createGame&quot;, {
+                method: &quot;POST&quot;,
+                headers: { &quot;Content-Type&quot;: &quot;application/json&quot;, Authorization: `Bearer ${token}` },
+                body: JSON.stringify(payload),
+            });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data?.error || &quot;Impossible de cr&eacute;er le jeu&quot;);
+            setAddSuccess(&quot;Jeu cr&eacute;&eacute; avec succ&egrave;s.&quot;);
+            // Reset form and aller &agrave; Mes jeux
+            setAddForm({
+                title: &quot;&quot;, description: &quot;&quot;, genre: &quot;&quot;, platform: &quot;&quot;, developer: &quot;&quot;, publisher: &quot;&quot;,
+                release_date: &quot;&quot;, price: &quot;&quot;, rating: &quot;&quot;, cover_url: &quot;&quot;, trailer_url: &quot;&quot;, discount: &quot;0&quot;,
+            });
+            setActiveId(&quot;my-games&quot;);
+        } catch (err) {
+            setAddError(String(err.message || err));
+        } finally {
+            setAddLoading(false);
+        }
+    };
+
+    // Liste des requ&ecirc;tes
+    const [reqsLoading, setReqsLoading] = useState(false);
+    const [reqsError, setReqsError] = useState(&quot;&quot;);
+    const [requests, setRequests] = useState([]);
+
+    // V&eacute;rifier si une demande est en attente quand on ouvre la section
+    useEffect(() =&gt; {
+        const checkPending = async () =&gt; {
+            if (activeId !== &quot;request-dev&quot; || isDev) return;
+            try {
+                setLoading(true);
+                setErrorMsg(&quot;&quot;);
+                const token = localStorage.getItem(&quot;token&quot;);
+                const res = await fetch(&quot;/api/admin/isPendingRequest&quot;, {
+                    headers: {
+                        &quot;Content-Type&quot;: &quot;application/json&quot;,
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+                const data = await res.json();
+                if (!res.ok) throw new Error(data?.error || &quot;Une erreur est survenue&quot;);
+                setIsPendingRequest(Boolean(data?.hasPendingRequest));
+                if (data?.message &amp;&amp; data?.hasPendingRequest) setSuccessMsg(data.message);
+            } catch (e) {
+                setErrorMsg(String(e.message || e));
+            } finally {
+                setLoading(false);
+            }
+        };
+        checkPending();
+    }, [activeId, isDev]);
+
+    // Charger l'historique des requ&ecirc;tes
+    useEffect(() =&gt; {
+        const fetchRequests = async () =&gt; {
+            if (activeId !== &quot;view-requests&quot;) return;
+            try {
+                setReqsLoading(true);
+                setReqsError(&quot;&quot;);
+                const token = localStorage.getItem(&quot;token&quot;);
+                const res = await fetch(&quot;/api/user/getAllRequests&quot;, {
+                    headers: { Authorization: `Bearer ${token}` },
+                });
+                const data = await res.json();
+                if (!res.ok) throw new Error(data?.error || &quot;Impossible de r&eacute;cup&eacute;rer vos requ&ecirc;tes&quot;);
+                setRequests(Array.isArray(data) ? data : []);
+            } catch (e) {
+                setReqsError(String(e.message || e));
+            } finally {
+                setReqsLoading(false);
+            }
+        };
+        fetchRequests();
+    }, [activeId]);
+
+    const submitRequest = async (e) =&gt; {
+        e.preventDefault();
+        try {
+            setLoading(true);
+            setErrorMsg(&quot;&quot;);
+            setSuccessMsg(&quot;&quot;);
+            const token = localStorage.getItem(&quot;token&quot;);
+            const res = await fetch(&quot;/api/admin/request-dev&quot;, {
+                method: &quot;POST&quot;,
+                headers: {
+                    &quot;Content-Type&quot;: &quot;application/json&quot;,
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify({ title, description, checkExisting: false }),
+            });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data?.error || &quot;&Eacute;chec de l'envoi de la demande&quot;);
+            setSuccessMsg(data?.message || &quot;Votre demande a &eacute;t&eacute; envoy&eacute;e. Vous recevrez une r&eacute;ponse sous peu.&quot;);
+            setIsPendingRequest(true);
+            setTitle(&quot;&quot;);
+            setDescription(&quot;&quot;);
+        } catch (e) {
+            setErrorMsg(String(e.message || e));
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() =&gt; {
+        const fetchDevGames = async () =&gt; {
+            if (!(activeId === &quot;my-games&quot; || activeId === &quot;dev-settings&quot;) || !isDev) return;
+            try {
+                setGamesLoading(true);
+                setGamesError(&quot;&quot;);
+                const token = localStorage.getItem(&quot;token&quot;);
+                const res = await fetch(&quot;/api/dev/games&quot;, {
+                    headers: { Authorization: `Bearer ${token}` },
+                });
+                const data = await res.json();
+                if (!res.ok) throw new Error(data?.error || &quot;Impossible de r&eacute;cup&eacute;rer vos jeux&quot;);
+                setDevGames(Array.isArray(data) ? data : []);
+            } catch (e) {
+                setGamesError(String(e.message || e));
+            } finally {
+                setGamesLoading(false);
+            }
+        };
+        fetchDevGames();
+    }, [activeId, isDev]);
+
+
+    const [settingsMsg, setSettingsMsg] = useState(&quot;&quot;);
+    const [settingsErr, setSettingsErr] = useState(&quot;&quot;);
+    const [transfer, setTransfer] = useState({ gameId: &quot;&quot;, email: &quot;&quot; });
+    const onTransferChange = (k) =&gt; (e) =&gt; setTransfer((p) =&gt; ({ ...p, [k]: e.target.value }));
+    const doTransfer = async (e) =&gt; {
+        e.preventDefault();
+        setSettingsMsg(&quot;&quot;);
+        setSettingsErr(&quot;&quot;);
+        try {
+            if (!transfer.gameId || !transfer.email) throw new Error(&quot;S&eacute;lectionnez un jeu et entrez l'email cible&quot;);
+            const token = localStorage.getItem(&quot;token&quot;);
+            const res = await fetch(&quot;/api/dev/transfer-game&quot;, {
+                method: &quot;POST&quot;,
+                headers: { &quot;Content-Type&quot;: &quot;application/json&quot;, Authorization: `Bearer ${token}` },
+                body: JSON.stringify({ game_id: Number(transfer.gameId), to_user_email: transfer.email })
+            });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data?.error || &quot;Transfert impossible&quot;);
+            setSettingsMsg(&quot;Transfert effectu&eacute;.&quot;);
+            setTransfer({ gameId: &quot;&quot;, email: &quot;&quot; });
+            // rafra&icirc;chir la liste des jeux (le jeu dispara&icirc;tra si transf&eacute;r&eacute; &agrave; un autre compte)
+            setActiveId(&quot;my-games&quot;);
+        } catch (err) {
+            setSettingsErr(String(err.message || err));
+        }
+    };
+
+    const disableAll = async () =&gt; {
+        setSettingsMsg(&quot;&quot;);
+        setSettingsErr(&quot;&quot;);
+        const confirm1 = window.confirm(&quot;Voulez-vous vraiment d&eacute;sactiver tous vos jeux ?&quot;);
+        if (!confirm1) return;
+        try {
+            const token = localStorage.getItem(&quot;token&quot;);
+            const res = await fetch(&quot;/api/dev/disable-all&quot;, {
+                method: &quot;PATCH&quot;,
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data?.error || &quot;Op&eacute;ration impossible&quot;);
+            setSettingsMsg(`Jeux d&eacute;sactiv&eacute;s (${data.disabledCount || 0}).`);
+        } catch (err) {
+            setSettingsErr(String(err.message || err));
+        }
+    };
+
+    const leaveProgram = async () =&gt; {
+        setSettingsMsg(&quot;&quot;);
+        setSettingsErr(&quot;&quot;);
+        const confirm1 = window.confirm(&quot;Quitter le programme d&eacute;veloppeur ? Votre r&ocirc;le redeviendra 'user'.&quot;);
+        if (!confirm1) return;
+        try {
+            const token = localStorage.getItem(&quot;token&quot;);
+            const res = await fetch(&quot;/api/dev/leave&quot;, {
+                method: &quot;POST&quot;,
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data?.error || &quot;Op&eacute;ration impossible&quot;);
+            setSettingsMsg(data?.message || &quot;Vous avez quitt&eacute; le programme d&eacute;veloppeur.&quot;);
+            // Mettre &agrave; jour l'&eacute;tat local et le localStorage
+            setIsDev(false);
+            try {
+                const u = JSON.parse(localStorage.getItem(&quot;user&quot;) || &quot;null&quot;) || {};
+                if (u.role !== &quot;user&quot;) {
+                    u.role = &quot;user&quot;;
+                    localStorage.setItem(&quot;user&quot;, JSON.stringify(u));
+                }
+            } catch(e) {
+                console.log(e)
+            }
+        } catch (err) {
+            setSettingsErr(String(err.message || err));
+        }
+    };
+
+    return (
+        &lt;div className=&quot;hub&quot; data-testid=&quot;hub&quot;&gt;
+            &lt;aside className=&quot;hub__sidebar&quot; aria-label=&quot;Navigation d&eacute;veloppeur&quot;&gt;
+                &lt;div className=&quot;hub__brand&quot;&gt;
+                    &lt;span className=&quot;hub__brand-title&quot;&gt;Hub&lt;/span&gt;
+                    &lt;span className=&quot;hub__brand-sub&quot;&gt;D&eacute;veloppeur&lt;/span&gt;
+                &lt;/div&gt;
+
+                &lt;nav className=&quot;hub__nav&quot;&gt;
+                    {sections.map((s) =&gt; (
+                        &lt;button
+                            key={s.id}
+                            type=&quot;button&quot;
+                            className={`hub__nav-item ${activeId === s.id ? &quot;is-active&quot; : &quot;&quot;
+                                }`}
+                            onClick={() =&gt; setActiveId(s.id)}
+                            aria-current={activeId === s.id ? &quot;page&quot; : undefined}
+                        &gt;
+                            {s.label}
+                        &lt;/button&gt;
+                    ))}
+                &lt;/nav&gt;
+
+                &lt;div className=&quot;hub__grow&quot; /&gt;
+
+                &lt;button
+                    type=&quot;button&quot;
+                    className=&quot;hub__back&quot;
+                    onClick={() =&gt; navigate(&quot;/&quot;)}
+                    aria-label=&quot;Retour au site principal&quot;
+                &gt;
+                    &larr; Retour au site principal
+                &lt;/button&gt;
+            &lt;/aside&gt;
+
+            &lt;main className=&quot;hub__content&quot;&gt;
+                &lt;header className=&quot;hub__header&quot;&gt;
+                    &lt;h1&gt;Hub D&eacute;veloppeur&lt;/h1&gt;
+                &lt;/header&gt;
+
+                &lt;section className=&quot;hub__card&quot; aria-live=&quot;polite&quot;&gt;
+                    &lt;div className=&quot;hub__card-header&quot;&gt;
+                        &lt;h2 className=&quot;hub__card-title&quot;&gt;{active.label}&lt;/h2&gt;
+                    &lt;/div&gt;
+                    &lt;div className=&quot;hub__card-body&quot;&gt;
+                        {active.id === &quot;home&quot; ? (
+                            &lt;div className=&quot;hub__grid&quot;&gt;
+                                {quickActions.map((action) =&gt; (
+                                    &lt;button
+                                        key={action.id}
+                                        type=&quot;button&quot;
+                                        className=&quot;hub__tile&quot;
+                                        onClick={() =&gt; setActiveId(action.id)} 
+                                        aria-label={`Ouvrir ${action.label}`}
+                                    &gt;
+                                        &lt;div className=&quot;hub__tile-title&quot;&gt;{action.label}&lt;/div&gt;
+                                        &lt;div className=&quot;hub__tile-desc&quot;&gt;{action.desc ?? action.description}&lt;/div&gt;
+                                    &lt;/button&gt;
+                                ))}
+                            &lt;/div&gt;
+                        ) : active.id === &quot;request-dev&quot; ? (
+                            &lt;div&gt;
+                                {loading &amp;&amp; &lt;p className=&quot;hub__muted&quot;&gt;Chargement&hellip;&lt;/p&gt;}
+                                {errorMsg &amp;&amp; &lt;p className=&quot;hub__error&quot;&gt;{errorMsg}&lt;/p&gt;}
+                                {successMsg &amp;&amp; &lt;p className=&quot;hub__success&quot;&gt;{successMsg}&lt;/p&gt;}
+
+                                {isPendingRequest ? (
+                                    &lt;div&gt;
+                                        &lt;p className=&quot;hub__card-text&quot;&gt;
+                                            Vous avez d&eacute;j&agrave; une demande en attente. Merci de patienter pendant son examination.
+                                        &lt;/p&gt;
+                                        &lt;button
+                                            type=&quot;button&quot;
+                                            className=&quot;hub__btn&quot;
+                                            onClick={() =&gt; setActiveId(&quot;view-requests&quot;)}
+                                        &gt;
+                                            Voir mes requ&ecirc;tes
+                                        &lt;/button&gt;
+                                    &lt;/div&gt;
+                                ) : (
+                                    &lt;form onSubmit={submitRequest} className=&quot;hub__form&quot;&gt;
+                                        &lt;label className=&quot;hub__label&quot; htmlFor=&quot;req-title&quot;&gt;Titre&lt;/label&gt;
+                                        &lt;input
+                                            id=&quot;req-title&quot;
+                                            className=&quot;hub__input&quot;
+                                            type=&quot;text&quot;
+                                            placeholder=&quot;Ex: Demande d&eacute;veloppeur&quot;
+                                            value={title}
+                                            onChange={(e) =&gt; setTitle(e.target.value)}
+                                            required
+                                        /&gt;
+
+                                        &lt;label className=&quot;hub__label&quot; htmlFor=&quot;req-desc&quot;&gt;Description&lt;/label&gt;
+                                        &lt;textarea
+                                            id=&quot;req-desc&quot;
+                                            className=&quot;hub__textarea&quot;
+                                            rows={5}
+                                            placeholder=&quot;Expliquez bri&egrave;vement votre motivation.&quot;
+                                            value={description}
+                                            onChange={(e) =&gt; setDescription(e.target.value)}
+                                            required
+                                        /&gt;
+
+                                        &lt;button type=&quot;submit&quot; className=&quot;hub__btn&quot; disabled={loading}&gt;
+                                            Envoyer la requ&ecirc;te
+                                        &lt;/button&gt;
+                                    &lt;/form&gt;
+                                )}
+                            &lt;/div&gt;
+                        ) : active.id === &quot;view-requests&quot; ? (
+                            &lt;div&gt;
+                                {reqsLoading &amp;&amp; &lt;p className=&quot;hub__muted&quot;&gt;Chargement&hellip;&lt;/p&gt;}
+                                {reqsError &amp;&amp; &lt;p className=&quot;hub__error&quot;&gt;{reqsError}&lt;/p&gt;}
+                                {!reqsLoading &amp;&amp; !reqsError &amp;&amp; (
+                                    requests.length &gt; 0 ? (
+
+                                        &lt;ul className=&quot;hub__list&quot;&gt;
+                                            {requests.map((r) =&gt; (
+                                                &lt;li
+                                                    key={r.id}
+                                                    className={`hub__req-card ${stateClass[r.requestState] ?? &quot;&quot;}`}
+                                                &gt;
+                                                    &lt;div className=&quot;hub__req-title&quot;&gt;{r.title}&lt;/div&gt;
+                                                    &lt;div className=&quot;hub__req-state&quot;&gt;&Eacute;tat: &lt;strong&gt;{r.requestState}&lt;/strong&gt;&lt;/div&gt;
+                                                    {r.reason &amp;&amp; (
+                                                        &lt;div className=&quot;hub__req-reason&quot;&gt;Raison: {r.reason}&lt;/div&gt;
+                                                    )}
+                                                    {r.description &amp;&amp; (
+                                                        &lt;div className=&quot;hub__req-desc&quot;&gt;{r.description}&lt;/div&gt;
+                                                    )}
+                                                &lt;/li&gt;
+                                            ))}
+                                        &lt;/ul&gt;
+                                    ) : (
+                                        &lt;p className=&quot;hub__card-text&quot;&gt;Aucune requ&ecirc;te envoy&eacute;e.&lt;/p&gt;
+                                    )
+                                )}
+                            &lt;/div&gt;
+                        ) : active.id === &quot;my-games&quot; ? (
+                            &lt;div&gt;
+                                {gamesLoading &amp;&amp; &lt;p className=&quot;hub__muted&quot;&gt;Chargement&hellip;&lt;/p&gt;}
+                                {gamesError &amp;&amp; &lt;p className=&quot;hub__error&quot;&gt;{gamesError}&lt;/p&gt;}
+                                {!gamesLoading &amp;&amp; !gamesError &amp;&amp; (
+                                    devGames.length &gt; 0 ? (
+                                        &lt;div className=&quot;hub__grid&quot;&gt;
+                                            {devGames.map((game) =&gt; {
+                                                const title = game.title || &quot;Jeu sans titre&quot;;
+                                                const price = game.discountedPrice || game.price || 0;
+                                                const imgUrl = game.cover_url || game.image || null;
+                                                return (
+                                                    &lt;button
+                                                        key={game.id}
+                                                        type=&quot;button&quot;
+                                                        className={`hub__tile hub__tile--row ${!game.is_active ? &quot;hub__tile--inactive&quot; : &quot;&quot;}`}
+                                                        onClick={() =&gt; navigate(`/dev/game/${game.id}`)}
+                                                        aria-label={`G&eacute;rer le jeu ${title}`}
+                                                    &gt;
+                                                        {imgUrl ? (
+                                                            &lt;img className=&quot;hub__thumb&quot; src={imgUrl} alt={title} /&gt;
+                                                        ) : (
+                                                            &lt;div className=&quot;hub__thumb hub__thumb--placeholder&quot;&gt;{title.charAt(0)}&lt;/div&gt;
+                                                        )}
+                                                        &lt;div className=&quot;hub__meta&quot;&gt;
+                                                            &lt;div className=&quot;hub__meta-top&quot;&gt;
+                                                                &lt;div className=&quot;hub__game-title&quot; title={title}&gt;{title}&lt;/div&gt;
+                                                                &lt;div className=&quot;hub__game-price&quot;&gt;Prix: {price} $&lt;/div&gt;
+                                                            &lt;/div&gt;
+                                                        &lt;/div&gt;
+                                                    &lt;/button&gt;
+                                                );
+                                            })}
+                                        &lt;/div&gt;
+                                    ) : (
+                                        &lt;div&gt;
+                                            &lt;p className=&quot;hub__card-text&quot;&gt;{active.description}&lt;/p&gt;
+                                        &lt;/div&gt;
+                                    )
+                                )}
+                            &lt;/div&gt;
+                        ) : active.id === &quot;add-game&quot; ? (
+                            &lt;div&gt;
+                                &lt;form onSubmit={submitAddGame} className=&quot;hub__form&quot;&gt;
+                                    {addError &amp;&amp; &lt;p className=&quot;hub__error&quot;&gt;{addError}&lt;/p&gt;}
+                                    {addSuccess &amp;&amp; &lt;p className=&quot;hub__success&quot;&gt;{addSuccess}&lt;/p&gt;}
+
+                                    &lt;label className=&quot;hub__label&quot; htmlFor=&quot;add-title&quot;&gt;Titre *&lt;/label&gt;
+                                    &lt;input id=&quot;add-title&quot; className=&quot;hub__input&quot; value={addForm.title} onChange={onAddChange(&quot;title&quot;)} required /&gt;
+
+                                    &lt;label className=&quot;hub__label&quot; htmlFor=&quot;add-desc&quot;&gt;Description *&lt;/label&gt;
+                                    &lt;textarea id=&quot;add-desc&quot; className=&quot;hub__textarea&quot; rows={4} value={addForm.description} onChange={onAddChange(&quot;description&quot;)} required /&gt;
+
+                                    &lt;label className=&quot;hub__label&quot; htmlFor=&quot;add-genre&quot;&gt;Genre(s)&lt;/label&gt;
+                                    &lt;input id=&quot;add-genre&quot; className=&quot;hub__input&quot; placeholder=&quot;Ex: Action, Aventure&quot; value={addForm.genre} onChange={onAddChange(&quot;genre&quot;)} /&gt;
+
+                                    &lt;label className=&quot;hub__label&quot; htmlFor=&quot;add-platform&quot;&gt;Plateforme(s)&lt;/label&gt;
+                                    &lt;input id=&quot;add-platform&quot; className=&quot;hub__input&quot; placeholder=&quot;Ex: PC, PS5&quot; value={addForm.platform} onChange={onAddChange(&quot;platform&quot;)} /&gt;
+
+                                    &lt;label className=&quot;hub__label&quot; htmlFor=&quot;add-developer&quot;&gt;D&eacute;veloppeur&lt;/label&gt;
+                                    &lt;input id=&quot;add-developer&quot; className=&quot;hub__input&quot; value={addForm.developer} onChange={onAddChange(&quot;developer&quot;)} /&gt;
+
+                                    &lt;label className=&quot;hub__label&quot; htmlFor=&quot;add-publisher&quot;&gt;&Eacute;diteur&lt;/label&gt;
+                                    &lt;input id=&quot;add-publisher&quot; className=&quot;hub__input&quot; value={addForm.publisher} onChange={onAddChange(&quot;publisher&quot;)} /&gt;
+
+                                    &lt;label className=&quot;hub__label&quot; htmlFor=&quot;add-release&quot;&gt;Date de sortie&lt;/label&gt;
+                                    &lt;input id=&quot;add-release&quot; className=&quot;hub__input&quot; type=&quot;date&quot; value={addForm.release_date} onChange={onAddChange(&quot;release_date&quot;)} /&gt;
+
+                                    &lt;label className=&quot;hub__label&quot; htmlFor=&quot;add-price&quot;&gt;Prix (en $) *&lt;/label&gt;
+                                    &lt;input id=&quot;add-price&quot; className=&quot;hub__input&quot; type=&quot;number&quot; step=&quot;0.01&quot; value={addForm.price} onChange={onAddChange(&quot;price&quot;)} required /&gt;
+
+                                    &lt;label className=&quot;hub__label&quot; htmlFor=&quot;add-discount&quot;&gt;Rabais (%)&lt;/label&gt;
+                                    &lt;input id=&quot;add-discount&quot; className=&quot;hub__input&quot; type=&quot;number&quot; min=&quot;0&quot; max=&quot;100&quot; step=&quot;1&quot; value={addForm.discount} onChange={onAddChange(&quot;discount&quot;)} /&gt;
+
+                                    &lt;label className=&quot;hub__label&quot; htmlFor=&quot;add-rating&quot;&gt;Note (/10)&lt;/label&gt;
+                                    &lt;input id=&quot;add-rating&quot; className=&quot;hub__input&quot; type=&quot;number&quot; min=&quot;0&quot; max=&quot;10&quot; step=&quot;0.1&quot; value={addForm.rating} onChange={onAddChange(&quot;rating&quot;)} /&gt;
+
+                                    &lt;label className=&quot;hub__label&quot; htmlFor=&quot;add-cover&quot;&gt;Image (URL)&lt;/label&gt;
+                                    &lt;input id=&quot;add-cover&quot; className=&quot;hub__input&quot; placeholder=&quot;https://.../cover.jpg&quot; value={addForm.cover_url} onChange={onAddChange(&quot;cover_url&quot;)} /&gt;
+
+                                    &lt;label className=&quot;hub__label&quot; htmlFor=&quot;add-trailer&quot;&gt;Bande‑annonce (URL)&lt;/label&gt;
+                                    &lt;input id=&quot;add-trailer&quot; className=&quot;hub__input&quot; placeholder=&quot;https://youtu.be/... ou https://.../video.mp4&quot; value={addForm.trailer_url} onChange={onAddChange(&quot;trailer_url&quot;)} /&gt;
+
+                                    &lt;button type=&quot;submit&quot; className=&quot;hub__btn&quot; disabled={addLoading}&gt;
+                                        {addLoading ? &quot;Cr&eacute;ation&hellip;&quot; : &quot;Cr&eacute;er le jeu&quot;}
+                                    &lt;/button&gt;
+                                &lt;/form&gt;
+                            &lt;/div&gt;
+                        ) : active.id === &quot;dev-settings&quot; ? (
+                            &lt;div&gt;
+                                &lt;p className=&quot;hub__card-text&quot;&gt;{active.description}&lt;/p&gt;
+
+                                {settingsErr &amp;&amp; &lt;p className=&quot;hub__error&quot;&gt;{settingsErr}&lt;/p&gt;}
+                                {settingsMsg &amp;&amp; &lt;p className=&quot;hub__success&quot;&gt;{settingsMsg}&lt;/p&gt;}
+
+                                {isDev &amp;&amp; (
+                                    &lt;div className=&quot;hub__stack&quot;&gt;
+                                        &lt;h3&gt;Transf&eacute;rer un jeu &agrave; un autre compte&lt;/h3&gt;
+                                        &lt;form onSubmit={doTransfer} className=&quot;hub__form&quot;&gt;
+                                            &lt;label className=&quot;hub__label&quot;&gt;Jeu&lt;/label&gt;
+                                            &lt;select className=&quot;hub__input&quot; value={transfer.gameId} onChange={onTransferChange(&quot;gameId&quot;)}&gt;
+                                                &lt;option value=&quot;&quot;&gt;&mdash; S&eacute;lectionnez &mdash;&lt;/option&gt;
+                                                {devGames.map((g) =&gt; (
+                                                    &lt;option key={g.id} value={g.id}&gt;{g.title} (#{g.id})&lt;/option&gt;
+                                                ))}
+                                            &lt;/select&gt;
+                                            &lt;label className=&quot;hub__label&quot;&gt;Email du compte cible&lt;/label&gt;
+                                            &lt;input className=&quot;hub__input&quot; type=&quot;email&quot; placeholder=&quot;dev@exemple.com&quot; value={transfer.email} onChange={onTransferChange(&quot;email&quot;)} /&gt;
+                                            &lt;button className=&quot;hub__btn&quot; type=&quot;submit&quot;&gt;Transf&eacute;rer&lt;/button&gt;
+                                        &lt;/form&gt;
+
+                                        &lt;hr /&gt;
+
+                                        &lt;h3&gt;D&eacute;sactiver tous mes jeux&lt;/h3&gt;
+                                        &lt;p className=&quot;hub__muted&quot;&gt;Cette action rendra vos jeux indisponibles &agrave; l&rsquo;achat. Vous pourrez les restaurer individuellement plus tard.&lt;/p&gt;
+                                        &lt;button className=&quot;hub__btn&quot; onClick={disableAll}&gt;D&eacute;sactiver tous les jeux&lt;/button&gt;
+
+                                        &lt;hr /&gt;
+
+                                        &lt;h3&gt;Quitter le programme d&eacute;veloppeur&lt;/h3&gt;
+                                        &lt;p className=&quot;hub__muted&quot;&gt;Vous perdrez l&rsquo;acc&egrave;s aux outils d&eacute;veloppeur. Vous pourrez refaire une demande plus tard.&lt;/p&gt;
+                                        &lt;button className=&quot;hub__btn&quot; onClick={leaveProgram}&gt;Quitter le programme&lt;/button&gt;
+                                    &lt;/div&gt;
+                                )}
+                            &lt;/div&gt;
+                        ) : (
+                            &lt;div&gt;
+                                &lt;p className=&quot;hub__card-text&quot;&gt;{active.description}&lt;/p&gt;
+                            &lt;/div&gt;
+                        )}
+                    &lt;/div&gt;
+                &lt;/section&gt;
+            &lt;/main&gt;
+        &lt;/div&gt;
+    );
+}
+
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/html");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

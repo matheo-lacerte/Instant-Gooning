@@ -1,0 +1,54 @@
+<html>
+<head>
+    <title>export async function getMyKeys()</title>
+    <link rel="stylesheet" charset="UTF-8" href="https://d2bb1mtyn3kglb.cloudfront.net/lib/highlight/styles/docco.min.css">
+    <script charset="UTF-8" type="application/javascript" src="https://d2bb1mtyn3kglb.cloudfront.net/lib/highlight/highlight.min.js"></script>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">export async function getMyKeys()</h3>
+<p style="margin-top: 4px">in <i>server/controllers/userController.js [105:136]</i></p>
+<ul>
+    <li><b>31</b> lines of code</li>
+    <li><b>6</b> McCabe index (conditional complexity)</li>
+</ul>
+<pre>
+<code class="js">
+export async function getMyKeys(req, res) {
+  try {
+    const user_id = req.user.id;
+    const { data, error } = await supabaseAdmin
+      .from(&quot;game_keys&quot;)
+      .select(&quot;key_code, status, created_at, game_id, order_id&quot;)
+      .eq(&quot;user_id&quot;, user_id)
+      .order(&quot;created_at&quot;, { ascending: false });
+    if (error) throw error;
+
+    const ids = [...new Set(data.map(d =&gt; d.game_id))];
+    let titles = {};
+    if (ids.length) {
+      const { data: games } = await supabaseAdmin
+        .from(&quot;games&quot;)
+        .select(&quot;id, title&quot;)
+        .in(&quot;id&quot;, ids);
+      titles = Object.fromEntries((games || []).map(g =&gt; [g.id, g.title]));
+    }
+    return res.json(
+      data.map(d =&gt; ({
+        title: titles[d.game_id] || `Jeu ${d.game_id}`,
+        key: d.key_code,
+        status: d.status,
+        order_id: d.order_id,
+        created_at: d.created_at
+      }))
+    );
+  } catch (e) {
+    return res.status(500).json({ error: e.message });
+  }
+}
+
+</code>
+</pre>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+</body>

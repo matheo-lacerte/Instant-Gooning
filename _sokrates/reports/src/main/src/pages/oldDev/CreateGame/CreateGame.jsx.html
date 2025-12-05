@@ -1,0 +1,299 @@
+<html>
+<head>
+    <title>src/pages/oldDev/CreateGame/CreateGame.jsx</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">src/pages/oldDev/CreateGame/CreateGame.jsx (<b>252</b> lines of code) (<a href="CreateGame.jsx">raw</a>):</h3>
+<div id="editor">import { Link, useNavigate } from &quot;react-router-dom&quot;;
+import { useState } from &quot;react&quot;;
+import &quot;./CreateGame.css&quot;;
+
+export default function CreateGame() {
+  const navigate = useNavigate();
+
+  const [title, setTitle] = useState(&quot;&quot;);
+  const [description, setDescription] = useState(&quot;&quot;);
+  const [genre, setGenre] = useState(&quot;&quot;);
+  const [platform, setPlatform] = useState(&quot;&quot;);
+  const [developer, setDeveloper] = useState(&quot;&quot;);
+  const [publisher, setPublisher] = useState(&quot;&quot;);
+  const [releaseDate, setReleaseDate] = useState(&quot;&quot;);
+  const [price, setPrice] = useState(0);
+  const [rating, setRating] = useState(&quot;&quot;);
+  const [cover_url, setCoverUrl] = useState(&quot;&quot;);
+  const [trailer_url, setTrailerUrl] = useState(&quot;&quot;);
+  const [discount, setDiscount] = useState(0);
+  const token = localStorage.getItem(&quot;token&quot;);
+
+  const onPriceChange = (e) =&gt; {
+    let value = e.target.value;
+    if (e.target.value === &quot;&quot;) {
+      value = 0;
+    }
+    setPrice(value);
+  };
+
+  const onDiscountChange = (e) =&gt; {
+    const value = Math.max(0, Math.min(100, Number(e.target.value)));
+    setDiscount(value);
+  };
+
+  const addGame = async (e) =&gt; {
+    e.preventDefault();
+    const newRating = rating === &quot;&quot; ? null : rating;
+    const payload = {
+      title,
+      description,
+      genre,
+      platform,
+      developer,
+      publisher,
+      releaseDate,
+      price,
+      newRating,
+      cover_url,
+      trailer_url,
+      discount,
+    };
+
+    try {
+      const response = await fetch(
+        &quot;/api/games/createGame&quot;,
+        {
+          method: &quot;POST&quot;,
+          headers: {
+            &quot;Content-Type&quot;: &quot;application/json&quot;,
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(payload),
+        }
+      );
+      if (response.ok) {
+        navigate(&quot;/dev&quot;);
+      } else {
+        const errorData = await response.json();
+        console.error(&quot;Erreur lors de la cr&eacute;ation du jeu:&quot;, errorData.error);
+      }
+    } catch (error) {
+      console.error(&quot;Error creating game:&quot;, error);
+    }
+  };
+
+  return (
+    &lt;div className=&quot;dev&quot;&gt;
+      &lt;div className=&quot;rangee&quot;&gt;
+        &lt;div className=&quot;colonnes&quot;&gt;
+          &lt;ul&gt;
+            &lt;li&gt;
+              &lt;h1&gt;
+                &lt;Link to=&quot;/profile&quot;&gt;Profil&lt;/Link&gt;
+              &lt;/h1&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;h1&gt;
+                &lt;Link to=&quot;/dev&quot;&gt;D&eacute;veloppeur&lt;/Link&gt;
+              &lt;/h1&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;h1&gt;Panier&lt;/h1&gt;
+            &lt;/li&gt;
+          &lt;/ul&gt;
+        &lt;/div&gt;
+
+        &lt;div className=&quot;colonnes&quot;&gt;
+          &lt;div className=&quot;create-game-container&quot;&gt;
+            &lt;h1 className=&quot;create-title&quot;&gt;Cr&eacute;er un nouveau jeu&lt;/h1&gt;
+            &lt;form className=&quot;form-dev&quot; onSubmit={addGame}&gt;
+              &lt;div className=&quot;control space&quot;&gt;
+                &lt;label htmlFor=&quot;titre&quot;&gt;Titre du jeu*&lt;/label&gt;
+                &lt;input
+                  id=&quot;titre&quot;
+                  type=&quot;text&quot;
+                  placeholder=&quot;Entrez le titre du jeu&quot;
+                  required
+                  value={title}
+                  onChange={(e) =&gt; setTitle(e.target.value)}
+                /&gt;
+              &lt;/div&gt;
+
+              &lt;div className=&quot;control space&quot;&gt;
+                &lt;label htmlFor=&quot;description&quot;&gt;Description*&lt;/label&gt;
+                &lt;input
+                  id=&quot;description&quot;
+                  type=&quot;text&quot;
+                  placeholder=&quot;Entrez la description du jeu&quot;
+                  required
+                  value={description}
+                  onChange={(e) =&gt; setDescription(e.target.value)}
+                /&gt;
+              &lt;/div&gt;
+
+              &lt;div className=&quot;row&quot;&gt;
+                &lt;div className=&quot;control&quot;&gt;
+                  &lt;label htmlFor=&quot;genre&quot;&gt;Genre&lt;/label&gt;
+                  &lt;input
+                    id=&quot;genre&quot;
+                    type=&quot;text&quot;
+                    placeholder=&quot;Entrez le genre du jeu&quot;
+                    value={genre}
+                    onChange={(e) =&gt; setGenre(e.target.value)}
+                  /&gt;
+                &lt;/div&gt;
+
+                &lt;div className=&quot;control&quot;&gt;
+                  &lt;label htmlFor=&quot;platform&quot;&gt;Plateforme*&lt;/label&gt;
+                  &lt;input
+                    id=&quot;platform&quot;
+                    type=&quot;text&quot;
+                    placeholder=&quot;Entrez la plateforme du jeu&quot;
+                    required
+                    value={platform}
+                    onChange={(e) =&gt; setPlatform(e.target.value)}
+                  /&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+
+              &lt;div className=&quot;row&quot;&gt;
+                &lt;div className=&quot;control&quot;&gt;
+                  &lt;label htmlFor=&quot;developer&quot;&gt;D&eacute;veloppeur*&lt;/label&gt;
+                  &lt;input
+                    id=&quot;developer&quot;
+                    type=&quot;text&quot;
+                    placeholder=&quot;Entrez le d&eacute;veloppeur&quot;
+                    value={developer}
+                    required
+                    onChange={(e) =&gt; setDeveloper(e.target.value)}
+                  /&gt;
+                &lt;/div&gt;
+
+                &lt;div className=&quot;control&quot;&gt;
+                  &lt;label htmlFor=&quot;publisher&quot;&gt;&Eacute;diteur*&lt;/label&gt;
+                  &lt;input
+                    id=&quot;publisher&quot;
+                    type=&quot;text&quot;
+                    placeholder=&quot;Entrez l'&eacute;diteur&quot;
+                    value={publisher}
+                    required
+                    onChange={(e) =&gt; setPublisher(e.target.value)}
+                  /&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+
+              &lt;div className=&quot;row&quot;&gt;
+                &lt;div className=&quot;control&quot;&gt;
+                  &lt;label htmlFor=&quot;releaseDate&quot;&gt;Date de sortie&lt;/label&gt;
+                  &lt;input
+                    id=&quot;releaseDate&quot;
+                    type=&quot;date&quot;
+                    value={releaseDate}
+                    onChange={(e) =&gt; setReleaseDate(e.target.value)}
+                  /&gt;
+                &lt;/div&gt;
+
+                &lt;div className=&quot;control&quot;&gt;
+                  &lt;label htmlFor=&quot;price&quot;&gt;Prix*&lt;/label&gt;
+                  &lt;input
+                    id=&quot;price&quot;
+                    type=&quot;number&quot;
+                    placeholder=&quot;Entrez le prix&quot;
+                    value={price}
+                    min={0}
+                    max={10000}
+                    onChange={(e) =&gt; onPriceChange(e)}
+                  /&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+
+              &lt;div className=&quot;row&quot;&gt;
+                &lt;div className=&quot;control&quot;&gt;
+                  &lt;label htmlFor=&quot;rating&quot;&gt;Note&lt;/label&gt;
+                  &lt;input
+                    id=&quot;rating&quot;
+                    type=&quot;number&quot;
+                    placeholder=&quot;Entrez la note&quot;
+                    min=&quot;0&quot;
+                    max=&quot;10&quot;
+                    step=&quot;0.1&quot;
+                    value={rating ?? &quot;&quot;}
+                    onChange={(e) =&gt;
+                      setRating(
+                        e.target.value ? parseFloat(e.target.value) : null
+                      )
+                    }
+                  /&gt;
+                &lt;/div&gt;
+
+                &lt;div className=&quot;control&quot;&gt;
+                  &lt;label htmlFor=&quot;cover_url&quot;&gt;URL de la couverture&lt;/label&gt;
+                  &lt;input
+                    id=&quot;cover_url&quot;
+                    type=&quot;text&quot;
+                    placeholder=&quot;Entrez l'URL de la couverture&quot;
+                    value={cover_url}
+                    onChange={(e) =&gt; setCoverUrl(e.target.value)}
+                  /&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+
+              &lt;div className=&quot;row&quot;&gt;
+                &lt;div className=&quot;control&quot;&gt;
+                  &lt;label htmlFor=&quot;trailer_url&quot;&gt;URL de la bande-annonce&lt;/label&gt;
+                  &lt;input
+                    id=&quot;trailer_url&quot;
+                    type=&quot;text&quot;
+                    placeholder=&quot;Entrez l'URL de la bande-annonce&quot;
+                    value={trailer_url}
+                    onChange={(e) =&gt; setTrailerUrl(e.target.value)}
+                  /&gt;
+                &lt;/div&gt;
+
+                &lt;div className=&quot;control&quot;&gt;
+                  &lt;label htmlFor=&quot;discount&quot;&gt;R&eacute;duction (%)*&lt;/label&gt;
+                  &lt;input
+                    id=&quot;discount&quot;
+                    type=&quot;number&quot;
+                    min={0}
+                    max={100}
+                    placeholder=&quot;Entrez la r&eacute;duction&quot;
+                    value={discount}
+                    onChange={(e) =&gt; onDiscountChange(e)}
+                  /&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+
+              &lt;div className=&quot;btn-envoyer&quot;&gt;
+                &lt;button type=&quot;submit&quot; className=&quot;button_dev&quot;&gt;
+                  Cr&eacute;er le jeu
+                &lt;/button&gt;
+              &lt;/div&gt;
+            &lt;/form&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;Link to=&quot;/logout&quot; className=&quot;button_dev&quot;&gt;
+        D&eacute;connexion
+      &lt;/Link&gt;
+    &lt;/div&gt;
+  );
+}
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/html");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>
