@@ -45,7 +45,7 @@ export default function Admin() {
         setLoading(true);
         setError("");
         const res = await fetch(
-          "http://localhost:5174/api/admin/getAllRequests",
+          "/api/admin/getAllRequests",
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -65,7 +65,7 @@ export default function Admin() {
         }
 
         const usersRes = await fetch(
-          "http://localhost:5174/api/admin/getAllUsers",
+          "/api/admin/getAllUsers",
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -76,6 +76,7 @@ export default function Admin() {
 
         const enrichedRequests = filtered.map((req) => {
           const user = users.users.find((u) => u.id === req.created_by);
+          console.log(user);
           return { ...req, user };
         });
 
@@ -92,7 +93,7 @@ export default function Admin() {
   const handleAccept = async (id) => {
     const token = localStorage.getItem("token");
     try {
-      const res = await fetch("http://localhost:5174/api/admin/acceptRequest", {
+      const res = await fetch("/api/admin/acceptRequest", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -116,7 +117,7 @@ export default function Admin() {
     const token = localStorage.getItem("token");
     try {
       const res = await fetch(
-        "http://localhost:5174/api/admin/declineRequest",
+        "/api/admin/declineRequest",
         {
           method: "POST",
           headers: {
@@ -136,19 +137,19 @@ export default function Admin() {
   };
 
   return (
-    <div className="admin-hub">
-      <aside className="admin-hub__sidebar">
-        <div className="admin-hub__brand">
-          <span className="admin-hub__brand-title">Hub</span>
-          <span className="admin-hub__brand-sub">Admin</span>
+    <div className="hub">
+      <aside className="hub__sidebar">
+        <div className="hub__brand">
+          <span className="hub__brand-title">Hub</span>
+          <span className="hub__brand-sub">Admin</span>
         </div>
 
-        <nav className="admin-hub__nav">
+        <nav className="hub__nav">
           {sections.map((s) => (
             <button
               key={s.id}
               type="button"
-              className={`admin-hub__nav-item ${
+              className={`hub__nav-item ${
                 activeId === s.id ? "is-active" : ""
               }`}
               onClick={() => setActiveId(s.id)}
@@ -158,37 +159,37 @@ export default function Admin() {
           ))}
         </nav>
 
-        <div className="admin-hub__grow" />
+        <div className="hub__grow" />
 
         <button
           type="button"
-          className="admin-hub__back"
+          className="hub__back"
           onClick={() => navigate("/")}
         >
           ← Retour au site
         </button>
       </aside>
 
-      <main className="admin-hub__content">
-        <header className="admin-hub__header">
+      <main className="hub__content">
+        <header className="hub__header">
           <h1>Hub Administrateur</h1>
         </header>
 
-        <section className="admin-hub__card">
-          <h2 className="admin-hub__card-title">{active.label}</h2>
-          <p className="admin-hub__muted">{active.desc}</p>
+        <section className="hub__card">
+          <h2 className="hub__card-title">{active.label}</h2>
+          <p className="hub__muted">{active.desc}</p>
 
           {loading && <p>Chargement...</p>}
-          {error && <p className="admin-hub__error">{error}</p>}
+          {error && <p className="hub__error">{error}</p>}
 
           {!loading &&
             !error &&
             (requests.length > 0 ? (
-              <ul className="admin-hub__list">
+              <ul className="hub__list">
                 {requests.map((r) => (
                   <li
                     key={r.id}
-                    className={`admin-hub__req admin-hub__req-card " ${
+                    className={`hub__req hub__req-card " ${
                       r.requestState === "En examination"
                         ? "is-pending"
                         : r.requestState === "Accepté"
@@ -196,23 +197,23 @@ export default function Admin() {
                         : "is-declined"
                     }`}
                   >
-                    <div className="admin-hub__req-header">
+                    <div className="hub__req-header">
                       <strong>{r.title}</strong> — <em>{r.requestState}</em>
-                      <h3>Fait par {r.user.username}</h3>
+                      <h3>Fait par {r.user?.username || "Inconnu"}</h3>
                     </div>
                     <p>{r.description}</p>
-                    <p className="admin-hub__muted">Raison: {r.reason != "" && r.reason != null ? r.reason : "Inconnu"}</p>
+                    <p className="hub__muted">Raison: {r.reason != "" && r.reason != null ? r.reason : "Inconnu"}</p>
                     {r.requestState === "En examination" &&
                       activeId == "pendingRequests" && (
-                        <div className="admin-hub__actions">
+                        <div className="hub__actions">
                           <button
-                            className="admin-hub__btn accept"
+                            className="hub__btn accept"
                             onClick={() => handleAccept(r.id)}
                           >
                             Accepter
                           </button>
                           <button
-                            className="admin-hub__btn decline"
+                            className="hub__btn decline"
                             onClick={() => handleDecline(r.id)}
                           >
                             Refuser

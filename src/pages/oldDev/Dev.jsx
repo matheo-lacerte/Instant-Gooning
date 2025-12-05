@@ -28,7 +28,7 @@ export default function Dev() {
         lastCheckRef.current = now;
         if (user.role !== "dev") {
           const checkResponse = await fetch(
-            "http://localhost:5174/api/admin/isPendingRequest",
+            "/api/admin/isPendingRequest",
             {
               headers: {
                 "Content-Type": "application/json",
@@ -49,7 +49,7 @@ export default function Dev() {
 
         if (isViewRequest) {
           const response = await fetch(
-            "http://localhost:5174/api/user/getAllRequests",
+            "/api/user/getAllRequests",
             {
               headers: { Authorization: `Bearer ${token}` },
             }
@@ -74,7 +74,7 @@ export default function Dev() {
     e.preventDefault();
     try {
       const response = await fetch(
-        "http://localhost:5174/api/admin/request-dev",
+        "/api/admin/request-dev",
         {
           method: "POST",
           headers: {
@@ -129,7 +129,7 @@ export default function Dev() {
                     Formulaire de demande pour être développeur
                   </h1>
                   <form onSubmit={formSubmitDev} className="form-dev">
-                    <div className="control no-margin space">
+                    <div className="control space">
                       <label htmlFor="titre">Titre</label>
                       <input
                         id="titre"
@@ -142,7 +142,7 @@ export default function Dev() {
                       />
                     </div>
 
-                    <div className="control no-margin space">
+                    <div className="control space">
                       <label htmlFor="contenu">Contenu</label>
                       <textarea
                         id="contenu"

@@ -23,7 +23,7 @@ export default function EditPassword() {
   const sauvegardeMDP = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5174/api/user/changePassword",
+        "/api/user/changePassword",
         {
           method: "POST",
           headers: {
@@ -72,7 +72,7 @@ export default function EditPassword() {
         </div>
         <div className="colonnes userData">
           <h1>Modification du mot de passe</h1>
-          <div className="control no-margin">
+          <div className="control">
             <label htmlFor="password">Ancien mot de passe</label>
             <div className="password-container">
               <input
@@ -97,7 +97,7 @@ export default function EditPassword() {
             </div>
           </div>
 
-          <div className="control no-margin">
+          <div className="control">
             <label htmlFor="password">Nouveau mot de passe</label>
             <div className="password-container">
               <input
