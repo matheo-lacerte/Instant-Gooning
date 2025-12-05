@@ -1,13 +1,3 @@
-:root {
-  --sb-bg: #0b0f19;
-  --sb-border: #1f2a44;
-  --sb-text: #e5e7eb;
-  --sb-muted: #9ca3af;
-  --sb-focus: #60a5fa;
-  --sb-accent: #2563eb;
-}
-
-
 .search-bar {
   position: relative;
   width: 100%;
@@ -22,14 +12,14 @@
   border: 1px solid var(--sb-border);
   border-radius: 9999px;
   padding: 8px 8px 8px 8px;
-  color: var(--sb-text);
+  color: var(--text);
   box-shadow: 0 6px 18px rgba(0,0,0,0.35);
 }
 
 .search-bar .sb-icon {
   display: grid;
   place-items: center;
-  color: var(--sb-muted);
+  color: var(--muted);
 }
 
 .search-bar input[type="text"] {
@@ -37,7 +27,7 @@
   border: none;
   outline: none;
   background: transparent;
-  color: var(--sb-text);
+  color: var(--text);
   font-size: 1rem;
   padding: 8px 6px;
   width: 100%;
@@ -54,7 +44,7 @@
   place-items: center;
   border: none;
   background: transparent;
-  color: var(--sb-muted);
+  color: var(--muted);
   cursor: pointer;
 }
 
@@ -100,7 +90,7 @@
   gap: 8px;
   padding: 10px 12px;
   border-radius: 10px;
-  color: var(--sb-text);
+  color: var(--text);
   cursor: pointer;
 }
 .search-bar .sb-suggestions li:hover,

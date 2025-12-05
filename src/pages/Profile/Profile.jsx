@@ -1,21 +1,18 @@
-import { Link, useNavigate, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 import "./Profile.css";
 
 export default function Profile() {
   const navigate = useNavigate();
-  const [userParse, setUserParse] = useState(() => {
-    const storedUser = localStorage.getItem("user");
-    return storedUser ? JSON.parse(storedUser) : {};
-  });
+  const storedUser = localStorage.getItem("user");
+  const userParse = storedUser ? JSON.parse(storedUser) : {};
 
+  console.log(userParse);
   const [username, setUsername] = useState(userParse.username || "");
   const [first, setFirst] = useState(userParse.first_name || "");
   const [last, setLast] = useState(userParse.last_name || "");
   const [email, setEmail] = useState(userParse.email || "");
-  const [token, setToken] = useState(localStorage.getItem("token"));
-  
 
   const editProfile = () => {
     navigate("/profile/editProfile");
@@ -24,60 +21,6 @@ export default function Profile() {
   const editPassword = () => {
     navigate("/profile/editPassword");
   };
-
-  const annulation = () => {
-    setUsername(userParse.username);
-    setFirst(userParse.first_name);
-    setLast(userParse.last_name);
-    setEmail(userParse.email);
-    setEditProfile(false);
-    navigate("/profile");
-  };
-
-  const sauvegarde = async () => {
-    try {
-      const response = await fetch(
-        "http://localhost:5174/api/user/changeUserProfile",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({
-            first_name: first,
-            last_name: last,
-            username,
-            email,
-          }),
-        }
-      );
-
-      const data = await response.json();
-      if (response.ok) {
-        const newUser = {
-          ...userParse,
-          username,
-          first_name: first,
-          last_name: last,
-          email,
-        };
-
-        setUserParse(newUser);
-        localStorage.setItem("user", JSON.stringify(newUser));
-
-  console.log(data.message);
-        navigate("/profile");
-        setEditProfile(false);
-      } else {
-  console.error(data.error);
-      }
-    } catch (error) {
-  console.error(error);
-    }
-  };
-
-  
 
   return (
     <div className="dev">
@@ -109,7 +52,7 @@ export default function Profile() {
         <div className="colonnes userData">
           <h1>Informations du compte</h1>
 
-          <div className="control no-margin">
+          <div className="control">
             <label htmlFor="username">Nom d'utilisateur</label>
             <input
               type="text"
@@ -120,7 +63,7 @@ export default function Profile() {
             />
           </div>
 
-          <div className="control no-margin">
+          <div className="control">
             <label htmlFor="firstName">Prénom</label>
             <input
               type="text"
@@ -131,7 +74,7 @@ export default function Profile() {
             />
           </div>
 
-          <div className="control no-margin">
+          <div className="control">
             <label htmlFor="lastName">Nom</label>
             <input
               type="text"
@@ -142,7 +85,7 @@ export default function Profile() {
             />
           </div>
 
-          <div className="control no-margin">
+          <div className="control">
             <label htmlFor="email">Adresse courriel</label>
             <input
               type="email"

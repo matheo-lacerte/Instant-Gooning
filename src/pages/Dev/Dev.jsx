@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import "./Dev.css";
 
 // Hub Développeur page with sidebar navigation and main preview card
 export default function Dev() {
@@ -32,7 +31,7 @@ export default function Dev() {
             try {
                 const token = localStorage.getItem("token");
                 if (!token) return;
-                const res = await fetch("http://localhost:5174/api/dev", {
+                const res = await fetch("/api/dev", {
                     headers: { Authorization: `Bearer ${token}` },
                 });
                 const data = await res.json();
@@ -46,9 +45,13 @@ export default function Dev() {
                             u.role = data.role;
                             localStorage.setItem("user", JSON.stringify(u));
                         }
-                    } catch {}
+                    } catch(e) {
+                        console.log(e);
+                    }
                 }
-            } catch {}
+            } catch(e) {
+                console.log(e);
+            }
         };
         refreshRole();
         // on ne dépend pas de isDev ici volontairement (rafraîchissement ponctuel)
@@ -180,7 +183,7 @@ export default function Dev() {
             if (!payload.title || payload.price == null) {
                 throw new Error("Titre et prix sont requis");
             }
-            const res = await fetch("http://localhost:5174/api/games/createGame", {
+            const res = await fetch("/api/games/createGame", {
                 method: "POST",
                 headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
                 body: JSON.stringify(payload),
@@ -214,7 +217,7 @@ export default function Dev() {
                 setLoading(true);
                 setErrorMsg("");
                 const token = localStorage.getItem("token");
-                const res = await fetch("http://localhost:5174/api/admin/isPendingRequest", {
+                const res = await fetch("/api/admin/isPendingRequest", {
                     headers: {
                         "Content-Type": "application/json",
                         Authorization: `Bearer ${token}`,
@@ -241,7 +244,7 @@ export default function Dev() {
                 setReqsLoading(true);
                 setReqsError("");
                 const token = localStorage.getItem("token");
-                const res = await fetch("http://localhost:5174/api/user/getAllRequests", {
+                const res = await fetch("/api/user/getAllRequests", {
                     headers: { Authorization: `Bearer ${token}` },
                 });
                 const data = await res.json();
@@ -263,7 +266,7 @@ export default function Dev() {
             setErrorMsg("");
             setSuccessMsg("");
             const token = localStorage.getItem("token");
-            const res = await fetch("http://localhost:5174/api/admin/request-dev", {
+            const res = await fetch("/api/admin/request-dev", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -291,7 +294,7 @@ export default function Dev() {
                 setGamesLoading(true);
                 setGamesError("");
                 const token = localStorage.getItem("token");
-                const res = await fetch("http://localhost:5174/api/dev/games", {
+                const res = await fetch("/api/dev/games", {
                     headers: { Authorization: `Bearer ${token}` },
                 });
                 const data = await res.json();
@@ -318,7 +321,7 @@ export default function Dev() {
         try {
             if (!transfer.gameId || !transfer.email) throw new Error("Sélectionnez un jeu et entrez l'email cible");
             const token = localStorage.getItem("token");
-            const res = await fetch("http://localhost:5174/api/dev/transfer-game", {
+            const res = await fetch("/api/dev/transfer-game", {
                 method: "POST",
                 headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
                 body: JSON.stringify({ game_id: Number(transfer.gameId), to_user_email: transfer.email })
@@ -341,7 +344,7 @@ export default function Dev() {
         if (!confirm1) return;
         try {
             const token = localStorage.getItem("token");
-            const res = await fetch("http://localhost:5174/api/dev/disable-all", {
+            const res = await fetch("/api/dev/disable-all", {
                 method: "PATCH",
                 headers: { Authorization: `Bearer ${token}` }
             });
@@ -360,7 +363,7 @@ export default function Dev() {
         if (!confirm1) return;
         try {
             const token = localStorage.getItem("token");
-            const res = await fetch("http://localhost:5174/api/dev/leave", {
+            const res = await fetch("/api/dev/leave", {
                 method: "POST",
                 headers: { Authorization: `Bearer ${token}` }
             });
@@ -375,28 +378,28 @@ export default function Dev() {
                     u.role = "user";
                     localStorage.setItem("user", JSON.stringify(u));
                 }
-            } catch {}
+            } catch(e) {
+                console.log(e)
+            }
         } catch (err) {
             setSettingsErr(String(err.message || err));
         }
     };
 
-
-
     return (
-        <div className="dev-hub" data-testid="dev-hub">
-            <aside className="dev-hub__sidebar" aria-label="Navigation développeur">
-                <div className="dev-hub__brand">
-                    <span className="dev-hub__brand-title">Hub</span>
-                    <span className="dev-hub__brand-sub">Développeur</span>
+        <div className="hub" data-testid="hub">
+            <aside className="hub__sidebar" aria-label="Navigation développeur">
+                <div className="hub__brand">
+                    <span className="hub__brand-title">Hub</span>
+                    <span className="hub__brand-sub">Développeur</span>
                 </div>
 
-                <nav className="dev-hub__nav">
+                <nav className="hub__nav">
                     {sections.map((s) => (
                         <button
                             key={s.id}
                             type="button"
-                            className={`dev-hub__nav-item ${activeId === s.id ? "is-active" : ""
+                            className={`hub__nav-item ${activeId === s.id ? "is-active" : ""
                                 }`}
                             onClick={() => setActiveId(s.id)}
                             aria-current={activeId === s.id ? "page" : undefined}
@@ -406,11 +409,11 @@ export default function Dev() {
                     ))}
                 </nav>
 
-                <div className="dev-hub__grow" />
+                <div className="hub__grow" />
 
                 <button
                     type="button"
-                    className="dev-hub__back"
+                    className="hub__back"
                     onClick={() => navigate("/")}
                     aria-label="Retour au site principal"
                 >
@@ -418,56 +421,56 @@ export default function Dev() {
                 </button>
             </aside>
 
-            <main className="dev-hub__content">
-                <header className="dev-hub__header">
+            <main className="hub__content">
+                <header className="hub__header">
                     <h1>Hub Développeur</h1>
                 </header>
 
-                <section className="dev-hub__card" aria-live="polite">
-                    <div className="dev-hub__card-header">
-                        <h2 className="dev-hub__card-title">{active.label}</h2>
+                <section className="hub__card" aria-live="polite">
+                    <div className="hub__card-header">
+                        <h2 className="hub__card-title">{active.label}</h2>
                     </div>
-                    <div className="dev-hub__card-body">
+                    <div className="hub__card-body">
                         {active.id === "home" ? (
-                            <div className="dev-hub__grid">
+                            <div className="hub__grid">
                                 {quickActions.map((action) => (
                                     <button
                                         key={action.id}
                                         type="button"
-                                        className="dev-hub__tile"
+                                        className="hub__tile"
                                         onClick={() => setActiveId(action.id)} 
                                         aria-label={`Ouvrir ${action.label}`}
                                     >
-                                        <div className="dev-hub__tile-title">{action.label}</div>
-                                        <div className="dev-hub__tile-desc">{action.desc ?? action.description}</div>
+                                        <div className="hub__tile-title">{action.label}</div>
+                                        <div className="hub__tile-desc">{action.desc ?? action.description}</div>
                                     </button>
                                 ))}
                             </div>
                         ) : active.id === "request-dev" ? (
                             <div>
-                                {loading && <p className="dev-hub__muted">Chargement…</p>}
-                                {errorMsg && <p className="dev-hub__error">{errorMsg}</p>}
-                                {successMsg && <p className="dev-hub__success">{successMsg}</p>}
+                                {loading && <p className="hub__muted">Chargement…</p>}
+                                {errorMsg && <p className="hub__error">{errorMsg}</p>}
+                                {successMsg && <p className="hub__success">{successMsg}</p>}
 
                                 {isPendingRequest ? (
                                     <div>
-                                        <p className="dev-hub__card-text">
+                                        <p className="hub__card-text">
                                             Vous avez déjà une demande en attente. Merci de patienter pendant son examination.
                                         </p>
                                         <button
                                             type="button"
-                                            className="dev-hub__btn"
+                                            className="hub__btn"
                                             onClick={() => setActiveId("view-requests")}
                                         >
                                             Voir mes requêtes
                                         </button>
                                     </div>
                                 ) : (
-                                    <form onSubmit={submitRequest} className="dev-hub__form">
-                                        <label className="dev-hub__label" htmlFor="req-title">Titre</label>
+                                    <form onSubmit={submitRequest} className="hub__form">
+                                        <label className="hub__label" htmlFor="req-title">Titre</label>
                                         <input
                                             id="req-title"
-                                            className="dev-hub__input"
+                                            className="hub__input"
                                             type="text"
                                             placeholder="Ex: Demande développeur"
                                             value={title}
@@ -475,10 +478,10 @@ export default function Dev() {
                                             required
                                         />
 
-                                        <label className="dev-hub__label" htmlFor="req-desc">Description</label>
+                                        <label className="hub__label" htmlFor="req-desc">Description</label>
                                         <textarea
                                             id="req-desc"
-                                            className="dev-hub__textarea"
+                                            className="hub__textarea"
                                             rows={5}
                                             placeholder="Expliquez brièvement votre motivation."
                                             value={description}
@@ -486,7 +489,7 @@ export default function Dev() {
                                             required
                                         />
 
-                                        <button type="submit" className="dev-hub__btn" disabled={loading}>
+                                        <button type="submit" className="hub__btn" disabled={loading}>
                                             Envoyer la requête
                                         </button>
                                     </form>
@@ -494,40 +497,40 @@ export default function Dev() {
                             </div>
                         ) : active.id === "view-requests" ? (
                             <div>
-                                {reqsLoading && <p className="dev-hub__muted">Chargement…</p>}
-                                {reqsError && <p className="dev-hub__error">{reqsError}</p>}
+                                {reqsLoading && <p className="hub__muted">Chargement…</p>}
+                                {reqsError && <p className="hub__error">{reqsError}</p>}
                                 {!reqsLoading && !reqsError && (
                                     requests.length > 0 ? (
 
-                                        <ul className="dev-hub__list">
+                                        <ul className="hub__list">
                                             {requests.map((r) => (
                                                 <li
                                                     key={r.id}
-                                                    className={`dev-hub__req-card ${stateClass[r.requestState] ?? ""}`}
+                                                    className={`hub__req-card ${stateClass[r.requestState] ?? ""}`}
                                                 >
-                                                    <div className="dev-hub__req-title">{r.title}</div>
-                                                    <div className="dev-hub__req-state">État: <strong>{r.requestState}</strong></div>
+                                                    <div className="hub__req-title">{r.title}</div>
+                                                    <div className="hub__req-state">État: <strong>{r.requestState}</strong></div>
                                                     {r.reason && (
-                                                        <div className="dev-hub__req-reason">Raison: {r.reason}</div>
+                                                        <div className="hub__req-reason">Raison: {r.reason}</div>
                                                     )}
                                                     {r.description && (
-                                                        <div className="dev-hub__req-desc">{r.description}</div>
+                                                        <div className="hub__req-desc">{r.description}</div>
                                                     )}
                                                 </li>
                                             ))}
                                         </ul>
                                     ) : (
-                                        <p className="dev-hub__card-text">Aucune requête envoyée.</p>
+                                        <p className="hub__card-text">Aucune requête envoyée.</p>
                                     )
                                 )}
                             </div>
                         ) : active.id === "my-games" ? (
                             <div>
-                                {gamesLoading && <p className="dev-hub__muted">Chargement…</p>}
-                                {gamesError && <p className="dev-hub__error">{gamesError}</p>}
+                                {gamesLoading && <p className="hub__muted">Chargement…</p>}
+                                {gamesError && <p className="hub__error">{gamesError}</p>}
                                 {!gamesLoading && !gamesError && (
                                     devGames.length > 0 ? (
-                                        <div className="dev-hub__grid">
+                                        <div className="hub__grid">
                                             {devGames.map((game) => {
                                                 const title = game.title || "Jeu sans titre";
                                                 const price = game.discountedPrice || game.price || 0;
@@ -536,19 +539,19 @@ export default function Dev() {
                                                     <button
                                                         key={game.id}
                                                         type="button"
-                                                        className={`dev-hub__tile dev-hub__tile--row ${!game.is_active ? "dev-hub__tile--inactive" : ""}`}
+                                                        className={`hub__tile hub__tile--row ${!game.is_active ? "hub__tile--inactive" : ""}`}
                                                         onClick={() => navigate(`/dev/game/${game.id}`)}
                                                         aria-label={`Gérer le jeu ${title}`}
                                                     >
                                                         {imgUrl ? (
-                                                            <img className="dev-hub__thumb" src={imgUrl} alt={title} />
+                                                            <img className="hub__thumb" src={imgUrl} alt={title} />
                                                         ) : (
-                                                            <div className="dev-hub__thumb dev-hub__thumb--placeholder">{title.charAt(0)}</div>
+                                                            <div className="hub__thumb hub__thumb--placeholder">{title.charAt(0)}</div>
                                                         )}
-                                                        <div className="dev-hub__meta">
-                                                            <div className="dev-hub__meta-top">
-                                                                <div className="dev-hub__game-title" title={title}>{title}</div>
-                                                                <div className="dev-hub__game-price">Prix: {price} $</div>
+                                                        <div className="hub__meta">
+                                                            <div className="hub__meta-top">
+                                                                <div className="hub__game-title" title={title}>{title}</div>
+                                                                <div className="hub__game-price">Prix: {price} $</div>
                                                             </div>
                                                         </div>
                                                     </button>
@@ -557,98 +560,98 @@ export default function Dev() {
                                         </div>
                                     ) : (
                                         <div>
-                                            <p className="dev-hub__card-text">{active.description}</p>
+                                            <p className="hub__card-text">{active.description}</p>
                                         </div>
                                     )
                                 )}
                             </div>
                         ) : active.id === "add-game" ? (
                             <div>
-                                <form onSubmit={submitAddGame} className="dev-hub__form">
-                                    {addError && <p className="dev-hub__error">{addError}</p>}
-                                    {addSuccess && <p className="dev-hub__success">{addSuccess}</p>}
+                                <form onSubmit={submitAddGame} className="hub__form">
+                                    {addError && <p className="hub__error">{addError}</p>}
+                                    {addSuccess && <p className="hub__success">{addSuccess}</p>}
 
-                                    <label className="dev-hub__label" htmlFor="add-title">Titre *</label>
-                                    <input id="add-title" className="dev-hub__input" value={addForm.title} onChange={onAddChange("title")} required />
+                                    <label className="hub__label" htmlFor="add-title">Titre *</label>
+                                    <input id="add-title" className="hub__input" value={addForm.title} onChange={onAddChange("title")} required />
 
-                                    <label className="dev-hub__label" htmlFor="add-desc">Description *</label>
-                                    <textarea id="add-desc" className="dev-hub__textarea" rows={4} value={addForm.description} onChange={onAddChange("description")} required />
+                                    <label className="hub__label" htmlFor="add-desc">Description *</label>
+                                    <textarea id="add-desc" className="hub__textarea" rows={4} value={addForm.description} onChange={onAddChange("description")} required />
 
-                                    <label className="dev-hub__label" htmlFor="add-genre">Genre(s)</label>
-                                    <input id="add-genre" className="dev-hub__input" placeholder="Ex: Action, Aventure" value={addForm.genre} onChange={onAddChange("genre")} />
+                                    <label className="hub__label" htmlFor="add-genre">Genre(s)</label>
+                                    <input id="add-genre" className="hub__input" placeholder="Ex: Action, Aventure" value={addForm.genre} onChange={onAddChange("genre")} />
 
-                                    <label className="dev-hub__label" htmlFor="add-platform">Plateforme(s)</label>
-                                    <input id="add-platform" className="dev-hub__input" placeholder="Ex: PC, PS5" value={addForm.platform} onChange={onAddChange("platform")} />
+                                    <label className="hub__label" htmlFor="add-platform">Plateforme(s)</label>
+                                    <input id="add-platform" className="hub__input" placeholder="Ex: PC, PS5" value={addForm.platform} onChange={onAddChange("platform")} />
 
-                                    <label className="dev-hub__label" htmlFor="add-developer">Développeur</label>
-                                    <input id="add-developer" className="dev-hub__input" value={addForm.developer} onChange={onAddChange("developer")} />
+                                    <label className="hub__label" htmlFor="add-developer">Développeur</label>
+                                    <input id="add-developer" className="hub__input" value={addForm.developer} onChange={onAddChange("developer")} />
 
-                                    <label className="dev-hub__label" htmlFor="add-publisher">Éditeur</label>
-                                    <input id="add-publisher" className="dev-hub__input" value={addForm.publisher} onChange={onAddChange("publisher")} />
+                                    <label className="hub__label" htmlFor="add-publisher">Éditeur</label>
+                                    <input id="add-publisher" className="hub__input" value={addForm.publisher} onChange={onAddChange("publisher")} />
 
-                                    <label className="dev-hub__label" htmlFor="add-release">Date de sortie</label>
-                                    <input id="add-release" className="dev-hub__input" type="date" value={addForm.release_date} onChange={onAddChange("release_date")} />
+                                    <label className="hub__label" htmlFor="add-release">Date de sortie</label>
+                                    <input id="add-release" className="hub__input" type="date" value={addForm.release_date} onChange={onAddChange("release_date")} />
 
-                                    <label className="dev-hub__label" htmlFor="add-price">Prix (en $) *</label>
-                                    <input id="add-price" className="dev-hub__input" type="number" step="0.01" value={addForm.price} onChange={onAddChange("price")} required />
+                                    <label className="hub__label" htmlFor="add-price">Prix (en $) *</label>
+                                    <input id="add-price" className="hub__input" type="number" step="0.01" value={addForm.price} onChange={onAddChange("price")} required />
 
-                                    <label className="dev-hub__label" htmlFor="add-discount">Rabais (%)</label>
-                                    <input id="add-discount" className="dev-hub__input" type="number" min="0" max="100" step="1" value={addForm.discount} onChange={onAddChange("discount")} />
+                                    <label className="hub__label" htmlFor="add-discount">Rabais (%)</label>
+                                    <input id="add-discount" className="hub__input" type="number" min="0" max="100" step="1" value={addForm.discount} onChange={onAddChange("discount")} />
 
-                                    <label className="dev-hub__label" htmlFor="add-rating">Note (/10)</label>
-                                    <input id="add-rating" className="dev-hub__input" type="number" min="0" max="10" step="0.1" value={addForm.rating} onChange={onAddChange("rating")} />
+                                    <label className="hub__label" htmlFor="add-rating">Note (/10)</label>
+                                    <input id="add-rating" className="hub__input" type="number" min="0" max="10" step="0.1" value={addForm.rating} onChange={onAddChange("rating")} />
 
-                                    <label className="dev-hub__label" htmlFor="add-cover">Image (URL)</label>
-                                    <input id="add-cover" className="dev-hub__input" placeholder="https://.../cover.jpg" value={addForm.cover_url} onChange={onAddChange("cover_url")} />
+                                    <label className="hub__label" htmlFor="add-cover">Image (URL)</label>
+                                    <input id="add-cover" className="hub__input" placeholder="https://.../cover.jpg" value={addForm.cover_url} onChange={onAddChange("cover_url")} />
 
-                                    <label className="dev-hub__label" htmlFor="add-trailer">Bande‑annonce (URL)</label>
-                                    <input id="add-trailer" className="dev-hub__input" placeholder="https://youtu.be/... ou https://.../video.mp4" value={addForm.trailer_url} onChange={onAddChange("trailer_url")} />
+                                    <label className="hub__label" htmlFor="add-trailer">Bande‑annonce (URL)</label>
+                                    <input id="add-trailer" className="hub__input" placeholder="https://youtu.be/... ou https://.../video.mp4" value={addForm.trailer_url} onChange={onAddChange("trailer_url")} />
 
-                                    <button type="submit" className="dev-hub__btn" disabled={addLoading}>
+                                    <button type="submit" className="hub__btn" disabled={addLoading}>
                                         {addLoading ? "Création…" : "Créer le jeu"}
                                     </button>
                                 </form>
                             </div>
                         ) : active.id === "dev-settings" ? (
                             <div>
-                                <p className="dev-hub__card-text">{active.description}</p>
+                                <p className="hub__card-text">{active.description}</p>
 
-                                {settingsErr && <p className="dev-hub__error">{settingsErr}</p>}
-                                {settingsMsg && <p className="dev-hub__success">{settingsMsg}</p>}
+                                {settingsErr && <p className="hub__error">{settingsErr}</p>}
+                                {settingsMsg && <p className="hub__success">{settingsMsg}</p>}
 
                                 {isDev && (
-                                    <div className="dev-hub__stack">
+                                    <div className="hub__stack">
                                         <h3>Transférer un jeu à un autre compte</h3>
-                                        <form onSubmit={doTransfer} className="dev-hub__form">
-                                            <label className="dev-hub__label">Jeu</label>
-                                            <select className="dev-hub__input" value={transfer.gameId} onChange={onTransferChange("gameId")}>
+                                        <form onSubmit={doTransfer} className="hub__form">
+                                            <label className="hub__label">Jeu</label>
+                                            <select className="hub__input" value={transfer.gameId} onChange={onTransferChange("gameId")}>
                                                 <option value="">— Sélectionnez —</option>
                                                 {devGames.map((g) => (
                                                     <option key={g.id} value={g.id}>{g.title} (#{g.id})</option>
                                                 ))}
                                             </select>
-                                            <label className="dev-hub__label">Email du compte cible</label>
-                                            <input className="dev-hub__input" type="email" placeholder="dev@exemple.com" value={transfer.email} onChange={onTransferChange("email")} />
-                                            <button className="dev-hub__btn" type="submit">Transférer</button>
+                                            <label className="hub__label">Email du compte cible</label>
+                                            <input className="hub__input" type="email" placeholder="dev@exemple.com" value={transfer.email} onChange={onTransferChange("email")} />
+                                            <button className="hub__btn" type="submit">Transférer</button>
                                         </form>
 
                                         <hr />
 
                                         <h3>Désactiver tous mes jeux</h3>
-                                        <p className="dev-hub__muted">Cette action rendra vos jeux indisponibles à l’achat. Vous pourrez les restaurer individuellement plus tard.</p>
-                                        <button className="dev-hub__btn" onClick={disableAll}>Désactiver tous les jeux</button>
+                                        <p className="hub__muted">Cette action rendra vos jeux indisponibles à l’achat. Vous pourrez les restaurer individuellement plus tard.</p>
+                                        <button className="hub__btn" onClick={disableAll}>Désactiver tous les jeux</button>
 
                                         <hr />
 
                                         <h3>Quitter le programme développeur</h3>
-                                        <p className="dev-hub__muted">Vous perdrez l’accès aux outils développeur. Vous pourrez refaire une demande plus tard.</p>
-                                        <button className="dev-hub__btn" onClick={leaveProgram}>Quitter le programme</button>
+                                        <p className="hub__muted">Vous perdrez l’accès aux outils développeur. Vous pourrez refaire une demande plus tard.</p>
+                                        <button className="hub__btn" onClick={leaveProgram}>Quitter le programme</button>
                                     </div>
                                 )}
                             </div>
                         ) : (
                             <div>
-                                <p className="dev-hub__card-text">{active.description}</p>
+                                <p className="hub__card-text">{active.description}</p>
                             </div>
                         )}
                     </div>

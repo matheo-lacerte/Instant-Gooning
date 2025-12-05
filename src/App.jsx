@@ -26,6 +26,9 @@ import EditPassword from "./pages/Profile/EditPassword/EditPassword.jsx";
 import EditProfile from "./pages/Profile/EditProfile/EditProfile.jsx";
 import DevGameDetail from "./pages/Dev/DevGameDetail/devGameDetail.jsx";
 import Support from "./pages/Support/Support.jsx";
+
+import "./App.css"
+
 const router = createBrowserRouter([
   {
     path: "/",
