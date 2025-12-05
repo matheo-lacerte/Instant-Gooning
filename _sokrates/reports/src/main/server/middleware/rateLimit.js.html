@@ -40,14 +40,14 @@ export const globalApiLimiter = createLimiter({
 
 
 export const loginLimiter = createLimiter({
-  windowMs: 10 * 1 * 1000, // 10 minutes
-  max: 5,
+  windowMs: 10 * 60 * 1000, // 10 minutes
+  max: 1000,
   message: &quot;Trop de tentatives de connexion. R&eacute;essayez plus tard.&quot;,
 });
 
 export const registerLimiter = createLimiter({
   windowMs: 60 * 60 * 1000, // 1 hour
-  max: 5,
+  max: 1000,
   message: &quot;Trop de cr&eacute;ations de compte depuis cette IP. R&eacute;essayez plus tard.&quot;,
 });
 

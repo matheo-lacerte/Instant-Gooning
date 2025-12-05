@@ -1,4 +1,60 @@
 [ {
+  "relativePath" : "cypress/e2e/test1.cy.js",
+  "extension" : "js",
+  "linesOfCode" : 20,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "cypress/e2e/test2.cy.js",
+  "extension" : "js",
+  "linesOfCode" : 48,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "cypress/e2e/test3.cy.js",
+  "extension" : "js",
+  "linesOfCode" : 27,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "cypress/support/commands.js",
+  "extension" : "js",
+  "linesOfCode" : 1,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "cypress/support/component-index.html",
+  "extension" : "html",
+  "linesOfCode" : 12,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "cypress/support/component.js",
+  "extension" : "js",
+  "linesOfCode" : 3,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "cypress/support/e2e.js",
+  "extension" : "js",
+  "linesOfCode" : 1,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "cypress.config.js",
+  "extension" : "js",
+  "linesOfCode" : 15,
+  "unitsCount" : 2,
+  "unitsMcCabeIndexSum" : 2,
+  "linesOfCodeInUnits" : 14
+}, {
   "relativePath" : "eslint.config.js",
   "extension" : "js",
   "linesOfCode" : 28,
@@ -50,10 +106,10 @@
 }, {
   "relativePath" : "server/controllers/paymentsController.js",
   "extension" : "js",
-  "linesOfCode" : 142,
+  "linesOfCode" : 152,
   "unitsCount" : 5,
-  "unitsMcCabeIndexSum" : 52,
-  "linesOfCodeInUnits" : 139
+  "unitsMcCabeIndexSum" : 53,
+  "linesOfCodeInUnits" : 148
 }, {
   "relativePath" : "server/controllers/stripeWebhookController.js",
   "extension" : "js",
@@ -272,6 +328,13 @@
   "unitsMcCabeIndexSum" : 0,
   "linesOfCodeInUnits" : 0
 }, {
+  "relativePath" : "src/pages/Cart/Cart.cy.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 8,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
   "relativePath" : "src/pages/Cart/Cart.jsx",
   "extension" : "jsx",
   "linesOfCode" : 184,
@@ -288,7 +351,7 @@
 }, {
   "relativePath" : "src/pages/Dev/DevGameDetail/devGameDetail.jsx",
   "extension" : "jsx",
-  "linesOfCode" : 489,
+  "linesOfCode" : 485,
   "unitsCount" : 0,
   "unitsMcCabeIndexSum" : 0,
   "linesOfCodeInUnits" : 0
@@ -302,7 +365,7 @@
 }, {
   "relativePath" : "src/pages/GameDetail/GameDetail.jsx",
   "extension" : "jsx",
-  "linesOfCode" : 305,
+  "linesOfCode" : 282,
   "unitsCount" : 0,
   "unitsMcCabeIndexSum" : 0,
   "linesOfCodeInUnits" : 0
@@ -317,6 +380,13 @@
   "relativePath" : "src/pages/Home/Home.jsx",
   "extension" : "jsx",
   "linesOfCode" : 212,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "src/pages/Login/Login.cy.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 8,
   "unitsCount" : 0,
   "unitsMcCabeIndexSum" : 0,
   "linesOfCodeInUnits" : 0
@@ -363,30 +433,9 @@
   "unitsMcCabeIndexSum" : 0,
   "linesOfCodeInUnits" : 0
 }, {
-  "relativePath" : "src/pages/oldDev/CreateGame/CreateGame.css",
-  "extension" : "css",
-  "linesOfCode" : 42,
-  "unitsCount" : 0,
-  "unitsMcCabeIndexSum" : 0,
-  "linesOfCodeInUnits" : 0
-}, {
-  "relativePath" : "src/pages/oldDev/CreateGame/CreateGame.jsx",
+  "relativePath" : "src/pages/Profile/EditPassword/EditPassword.cy.jsx",
   "extension" : "jsx",
-  "linesOfCode" : 252,
-  "unitsCount" : 0,
-  "unitsMcCabeIndexSum" : 0,
-  "linesOfCodeInUnits" : 0
-}, {
-  "relativePath" : "src/pages/oldDev/Dev.css",
-  "extension" : "css",
-  "linesOfCode" : 126,
-  "unitsCount" : 0,
-  "unitsMcCabeIndexSum" : 0,
-  "linesOfCodeInUnits" : 0
-}, {
-  "relativePath" : "src/pages/oldDev/Dev.jsx",
-  "extension" : "jsx",
-  "linesOfCode" : 223,
+  "linesOfCode" : 8,
   "unitsCount" : 0,
   "unitsMcCabeIndexSum" : 0,
   "linesOfCodeInUnits" : 0
@@ -429,6 +478,13 @@
   "relativePath" : "src/pages/Purchase/success.css",
   "extension" : "css",
   "linesOfCode" : 15,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "src/pages/Purchase/Success.cy.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 8,
   "unitsCount" : 0,
   "unitsMcCabeIndexSum" : 0,
   "linesOfCodeInUnits" : 0

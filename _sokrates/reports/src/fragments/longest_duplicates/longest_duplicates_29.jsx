@@ -1,39 +1,37 @@
-src/pages/Profile/Profile.jsx [23:36]:
+src/pages/Profile/EditPassword/EditPassword.jsx [61:73]:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  };
-
-  return (
-    <div className="dev">
-      <div className="rangee">
-        <div className="colonnes">
-          <ul>
             <li>
               <h1>
-                <Link to="/profile">Profil</Link>
+                <Link to="/dev">Développeur</Link>
               </h1>
             </li>
             <li>
               <h1>
+                <Link to="/cart">Panier</Link>
+              </h1>
+            </li>
+          </ul>
+        </div>
+        <div className="colonnes userData">
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
 
-src/pages/oldDev/CreateGame/CreateGame.jsx [74:87]:
+src/pages/Profile/Profile.jsx [40:52]:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  };
-
-  return (
-    <div className="dev">
-      <div className="rangee">
-        <div className="colonnes">
-          <ul>
             <li>
               <h1>
-                <Link to="/profile">Profil</Link>
+                <Link to="/dev">Développeur</Link>
               </h1>
             </li>
             <li>
               <h1>
+                <Link to="/cart">Panier</Link>
+              </h1>
+            </li>
+          </ul>
+        </div>
+        <div className="colonnes userData">
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 

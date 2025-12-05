@@ -26,10 +26,14 @@ graph G {
 
 
 
-    "src" -- "src" [label=" 44 ", penwidth="10", color="#a0a0a0FF"];
-    "server" -- "server" [label=" 40 ", penwidth="9", color="#a0a0a0ED"];
-    "src" -- "server" [label=" 36 ", penwidth="8", color="#00688bDB"];
-    "ROOT" -- "server" [label=" 2 ", penwidth="1", color="#00688b4C"];
-    "ROOT" -- "src" [label=" 2 ", penwidth="1", color="#00688b4C"];
+    "src" -- "src" [label=" 4 ", penwidth="4", color="#a0a0a093"];
+    "cypress" -- "cypress" [label=" 3 ", penwidth="3", color="#a0a0a082"];
+    "cypress" -- "ROOT" [label=" 3 ", penwidth="3", color="#00688b82"];
+    "server" -- "cypress" [label=" 3 ", penwidth="3", color="#00688b82"];
+    "server" -- "ROOT" [label=" 3 ", penwidth="3", color="#00688b82"];
+    "src" -- "server" [label=" 2 ", penwidth="2", color="#00688b70"];
+    "src" -- "cypress" [label=" 2 ", penwidth="2", color="#00688b70"];
+    "src" -- "ROOT" [label=" 2 ", penwidth="2", color="#00688b70"];
+    "server" -- "server" [label=" 1 ", penwidth="1", color="#a0a0a05E"];
 
 }

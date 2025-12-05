@@ -1,26 +1,27 @@
 <html>
 <head>
-    <title>export async function archiveStripeForGame()</title>
+    <title>export function generateKeyCode()</title>
     <link rel="stylesheet" charset="UTF-8" href="https://d2bb1mtyn3kglb.cloudfront.net/lib/highlight/styles/docco.min.css">
     <script charset="UTF-8" type="application/javascript" src="https://d2bb1mtyn3kglb.cloudfront.net/lib/highlight/highlight.min.js"></script>
 </head>
 <body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
-<h3 style="margin-bottom: 0">export async function archiveStripeForGame()</h3>
-<p style="margin-top: 4px">in <i>server/utils/stripePricing.js [47:55]</i></p>
+<h3 style="margin-bottom: 0">export function generateKeyCode()</h3>
+<p style="margin-top: 4px">in <i>server/utils/keygen.js [3:12]</i></p>
 <ul>
-    <li><b>8</b> lines of code</li>
-    <li><b>5</b> McCabe index (conditional complexity)</li>
+    <li><b>9</b> lines of code</li>
+    <li><b>2</b> McCabe index (conditional complexity)</li>
 </ul>
 <pre>
 <code class="js">
-export async function archiveStripeForGame(game) {
-
-  if (game.stripe_price_id) {
-    try { await stripe.prices.update(game.stripe_price_id, { active: false }); } catch {}
+export function generateKeyCode() {
+  const alphabet = &quot;ABCDEFGHJKLMNPQRSTUVWXYZ23456789&quot;; // sans O/I/0/1
+  const bytes = crypto.randomBytes(25);
+  let out = &quot;&quot;;
+  for (let i = 0; i &lt; bytes.length; i++) {
+    out += alphabet[bytes[i] % alphabet.length];
   }
-  if (game.stripe_product_id) {
-    try { await stripe.products.update(game.stripe_product_id, { active: false }); } catch {}
-  }
+  // 5 blocs de 5
+  return `${out.slice(0,5)}-${out.slice(5,10)}-${out.slice(10,15)}-${out.slice(15,20)}-${out.slice(20,25)}`;
 }
 
 </code>

@@ -2,6 +2,45 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { useEffect, useMemo, useState } from "react";
 import "../../GameDetail/gameDetail.css";
 
+function BackLinkDev() {
+  return (
+    <Link className="back-link" to="/dev?section=my-games" aria-label="Retour">
+      <span className="icon" aria-hidden>
+        <svg viewBox="0 0 24 24" width="12" height="12">
+          <path
+            d="M15 18l-6-6 6-6"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </span>
+      <span>Retour</span>
+    </Link>
+  );
+}
+
+function BackLinkHome() {
+  return (
+    <Link className="back-link" to="/" aria-label="Retour à l'accueil">
+      <span className="icon" aria-hidden>
+        <svg viewBox="0 0 24 24" width="12" height="12">
+          <path
+            d="M15 18l-6-6 6-6"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </span>
+      <span>Retour</span>
+    </Link>
+  );
+}
 
 export default function GameDetail() {
   const navigate = useNavigate();
@@ -34,7 +73,7 @@ export default function GameDetail() {
       setError(null);
       try {
         const response = await fetch(
-          `/api/games/GetGameById/${id}`,
+          `http://localhost:5174/api/games/GetGameById/${id}`,
           { method: "GET" }
         );
         if (!response.ok) throw new Error("Réponse invalide du serveur");
@@ -106,7 +145,7 @@ export default function GameDetail() {
       currency: "CAD",
     }).format(cents / 100);
   };
-
+  
   const previewFinalPrice = useMemo(() => {
     const p = Number(editMode ? edited.price : game?.price);
     const d = Number(editMode ? edited.discount : game?.discount);
@@ -135,7 +174,7 @@ export default function GameDetail() {
         setActionMsg("Aucun changement à enregistrer.");
         return;
       }
-      const res = await fetch(`/api/games/update/${game.id}`, {
+      const res = await fetch(`http://localhost:5174/api/games/update/${game.id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
         body: JSON.stringify(payload),
@@ -183,7 +222,7 @@ export default function GameDetail() {
   const deleteGame = async () => {
     if (token) {
       const response = await fetch(
-        "/api/games/delete/"+game.id,
+        "http://localhost:5174/api/games/delete/"+game.id,
         {
           method: "PATCH",
           headers: {
@@ -206,7 +245,7 @@ export default function GameDetail() {
   const restoreGame = async () => {
     if (token) {
       const response = await fetch(
-        "/api/games/restore/"+game.id,
+        "http://localhost:5174/api/games/restore/"+game.id,
         {
           method: "PATCH",
           headers: {
@@ -248,21 +287,7 @@ export default function GameDetail() {
   if (loading) {
     return (
       <div className="game-detail-wrap">
-        <Link className="back-link" to="/" aria-label="Retour à l'accueil">
-          <span className="icon" aria-hidden>
-            <svg viewBox="0 0 24 24" width="12" height="12">
-              <path
-                d="M15 18l-6-6 6-6"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </span>
-          <span>Retour</span>
-        </Link>
+        <BackLinkHome />
         <div className="skeleton-hero">
           <div className="skeleton-cover" />
           <div className="skeleton-meta">
@@ -279,42 +304,14 @@ export default function GameDetail() {
     return (
       <div className="game-detail-wrap">
         <p>{error ? `Erreur: ${error}` : "Jeu introuvable."}</p>
-        <Link className="back-link" to="/" aria-label="Retour à l'accueil">
-          <span className="icon" aria-hidden>
-            <svg viewBox="0 0 24 24" width="12" height="12">
-              <path
-                d="M15 18l-6-6 6-6"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </span>
-          <span>Retour</span>
-        </Link>
+        <BackLinkHome />
       </div>
     );
   }
 
   return (
     <div className="game-detail-wrap">
-  <Link className="back-link" to="/dev?section=my-games" aria-label="Retour">
-        <span className="icon" aria-hidden>
-          <svg viewBox="0 0 24 24" width="12" height="12">
-            <path
-              d="M15 18l-6-6 6-6"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </span>
-        <span>Retour</span>
-      </Link>
+      <BackLinkDev />
 
       <section
         className="game-hero"

@@ -26,8 +26,8 @@ graph G {
 
 
 
-    "52897187+matheo-lacerte@users.noreply.github.com" -- "mlacerte2013@gmail.com" [label=" 67 ", penwidth="10", color="#00688bFF"];
-    "52897187+matheo-lacerte@users.noreply.github.com" -- "2384229@cmontmorency.qc.ca" [label=" 43 ", penwidth="6", color="#00688bB7"];
-    "mlacerte2013@gmail.com" -- "2384229@cmontmorency.qc.ca" [label=" 41 ", penwidth="6", color="#00688bB7"];
+    "52897187+matheo-lacerte@users.noreply.github.com" -- "mlacerte2013@gmail.com" [label=" 80 ", penwidth="10", color="#00688bFF"];
+    "mlacerte2013@gmail.com" -- "2384229@cmontmorency.qc.ca" [label=" 49 ", penwidth="6", color="#00688bB7"];
+    "2384229@cmontmorency.qc.ca" -- "52897187+matheo-lacerte@users.noreply.github.com" [label=" 49 ", penwidth="6", color="#00688bB7"];
 
 }

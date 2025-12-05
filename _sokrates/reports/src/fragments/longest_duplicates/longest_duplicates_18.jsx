@@ -1,39 +1,29 @@
-src/pages/Dev/DevGameDetail/devGameDetail.jsx [58:71]:
+src/pages/Dev/DevGameDetail/devGameDetail.jsx [226:234]:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-      } catch (err) {
-        if (!ignore) setError(err?.message || "Erreur inattendue");
-      } finally {
-        if (!ignore) setLoading(false);
-      }
-    }
-    load();
-    return () => {
-      ignore = true;
-    };
-  }, [id]);
-
-  const genres = useMemo(() => {
-    if (!game) return [];
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (!response.ok) {
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
 
-src/pages/GameDetail/GameDetail.jsx [26:39]:
+src/pages/Dev/DevGameDetail/devGameDetail.jsx [249:257]:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-      } catch (err) {
-        if (!ignore) setError(err?.message || "Erreur inattendue");
-      } finally {
-        if (!ignore) setLoading(false);
-      }
-    }
-    load();
-    return () => {
-      ignore = true;
-    };
-  }, [id]);
-
-  const genres = useMemo(() => {
-    if (!game) return [];
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (!response.ok) {
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
