@@ -1,5 +1,6 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useEffect, useMemo, useState } from "react";
+import Trailer from "../../Trailer/Trailer";
 import "../../GameDetail/gameDetail.css";
 
 function BackLinkDev() {
@@ -83,8 +84,12 @@ export default function GameDetail() {
           setEdited({
             title: data?.title ?? "",
             description: data?.description ?? "",
-            genre: data?.genre ?? (Array.isArray(data?.genres) ? data.genres.join(", ") : ""),
-            platform: Array.isArray(data?.platform) ? data.platform.join(", ") : (data?.platform ?? ""),
+            genre:
+              data?.genre ??
+              (Array.isArray(data?.genres) ? data.genres.join(", ") : ""),
+            platform: Array.isArray(data?.platform)
+              ? data.platform.join(", ")
+              : data?.platform ?? "",
             developer: data?.developer ?? "",
             publisher: data?.publisher ?? "",
             price: data?.price ?? "",
@@ -108,7 +113,11 @@ export default function GameDetail() {
 
   const genres = useMemo(() => {
     if (!game) return [];
-    if (editMode) return (edited.genre || "").split(",").map(s => s.trim()).filter(Boolean);
+    if (editMode)
+      return (edited.genre || "")
+        .split(",")
+        .map((s) => s.trim())
+        .filter(Boolean);
     if (Array.isArray(game.genres)) return game.genres;
     if (game.genre) return [game.genre];
     return [];
@@ -116,7 +125,11 @@ export default function GameDetail() {
 
   const platforms = useMemo(() => {
     if (!game) return [];
-    if (editMode) return (edited.platform || "").split(",").map(s => s.trim()).filter(Boolean);
+    if (editMode)
+      return (edited.platform || "")
+        .split(",")
+        .map((s) => s.trim())
+        .filter(Boolean);
     if (Array.isArray(game.platform)) return game.platform;
     if (typeof game.platform === "string" && game.platform.trim())
       return [game.platform];
@@ -145,7 +158,7 @@ export default function GameDetail() {
       currency: "CAD",
     }).format(cents / 100);
   };
-  
+
   const previewFinalPrice = useMemo(() => {
     const p = Number(editMode ? edited.price : game?.price);
     const d = Number(editMode ? edited.discount : game?.discount);
@@ -155,7 +168,8 @@ export default function GameDetail() {
     return Math.max(0, Number(final.toFixed(2)));
   }, [editMode, edited.price, edited.discount, game?.price, game?.discount]);
 
-  const onField = (key) => (e) => setEdited((prev) => ({ ...prev, [key]: e.target.value }));
+  const onField = (key) => (e) =>
+    setEdited((prev) => ({ ...prev, [key]: e.target.value }));
 
   const saveChanges = async () => {
     if (!game) return;
@@ -163,7 +177,19 @@ export default function GameDetail() {
       setSaving(true);
       setActionMsg("");
       const payload = {};
-      const fields = ["title","description","genre","platform","developer","publisher","price","rating","cover_url","trailer_url","discount"];
+      const fields = [
+        "title",
+        "description",
+        "genre",
+        "platform",
+        "developer",
+        "publisher",
+        "price",
+        "rating",
+        "cover_url",
+        "trailer_url",
+        "discount",
+      ];
       for (const k of fields) {
         const oldVal = game[k] ?? "";
         const newVal = edited[k];
@@ -174,11 +200,17 @@ export default function GameDetail() {
         setActionMsg("Aucun changement à enregistrer.");
         return;
       }
-      const res = await fetch(`http://localhost:5174/api/games/update/${game.id}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
-        body: JSON.stringify(payload),
-      });
+      const res = await fetch(
+        `http://localhost:5174/api/games/update/${game.id}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(payload),
+        }
+      );
       const data = await res.json();
       if (!res.ok) throw new Error(data?.error || "Échec de la mise à jour");
       setGame(data);
@@ -193,7 +225,7 @@ export default function GameDetail() {
   };
 
   const trailerEmbedUrl = useMemo(() => {
-    const url = (editMode ? edited.trailer_url : game?.trailer_url);
+    const url = editMode ? edited.trailer_url : game?.trailer_url;
     if (!url) return null;
     try {
       const u = new URL(url);
@@ -217,12 +249,15 @@ export default function GameDetail() {
     }
   }, [game, editMode, edited.trailer_url]);
 
-  const toggleEdit = () => { setEditMode((v) => !v); setActionMsg(""); };
+  const toggleEdit = () => {
+    setEditMode((v) => !v);
+    setActionMsg("");
+  };
 
   const deleteGame = async () => {
     if (token) {
       const response = await fetch(
-        "http://localhost:5174/api/games/delete/"+game.id,
+        "http://localhost:5174/api/games/delete/" + game.id,
         {
           method: "PATCH",
           headers: {
@@ -235,7 +270,7 @@ export default function GameDetail() {
         console.error("Erreur lors de la suppression du jeu.");
         return;
       }
-      setGame((g) => g ? { ...g, is_active: false } : g);
+      setGame((g) => (g ? { ...g, is_active: false } : g));
       setActionMsg("Le jeu a été supprimé.");
     } else {
       navigate("/login");
@@ -245,7 +280,7 @@ export default function GameDetail() {
   const restoreGame = async () => {
     if (token) {
       const response = await fetch(
-        "http://localhost:5174/api/games/restore/"+game.id,
+        "http://localhost:5174/api/games/restore/" + game.id,
         {
           method: "PATCH",
           headers: {
@@ -258,7 +293,7 @@ export default function GameDetail() {
         console.error("Erreur lors de la restauration du jeu.");
         return;
       }
-      setGame((g) => g ? { ...g, is_active: true } : g);
+      setGame((g) => (g ? { ...g, is_active: true } : g));
       setActionMsg("Le jeu a été restauré et est de nouveau actif.");
     } else {
       navigate("/login");
@@ -332,12 +367,23 @@ export default function GameDetail() {
           </div>
           <div className="meta">
             {editMode ? (
-              <input className="title" style={{ width: "100%" }} value={edited.title} onChange={onField("title")} />
+              <input
+                className="title"
+                style={{ width: "100%" }}
+                value={edited.title}
+                onChange={onField("title")}
+              />
             ) : (
               <h1 className="title">{game.title}</h1>
             )}
             {editMode ? (
-              <textarea className="desc" rows={3} style={{ width: "100%" }} value={edited.description} onChange={onField("description")} />
+              <textarea
+                className="desc"
+                rows={3}
+                style={{ width: "100%" }}
+                value={edited.description}
+                onChange={onField("description")}
+              />
             ) : (
               <p className="desc">{game.description}</p>
             )}
@@ -353,7 +399,12 @@ export default function GameDetail() {
             )}
             {editMode && (
               <div style={{ marginBottom: 8 }}>
-                <input style={{ width: "100%" }} placeholder="Genres (séparés par des virgules)" value={edited.genre} onChange={onField("genre")} />
+                <input
+                  style={{ width: "100%" }}
+                  placeholder="Genres (séparés par des virgules)"
+                  value={edited.genre}
+                  onChange={onField("genre")}
+                />
               </div>
             )}
 
@@ -363,14 +414,34 @@ export default function GameDetail() {
               ) : null}
               {editMode ? (
                 <>
-                  <input type="number" step="0.01" style={{ width: 110 }} value={edited.price} onChange={onField("price")} aria-label="Prix" />
-                  <input type="number" min="0" max="100" step="1" style={{ width: 90 }} value={edited.discount} onChange={onField("discount")} aria-label="Rabais %" />
-                  <span className="price price-final">{previewFinalPrice} $</span>
+                  <input
+                    type="number"
+                    step="0.01"
+                    style={{ width: 110 }}
+                    value={edited.price}
+                    onChange={onField("price")}
+                    aria-label="Prix"
+                  />
+                  <input
+                    type="number"
+                    min="0"
+                    max="100"
+                    step="1"
+                    style={{ width: 90 }}
+                    value={edited.discount}
+                    onChange={onField("discount")}
+                    aria-label="Rabais %"
+                  />
+                  <span className="price price-final">
+                    {previewFinalPrice} $
+                  </span>
                 </>
               ) : isDiscounted ? (
                 <>
                   <span className="price price-original">{game.price} $</span>
-                  <span className="price price-final">{game.discounted_price} $</span>
+                  <span className="price price-final">
+                    {game.discounted_price} $
+                  </span>
                 </>
               ) : (
                 <span className="price price-final">{game.price}$</span>
@@ -394,11 +465,29 @@ export default function GameDetail() {
               )}
               {editMode ? (
                 <>
-                  <button className="buy-btn" onClick={saveChanges} disabled={saving}>{saving ? "Enregistrement…" : "Enregistrer"}</button>
-                  <button className="buy-btn" onClick={toggleEdit} disabled={saving}>Annuler</button>
+                  <button
+                    className="buy-btn"
+                    onClick={saveChanges}
+                    disabled={saving}
+                  >
+                    {saving ? "Enregistrement…" : "Enregistrer"}
+                  </button>
+                  <button
+                    className="buy-btn"
+                    onClick={toggleEdit}
+                    disabled={saving}
+                  >
+                    Annuler
+                  </button>
                 </>
               ) : (
-                <button className="buy-btn" aria-label="Modifier le jeu" onClick={toggleEdit}>Modifier le jeu</button>
+                <button
+                  className="buy-btn"
+                  aria-label="Modifier le jeu"
+                  onClick={toggleEdit}
+                >
+                  Modifier le jeu
+                </button>
               )}
             </div>
 
@@ -412,28 +501,57 @@ export default function GameDetail() {
               </div>
               {editMode && (
                 <div style={{ gridColumn: "1 / -1" }}>
-                  <input style={{ width: "100%" }} placeholder="Plateformes (séparées par des virgules)" value={edited.platform} onChange={onField("platform")} />
+                  <input
+                    style={{ width: "100%" }}
+                    placeholder="Plateformes (séparées par des virgules)"
+                    value={edited.platform}
+                    onChange={onField("platform")}
+                  />
                 </div>
               )}
               <div>
                 <strong>Date de sortie:</strong> {game.release_date || "—"}
               </div>
               <div>
-                <strong>Développeur:</strong> {editMode ? (
-                  <input value={edited.developer} onChange={onField("developer")} />
-                ) : (game.developer || "—")}
+                <strong>Développeur:</strong>{" "}
+                {editMode ? (
+                  <input
+                    value={edited.developer}
+                    onChange={onField("developer")}
+                  />
+                ) : (
+                  game.developer || "—"
+                )}
               </div>
               <div>
-                <strong>Éditeur:</strong> {editMode ? (
-                  <input value={edited.publisher} onChange={onField("publisher")} />
-                ) : (game.publisher || "—")}
+                <strong>Éditeur:</strong>{" "}
+                {editMode ? (
+                  <input
+                    value={edited.publisher}
+                    onChange={onField("publisher")}
+                  />
+                ) : (
+                  game.publisher || "—"
+                )}
               </div>
               <div className="rating-cell">
                 <strong>Note:</strong>
                 {editMode ? (
-                  <input type="number" min="0" max="10" step="0.1" style={{ width: 90 }} value={edited.rating} onChange={onField("rating")} />
+                  <input
+                    type="number"
+                    min="0"
+                    max="10"
+                    step="0.1"
+                    style={{ width: 90 }}
+                    value={edited.rating}
+                    onChange={onField("rating")}
+                  />
                 ) : (
-                  <span className="rating-num">{rating10 > 0 ? `${rating10.toFixed(1)}/10` : "Aucune pour le moment"}</span>
+                  <span className="rating-num">
+                    {rating10 > 0
+                      ? `${rating10.toFixed(1)}/10`
+                      : "Aucune pour le moment"}
+                  </span>
                 )}
               </div>
             </div>
@@ -452,10 +570,15 @@ export default function GameDetail() {
                     style={{ width: "100%" }}
                   />
                   <div className="cover-preview">
-                    { (edited.cover_url || game.cover_url) ? (
-                      <img src={edited.cover_url || game.cover_url} alt="Aperçu couverture" />
+                    {edited.cover_url || game.cover_url ? (
+                      <img
+                        src={edited.cover_url || game.cover_url}
+                        alt="Aperçu couverture"
+                      />
                     ) : (
-                      <div className="thumb-fallback" style={{ minHeight: 80 }}>Aucune image</div>
+                      <div className="thumb-fallback" style={{ minHeight: 80 }}>
+                        Aucune image
+                      </div>
                     )}
                   </div>
                 </div>
@@ -468,7 +591,10 @@ export default function GameDetail() {
                     onChange={onField("trailer_url")}
                     style={{ width: "100%" }}
                   />
-                  <small className="hint">YouTube: colle l’URL de la vidéo (le preview s’affiche si reconnu)</small>
+                  <small className="hint">
+                    YouTube: colle l’URL de la vidéo (le preview s’affiche si
+                    reconnu)
+                  </small>
                 </div>
               </div>
             )}
@@ -476,28 +602,7 @@ export default function GameDetail() {
         </div>
       </section>
 
-      {trailerEmbedUrl && (
-        <section className="media-section">
-          <h2 className="section-title">
-            <span className="bar" />
-            Bande‑annonce
-          </h2>
-          <div className="video-card">
-            {trailerEmbedUrl.includes("/embed/") ? (
-              <iframe
-                className="video-frame"
-                src={trailerEmbedUrl}
-                title={`Bande-annonce: ${game.title}`}
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              />
-            ) : (
-              <video className="video-frame" src={trailerEmbedUrl} controls />
-            )}
-          </div>
-        </section>
-      )}
+      <Trailer trailerEmbedUrl={trailerEmbedUrl} game={game} />
 
       <section className="specs">
         {game.tags?.length ? (

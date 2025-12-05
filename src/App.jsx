@@ -15,15 +15,11 @@ import { useState } from "react";
 import GameDetail from "./pages/GameDetail/GameDetail.jsx";
 import Admin from "./pages/Admin/Admin.jsx";
 import RequireAdmin from "./app/components/Guards/RequireAdmin.jsx";
-import RequireDev from "./app/components/Guards/RequireDev.jsx";
 import { jwtDecode } from "jwt-decode";
 import Search from "./pages/Search/Search.jsx";
 import Profile from "./pages/Profile/Profile.jsx";
-import Purchases from "./pages/Profile/Purchases.jsx";
 import PurchaseSuccess from "./pages/Purchase/Success.jsx";
 import Cart from "./pages/Cart/Cart.jsx";
-import EditPassword from "./pages/Profile/EditPassword/EditPassword.jsx";
-import EditProfile from "./pages/Profile/EditProfile/EditProfile.jsx";
 import DevGameDetail from "./pages/Dev/DevGameDetail/devGameDetail.jsx";
 import Support from "./pages/Support/Support.jsx";
 
@@ -36,7 +32,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { path: "", element: <Home /> },
-  { path: "/support", element: <Support /> },
+      { path: "/support", element: <Support /> },
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
       { path: "/game/:id", element: <GameDetail /> },
@@ -93,10 +89,7 @@ const App = () => {
     { path: "/dev/game/:id", element: <DevGameDetail /> },
     { path: "/logout", element: <Logout /> },
     { path: "/search", element: <Search /> },
-    { path: "/profile", element: <Profile /> },
-    { path: "/profile/editProfile", element: <EditProfile /> },
-    { path: "/profile/purchases", element: <Purchases /> },
-    { path: "/profile/editPassword", element: <EditPassword /> },
+    { path: "/profile/*", element: <Profile /> },
     { path: "/cart", element: <Cart /> },
     { path: "/purchase/success", element: <PurchaseSuccess /> },
     { path: "/support", element: <Support /> },
