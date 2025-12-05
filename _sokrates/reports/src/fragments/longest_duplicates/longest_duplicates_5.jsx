@@ -1,77 +1,53 @@
-src/pages/Profile/EditPassword/EditPassword.jsx [41:73]:
+src/pages/Dev/DevGameDetail/devGameDetail.jsx [197:217]:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-        alert(data.message);
-        navigate("/profile");
-      } else {
-        alert(data.error);
+    if (!url) return null;
+    try {
+      const u = new URL(url);
+      const isYouTube =
+        u.hostname.includes("youtube.com") || u.hostname.includes("youtu.be");
+      if (isYouTube) {
+        let idParam = "";
+        if (u.hostname.includes("youtu.be")) {
+          idParam = u.pathname.replace("/", "");
+        } else if (u.searchParams.has("v")) {
+          idParam = u.searchParams.get("v") || "";
+        }
+        if (idParam) {
+          return `https://www.youtube.com/embed/${idParam}?rel=0&modestbranding=1&color=white`;
+        }
       }
-    } catch (error) {
-      alert(error);
+
+      return url;
+    } catch {
+      return url;
     }
-  };
-
-  return (
-    <div className="dev">
-      <div className="rangee">
-        <div className="colonnes">
-          <ul>
-            <li>
-              <h1>
-                <Link to="/profile">Profil</Link>
-              </h1>
-            </li>
-            <li>
-              <h1>
-                <Link to="/dev">Développeur</Link>
-              </h1>
-            </li>
-            <li>
-              <h1>
-                <Link to="/cart">Panier</Link>
-              </h1>
-            </li>
-          </ul>
-        </div>
-        <div className="colonnes userData">
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
 
-src/pages/Profile/EditProfile/EditProfile.jsx [53:85]:
+src/pages/GameDetail/GameDetail.jsx [93:113]:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-        alert(data.message);
-        navigate("/profile");
-      } else {
-        alert(data.error);
+    if (!url) return null;
+    try {
+      const u = new URL(url);
+      const isYouTube =
+        u.hostname.includes("youtube.com") || u.hostname.includes("youtu.be");
+      if (isYouTube) {
+        let idParam = "";
+        if (u.hostname.includes("youtu.be")) {
+          idParam = u.pathname.replace("/", "");
+        } else if (u.searchParams.has("v")) {
+          idParam = u.searchParams.get("v") || "";
+        }
+        if (idParam) {
+          return `https://www.youtube.com/embed/${idParam}?rel=0&modestbranding=1&color=white`;
+        }
       }
-    } catch (error) {
-      alert(error);
-    }
-  };
 
-  return (
-    <div className="dev">
-      <div className="rangee">
-        <div className="colonnes">
-          <ul>
-            <li>
-              <h1>
-                <Link to="/profile">Profil</Link>
-              </h1>
-            </li>
-            <li>
-              <h1>
-                <Link to="/dev">Développeur</Link>
-              </h1>
-            </li>
-            <li>
-              <h1>
-                <Link to="/cart">Panier</Link>
-              </h1>
-            </li>
-          </ul>
-        </div>
-        <div className="colonnes userData">
+      return url;
+    } catch {
+      return url;
+    }
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 

@@ -1,4 +1,52 @@
 [ {
+  "relativePath" : "cypress/e2e/test1.cy.js",
+  "extension" : "js",
+  "linesOfCode" : 20,
+  "components" : [ "primary::cypress" ],
+  "concerns" : [ "::Unclassified" ]
+}, {
+  "relativePath" : "cypress/e2e/test2.cy.js",
+  "extension" : "js",
+  "linesOfCode" : 48,
+  "components" : [ "primary::cypress" ],
+  "concerns" : [ "::Unclassified" ]
+}, {
+  "relativePath" : "cypress/e2e/test3.cy.js",
+  "extension" : "js",
+  "linesOfCode" : 27,
+  "components" : [ "primary::cypress" ],
+  "concerns" : [ "::Unclassified" ]
+}, {
+  "relativePath" : "cypress/support/commands.js",
+  "extension" : "js",
+  "linesOfCode" : 1,
+  "components" : [ "primary::cypress" ],
+  "concerns" : [ "::Unclassified" ]
+}, {
+  "relativePath" : "cypress/support/component-index.html",
+  "extension" : "html",
+  "linesOfCode" : 12,
+  "components" : [ "primary::cypress" ],
+  "concerns" : [ "::Unclassified" ]
+}, {
+  "relativePath" : "cypress/support/component.js",
+  "extension" : "js",
+  "linesOfCode" : 3,
+  "components" : [ "primary::cypress" ],
+  "concerns" : [ "::Unclassified" ]
+}, {
+  "relativePath" : "cypress/support/e2e.js",
+  "extension" : "js",
+  "linesOfCode" : 1,
+  "components" : [ "primary::cypress" ],
+  "concerns" : [ "::Unclassified" ]
+}, {
+  "relativePath" : "cypress.config.js",
+  "extension" : "js",
+  "linesOfCode" : 15,
+  "components" : [ "primary::ROOT" ],
+  "concerns" : [ "::Unclassified" ]
+}, {
   "relativePath" : "eslint.config.js",
   "extension" : "js",
   "linesOfCode" : 28,
@@ -43,7 +91,7 @@
 }, {
   "relativePath" : "server/controllers/paymentsController.js",
   "extension" : "js",
-  "linesOfCode" : 142,
+  "linesOfCode" : 152,
   "components" : [ "primary::server" ],
   "concerns" : [ "::Unclassified" ]
 }, {
@@ -233,6 +281,12 @@
   "components" : [ "primary::src" ],
   "concerns" : [ "::Unclassified" ]
 }, {
+  "relativePath" : "src/pages/Cart/Cart.cy.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 8,
+  "components" : [ "primary::src" ],
+  "concerns" : [ "::Unclassified" ]
+}, {
   "relativePath" : "src/pages/Cart/Cart.jsx",
   "extension" : "jsx",
   "linesOfCode" : 184,
@@ -247,7 +301,7 @@
 }, {
   "relativePath" : "src/pages/Dev/DevGameDetail/devGameDetail.jsx",
   "extension" : "jsx",
-  "linesOfCode" : 489,
+  "linesOfCode" : 485,
   "components" : [ "primary::src" ],
   "concerns" : [ "::Unclassified" ]
 }, {
@@ -259,7 +313,7 @@
 }, {
   "relativePath" : "src/pages/GameDetail/GameDetail.jsx",
   "extension" : "jsx",
-  "linesOfCode" : 305,
+  "linesOfCode" : 282,
   "components" : [ "primary::src" ],
   "concerns" : [ "::Unclassified" ]
 }, {
@@ -272,6 +326,12 @@
   "relativePath" : "src/pages/Home/Home.jsx",
   "extension" : "jsx",
   "linesOfCode" : 212,
+  "components" : [ "primary::src" ],
+  "concerns" : [ "::Unclassified" ]
+}, {
+  "relativePath" : "src/pages/Login/Login.cy.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 8,
   "components" : [ "primary::src" ],
   "concerns" : [ "::Unclassified" ]
 }, {
@@ -311,27 +371,9 @@
   "components" : [ "primary::src" ],
   "concerns" : [ "::Unclassified" ]
 }, {
-  "relativePath" : "src/pages/oldDev/CreateGame/CreateGame.css",
-  "extension" : "css",
-  "linesOfCode" : 42,
-  "components" : [ "primary::src" ],
-  "concerns" : [ "::Unclassified" ]
-}, {
-  "relativePath" : "src/pages/oldDev/CreateGame/CreateGame.jsx",
+  "relativePath" : "src/pages/Profile/EditPassword/EditPassword.cy.jsx",
   "extension" : "jsx",
-  "linesOfCode" : 252,
-  "components" : [ "primary::src" ],
-  "concerns" : [ "::Unclassified" ]
-}, {
-  "relativePath" : "src/pages/oldDev/Dev.css",
-  "extension" : "css",
-  "linesOfCode" : 126,
-  "components" : [ "primary::src" ],
-  "concerns" : [ "::Unclassified" ]
-}, {
-  "relativePath" : "src/pages/oldDev/Dev.jsx",
-  "extension" : "jsx",
-  "linesOfCode" : 223,
+  "linesOfCode" : 8,
   "components" : [ "primary::src" ],
   "concerns" : [ "::Unclassified" ]
 }, {
@@ -368,6 +410,12 @@
   "relativePath" : "src/pages/Purchase/success.css",
   "extension" : "css",
   "linesOfCode" : 15,
+  "components" : [ "primary::src" ],
+  "concerns" : [ "::Unclassified" ]
+}, {
+  "relativePath" : "src/pages/Purchase/Success.cy.jsx",
+  "extension" : "jsx",
+  "linesOfCode" : 8,
   "components" : [ "primary::src" ],
   "concerns" : [ "::Unclassified" ]
 }, {

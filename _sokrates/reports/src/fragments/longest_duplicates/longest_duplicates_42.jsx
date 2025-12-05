@@ -1,35 +1,23 @@
-src/pages/Admin/Admin.jsx [156:167]:
+src/pages/Profile/EditPassword/EditPassword.jsx [27:32]:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-            >
-              {s.label}
-            </button>
-          ))}
-        </nav>
-
-        <div className="hub__grow" />
-
-        <button
-          type="button"
-          className="hub__back"
-          onClick={() => navigate("/")}
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
 
-src/pages/Dev/Dev.jsx [406:417]:
+src/pages/Profile/EditProfile/EditProfile.jsx [25:30]:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-                        >
-                            {s.label}
-                        </button>
-                    ))}
-                </nav>
-
-                <div className="hub__grow" />
-
-                <button
-                    type="button"
-                    className="hub__back"
-                    onClick={() => navigate("/")}
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 

@@ -1,35 +1,38 @@
-src/pages/Dev/DevGameDetail/devGameDetail.jsx [30:41]:
+src/pages/Profile/EditPassword/EditPassword.jsx [61:73]:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  useEffect(() => {
-    let ignore = false;
-    async function load() {
-      setLoading(true);
-      setError(null);
-      try {
-        const response = await fetch(
-          `/api/games/GetGameById/${id}`,
-          { method: "GET" }
-        );
-        if (!response.ok) throw new Error("Réponse invalide du serveur");
-        const data = await response.json();
+            <li>
+              <h1>
+                <Link to="/dev">Développeur</Link>
+              </h1>
+            </li>
+            <li>
+              <h1>
+                <Link to="/cart">Panier</Link>
+              </h1>
+            </li>
+          </ul>
+        </div>
+        <div className="colonnes userData">
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
 
-src/pages/GameDetail/GameDetail.jsx [13:24]:
+src/pages/Profile/Purchases.jsx [51:64]:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  useEffect(() => {
-    let ignore = false;
-    async function load() {
-      setLoading(true);
-      setError(null);
-      try {
-        const response = await fetch(
-          `/api/games/GetGameById/${id}`,
-          { method: "GET" }
-        );
-        if (!response.ok) throw new Error("Réponse invalide du serveur");
-        const data = await response.json();
+            <li>
+              <h1>
+                <Link to="/dev">Développeur</Link>
+              </h1>
+            </li>
+            <li>
+              <h1>
+                <Link to="/cart">Panier</Link>
+              </h1>
+            </li>
+          </ul>
+        </div>
+
+        <div className="colonnes userData">
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 

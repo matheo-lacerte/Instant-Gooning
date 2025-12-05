@@ -1,39 +1,35 @@
-src/pages/Dev/DevGameDetail/devGameDetail.jsx [251:264]:
+src/pages/Admin/Admin.jsx [156:167]:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-        <Link className="back-link" to="/" aria-label="Retour à l'accueil">
-          <span className="icon" aria-hidden>
-            <svg viewBox="0 0 24 24" width="12" height="12">
-              <path
-                d="M15 18l-6-6 6-6"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </span>
-          <span>Retour</span>
+            >
+              {s.label}
+            </button>
+          ))}
+        </nav>
+
+        <div className="hub__grow" />
+
+        <button
+          type="button"
+          className="hub__back"
+          onClick={() => navigate("/")}
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
 
-src/pages/Dev/DevGameDetail/devGameDetail.jsx [282:295]:
+src/pages/Dev/Dev.jsx [406:417]:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-        <Link className="back-link" to="/" aria-label="Retour à l'accueil">
-          <span className="icon" aria-hidden>
-            <svg viewBox="0 0 24 24" width="12" height="12">
-              <path
-                d="M15 18l-6-6 6-6"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </span>
-          <span>Retour</span>
+                        >
+                            {s.label}
+                        </button>
+                    ))}
+                </nav>
+
+                <div className="hub__grow" />
+
+                <button
+                    type="button"
+                    className="hub__back"
+                    onClick={() => navigate("/")}
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 

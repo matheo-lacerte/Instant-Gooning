@@ -1,29 +1,24 @@
-src/pages/Login/Login.jsx [50:58]:
+src/app/components/SearchBar.jsx [27:33]:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    }
-  };
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        setLoading(true);
 
-  const changement = () => {
-    setShowPassword(!showPassword);
-  };
-
-  return (
-    <div className="page">
+        let data = null;
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
 
-src/pages/Register/Register.jsx [42:50]:
+src/pages/Home/Home.jsx [21:26]:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    }
-  };
-
-  const changement = () => {
-    setShowPassword(!showPassword);
-  };
-
-  return (
-    <div className="page">
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        setLoading(true);
+        let data = null;
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 

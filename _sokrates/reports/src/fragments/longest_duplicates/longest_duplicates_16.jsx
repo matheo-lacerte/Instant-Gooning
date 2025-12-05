@@ -1,37 +1,35 @@
-src/pages/Profile/EditPassword/EditPassword.jsx [61:73]:
+src/pages/Profile/EditProfile/EditProfile.jsx [63:74]:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  return (
+    <div className="dev">
+      <div className="rangee">
+        <div className="colonnes">
+          <ul>
             <li>
               <h1>
-                <Link to="/dev">Développeur</Link>
+                <Link to="/profile">Profil</Link>
               </h1>
             </li>
             <li>
               <h1>
-                <Link to="/cart">Panier</Link>
-              </h1>
-            </li>
-          </ul>
-        </div>
-        <div className="colonnes userData">
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
 
-src/pages/Profile/Profile.jsx [40:52]:
+src/pages/Profile/Purchases.jsx [36:47]:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  return (
+    <div className="dev">
+      <div className="rangee">
+        <div className="colonnes">
+          <ul>
             <li>
               <h1>
-                <Link to="/dev">Développeur</Link>
+                <Link to="/profile">Profil</Link>
               </h1>
             </li>
             <li>
               <h1>
-                <Link to="/cart">Panier</Link>
-              </h1>
-            </li>
-          </ul>
-        </div>
-        <div className="colonnes userData">
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
