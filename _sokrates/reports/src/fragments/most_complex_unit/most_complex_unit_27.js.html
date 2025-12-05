@@ -1,0 +1,49 @@
+<html>
+<head>
+    <title>export async function getCart()</title>
+    <link rel="stylesheet" charset="UTF-8" href="https://d2bb1mtyn3kglb.cloudfront.net/lib/highlight/styles/docco.min.css">
+    <script charset="UTF-8" type="application/javascript" src="https://d2bb1mtyn3kglb.cloudfront.net/lib/highlight/highlight.min.js"></script>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">export async function getCart()</h3>
+<p style="margin-top: 4px">in <i>server/controllers/cartController.js [29:55]</i></p>
+<ul>
+    <li><b>24</b> lines of code</li>
+    <li><b>4</b> McCabe index (conditional complexity)</li>
+</ul>
+<pre>
+<code class="js">
+export async function getCart(req, res) {
+  try {
+    const userId = req.user?.id;
+    if (!userId) return res.status(401).json({ error: &quot;Non authentifi&eacute;&quot; });
+
+    const cart_id = await ensureCartExists(userId);
+   const { data: items, error } = await supabaseAdmin
+  .from(&quot;cart_items&quot;)
+  .select(`
+    id,
+    quantity,
+    unit_price_cents,
+    currency,
+    game:games!cart_items_game_id_fkey (
+      id, title, cover_url, price, discounted_price
+    )
+  `)
+  .eq(&quot;cart_id&quot;, cart_id);
+
+
+    if (error) throw error;
+    return res.json({ cart_id, items });
+  } catch (error) {
+    console.error(&quot;Error fetching cart:&quot;, error);
+    return res.status(500).json({ error: &quot;Erreur serveur&quot; });
+  }
+}
+
+</code>
+</pre>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+</body>

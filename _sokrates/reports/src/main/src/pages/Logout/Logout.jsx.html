@@ -1,0 +1,73 @@
+<html>
+<head>
+    <title>src/pages/Logout/Logout.jsx</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">src/pages/Logout/Logout.jsx (<b>40</b> lines of code) (<a href="Logout.jsx">raw</a>):</h3>
+<div id="editor">import { Link, useNavigate } from &quot;react-router-dom&quot;;
+import AuthContext from &quot;../../app/Context/AuthContext.jsx&quot;;
+import { useContext } from &quot;react&quot;;
+
+import &quot;./Logout.css&quot;;
+
+const Logout = () =&gt; {
+  const auth = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const deconnexion = async () =&gt; {
+    try {
+      const reponse = await fetch(&quot;/api/auth/logout&quot;, {
+        method: &quot;POST&quot;,
+        headers: { &quot;Content-Type&quot;: &quot;application/json&quot; },
+      });
+
+      if (!reponse.ok) {
+        throw new Error(&quot;Erreur lors de la d&eacute;connexion&quot;);
+      }
+
+  const reponseData = await reponse.json();
+  console.log(reponseData.message);
+      auth.logout();
+      navigate(&quot;/&quot;);
+    } catch (error) {
+      auth.logout();
+      navigate(&quot;/&quot;);
+    }
+  };
+
+  return (
+    &lt;div className=&quot;logout-page&quot;&gt;
+      &lt;h1&gt;Voulez-vous d&eacute;connecter?&lt;/h1&gt;
+      &lt;div className=&quot;logout-choices&quot;&gt;
+        &lt;button className=&quot;button_logout green&quot; onClick={deconnexion}&gt;
+          Oui
+        &lt;/button&gt;
+        &lt;button className=&quot;button_logout red&quot;&gt;
+          &lt;Link to=&quot;/dev&quot;&gt;Non&lt;/Link&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+};
+
+export default Logout;
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/html");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

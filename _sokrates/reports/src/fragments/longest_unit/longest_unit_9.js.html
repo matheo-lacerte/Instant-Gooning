@@ -1,0 +1,67 @@
+<html>
+<head>
+    <title>export async function acceptRequest()</title>
+    <link rel="stylesheet" charset="UTF-8" href="https://d2bb1mtyn3kglb.cloudfront.net/lib/highlight/styles/docco.min.css">
+    <script charset="UTF-8" type="application/javascript" src="https://d2bb1mtyn3kglb.cloudfront.net/lib/highlight/highlight.min.js"></script>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">export async function acceptRequest()</h3>
+<p style="margin-top: 4px">in <i>server/controllers/adminController.js [110:154]</i></p>
+<ul>
+    <li><b>38</b> lines of code</li>
+    <li><b>10</b> McCabe index (conditional complexity)</li>
+</ul>
+<pre>
+<code class="js">
+export async function acceptRequest(req, res) {
+  try {
+    if (!req.user) return res.status(401).json({ error: &quot;Non authentifi&eacute;&quot; });
+    if (req.user?.role !== &quot;admin&quot;) {
+      return res.status(403).json({ error: &quot;Acc&egrave;s refus&eacute;&quot; });
+    }
+    const requestId = req.body?.requestId;
+    if (!requestId)
+      return res.status(400).json({ error: &quot;ID de la requ&ecirc;te requis&quot; });
+    const client = supabaseAdmin || supabase;
+
+    // Charger la requ&ecirc;te pour obtenir le user cible
+    const { data: reqRow, error: getErr } = await client
+      .from(&quot;request&quot;)
+      .select(&quot;id, created_by, requestState&quot;)
+      .eq(&quot;id&quot;, requestId)
+      .single();
+    if (getErr)
+      return res
+        .status(getErr.code === &quot;PGRST116&quot; ? 404 : 500)
+        .json({ error: getErr.message });
+    const userId = reqRow.created_by;
+
+    // Marquer la requ&ecirc;te comme accept&eacute;e (si encore en examen)
+    const { error: requestError } = await client
+      .from(&quot;request&quot;)
+      .update({ requestState: &quot;Accept&eacute;&quot;, reason: null })
+      .eq(&quot;id&quot;, requestId);
+    if (requestError)
+      return res.status(500).json({ error: requestError.message });
+
+    // Promouvoir l'utilisateur en dev
+    const { error: userError } = await client
+      .from(&quot;users&quot;)
+      .update({ role: &quot;dev&quot; })
+      .eq(&quot;id&quot;, userId);
+    if (userError) return res.status(500).json({ error: userError.message });
+
+    return res.json({
+      message: &quot;Demande accept&eacute;e et r&ocirc;le d&eacute;veloppeur attribu&eacute;.&quot;,
+    });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+}
+
+</code>
+</pre>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+</body>

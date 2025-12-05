@@ -1,0 +1,9 @@
+.accept {
+  border-color: color-mix(in srgb, #2ecc71 40%, var(--border));
+  background: color-mix(in srgb, #2ecc71 30%, #0f1115);
+}
+
+.decline {
+  border-color: color-mix(in srgb, #e74c3c 40%, var(--border));
+  background: color-mix(in srgb, #e74c3c 30%, #0f1115);
+}

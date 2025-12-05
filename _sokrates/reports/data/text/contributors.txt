@@ -1,0 +1,4 @@
+Contributor	#commits (all time)	#commits (30 days)	#commits (90 days)	#commits (180 days)	#commits (365 days)	first commit	last commit
+2384229@cmontmorency.qc.ca	72	33	72	72	72	2025-09-19	2025-10-31	41%
+mlacerte2013@gmail.com	55	34	55	55	55	2025-09-12	2025-10-31	31%
+52897187+matheo-lacerte@users.noreply.github.com	47	23	47	47	47	2025-09-18	2025-10-31	27%

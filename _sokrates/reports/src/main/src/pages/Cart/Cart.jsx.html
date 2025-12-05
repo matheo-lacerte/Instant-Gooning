@@ -1,0 +1,225 @@
+<html>
+<head>
+    <title>src/pages/Cart/Cart.jsx</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">src/pages/Cart/Cart.jsx (<b>184</b> lines of code) (<a href="Cart.jsx">raw</a>):</h3>
+<div id="editor">import { useEffect, useMemo, useState } from &quot;react&quot;;
+import { Link, useNavigate } from &quot;react-router-dom&quot;;
+import &quot;./Cart.css&quot;;
+
+export default function Cart() {
+	const navigate = useNavigate();
+	const [loading, setLoading] = useState(false);
+	const [error, setError] = useState(&quot;&quot;);
+	const [cartId, setCartId] = useState(null);
+		const [items, setItems] = useState([]); // [{id, quantity, unit_price_cents, currency, game:{id,title,cover_url,price,discounted_price}}]
+		const [pending, setPending] = useState(new Set()); // itemIds being updated
+
+	const token = useMemo(() =&gt; localStorage.getItem(&quot;token&quot;), []);
+
+	const authFetch = async (url, options = {}) =&gt; {
+		const headers = {
+			...(options.headers || {}),
+			...(token ? { Authorization: `Bearer ${token}` } : {}),
+			...(options.body &amp;&amp; !options.headers?.[&quot;Content-Type&quot;] ? { &quot;Content-Type&quot;: &quot;application/json&quot; } : {}),
+		};
+		const res = await fetch(url, { credentials: &quot;include&quot;, ...options, headers });
+		return res;
+	};
+
+		const loadCart = async (opts = {}) =&gt; {
+			const silent = !!opts.silent;
+			try {
+				if (!silent) setLoading(true);
+				setError(&quot;&quot;);
+				const res = await authFetch(&quot;/api/payments/cart&quot;);
+			if (res.status === 401) {
+				navigate(&quot;/login&quot;);
+				return;
+			}
+			if (!res.ok) throw new Error(`HTTP ${res.status}`);
+			const data = await res.json();
+			setCartId(data.cart_id);
+			setItems(Array.isArray(data.items) ? data.items : []);
+		} catch (e) {
+			setError(e.message || &quot;Erreur&quot;);
+		} finally {
+				if (!silent) setLoading(false);
+		}
+	};
+
+	useEffect(() =&gt; { loadCart(); /* eslint-disable-next-line react-hooks/exhaustive-deps */ }, []);
+
+		const inc = async (gameId) =&gt; {
+			// optimistic update
+			const idx = items.findIndex((it) =&gt; it.game?.id === gameId);
+			if (idx !== -1) {
+				const itemId = items[idx].id;
+				setItems((prev) =&gt; prev.map((it, i) =&gt; i === idx ? { ...it, quantity: it.quantity + 1 } : it));
+				setPending((p) =&gt; new Set(p).add(itemId));
+				try {
+					await authFetch(&quot;/api/payments/cart/items&quot;, { method: &quot;POST&quot;, body: JSON.stringify({ game_id: gameId, quantity: 1 }) });
+				} catch {
+					// revert on failure
+					setItems((prev) =&gt; prev.map((it, i) =&gt; i === idx ? { ...it, quantity: Math.max(1, it.quantity - 1) } : it));
+						} finally {
+					setPending((p) =&gt; { const np = new Set(p); np.delete(itemId); return np; });
+							// background refresh to ensure totals are exact, without global loader
+							loadCart({ silent: true });
+				}
+			}
+		};
+
+		const dec = async (itemId) =&gt; {
+			const idx = items.findIndex((it) =&gt; it.id === itemId);
+			if (idx !== -1) {
+				const current = items[idx];
+				const newQty = current.quantity - 1;
+				setPending((p) =&gt; new Set(p).add(itemId));
+				// optimistic
+				setItems((prev) =&gt; newQty &gt; 0 ? prev.map((it, i) =&gt; i === idx ? { ...it, quantity: newQty } : it) : prev.filter((it) =&gt; it.id !== itemId));
+				try {
+					await authFetch(`/api/payments/cart/items/${itemId}`, { method: &quot;PATCH&quot; });
+				} catch {
+					// revert
+					setItems((prev) =&gt; prev.map((it, i) =&gt; i === idx ? { ...it, quantity: current.quantity } : it));
+						} finally {
+					setPending((p) =&gt; { const np = new Set(p); np.delete(itemId); return np; });
+							loadCart({ silent: true });
+				}
+			}
+		};
+
+		const remove = async (itemId) =&gt; {
+			setPending((p) =&gt; new Set(p).add(itemId));
+			// optimistic remove
+			const prevItems = items;
+			setItems((prev) =&gt; prev.filter((it) =&gt; it.id !== itemId));
+			try {
+				await authFetch(`/api/payments/cart/items/${itemId}`, { method: &quot;DELETE&quot; });
+			} catch {
+				// revert
+				setItems(prevItems);
+				} finally {
+				setPending((p) =&gt; { const np = new Set(p); np.delete(itemId); return np; });
+					loadCart({ silent: true });
+			}
+		};
+
+	const checkout = async () =&gt; {
+		try {
+			if (!cartId) return;
+			// Save titles locally as a fallback for success page
+			try {
+				const titles = items.map((it) =&gt; it.game?.title).filter(Boolean);
+				localStorage.setItem(&quot;last_cart_titles&quot;, JSON.stringify(titles));
+			} catch {}
+			const res = await authFetch(&quot;/api/payments/cart/checkout&quot;, { method: &quot;POST&quot;, body: JSON.stringify({ cart_id: cartId }) });
+			if (!res.ok) throw new Error(`HTTP ${res.status}`);
+			const data = await res.json();
+			if (data?.url) window.location.assign(data.url);
+		} catch (e) {
+			setError(e.message || &quot;Erreur paiement&quot;);
+		}
+	};
+
+		const clearCart = async () =&gt; {
+			try {
+				setLoading(true);
+				setError(&quot;&quot;);
+				await authFetch(&quot;/api/payments/cart/clear&quot;, { method: &quot;DELETE&quot; });
+				setItems([]);
+				try { localStorage.removeItem(&quot;last_cart_titles&quot;); } catch {}
+			} catch (e) {
+				setError(e.message || &quot;Erreur&quot;);
+			} finally {
+				setLoading(false);
+			}
+		};
+
+	const money = (cents, currency = &quot;CAD&quot;) =&gt; {
+		const val = (Number(cents || 0) / 100).toFixed(2);
+		return new Intl.NumberFormat(undefined, { style: &quot;currency&quot;, currency }).format(val);
+	};
+
+	const totalCents = items.reduce((acc, it) =&gt; acc + (it.quantity * (it.unit_price_cents || 0)), 0);
+	const currency = items[0]?.currency || &quot;CAD&quot;;
+
+	return (
+		&lt;div className=&quot;cart-page&quot;&gt;
+			&lt;div className=&quot;cart-card&quot;&gt;
+				&lt;h1&gt;Votre panier&lt;/h1&gt;
+				{error &amp;&amp; &lt;p className=&quot;error&quot;&gt;{error}&lt;/p&gt;}
+				{loading ? (
+					&lt;p&gt;Chargement&hellip;&lt;/p&gt;
+				) : items.length === 0 ? (
+					&lt;div className=&quot;empty&quot;&gt;
+						&lt;p&gt;Votre panier est vide.&lt;/p&gt;
+						&lt;Link className=&quot;btn&quot; to=&quot;/&quot;&gt;Continuer vos achats&lt;/Link&gt;
+					&lt;/div&gt;
+				) : (
+					&lt;&gt;
+						&lt;ul className=&quot;cart-list&quot;&gt;
+											{items.map((it) =&gt; (
+												&lt;li key={it.id} className={`cart-row${pending.has(it.id) ? &quot; is-pending&quot; : &quot;&quot;}`}&gt;
+									&lt;div className=&quot;left&quot;&gt;
+										{it.game?.cover_url ? &lt;img src={it.game.cover_url} alt=&quot;cover&quot; className=&quot;cover&quot; /&gt; : &lt;div className=&quot;cover ph&quot; /&gt;}
+										&lt;div className=&quot;meta&quot;&gt;
+											&lt;div className=&quot;title&quot;&gt;{it.game?.title || &quot;Jeu&quot;}&lt;/div&gt;
+															&lt;div className=&quot;price&quot;&gt;{money(it.unit_price_cents, it.currency)}&lt;/div&gt;
+															&lt;div className=&quot;subtotal&quot;&gt;Sous-total: &lt;strong&gt;{money((it.unit_price_cents || 0) * (it.quantity || 0), it.currency)}&lt;/strong&gt;&lt;/div&gt;
+										&lt;/div&gt;
+									&lt;/div&gt;
+									&lt;div className=&quot;right&quot;&gt;
+										&lt;div className=&quot;qty&quot;&gt;
+															&lt;button disabled={pending.has(it.id)} className=&quot;btn sm&quot; onClick={() =&gt; dec(it.id)} aria-label=&quot;Diminuer&quot;&gt;&minus;&lt;/button&gt;
+											&lt;span className=&quot;q&quot;&gt;{it.quantity}&lt;/span&gt;
+															&lt;button disabled={pending.has(it.id)} className=&quot;btn sm&quot; onClick={() =&gt; inc(it.game?.id)} aria-label=&quot;Augmenter&quot;&gt;+&lt;/button&gt;
+										&lt;/div&gt;
+										&lt;div className=&quot;row-actions&quot;&gt;
+															&lt;button disabled={pending.has(it.id)} className=&quot;btn text&quot; onClick={() =&gt; remove(it.id)}&gt;Retirer&lt;/button&gt;
+										&lt;/div&gt;
+									&lt;/div&gt;
+								&lt;/li&gt;
+							))}
+						&lt;/ul&gt;
+
+						&lt;div className=&quot;summary&quot;&gt;
+							&lt;div className=&quot;line&quot;&gt;
+								&lt;span&gt;Total&lt;/span&gt;
+								&lt;strong&gt;{money(totalCents, currency)}&lt;/strong&gt;
+							&lt;/div&gt;
+											&lt;div className=&quot;actions&quot;&gt;
+												&lt;button className=&quot;btn&quot; onClick={clearCart}&gt;Vider le panier&lt;/button&gt;
+												&lt;button className=&quot;btn primary&quot; onClick={checkout}&gt;Payer&lt;/button&gt;
+												&lt;Link className=&quot;btn&quot; to=&quot;/&quot;&gt;Continuer vos achats&lt;/Link&gt;
+											&lt;/div&gt;
+						&lt;/div&gt;
+					&lt;/&gt;
+				)}
+			&lt;/div&gt;
+		&lt;/div&gt;
+	);
+}
+
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/html");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

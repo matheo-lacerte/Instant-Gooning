@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Instant-gooning Temporal Dependencies</title>
+  <style type="text/css" media="all">
+    body {
+      font-family: Roboto, Vollkorn, Ubuntu, Optima, Segoe, Segoe UI, Candara, Calibri, Arial, sans-serif;
+      margin-left:5%;
+      margin-right:5%;
+    }
+    table {
+      color: #333;
+      border-collapse: collapse;
+      border-spacing: 0;
+    }
+    td, th {
+      border: 1px solid #CCC;
+      height: 30px;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+    th {
+      background: #F3F3F3;
+      font-weight: bold;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    td {
+      background: #FFFFFF;
+      text-align: left;
+    }
+    h3 {
+      margin-top: 0
+    }
+    h1 {
+      margin-bottom: 6px;
+    }
+    p {
+      margin-top: 0;
+    }
+    a {
+      text-decoration: none;
+    }
+    .reportSubtitle {
+      color: grey;
+    }
+    .group {
+      margin-bottom: 10px;
+      border: solid lightgrey 1px;
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+      border-radius: 2px;
+    }
+    .section {
+      margin-bottom: 30px;
+      border: solid lightgrey 1px;
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+      border-radius: 2px;
+      padding: 0;
+    }
+    .sectionHeader {
+      margin-bottom: 30px;
+      padding: 20px;
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+      background-color: lightskyblue;
+    }
+    .sectionTitle {
+      font-size: 140%;
+    }
+    .sectionSubtitle {
+      font-size: 90%; color: grey;
+    }
+    .subSectionTitle {
+      font-size: 140%;
+    }
+    .subSectionSubtitle {
+      font-size: 90%; color: grey;
+    }
+    .subSection {
+      margin-bottom: 30px;
+      border: solid lightgrey 1px;
+      padding-top: 0;
+      padding-bottom: 0;
+      box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 1px 9px 0 rgba(0, 0, 0, 0.19);
+    }
+    .subSectionHeader {
+      border: solid lightgrey 1px;
+      padding: 6px;
+      background-color: lightgrey;
+      box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 2px 9px 0 rgba(0, 0, 0, 0.19);
+    }
+    .sectionBody {
+      margin: 20px;
+    }
+.tab {
+ overflow: hidden;
+ border: 1px solid #ccc;
+ background-color: #f1f1f1;
+}
+.tab button {
+ font-family: Roboto, Vollkorn, Ubuntu, Optima, Segoe, Segoe UI, Candara, Calibri, Arial, sans-serif;
+ font-size: 100%;
+ background-color: inherit;
+ float: left;
+ border: none;
+ outline: none;
+ cursor: pointer;
+ padding: 14px 16px;
+ transition: 0.3s;
+}
+.tab button:hover {
+ background-color: #ddd;
+}
+.tab button.active {
+ background-color: #ccc;
+}
+.tabcontent {
+ display: none;
+ padding: 6px 12px;
+ border: 1px solid #ccc;
+ overflow-y: auto;
+ border-top: none;
+}
+  </style>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+  <script type="text/javascript">
+    function showHide(id) {
+      var e = document.getElementById(id);
+      e.style.display = (e.style.display == 'block') ? 'none' : 'block';
+    }
+    function showHideDisappear(id) {
+      var e = document.getElementById(id);
+      e.style.display = '';      var eTrigger = document.getElementById(id + '_trigger');
+      eTrigger.style.display = 'none';
+    }
+    function openTab(evt, tabName) {
+     var i, tabcontent, tablinks;
+     tabcontent = document.getElementsByClassName("tabcontent");
+     for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+     }
+     tablinks = document.getElementsByClassName("tablinks");
+     for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+     }
+     document.getElementById(tabName).style.display = "block";
+     evt.currentTarget.className += " active";
+    }
+  </script>
+  
+</head>
+
+<body><div id="report">
+
+
+<div style='font-size: 36px; margin-top: 15px; padding-bottom: 15px; white-space: nowrap; overflow: hidden;'><a href='index.html' style="font-size: 100%;text-decoration:none">
+<img style='height: 64px' valign='middle' src='https://zeljkoobrenovic.github.io/sokrates-media/icons/repository.png'>
+<div style='margin-left: 4px; display: inline-block; vertical-align: middle; font-size: 120%'><div style='color: #bbbbbb; font-size: 60%;'>Instant-gooning</div><div style='height: 34px; font-size: 100%'>Temporal Dependencies</div></div></div>
+</a>
+</div>
+
+<p style="margin-top: 12px; color: grey">A temporal dependency occurs when developers change two or more files at the same time (i.e. they are a part of the same commit).</p>
+<div class="tab">
+  <button class='tablinks active' onclick='openTab(event, "30_days")'>Past 30 Days</button>
+  <button class='tablinks' onclick='openTab(event, "90_days")'>Past 3 Months</button>
+  <button class='tablinks' onclick='openTab(event, "180_days")'>Past 6 Months</button>
+</div>
+<div id="30_days" class="tabcontent" style="display: block">
+<br/>
+<div class='subSection'><div class='subSectionHeader'>  <span class='subSectionTitle'>Files Most Frequently Changed Together (Top 50)</span></div><div class='sectionBody'>
+<p><a href='../data/text/temporal_dependencies.txt' target='_blank'>data...</a></p>
+<div style="max-height: 400px; overflow-y: auto">
+<table>
+<th>Pairs</th>
+<th># same commits</th>
+<th># commits 1</th>
+<th># commits 2</th>
+<th>latest commit</th>
+<tr>
+<td>src/pages/Profile/Profile.jsx<br/>src/App.jsx</td>
+<td style="text-align: center">14</td>
+<td>21 (66%)</td>
+<td>53 (26%)</td>
+<td>2025-10-31</td>
+</tr>
+<tr>
+<td>src/pages/Dev/Dev.jsx<br/>src/App.jsx</td>
+<td style="text-align: center">12</td>
+<td>43 (27%)</td>
+<td>53 (22%)</td>
+<td>2025-10-30</td>
+</tr>
+<tr>
+<td>server/routes/admin.js<br/>server/controllers/adminController.js</td>
+<td style="text-align: center">12</td>
+<td>16 (75%)</td>
+<td>25 (48%)</td>
+<td>2025-10-31</td>
+</tr>
+<tr>
+<td>src/pages/Dev/Dev.jsx<br/>src/pages/Profile/Profile.jsx</td>
+<td style="text-align: center">8</td>
+<td>43 (18%)</td>
+<td>21 (38%)</td>
+<td>2025-10-30</td>
+</tr>
+<tr>
+<td>src/App.jsx<br/>server/middleware/rateLimit.js</td>
+<td style="text-align: center">8</td>
+<td>53 (15%)</td>
+<td>15 (53%)</td>
+<td>2025-10-31</td>
+</tr>
+<tr>
+<td>src/pages/GameDetail/GameDetail.jsx<br/>src/pages/Dev/Dev.jsx</td>
+<td style="text-align: center">8</td>
+<td>19 (42%)</td>
+<td>43 (18%)</td>
+<td>2025-10-30</td>
+</tr>
+<tr>
+<td>server/routes/admin.js<br/>server/middleware/rateLimit.js</td>
+<td style="text-align: center">8</td>
+<td>16 (50%)</td>
+<td>15 (53%)</td>
+<td>2025-10-31</td>
+</tr>
+<tr>
+<td>server/routes/user.js<br/>server/controllers/userController.js</td>
+<td style="text-align: center">8</td>
+<td>8 (100%)</td>
+<td>14 (57%)</td>
+<td>2025-10-30</td>
+</tr>
+<tr>
+<td>src/App.jsx<br/>server/routes/admin.js</td>
+<td style="text-align: center">7</td>
+<td>53 (13%)</td>
+<td>16 (43%)</td>
+<td>2025-10-31</td>
+</tr>
+<tr>
+<td>server/controllers/stripeWebhookController.js<br/>server/controllers/paymentsController.js</td>
+<td style="text-align: center">7</td>
+<td>7 (100%)</td>
+<td>14 (50%)</td>
+<td>2025-10-31</td>
+</tr>
+<tr>
+<td>server/middleware/rateLimit.js<br/>server/controllers/adminController.js</td>
+<td style="text-align: center">7</td>
+<td>15 (46%)</td>
+<td>25 (28%)</td>
+<td>2025-10-31</td>
+</tr>
+<tr>
+<td>server/routes/payments.js<br/>server/controllers/paymentsController.js</td>
+<td style="text-align: center">7</td>
+<td>9 (77%)</td>
+<td>14 (50%)</td>
+<td>2025-10-30</td>
+</tr>
+<tr>
+<td>src/pages/Navigation/Navigation.jsx<br/>src/App.jsx</td>
+<td style="text-align: center">6</td>
+<td>15 (40%)</td>
+<td>53 (11%)</td>
+<td>2025-10-30</td>
+</tr>
+<tr>
+<td>src/pages/Dev/Dev.jsx<br/>server/controllers/adminController.js</td>
+<td style="text-align: center">6</td>
+<td>43 (13%)</td>
+<td>25 (24%)</td>
+<td>2025-10-31</td>
+</tr>
+<tr>
+<td>src/pages/Profile/Profile.jsx<br/>server/controllers/userController.js</td>
+<td style="text-align: center">6</td>
+<td>21 (28%)</td>
+<td>14 (42%)</td>
+<td>2025-10-31</td>
+</tr>
+<tr>
+<td>src/pages/Admin/Admin.jsx<br/>server/middleware/rateLimit.js</td>
+<td style="text-align: center">6</td>
+<td>8 (75%)</td>
+<td>15 (40%)</td>
+<td>2025-10-31</td>
+</tr>
+<tr>
+<td>src/pages/Admin/Admin.jsx<br/>src/App.jsx</td>
+<td style="text-align: center">6</td>
+<td>8 (75%)</td>
+<td>53 (11%)</td>
+<td>2025-10-31</td>
+</tr>
+<tr>
+<td>src/pages/GameDetail/gameDetail.css<br/>src/pages/Dev/Dev.jsx</td>
+<td style="text-align: center">5</td>
+<td>9 (55%)</td>
+<td>43 (11%)</td>
+<td>2025-10-30</td>
+</tr>
+<tr>
+<td>src/pages/Dev/Dev.jsx<br/>server/routes/admin.js</td>
+<td style="text-align: center">5</td>
+<td>43 (11%)</td>
+<td>16 (31%)</td>
+<td>2025-10-30</td>
+</tr>
+<tr>
+<td>server/controllers/cartController.js<br/>server/middleware/rateLimit.js</td>
+<td style="text-align: center">5</td>
+<td>6 (83%)</td>
+<td>15 (33%)</td>
+<td>2025-10-30</td>
+</tr>
+<tr>
+<td>server/controllers/gamesController.js<br/>server/controllers/paymentsController.js</td>
+<td style="text-align: center">5</td>
+<td>24 (20%)</td>
+<td>14 (35%)</td>
+<td>2025-10-31</td>
+</tr>
+<tr>
+<td>server/controllers/userController.js<br/>server/controllers/paymentsController.js</td>
+<td style="text-align: center">5</td>
+<td>14 (35%)</td>
+<td>14 (35%)</td>
+<td>2025-10-31</td>
+</tr>
+<tr>
+<td>src/pages/Purchase/Success.jsx<br/>server/controllers/paymentsController.js</td>
+<td style="text-align: center">5</td>
+<td>6 (83%)</td>
+<td>14 (35%)</td>
+<td>2025-10-30</td>
+</tr>
+<tr>
+<td>server/routes/payments.js<br/>src/pages/Purchase/Success.jsx</td>
+<td style="text-align: center">5</td>
+<td>9 (55%)</td>
+<td>6 (83%)</td>
+<td>2025-10-30</td>
+</tr>
+<tr>
+<td>src/pages/GameDetail/gameDetail.css<br/>src/pages/GameDetail/GameDetail.jsx</td>
+<td style="text-align: center">5</td>
+<td>9 (55%)</td>
+<td>19 (26%)</td>
+<td>2025-10-30</td>
+</tr>
+<tr>
+<td>src/App.jsx<br/>server/controllers/adminController.js</td>
+<td style="text-align: center">5</td>
+<td>53 (9%)</td>
+<td>25 (20%)</td>
+<td>2025-10-31</td>
+</tr>
+<tr>
+<td>src/pages/GameDetail/GameDetail.jsx<br/>src/App.jsx</td>
+<td style="text-align: center">5</td>
+<td>19 (26%)</td>
+<td>53 (9%)</td>
+<td>2025-10-30</td>
+</tr>
+<tr>
+<td>server/controllers/stripeWebhookController.js<br/>server/controllers/gamesController.js</td>
+<td style="text-align: center">5</td>
+<td>7 (71%)</td>
+<td>24 (20%)</td>
+<td>2025-10-31</td>
+</tr>
+<tr>
+<td>server/controllers/userController.js<br/>server/controllers/stripeWebhookController.js</td>
+<td style="text-align: center">5</td>
+<td>14 (35%)</td>
+<td>7 (71%)</td>
+<td>2025-10-31</td>
+</tr>
+<tr>
+<td>src/pages/GameDetail/gameDetail.css<br/>src/App.jsx</td>
+<td style="text-align: center">4</td>
+<td>9 (44%)</td>
+<td>53 (7%)</td>
+<td>2025-10-30</td>
+</tr>
+<tr>
+<td>server/index.js<br/>server/controllers/paymentsController.js</td>
+<td style="text-align: center">4</td>
+<td>21 (19%)</td>
+<td>14 (28%)</td>
+<td>2025-10-29</td>
+</tr>
+<tr>
+<td>src/pages/Admin/Admin.css<br/>src/App.jsx</td>
+<td style="text-align: center">4</td>
+<td>4 (100%)</td>
+<td>53 (7%)</td>
+<td>2025-10-31</td>
+</tr>
+<tr>
+<td>server/utils/stripePricing.js<br/>server/controllers/gamesController.js</td>
+<td style="text-align: center">4</td>
+<td>4 (100%)</td>
+<td>24 (16%)</td>
+<td>2025-10-28</td>
+</tr>
+<tr>
+<td>server/routes/payments.js<br/>server/controllers/stripeWebhookController.js</td>
+<td style="text-align: center">4</td>
+<td>9 (44%)</td>
+<td>7 (57%)</td>
+<td>2025-10-30</td>
+</tr>
+<tr>
+<td>src/pages/Navigation/navigation.css<br/>src/pages/Navigation/Navigation.jsx</td>
+<td style="text-align: center">4</td>
+<td>14 (28%)</td>
+<td>15 (26%)</td>
+<td>2025-10-29</td>
+</tr>
+<tr>
+<td>src/pages/Profile/Profile.jsx<br/>server/middleware/rateLimit.js</td>
+<td style="text-align: center">4</td>
+<td>21 (19%)</td>
+<td>15 (26%)</td>
+<td>2025-10-31</td>
+</tr>
+<tr>
+<td>src/pages/Profile/EditPassword/EditPassword.jsx<br/>src/App.jsx</td>
+<td style="text-align: center">4</td>
+<td>4 (100%)</td>
+<td>53 (7%)</td>
+<td>2025-10-30</td>
+</tr>
+<tr>
+<td>src/pages/Profile/Profile.css<br/>src/App.jsx</td>
+<td style="text-align: center">4</td>
+<td>4 (100%)</td>
+<td>53 (7%)</td>
+<td>2025-10-30</td>
+</tr>
+<tr>
+<td>server/routes/payments.js<br/>server/index.js</td>
+<td style="text-align: center">4</td>
+<td>9 (44%)</td>
+<td>21 (19%)</td>
+<td>2025-10-29</td>
+</tr>
+<tr>
+<td>src/pages/Admin/Admin.css<br/>server/controllers/adminController.js</td>
+<td style="text-align: center">4</td>
+<td>4 (100%)</td>
+<td>25 (16%)</td>
+<td>2025-10-31</td>
+</tr>
+<tr>
+<td>server/controllers/cartController.js<br/>server/controllers/gamesController.js</td>
+<td style="text-align: center">4</td>
+<td>6 (66%)</td>
+<td>24 (16%)</td>
+<td>2025-10-28</td>
+</tr>
+<tr>
+<td>src/pages/Admin/Admin.css<br/>server/routes/admin.js</td>
+<td style="text-align: center">4</td>
+<td>4 (100%)</td>
+<td>16 (25%)</td>
+<td>2025-10-31</td>
+</tr>
+<tr>
+<td>server/routes/user.js<br/>server/index.js</td>
+<td style="text-align: center">4</td>
+<td>8 (50%)</td>
+<td>21 (19%)</td>
+<td>2025-10-28</td>
+</tr>
+<tr>
+<td>src/pages/Profile/Profile.css<br/>src/pages/Dev/Dev.jsx</td>
+<td style="text-align: center">4</td>
+<td>4 (100%)</td>
+<td>43 (9%)</td>
+<td>2025-10-30</td>
+</tr>
+<tr>
+<td>server/controllers/gamesController.js<br/>src/App.jsx</td>
+<td style="text-align: center">4</td>
+<td>24 (16%)</td>
+<td>53 (7%)</td>
+<td>2025-10-31</td>
+</tr>
+<tr>
+<td>src/pages/Admin/Admin.jsx<br/>src/pages/Admin/Admin.css</td>
+<td style="text-align: center">4</td>
+<td>8 (50%)</td>
+<td>4 (100%)</td>
+<td>2025-10-31</td>
+</tr>
+<tr>
+<td>src/pages/Admin/Admin.jsx<br/>server/routes/admin.js</td>
+<td style="text-align: center">4</td>
+<td>8 (50%)</td>
+<td>16 (25%)</td>
+<td>2025-10-31</td>
+</tr>
+<tr>
+<td>src/pages/Navigation/Navigation.jsx<br/>src/pages/GameDetail/GameDetail.jsx</td>
+<td style="text-align: center">4</td>
+<td>15 (26%)</td>
+<td>19 (21%)</td>
+<td>2025-10-30</td>
+</tr>
+<tr>
+<td>src/pages/GameDetail/GameDetail.jsx<br/>server/controllers/gamesController.js</td>
+<td style="text-align: center">4</td>
+<td>19 (21%)</td>
+<td>24 (16%)</td>
+<td>2025-10-30</td>
+</tr>
+<tr>
+<td>src/pages/Navigation/Navigation.jsx<br/>src/pages/Dev/Dev.jsx</td>
+<td style="text-align: center">4</td>
+<td>15 (26%)</td>
+<td>43 (9%)</td>
+<td>2025-10-30</td>
+</tr>
+</table>
+</div>
+</div></div>
+<div style="margin: 10px;">
+<div class='subSection'><div class='subSectionHeader'>  <span class='subSectionTitle'>Dependencies between files in same commits</span>  <div class='subSectionSubtitle'>The number on the lines shows the number of shared commits.</div></div><div class='sectionBody'>
+<div style="width: 100%; overflow: auto; font-weight: normal;">
+
+
+</div>
+<div style="">
+Download: 
+<a style='text-decoration: none' target='_blank' href='visuals/file_changed_together_dependencies_files_30_days.svg'>SVG</a>
+ 
+<a style='text-decoration: none' target='_blank' href='visuals/file_changed_together_dependencies_files_30_days.dot.txt'>DOT</a>
+ 
+<a style='text-decoration: none' target='_blank' href='https://obren.io/tools/graphviz/'>(open online Graphviz editor)</a>
+</div>
+<br/>
+<a style='text-decoration: none' target='_blank' href='visuals/file_changed_together_dependencies_files_30_days_force_2d.html'>Open 2D force graph (file dependencies)...</a>
+<a style='text-decoration: none' target='_blank' href='visuals/file_changed_together_dependencies_files_30_days_force_3d.html'>Open 3D force graph (file dependencies)...</a>
+<br/>
+<a style='text-decoration: none' target='_blank' href='visuals/file_changed_together_dependencies_with_commits_components_30_days_force_2d.html'>Open 2D force graph (file dependencies with commits)...</a>
+<a style='text-decoration: none' target='_blank' href='visuals/file_changed_together_dependencies_with_commits_components_30_days_force_3d.html'>Open 3D force graph (file dependencies with commits)...</a>
+<br/>
+</div></div>
+</div>
+<div style="margin: 10px;">
+<div class='subSection'><div class='subSectionHeader'>  <span class='subSectionTitle'>Dependencies between components in same commits (primary)</span>  <div class='subSectionSubtitle'>The number on the lines shows the number of shared commits.</div></div><div class='sectionBody'>
+<div style="width: 100%; overflow: auto; font-weight: normal;">
+
+
+</div>
+<div style="">
+Download: 
+<a style='text-decoration: none' target='_blank' href='visuals/file_changed_together_dependencies_logical_decomposition_1_30_days.svg'>SVG</a>
+ 
+<a style='text-decoration: none' target='_blank' href='visuals/file_changed_together_dependencies_logical_decomposition_1_30_days.dot.txt'>DOT</a>
+ 
+<a style='text-decoration: none' target='_blank' href='https://obren.io/tools/graphviz/'>(open online Graphviz editor)</a>
+</div>
+<br/>
+<a style='text-decoration: none' target='_blank' href='visuals/file_changed_together_dependencies_logical_decomposition_1_30_days_force_2d.html'>Open 2D force graph (file dependencies)...</a>
+<a style='text-decoration: none' target='_blank' href='visuals/file_changed_together_dependencies_logical_decomposition_1_30_days_force_3d.html'>Open 3D force graph (file dependencies)...</a>
+<br/>
+</div></div>
+</div>
+</div>
+<div id="90_days" class="tabcontent" style="display: none">
+<br/>
+<div class='subSection'><div class='subSectionHeader'>  <span class='subSectionTitle'>Files Most Frequently Changed Together (Top 50)</span></div><div class='sectionBody'>
+<p><a href='../data/text/temporal_dependencies.txt' target='_blank'>data...</a></p>
+<div style="max-height: 400px; overflow-y: auto">
+<table>
+<th>Pairs</th>
+<th># same commits</th>
+<th># commits 1</th>
+<th># commits 2</th>
+<th>latest commit</th>
+<tr>
+<td>src/pages/Dev/Dev.jsx<br/>src/App.jsx</td>
+<td style="text-align: center">20</td>
+<td>43 (46%)</td>
+<td>53 (37%)</td>
+<td>2025-10-30</td>
+</tr>
+<tr>
+<td>src/pages/Profile/Profile.jsx<br/>src/App.jsx</td>
+<td style="text-align: center">14</td>
+<td>21 (66%)</td>
+<td>53 (26%)</td>
+<td>2025-10-31</td>
+</tr>
+<tr>
+<td>server/routes/admin.js<br/>server/controllers/adminController.js</td>
+<td style="text-align: center">12</td>
+<td>16 (75%)</td>
+<td>25 (48%)</td>
+<td>2025-10-31</td>
+</tr>
+<tr>
+<td>server/routes/games.js<br/>server/controllers/gamesController.js</td>
+<td style="text-align: center">10</td>
+<td>11 (90%)</td>
+<td>24 (41%)</td>
+<td>2025-10-30</td>
+</tr>
+<tr>
+<td>src/pages/GameDetail/GameDetail.jsx<br/>src/pages/Dev/Dev.jsx</td>
+<td style="text-align: center">10</td>
+<td>19 (52%)</td>
+<td>43 (23%)</td>
+<td>2025-10-30</td>
+</tr>
+<tr>
+<td>src/pages/Navigation/Navigation.jsx<br/>src/App.jsx</td>
+<td style="text-align: center">10</td>
+<td>15 (66%)</td>
+<td>53 (18%)</td>
+<td>2025-10-30</td>
+</tr>
+<tr>
+<td>src/pages/GameDetail/GameDetail.jsx<br/>src/App.jsx</td>
+<td style="text-align: center">9</td>
+<td>19 (47%)</td>
+<td>53 (16%)</td>
+<td>2025-10-30</td>
+</tr>
+<tr>
+<td>server/routes/auth.js<br/>server/index.js</td>
+<td style="text-align: center">9</td>
+<td>22 (40%)</td>
+<td>21 (42%)</td>
+<td>2025-10-28</td>
+</tr>
+<tr>
+<td>src/pages/Logout/Logout.jsx<br/>src/pages/Dev/Dev.jsx</td>
+<td style="text-align: center">8</td>
+<td>11 (72%)</td>
+<td>43 (18%)</td>
+<td>2025-10-30</td>
+</tr>
+<tr>
+<td>src/pages/Navigation/navigation.css<br/>src/App.jsx</td>
+<td style="text-align: center">8</td>
+<td>14 (57%)</td>
+<td>53 (15%)</td>
+<td>2025-10-23</td>
+</tr>
+<tr>
+<td>src/pages/Dev/Dev.jsx<br/>src/pages/Profile/Profile.jsx</td>
+<td style="text-align: center">8</td>
+<td>43 (18%)</td>
+<td>21 (38%)</td>
+<td>2025-10-30</td>
+</tr>
+<tr>
+<td>src/pages/Login/Login.jsx<br/>src/App.jsx</td>
+<td style="text-align: center">8</td>
+<td>30 (26%)</td>
+<td>53 (15%)</td>
+<td>2025-10-24</td>
+</tr>
+<tr>
+<td>server/routes/admin.js<br/>server/middleware/rateLimit.js</td>
+<td style="text-align: center">8</td>
+<td>16 (50%)</td>
+<td>15 (53%)</td>
+<td>2025-10-31</td>
+</tr>
+<tr>
+<td>server/routes/user.js<br/>server/controllers/userController.js</td>
+<td style="text-align: center">8</td>
+<td>8 (100%)</td>
+<td>14 (57%)</td>
+<td>2025-10-30</td>
+</tr>
+<tr>
+<td>src/App.jsx<br/>server/middleware/rateLimit.js</td>
+<td style="text-align: center">8</td>
+<td>53 (15%)</td>
+<td>15 (53%)</td>
+<td>2025-10-31</td>
+</tr>
+<tr>
+<td>src/pages/Admin/Admin.jsx<br/>src/App.jsx</td>
+<td style="text-align: center">8</td>
+<td>8 (100%)</td>
+<td>53 (15%)</td>
+<td>2025-10-31</td>
+</tr>
+<tr>
+<td>server/routes/payments.js<br/>server/controllers/paymentsController.js</td>
+<td style="text-align: center">7</td>
+<td>9 (77%)</td>
+<td>14 (50%)</td>
+<td>2025-10-30</td>
+</tr>
+<tr>
+<td>src/pages/GameDetail/gameDetail.css<br/>src/pages/GameDetail/GameDetail.jsx</td>
+<td style="text-align: center">7</td>
+<td>9 (77%)</td>
+<td>19 (36%)</td>
+<td>2025-10-30</td>
+</tr>
+<tr>
+<td>src/pages/Login/login.css<br/>src/pages/Login/Login.jsx</td>
+<td style="text-align: center">7</td>
+<td>7 (100%)</td>
+<td>30 (23%)</td>
+<td>2025-10-17</td>
+</tr>
+<tr>
+<td>src/App.jsx<br/>server/routes/admin.js</td>
+<td style="text-align: center">7</td>
+<td>53 (13%)</td>
+<td>16 (43%)</td>
+<td>2025-10-31</td>
+</tr>
+<tr>
+<td>server/middleware/rateLimit.js<br/>server/controllers/adminController.js</td>
+<td style="text-align: center">7</td>
+<td>15 (46%)</td>
+<td>25 (28%)</td>
+<td>2025-10-31</td>
+</tr>
+<tr>
+<td>src/pages/Login/Login.jsx<br/>src/pages/Register/Register.jsx</td>
+<td style="text-align: center">7</td>
+<td>30 (23%)</td>
+<td>17 (41%)</td>
+<td>2025-10-23</td>
+</tr>
+<tr>
+<td>src/pages/Navigation/navigation.css<br/>src/pages/Navigation/Navigation.jsx</td>
+<td style="text-align: center">7</td>
+<td>14 (50%)</td>
+<td>15 (46%)</td>
+<td>2025-10-29</td>
+</tr>
+<tr>
+<td>server/controllers/stripeWebhookController.js<br/>server/controllers/paymentsController.js</td>
+<td style="text-align: center">7</td>
+<td>7 (100%)</td>
+<td>14 (50%)</td>
+<td>2025-10-31</td>
+</tr>
+<tr>
+<td>src/app/components/GameCard.jsx<br/>src/pages/GameDetail/GameDetail.jsx</td>
+<td style="text-align: center">6</td>
+<td>7 (85%)</td>
+<td>19 (31%)</td>
+<td>2025-10-29</td>
+</tr>
+<tr>
+<td>src/pages/Navigation/Navigation.jsx<br/>src/pages/Dev/Dev.jsx</td>
+<td style="text-align: center">6</td>
+<td>15 (40%)</td>
+<td>43 (13%)</td>
+<td>2025-10-30</td>
+</tr>
+<tr>
+<td>src/app/Context/AuthContext.jsx<br/>src/App.jsx</td>
+<td style="text-align: center">6</td>
+<td>6 (100%)</td>
+<td>53 (11%)</td>
+<td>2025-10-23</td>
+</tr>
+<tr>
+<td>server/index.js<br/>server/routes/dev.js</td>
+<td style="text-align: center">6</td>
+<td>21 (28%)</td>
+<td>15 (40%)</td>
+<td>2025-10-07</td>
+</tr>
+<tr>
+<td>src/pages/Profile/Profile.jsx<br/>server/controllers/userController.js</td>
+<td style="text-align: center">6</td>
+<td>21 (28%)</td>
+<td>14 (42%)</td>
+<td>2025-10-31</td>
+</tr>
+<tr>
+<td>src/pages/GameDetail/gameDetail.css<br/>src/App.jsx</td>
+<td style="text-align: center">6</td>
+<td>9 (66%)</td>
+<td>53 (11%)</td>
+<td>2025-10-30</td>
+</tr>
+<tr>
+<td>src/pages/Admin/Admin.jsx<br/>server/middleware/rateLimit.js</td>
+<td style="text-align: center">6</td>
+<td>8 (75%)</td>
+<td>15 (40%)</td>
+<td>2025-10-31</td>
+</tr>
+<tr>
+<td>src/pages/Dev/Dev.jsx<br/>server/controllers/adminController.js</td>
+<td style="text-align: center">6</td>
+<td>43 (13%)</td>
+<td>25 (24%)</td>
+<td>2025-10-31</td>
+</tr>
+<tr>
+<td>server/routes/auth.js<br/>server/routes/dev.js</td>
+<td style="text-align: center">6</td>
+<td>22 (27%)</td>
+<td>15 (40%)</td>
+<td>2025-10-07</td>
+</tr>
+<tr>
+<td>src/index.css<br/>src/pages/Navigation/navigation.css</td>
+<td style="text-align: center">5</td>
+<td>6 (83%)</td>
+<td>14 (35%)</td>
+<td>2025-09-25</td>
+</tr>
+<tr>
+<td>src/pages/Register/register.css<br/>src/pages/Login/Login.jsx</td>
+<td style="text-align: center">5</td>
+<td>7 (71%)</td>
+<td>30 (16%)</td>
+<td>2025-09-25</td>
+</tr>
+<tr>
+<td>src/pages/Dev/Dev.jsx<br/>server/routes/admin.js</td>
+<td style="text-align: center">5</td>
+<td>43 (11%)</td>
+<td>16 (31%)</td>
+<td>2025-10-30</td>
+</tr>
+<tr>
+<td>src/pages/Navigation/navigation.css<br/>src/app/components/GameCard.jsx</td>
+<td style="text-align: center">5</td>
+<td>14 (35%)</td>
+<td>7 (71%)</td>
+<td>2025-10-29</td>
+</tr>
+<tr>
+<td>server/routes/payments.js<br/>src/pages/Purchase/Success.jsx</td>
+<td style="text-align: center">5</td>
+<td>9 (55%)</td>
+<td>6 (83%)</td>
+<td>2025-10-30</td>
+</tr>
+<tr>
+<td>server/controllers/gamesController.js<br/>server/controllers/paymentsController.js</td>
+<td style="text-align: center">5</td>
+<td>24 (20%)</td>
+<td>14 (35%)</td>
+<td>2025-10-31</td>
+</tr>
+<tr>
+<td>src/pages/Logout/Logout.jsx<br/>src/App.jsx</td>
+<td style="text-align: center">5</td>
+<td>11 (45%)</td>
+<td>53 (9%)</td>
+<td>2025-10-30</td>
+</tr>
+<tr>
+<td>src/App.jsx<br/>server/controllers/adminController.js</td>
+<td style="text-align: center">5</td>
+<td>53 (9%)</td>
+<td>25 (20%)</td>
+<td>2025-10-31</td>
+</tr>
+<tr>
+<td>src/pages/Login/login.css<br/>src/pages/Register/register.css</td>
+<td style="text-align: center">5</td>
+<td>7 (71%)</td>
+<td>7 (71%)</td>
+<td>2025-09-25</td>
+</tr>
+<tr>
+<td>src/main.jsx<br/>src/pages/Navigation/Navigation.jsx</td>
+<td style="text-align: center">5</td>
+<td>7 (71%)</td>
+<td>15 (33%)</td>
+<td>2025-09-25</td>
+</tr>
+<tr>
+<td>src/pages/Login/Login.jsx<br/>src/pages/Navigation/Navigation.jsx</td>
+<td style="text-align: center">5</td>
+<td>30 (16%)</td>
+<td>15 (33%)</td>
+<td>2025-09-26</td>
+</tr>
+<tr>
+<td>src/pages/Login/login.css<br/>src/pages/Navigation/navigation.css</td>
+<td style="text-align: center">5</td>
+<td>7 (71%)</td>
+<td>14 (35%)</td>
+<td>2025-09-25</td>
+</tr>
+<tr>
+<td>server/routes/auth.js<br/>src/pages/Navigation/Navigation.jsx</td>
+<td style="text-align: center">5</td>
+<td>22 (22%)</td>
+<td>15 (33%)</td>
+<td>2025-09-26</td>
+</tr>
+<tr>
+<td>src/pages/Login/Login.jsx<br/>src/pages/Navigation/navigation.css</td>
+<td style="text-align: center">5</td>
+<td>30 (16%)</td>
+<td>14 (35%)</td>
+<td>2025-09-25</td>
+</tr>
+<tr>
+<td>server/controllers/stripeWebhookController.js<br/>server/controllers/gamesController.js</td>
+<td style="text-align: center">5</td>
+<td>7 (71%)</td>
+<td>24 (20%)</td>
+<td>2025-10-31</td>
+</tr>
+<tr>
+<td>src/index.css<br/>src/pages/Login/Login.jsx</td>
+<td style="text-align: center">5</td>
+<td>6 (83%)</td>
+<td>30 (16%)</td>
+<td>2025-09-25</td>
+</tr>
+<tr>
+<td>server/controllers/cartController.js<br/>server/middleware/rateLimit.js</td>
+<td style="text-align: center">5</td>
+<td>6 (83%)</td>
+<td>15 (33%)</td>
+<td>2025-10-30</td>
+</tr>
+</table>
+</div>
+</div></div>
+<div style="margin: 10px;">
+<div class='subSection'><div class='subSectionHeader'>  <span class='subSectionTitle'>Dependencies between files in same commits</span>  <div class='subSectionSubtitle'>The number on the lines shows the number of shared commits.</div></div><div class='sectionBody'>
+<div style="width: 100%; overflow: auto; font-weight: normal;">
+
+
+</div>
+<div style="">
+Download: 
+<a style='text-decoration: none' target='_blank' href='visuals/file_changed_together_dependencies_files_90_days.svg'>SVG</a>
+ 
+<a style='text-decoration: none' target='_blank' href='visuals/file_changed_together_dependencies_files_90_days.dot.txt'>DOT</a>
+ 
+<a style='text-decoration: none' target='_blank' href='https://obren.io/tools/graphviz/'>(open online Graphviz editor)</a>
+</div>
+<br/>
+<a style='text-decoration: none' target='_blank' href='visuals/file_changed_together_dependencies_files_90_days_force_2d.html'>Open 2D force graph (file dependencies)...</a>
+<a style='text-decoration: none' target='_blank' href='visuals/file_changed_together_dependencies_files_90_days_force_3d.html'>Open 3D force graph (file dependencies)...</a>
+<br/>
+<a style='text-decoration: none' target='_blank' href='visuals/file_changed_together_dependencies_with_commits_components_90_days_force_2d.html'>Open 2D force graph (file dependencies with commits)...</a>
+<a style='text-decoration: none' target='_blank' href='visuals/file_changed_together_dependencies_with_commits_components_90_days_force_3d.html'>Open 3D force graph (file dependencies with commits)...</a>
+<br/>
+</div></div>
+</div>
+<div style="margin: 10px;">
+<div class='subSection'><div class='subSectionHeader'>  <span class='subSectionTitle'>Dependencies between components in same commits (primary)</span>  <div class='subSectionSubtitle'>The number on the lines shows the number of shared commits.</div></div><div class='sectionBody'>
+<div style="width: 100%; overflow: auto; font-weight: normal;">
+
+
+</div>
+<div style="">
+Download: 
+<a style='text-decoration: none' target='_blank' href='visuals/file_changed_together_dependencies_logical_decomposition_1_90_days.svg'>SVG</a>
+ 
+<a style='text-decoration: none' target='_blank' href='visuals/file_changed_together_dependencies_logical_decomposition_1_90_days.dot.txt'>DOT</a>
+ 
+<a style='text-decoration: none' target='_blank' href='https://obren.io/tools/graphviz/'>(open online Graphviz editor)</a>
+</div>
+<br/>
+<a style='text-decoration: none' target='_blank' href='visuals/file_changed_together_dependencies_logical_decomposition_1_90_days_force_2d.html'>Open 2D force graph (file dependencies)...</a>
+<a style='text-decoration: none' target='_blank' href='visuals/file_changed_together_dependencies_logical_decomposition_1_90_days_force_3d.html'>Open 3D force graph (file dependencies)...</a>
+<br/>
+</div></div>
+</div>
+</div>
+<div id="180_days" class="tabcontent" style="display: none">
+<br/>
+<div class='subSection'><div class='subSectionHeader'>  <span class='subSectionTitle'>Files Most Frequently Changed Together (Top 50)</span></div><div class='sectionBody'>
+<p><a href='../data/text/temporal_dependencies.txt' target='_blank'>data...</a></p>
+<div style="max-height: 400px; overflow-y: auto">
+<table>
+<th>Pairs</th>
+<th># same commits</th>
+<th># commits 1</th>
+<th># commits 2</th>
+<th>latest commit</th>
+<tr>
+<td>src/pages/Dev/Dev.jsx<br/>src/App.jsx</td>
+<td style="text-align: center">20</td>
+<td>43 (46%)</td>
+<td>53 (37%)</td>
+<td>2025-10-30</td>
+</tr>
+<tr>
+<td>src/pages/Profile/Profile.jsx<br/>src/App.jsx</td>
+<td style="text-align: center">14</td>
+<td>21 (66%)</td>
+<td>53 (26%)</td>
+<td>2025-10-31</td>
+</tr>
+<tr>
+<td>server/routes/admin.js<br/>server/controllers/adminController.js</td>
+<td style="text-align: center">12</td>
+<td>16 (75%)</td>
+<td>25 (48%)</td>
+<td>2025-10-31</td>
+</tr>
+<tr>
+<td>src/pages/GameDetail/GameDetail.jsx<br/>src/pages/Dev/Dev.jsx</td>
+<td style="text-align: center">10</td>
+<td>19 (52%)</td>
+<td>43 (23%)</td>
+<td>2025-10-30</td>
+</tr>
+<tr>
+<td>server/routes/games.js<br/>server/controllers/gamesController.js</td>
+<td style="text-align: center">10</td>
+<td>11 (90%)</td>
+<td>24 (41%)</td>
+<td>2025-10-30</td>
+</tr>
+<tr>
+<td>src/pages/Navigation/Navigation.jsx<br/>src/App.jsx</td>
+<td style="text-align: center">10</td>
+<td>15 (66%)</td>
+<td>53 (18%)</td>
+<td>2025-10-30</td>
+</tr>
+<tr>
+<td>src/pages/GameDetail/GameDetail.jsx<br/>src/App.jsx</td>
+<td style="text-align: center">9</td>
+<td>19 (47%)</td>
+<td>53 (16%)</td>
+<td>2025-10-30</td>
+</tr>
+<tr>
+<td>server/routes/auth.js<br/>server/index.js</td>
+<td style="text-align: center">9</td>
+<td>22 (40%)</td>
+<td>21 (42%)</td>
+<td>2025-10-28</td>
+</tr>
+<tr>
+<td>server/routes/user.js<br/>server/controllers/userController.js</td>
+<td style="text-align: center">8</td>
+<td>8 (100%)</td>
+<td>14 (57%)</td>
+<td>2025-10-30</td>
+</tr>
+<tr>
+<td>server/routes/admin.js<br/>server/middleware/rateLimit.js</td>
+<td style="text-align: center">8</td>
+<td>16 (50%)</td>
+<td>15 (53%)</td>
+<td>2025-10-31</td>
+</tr>
+<tr>
+<td>src/pages/Admin/Admin.jsx<br/>src/App.jsx</td>
+<td style="text-align: center">8</td>
+<td>8 (100%)</td>
+<td>53 (15%)</td>
+<td>2025-10-31</td>
+</tr>
+<tr>
+<td>src/pages/Login/Login.jsx<br/>src/App.jsx</td>
+<td style="text-align: center">8</td>
+<td>30 (26%)</td>
+<td>53 (15%)</td>
+<td>2025-10-24</td>
+</tr>
+<tr>
+<td>src/App.jsx<br/>server/middleware/rateLimit.js</td>
+<td style="text-align: center">8</td>
+<td>53 (15%)</td>
+<td>15 (53%)</td>
+<td>2025-10-31</td>
+</tr>
+<tr>
+<td>src/pages/Logout/Logout.jsx<br/>src/pages/Dev/Dev.jsx</td>
+<td style="text-align: center">8</td>
+<td>11 (72%)</td>
+<td>43 (18%)</td>
+<td>2025-10-30</td>
+</tr>
+<tr>
+<td>src/pages/Navigation/navigation.css<br/>src/App.jsx</td>
+<td style="text-align: center">8</td>
+<td>14 (57%)</td>
+<td>53 (15%)</td>
+<td>2025-10-23</td>
+</tr>
+<tr>
+<td>src/pages/Dev/Dev.jsx<br/>src/pages/Profile/Profile.jsx</td>
+<td style="text-align: center">8</td>
+<td>43 (18%)</td>
+<td>21 (38%)</td>
+<td>2025-10-30</td>
+</tr>
+<tr>
+<td>server/routes/payments.js<br/>server/controllers/paymentsController.js</td>
+<td style="text-align: center">7</td>
+<td>9 (77%)</td>
+<td>14 (50%)</td>
+<td>2025-10-30</td>
+</tr>
+<tr>
+<td>server/middleware/rateLimit.js<br/>server/controllers/adminController.js</td>
+<td style="text-align: center">7</td>
+<td>15 (46%)</td>
+<td>25 (28%)</td>
+<td>2025-10-31</td>
+</tr>
+<tr>
+<td>src/pages/Login/Login.jsx<br/>src/pages/Register/Register.jsx</td>
+<td style="text-align: center">7</td>
+<td>30 (23%)</td>
+<td>17 (41%)</td>
+<td>2025-10-23</td>
+</tr>
+<tr>
+<td>src/pages/Navigation/navigation.css<br/>src/pages/Navigation/Navigation.jsx</td>
+<td style="text-align: center">7</td>
+<td>14 (50%)</td>
+<td>15 (46%)</td>
+<td>2025-10-29</td>
+</tr>
+<tr>
+<td>src/pages/GameDetail/gameDetail.css<br/>src/pages/GameDetail/GameDetail.jsx</td>
+<td style="text-align: center">7</td>
+<td>9 (77%)</td>
+<td>19 (36%)</td>
+<td>2025-10-30</td>
+</tr>
+<tr>
+<td>src/pages/Login/login.css<br/>src/pages/Login/Login.jsx</td>
+<td style="text-align: center">7</td>
+<td>7 (100%)</td>
+<td>30 (23%)</td>
+<td>2025-10-17</td>
+</tr>
+<tr>
+<td>src/App.jsx<br/>server/routes/admin.js</td>
+<td style="text-align: center">7</td>
+<td>53 (13%)</td>
+<td>16 (43%)</td>
+<td>2025-10-31</td>
+</tr>
+<tr>
+<td>server/controllers/stripeWebhookController.js<br/>server/controllers/paymentsController.js</td>
+<td style="text-align: center">7</td>
+<td>7 (100%)</td>
+<td>14 (50%)</td>
+<td>2025-10-31</td>
+</tr>
+<tr>
+<td>src/app/components/GameCard.jsx<br/>src/pages/GameDetail/GameDetail.jsx</td>
+<td style="text-align: center">6</td>
+<td>7 (85%)</td>
+<td>19 (31%)</td>
+<td>2025-10-29</td>
+</tr>
+<tr>
+<td>src/pages/Admin/Admin.jsx<br/>server/middleware/rateLimit.js</td>
+<td style="text-align: center">6</td>
+<td>8 (75%)</td>
+<td>15 (40%)</td>
+<td>2025-10-31</td>
+</tr>
+<tr>
+<td>src/pages/Dev/Dev.jsx<br/>server/controllers/adminController.js</td>
+<td style="text-align: center">6</td>
+<td>43 (13%)</td>
+<td>25 (24%)</td>
+<td>2025-10-31</td>
+</tr>
+<tr>
+<td>server/index.js<br/>server/routes/dev.js</td>
+<td style="text-align: center">6</td>
+<td>21 (28%)</td>
+<td>15 (40%)</td>
+<td>2025-10-07</td>
+</tr>
+<tr>
+<td>server/routes/auth.js<br/>server/routes/dev.js</td>
+<td style="text-align: center">6</td>
+<td>22 (27%)</td>
+<td>15 (40%)</td>
+<td>2025-10-07</td>
+</tr>
+<tr>
+<td>src/pages/Profile/Profile.jsx<br/>server/controllers/userController.js</td>
+<td style="text-align: center">6</td>
+<td>21 (28%)</td>
+<td>14 (42%)</td>
+<td>2025-10-31</td>
+</tr>
+<tr>
+<td>src/app/Context/AuthContext.jsx<br/>src/App.jsx</td>
+<td style="text-align: center">6</td>
+<td>6 (100%)</td>
+<td>53 (11%)</td>
+<td>2025-10-23</td>
+</tr>
+<tr>
+<td>src/pages/GameDetail/gameDetail.css<br/>src/App.jsx</td>
+<td style="text-align: center">6</td>
+<td>9 (66%)</td>
+<td>53 (11%)</td>
+<td>2025-10-30</td>
+</tr>
+<tr>
+<td>src/pages/Navigation/Navigation.jsx<br/>src/pages/Dev/Dev.jsx</td>
+<td style="text-align: center">6</td>
+<td>15 (40%)</td>
+<td>43 (13%)</td>
+<td>2025-10-30</td>
+</tr>
+<tr>
+<td>src/pages/Login/Login.jsx<br/>src/pages/Navigation/Navigation.jsx</td>
+<td style="text-align: center">5</td>
+<td>30 (16%)</td>
+<td>15 (33%)</td>
+<td>2025-09-26</td>
+</tr>
+<tr>
+<td>src/pages/Logout/Logout.jsx<br/>src/App.jsx</td>
+<td style="text-align: center">5</td>
+<td>11 (45%)</td>
+<td>53 (9%)</td>
+<td>2025-10-30</td>
+</tr>
+<tr>
+<td>src/pages/GameDetail/gameDetail.css<br/>src/pages/Dev/Dev.jsx</td>
+<td style="text-align: center">5</td>
+<td>9 (55%)</td>
+<td>43 (11%)</td>
+<td>2025-10-30</td>
+</tr>
+<tr>
+<td>server/controllers/userController.js<br/>server/controllers/paymentsController.js</td>
+<td style="text-align: center">5</td>
+<td>14 (35%)</td>
+<td>14 (35%)</td>
+<td>2025-10-31</td>
+</tr>
+<tr>
+<td>src/pages/Login/Login.jsx<br/>server/routes/auth.js</td>
+<td style="text-align: center">5</td>
+<td>30 (16%)</td>
+<td>22 (22%)</td>
+<td>2025-09-26</td>
+</tr>
+<tr>
+<td>src/index.css<br/>src/pages/Register/register.css</td>
+<td style="text-align: center">5</td>
+<td>6 (83%)</td>
+<td>7 (71%)</td>
+<td>2025-09-25</td>
+</tr>
+<tr>
+<td>src/index.css<br/>src/pages/Login/Login.jsx</td>
+<td style="text-align: center">5</td>
+<td>6 (83%)</td>
+<td>30 (16%)</td>
+<td>2025-09-25</td>
+</tr>
+<tr>
+<td>src/pages/Login/login.css<br/>src/pages/Register/register.css</td>
+<td style="text-align: center">5</td>
+<td>7 (71%)</td>
+<td>7 (71%)</td>
+<td>2025-09-25</td>
+</tr>
+<tr>
+<td>server/controllers/stripeWebhookController.js<br/>server/controllers/gamesController.js</td>
+<td style="text-align: center">5</td>
+<td>7 (71%)</td>
+<td>24 (20%)</td>
+<td>2025-10-31</td>
+</tr>
+<tr>
+<td>src/index.css<br/>src/pages/Navigation/navigation.css</td>
+<td style="text-align: center">5</td>
+<td>6 (83%)</td>
+<td>14 (35%)</td>
+<td>2025-09-25</td>
+</tr>
+<tr>
+<td>server/controllers/gamesController.js<br/>server/controllers/paymentsController.js</td>
+<td style="text-align: center">5</td>
+<td>24 (20%)</td>
+<td>14 (35%)</td>
+<td>2025-10-31</td>
+</tr>
+<tr>
+<td>src/pages/Register/register.css<br/>src/pages/Login/Login.jsx</td>
+<td style="text-align: center">5</td>
+<td>7 (71%)</td>
+<td>30 (16%)</td>
+<td>2025-09-25</td>
+</tr>
+<tr>
+<td>src/pages/Dev/Dev.jsx<br/>server/routes/admin.js</td>
+<td style="text-align: center">5</td>
+<td>43 (11%)</td>
+<td>16 (31%)</td>
+<td>2025-10-30</td>
+</tr>
+<tr>
+<td>src/index.css<br/>src/pages/Login/login.css</td>
+<td style="text-align: center">5</td>
+<td>6 (83%)</td>
+<td>7 (71%)</td>
+<td>2025-09-25</td>
+</tr>
+<tr>
+<td>vite.config.js<br/>src/App.jsx</td>
+<td style="text-align: center">5</td>
+<td>6 (83%)</td>
+<td>53 (9%)</td>
+<td>2025-10-29</td>
+</tr>
+<tr>
+<td>src/main.jsx<br/>src/pages/Navigation/Navigation.jsx</td>
+<td style="text-align: center">5</td>
+<td>7 (71%)</td>
+<td>15 (33%)</td>
+<td>2025-09-25</td>
+</tr>
+<tr>
+<td>server/controllers/userController.js<br/>server/controllers/stripeWebhookController.js</td>
+<td style="text-align: center">5</td>
+<td>14 (35%)</td>
+<td>7 (71%)</td>
+<td>2025-10-31</td>
+</tr>
+</table>
+</div>
+</div></div>
+<div style="margin: 10px;">
+<div class='subSection'><div class='subSectionHeader'>  <span class='subSectionTitle'>Dependencies between files in same commits</span>  <div class='subSectionSubtitle'>The number on the lines shows the number of shared commits.</div></div><div class='sectionBody'>
+<div style="width: 100%; overflow: auto; font-weight: normal;">
+
+
+</div>
+<div style="">
+Download: 
+<a style='text-decoration: none' target='_blank' href='visuals/file_changed_together_dependencies_files_180_days.svg'>SVG</a>
+ 
+<a style='text-decoration: none' target='_blank' href='visuals/file_changed_together_dependencies_files_180_days.dot.txt'>DOT</a>
+ 
+<a style='text-decoration: none' target='_blank' href='https://obren.io/tools/graphviz/'>(open online Graphviz editor)</a>
+</div>
+<br/>
+<a style='text-decoration: none' target='_blank' href='visuals/file_changed_together_dependencies_files_180_days_force_2d.html'>Open 2D force graph (file dependencies)...</a>
+<a style='text-decoration: none' target='_blank' href='visuals/file_changed_together_dependencies_files_180_days_force_3d.html'>Open 3D force graph (file dependencies)...</a>
+<br/>
+<a style='text-decoration: none' target='_blank' href='visuals/file_changed_together_dependencies_with_commits_components_180_days_force_2d.html'>Open 2D force graph (file dependencies with commits)...</a>
+<a style='text-decoration: none' target='_blank' href='visuals/file_changed_together_dependencies_with_commits_components_180_days_force_3d.html'>Open 3D force graph (file dependencies with commits)...</a>
+<br/>
+</div></div>
+</div>
+<div style="margin: 10px;">
+<div class='subSection'><div class='subSectionHeader'>  <span class='subSectionTitle'>Dependencies between components in same commits (primary)</span>  <div class='subSectionSubtitle'>The number on the lines shows the number of shared commits.</div></div><div class='sectionBody'>
+<div style="width: 100%; overflow: auto; font-weight: normal;">
+
+
+</div>
+<div style="">
+Download: 
+<a style='text-decoration: none' target='_blank' href='visuals/file_changed_together_dependencies_logical_decomposition_1_180_days.svg'>SVG</a>
+ 
+<a style='text-decoration: none' target='_blank' href='visuals/file_changed_together_dependencies_logical_decomposition_1_180_days.dot.txt'>DOT</a>
+ 
+<a style='text-decoration: none' target='_blank' href='https://obren.io/tools/graphviz/'>(open online Graphviz editor)</a>
+</div>
+<br/>
+<a style='text-decoration: none' target='_blank' href='visuals/file_changed_together_dependencies_logical_decomposition_1_180_days_force_2d.html'>Open 2D force graph (file dependencies)...</a>
+<a style='text-decoration: none' target='_blank' href='visuals/file_changed_together_dependencies_logical_decomposition_1_180_days_force_3d.html'>Open 3D force graph (file dependencies)...</a>
+<br/>
+</div></div>
+</div>
+</div>
+</div>
+</body>
+</html>

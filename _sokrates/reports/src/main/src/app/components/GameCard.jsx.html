@@ -1,0 +1,54 @@
+<html>
+<head>
+    <title>src/app/components/GameCard.jsx</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">src/app/components/GameCard.jsx (<b>23</b> lines of code) (<a href="GameCard.jsx">raw</a>):</h3>
+<div id="editor">import { Link } from &quot;react-router-dom&quot;;
+import &quot;./gameCard.css&quot;;
+
+export default function GameCard({ game }) {
+	if (!game) return null;
+
+	return (
+		&lt;Link to={`/game/${game.id}`} className=&quot;game-card ig-card&quot;&gt;
+			&lt;div className=&quot;ig-cover&quot;&gt;
+				{game.cover_url ? (
+					&lt;img src={game.cover_url} alt=&quot;&quot; loading=&quot;lazy&quot; /&gt;
+				) : (
+					&lt;div className=&quot;thumb-fallback&quot;&gt;{game.title?.[0] ?? &quot;?&quot;}&lt;/div&gt;
+				)}
+
+				{typeof game.discount === &quot;number&quot; &amp;&amp; game.discount &gt; 0 ? (
+					&lt;div className=&quot;ig-badge&quot;&gt;-{game.discount}%&lt;/div&gt;
+				) : null}
+
+				&lt;div className=&quot;ig-overlay&quot;&gt;
+					&lt;div className=&quot;ig-title&quot;&gt;{game.title}&lt;/div&gt;
+					&lt;div className=&quot;ig-price&quot;&gt;{game.discounted_price || game.price}$&lt;/div&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/Link&gt;
+	);
+}
+
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/html");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>
