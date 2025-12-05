@@ -20,22 +20,19 @@ export default function EditProfile() {
 
   const sauvegarde = async () => {
     try {
-      const response = await fetch(
-        "/api/user/changeUserProfile",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({
-            first_name: first,
-            last_name: last,
-            username,
-            email,
-          }),
-        }
-      );
+      const response = await fetch("/api/user/changeUserProfile", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          first_name: first,
+          last_name: last,
+          username,
+          email,
+        }),
+      });
 
       const data = await response.json();
       if (response.ok) {
@@ -61,84 +58,57 @@ export default function EditProfile() {
   };
 
   return (
-    <div className="dev">
-      <div className="rangee">
-        <div className="colonnes">
-          <ul>
-            <li>
-              <h1>
-                <Link to="/profile">Profil</Link>
-              </h1>
-            </li>
-            <li>
-              <h1>
-                <Link to="/dev">Développeur</Link>
-              </h1>
-            </li>
-            <li>
-              <h1>
-                <Link to="/cart">Panier</Link>
-              </h1>
-            </li>
-          </ul>
-        </div>
-        <div className="colonnes userData">
-          <h1>Modification du compte</h1>
+    <>
+      <h1>Modification du compte</h1>
 
-          <div className="control">
-            <label htmlFor="username">Nom d'utilisateur</label>
-            <input
-              type="text"
-              id="username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-          </div>
-
-          <div className="control">
-            <label htmlFor="firstName">Prénom</label>
-            <input
-              type="text"
-              id="firstName"
-              value={first}
-              onChange={(e) => setFirst(e.target.value)}
-            />
-          </div>
-
-          <div className="control">
-            <label htmlFor="lastName">Nom</label>
-            <input
-              type="text"
-              id="lastName"
-              value={last}
-              onChange={(e) => setLast(e.target.value)}
-            />
-          </div>
-
-          <div className="control">
-            <label htmlFor="email">Adresse courriel</label>
-            <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
-
-          <div className="row-bottom">
-            <button className="edit-button save" onClick={sauvegarde}>
-              Sauvegarder
-            </button>
-            <button className="edit-button cancel" onClick={backProfile}>
-              Annuler
-            </button>
-          </div>
-        </div>
+      <div className="control">
+        <label htmlFor="username">Nom d'utilisateur</label>
+        <input
+          type="text"
+          id="username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
       </div>
 
-      <Link to="/logout" className="button_dev">
-        Déconnexion
-      </Link>
-    </div>
+      <div className="control">
+        <label htmlFor="firstName">Prénom</label>
+        <input
+          type="text"
+          id="firstName"
+          value={first}
+          onChange={(e) => setFirst(e.target.value)}
+        />
+      </div>
+
+      <div className="control">
+        <label htmlFor="lastName">Nom</label>
+        <input
+          type="text"
+          id="lastName"
+          value={last}
+          onChange={(e) => setLast(e.target.value)}
+        />
+      </div>
+
+      <div className="control">
+        <label htmlFor="email">Adresse courriel</label>
+        <input
+          type="email"
+          id="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+      </div>
+
+      <div className="row-bottom">
+        <button className="edit-button save" onClick={sauvegarde}>
+          Sauvegarder
+        </button>
+        <button className="edit-button cancel" onClick={backProfile}>
+          Annuler
+        </button>
+      </div>
+    </>
   );
 }

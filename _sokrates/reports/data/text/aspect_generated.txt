@@ -1,2 +1,0 @@
-Path	Lines of Code
-package-lock.json	6187
