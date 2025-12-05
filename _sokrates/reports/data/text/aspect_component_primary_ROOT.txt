@@ -1,0 +1,4 @@
+Path	Lines of Code
+eslint.config.js	28
+index.html	13
+vite.config.js	10

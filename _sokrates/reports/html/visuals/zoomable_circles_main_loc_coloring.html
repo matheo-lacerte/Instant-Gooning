@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+    .node {
+        cursor: pointer;
+    }
+
+    .node:hover {
+        stroke: #000;
+        stroke-width: 1.5px;
+    }
+
+    .node--leaf {
+        fill: white;
+    }
+
+    .label {
+        font: 11px "Helvetica Neue", Helvetica, Arial, sans-serif;
+        text-anchor: middle;
+        text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;
+    }
+
+    .label,
+    .node--root,
+    .node--leaf {
+        pointer-events: none;
+    }
+
+</style>
+<svg width="960" height="960"></svg>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script>
+
+    var svg = d3.select("svg"),
+        margin = 20,
+        diameter = +svg.attr("width"),
+        g = svg.append("g").attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")");
+
+    var color = d3.scaleLinear()
+        .domain([-1, 5])
+        .range(["hsl(152,80%,100%)", "hsl(228,30%,40%)"])
+        .interpolate(d3.interpolateHcl);
+
+    var pack = d3.pack()
+        .size([diameter - margin, diameter - margin])
+        .padding(2);
+
+
+    var root = {
+        "name": "cluster",
+        "children": [ {
+  "name" : "eslint.config.js (28)",
+  "color" : "#1a9641",
+  "size" : 28,
+  "children" : [ ]
+}, {
+  "name" : "index.html (13)",
+  "color" : "#1a9641",
+  "size" : 13,
+  "children" : [ ]
+}, {
+  "name" : "server",
+  "color" : "#1a9641",
+  "size" : 0,
+  "children" : [ {
+    "name" : "config",
+    "color" : "#1a9641",
+    "size" : 0,
+    "children" : [ {
+      "name" : "supabase.js (11)",
+      "color" : "#1a9641",
+      "size" : 11,
+      "children" : [ ]
+    } ]
+  }, {
+    "name" : "controllers",
+    "color" : "#1a9641",
+    "size" : 0,
+    "children" : [ {
+      "name" : "adminController.js (171)",
+      "color" : "#a6d96a",
+      "size" : 171,
+      "children" : [ ]
+    }, {
+      "name" : "cartController.js (170)",
+      "color" : "#a6d96a",
+      "size" : 170,
+      "children" : [ ]
+    }, {
+      "name" : "devController.js (120)",
+      "color" : "#a6d96a",
+      "size" : 120,
+      "children" : [ ]
+    }, {
+      "name" : "gamesController.js (180)",
+      "color" : "#a6d96a",
+      "size" : 180,
+      "children" : [ ]
+    }, {
+      "name" : "paymentsController.js (142)",
+      "color" : "#a6d96a",
+      "size" : 142,
+      "children" : [ ]
+    }, {
+      "name" : "stripeWebhookController.js (103)",
+      "color" : "#a6d96a",
+      "size" : 103,
+      "children" : [ ]
+    }, {
+      "name" : "userController.js (123)",
+      "color" : "#a6d96a",
+      "size" : 123,
+      "children" : [ ]
+    } ]
+  }, {
+    "name" : "index.js (51)",
+    "color" : "#1a9641",
+    "size" : 51,
+    "children" : [ ]
+  }, {
+    "name" : "middleware",
+    "color" : "#1a9641",
+    "size" : 0,
+    "children" : [ {
+      "name" : "auth.js (41)",
+      "color" : "#1a9641",
+      "size" : 41,
+      "children" : [ ]
+    }, {
+      "name" : "rateLimit.js (61)",
+      "color" : "#1a9641",
+      "size" : 61,
+      "children" : [ ]
+    } ]
+  }, {
+    "name" : "routes",
+    "color" : "#1a9641",
+    "size" : 0,
+    "children" : [ {
+      "name" : "admin.js (13)",
+      "color" : "#1a9641",
+      "size" : 13,
+      "children" : [ ]
+    }, {
+      "name" : "auth.js (123)",
+      "color" : "#a6d96a",
+      "size" : 123,
+      "children" : [ ]
+    }, {
+      "name" : "dev.js (11)",
+      "color" : "#1a9641",
+      "size" : 11,
+      "children" : [ ]
+    }, {
+      "name" : "games.js (13)",
+      "color" : "#1a9641",
+      "size" : 13,
+      "children" : [ ]
+    }, {
+      "name" : "payments.js (16)",
+      "color" : "#1a9641",
+      "size" : 16,
+      "children" : [ ]
+    }, {
+      "name" : "stripeWebhook.js (10)",
+      "color" : "#1a9641",
+      "size" : 10,
+      "children" : [ ]
+    }, {
+      "name" : "user.js (11)",
+      "color" : "#1a9641",
+      "size" : 11,
+      "children" : [ ]
+    } ]
+  }, {
+    "name" : "utils",
+    "color" : "#1a9641",
+    "size" : 0,
+    "children" : [ {
+      "name" : "keygen.js (10)",
+      "color" : "#1a9641",
+      "size" : 10,
+      "children" : [ ]
+    }, {
+      "name" : "stripePricing.js (45)",
+      "color" : "#1a9641",
+      "size" : 45,
+      "children" : [ ]
+    }, {
+      "name" : "validatePassword.js (7)",
+      "color" : "#1a9641",
+      "size" : 7,
+      "children" : [ ]
+    } ]
+  } ]
+}, {
+  "name" : "src",
+  "color" : "#1a9641",
+  "size" : 0,
+  "children" : [ {
+    "name" : "app",
+    "color" : "#1a9641",
+    "size" : 0,
+    "children" : [ {
+      "name" : "components",
+      "color" : "#1a9641",
+      "size" : 0,
+      "children" : [ {
+        "name" : "gameCard.css (9)",
+        "color" : "#1a9641",
+        "size" : 9,
+        "children" : [ ]
+      }, {
+        "name" : "GameCard.jsx (23)",
+        "color" : "#1a9641",
+        "size" : 23,
+        "children" : [ ]
+      }, {
+        "name" : "Guards",
+        "color" : "#1a9641",
+        "size" : 0,
+        "children" : [ {
+          "name" : "RequireAdmin.jsx (6)",
+          "color" : "#1a9641",
+          "size" : 6,
+          "children" : [ ]
+        }, {
+          "name" : "RequireDev.jsx (15)",
+          "color" : "#1a9641",
+          "size" : 15,
+          "children" : [ ]
+        } ]
+      }, {
+        "name" : "searchBar.css (100)",
+        "color" : "#1a9641",
+        "size" : 100,
+        "children" : [ ]
+      }, {
+        "name" : "SearchBar.jsx (245)",
+        "color" : "#ffffbf",
+        "size" : 245,
+        "children" : [ ]
+      } ]
+    }, {
+      "name" : "Context",
+      "color" : "#1a9641",
+      "size" : 0,
+      "children" : [ {
+        "name" : "AuthContext.jsx (10)",
+        "color" : "#1a9641",
+        "size" : 10,
+        "children" : [ ]
+      } ]
+    }, {
+      "name" : "Error",
+      "color" : "#1a9641",
+      "size" : 0,
+      "children" : [ {
+        "name" : "ErrorPage.jsx (12)",
+        "color" : "#1a9641",
+        "size" : 12,
+        "children" : [ ]
+      } ]
+    }, {
+      "name" : "layout",
+      "color" : "#1a9641",
+      "size" : 0,
+      "children" : [ {
+        "name" : "RootLayout.jsx (12)",
+        "color" : "#1a9641",
+        "size" : 12,
+        "children" : [ ]
+      } ]
+    } ]
+  }, {
+    "name" : "App.css (480)",
+    "color" : "#ffffbf",
+    "size" : 480,
+    "children" : [ ]
+  }, {
+    "name" : "App.jsx (141)",
+    "color" : "#a6d96a",
+    "size" : 141,
+    "children" : [ ]
+  }, {
+    "name" : "index.css (33)",
+    "color" : "#1a9641",
+    "size" : 33,
+    "children" : [ ]
+  }, {
+    "name" : "main.jsx (9)",
+    "color" : "#1a9641",
+    "size" : 9,
+    "children" : [ ]
+  }, {
+    "name" : "pages",
+    "color" : "#1a9641",
+    "size" : 0,
+    "children" : [ {
+      "name" : "Admin",
+      "color" : "#1a9641",
+      "size" : 0,
+      "children" : [ {
+        "name" : "Admin.css (8)",
+        "color" : "#1a9641",
+        "size" : 8,
+        "children" : [ ]
+      }, {
+        "name" : "Admin.jsx (215)",
+        "color" : "#ffffbf",
+        "size" : 215,
+        "children" : [ ]
+      } ]
+    }, {
+      "name" : "Cart",
+      "color" : "#1a9641",
+      "size" : 0,
+      "children" : [ {
+        "name" : "Cart.css (32)",
+        "color" : "#1a9641",
+        "size" : 32,
+        "children" : [ ]
+      }, {
+        "name" : "Cart.jsx (184)",
+        "color" : "#a6d96a",
+        "size" : 184,
+        "children" : [ ]
+      } ]
+    }, {
+      "name" : "Dev",
+      "color" : "#1a9641",
+      "size" : 0,
+      "children" : [ {
+        "name" : "Dev.jsx (615)",
+        "color" : "#fdae61",
+        "size" : 615,
+        "children" : [ ]
+      }, {
+        "name" : "DevGameDetail",
+        "color" : "#1a9641",
+        "size" : 0,
+        "children" : [ {
+          "name" : "devGameDetail.jsx (489)",
+          "color" : "#ffffbf",
+          "size" : 489,
+          "children" : [ ]
+        } ]
+      } ]
+    }, {
+      "name" : "GameDetail",
+      "color" : "#1a9641",
+      "size" : 0,
+      "children" : [ {
+        "name" : "gameDetail.css (295)",
+        "color" : "#ffffbf",
+        "size" : 295,
+        "children" : [ ]
+      }, {
+        "name" : "GameDetail.jsx (305)",
+        "color" : "#ffffbf",
+        "size" : 305,
+        "children" : [ ]
+      } ]
+    }, {
+      "name" : "Home",
+      "color" : "#1a9641",
+      "size" : 0,
+      "children" : [ {
+        "name" : "home.css (149)",
+        "color" : "#a6d96a",
+        "size" : 149,
+        "children" : [ ]
+      }, {
+        "name" : "Home.jsx (212)",
+        "color" : "#ffffbf",
+        "size" : 212,
+        "children" : [ ]
+      } ]
+    }, {
+      "name" : "Login",
+      "color" : "#1a9641",
+      "size" : 0,
+      "children" : [ {
+        "name" : "Login.jsx (97)",
+        "color" : "#1a9641",
+        "size" : 97,
+        "children" : [ ]
+      }, {
+        "name" : "login.module.css (6)",
+        "color" : "#1a9641",
+        "size" : 6,
+        "children" : [ ]
+      } ]
+    }, {
+      "name" : "Logout",
+      "color" : "#1a9641",
+      "size" : 0,
+      "children" : [ {
+        "name" : "Logout.css (27)",
+        "color" : "#1a9641",
+        "size" : 27,
+        "children" : [ ]
+      }, {
+        "name" : "Logout.jsx (40)",
+        "color" : "#1a9641",
+        "size" : 40,
+        "children" : [ ]
+      } ]
+    }, {
+      "name" : "Navigation",
+      "color" : "#1a9641",
+      "size" : 0,
+      "children" : [ {
+        "name" : "navigation.css (102)",
+        "color" : "#a6d96a",
+        "size" : 102,
+        "children" : [ ]
+      }, {
+        "name" : "Navigation.jsx (41)",
+        "color" : "#1a9641",
+        "size" : 41,
+        "children" : [ ]
+      } ]
+    }, {
+      "name" : "oldDev",
+      "color" : "#1a9641",
+      "size" : 0,
+      "children" : [ {
+        "name" : "CreateGame",
+        "color" : "#1a9641",
+        "size" : 0,
+        "children" : [ {
+          "name" : "CreateGame.css (42)",
+          "color" : "#1a9641",
+          "size" : 42,
+          "children" : [ ]
+        }, {
+          "name" : "CreateGame.jsx (252)",
+          "color" : "#ffffbf",
+          "size" : 252,
+          "children" : [ ]
+        } ]
+      }, {
+        "name" : "Dev.css (126)",
+        "color" : "#a6d96a",
+        "size" : 126,
+        "children" : [ ]
+      }, {
+        "name" : "Dev.jsx (223)",
+        "color" : "#ffffbf",
+        "size" : 223,
+        "children" : [ ]
+      } ]
+    }, {
+      "name" : "Profile",
+      "color" : "#1a9641",
+      "size" : 0,
+      "children" : [ {
+        "name" : "EditPassword",
+        "color" : "#1a9641",
+        "size" : 0,
+        "children" : [ {
+          "name" : "EditPassword.jsx (132)",
+          "color" : "#a6d96a",
+          "size" : 132,
+          "children" : [ ]
+        } ]
+      }, {
+        "name" : "EditProfile",
+        "color" : "#1a9641",
+        "size" : 0,
+        "children" : [ {
+          "name" : "EditProfile.jsx (130)",
+          "color" : "#a6d96a",
+          "size" : 130,
+          "children" : [ ]
+        } ]
+      }, {
+        "name" : "Profile.css (180)",
+        "color" : "#a6d96a",
+        "size" : 180,
+        "children" : [ ]
+      }, {
+        "name" : "Profile.jsx (103)",
+        "color" : "#a6d96a",
+        "size" : 103,
+        "children" : [ ]
+      }, {
+        "name" : "Purchases.jsx (91)",
+        "color" : "#1a9641",
+        "size" : 91,
+        "children" : [ ]
+      } ]
+    }, {
+      "name" : "Purchase",
+      "color" : "#1a9641",
+      "size" : 0,
+      "children" : [ {
+        "name" : "success.css (15)",
+        "color" : "#1a9641",
+        "size" : 15,
+        "children" : [ ]
+      }, {
+        "name" : "Success.jsx (166)",
+        "color" : "#a6d96a",
+        "size" : 166,
+        "children" : [ ]
+      } ]
+    }, {
+      "name" : "Register",
+      "color" : "#1a9641",
+      "size" : 0,
+      "children" : [ {
+        "name" : "Register.jsx (128)",
+        "color" : "#a6d96a",
+        "size" : 128,
+        "children" : [ ]
+      }, {
+        "name" : "register.module.css (6)",
+        "color" : "#1a9641",
+        "size" : 6,
+        "children" : [ ]
+      } ]
+    }, {
+      "name" : "Search",
+      "color" : "#1a9641",
+      "size" : 0,
+      "children" : [ {
+        "name" : "Search.css (3)",
+        "color" : "#1a9641",
+        "size" : 3,
+        "children" : [ ]
+      }, {
+        "name" : "Search.jsx (43)",
+        "color" : "#1a9641",
+        "size" : 43,
+        "children" : [ ]
+      } ]
+    }, {
+      "name" : "Support",
+      "color" : "#1a9641",
+      "size" : 0,
+      "children" : [ {
+        "name" : "support.css (121)",
+        "color" : "#a6d96a",
+        "size" : 121,
+        "children" : [ ]
+      }, {
+        "name" : "Support.jsx (146)",
+        "color" : "#a6d96a",
+        "size" : 146,
+        "children" : [ ]
+      } ]
+    } ]
+  } ]
+}, {
+  "name" : "vite.config.js (10)",
+  "color" : "#1a9641",
+  "size" : 10,
+  "children" : [ ]
+} ]
+    }
+
+    root = d3.hierarchy(root)
+        .sum(function (d) {
+            return d.size;
+        })
+        .sort(function (a, b) {
+            return b.value - a.value;
+        });
+
+    var focus = root,
+        nodes = pack(root).descendants(),
+        view;
+
+    var circle = g.selectAll("circle")
+        .data(nodes)
+        .enter().append("circle")
+        .attr("class", function (d) {
+            return d.parent ? d.children ? "node" : "node node--leaf" : "node node--root";
+        })
+        .style("fill", function (d) {
+            return d.children ? color(d.depth) : (d.data.color ? d.data.color : null);
+        })
+        .on("click", function (d) {
+            if (focus !== d) zoom(d), d3.event.stopPropagation();
+        });
+
+    var text = g.selectAll("text")
+        .data(nodes)
+        .enter().append("text")
+        .attr("class", "label")
+        .style("fill-opacity", function (d) {
+            return d.parent === root ? 1 : 0;
+        })
+        .style("display", function (d) {
+            return d.parent === root ? "inline" : "none";
+        })
+        .text(function (d) {
+            return d.data.name.length > 33 ? (d.data.name.substr(0, 14) + "..." + d.data.name.substr(d.data.name.length - 14))  : d.data.name;
+        });
+
+    var node = g.selectAll("circle,text");
+
+    svg
+        .style("background", color(-1))
+        .on("click", function () {
+            zoom(root);
+        });
+
+    zoomTo([root.x, root.y, root.r * 2 + margin]);
+
+    function zoom(d) {
+        var focus0 = focus;
+        focus = d;
+
+        var transition = d3.transition()
+            .duration(d3.event.altKey ? 7500 : 750)
+            .tween("zoom", function (d) {
+                var i = d3.interpolateZoom(view, [focus.x, focus.y, focus.r * 2 + margin]);
+                return function (t) {
+                    zoomTo(i(t));
+                };
+            });
+
+        transition.selectAll("text")
+            .filter(function (d) {
+                return d.parent === focus || this.style.display === "inline";
+            })
+            .style("fill-opacity", function (d) {
+                return d.parent === focus ? 1 : 0;
+            })
+            .on("start", function (d) {
+                if (d.parent === focus) this.style.display = "inline";
+            })
+            .on("end", function (d) {
+                if (d.parent !== focus) this.style.display = "none";
+            });
+    }
+
+    function zoomTo(v) {
+        var k = diameter / v[2];
+        view = v;
+        node.attr("transform", function (d) {
+            return "translate(" + (d.x - v[0]) * k + "," + (d.y - v[1]) * k + ")";
+        });
+        circle.attr("r", function (d) {
+            return d.r * k;
+        });
+    }
+
+</script>

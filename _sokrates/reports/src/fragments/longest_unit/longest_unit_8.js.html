@@ -1,0 +1,70 @@
+<html>
+<head>
+    <title>export default async function authMiddleware()</title>
+    <link rel="stylesheet" charset="UTF-8" href="https://d2bb1mtyn3kglb.cloudfront.net/lib/highlight/styles/docco.min.css">
+    <script charset="UTF-8" type="application/javascript" src="https://d2bb1mtyn3kglb.cloudfront.net/lib/highlight/highlight.min.js"></script>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">export default async function authMiddleware()</h3>
+<p style="margin-top: 4px">in <i>server/middleware/auth.js [4:51]</i></p>
+<ul>
+    <li><b>39</b> lines of code</li>
+    <li><b>6</b> McCabe index (conditional complexity)</li>
+</ul>
+<pre>
+<code class="js">
+export default async function authMiddleware(req, res, next) {
+    const authHeader = req.headers[&quot;authorization&quot;];
+    const token = authHeader &amp;&amp; authHeader.split(&quot; &quot;)[1];
+
+    if (!token) {
+        return res.status(401).json({ error: &quot;Token manquant&quot; });
+    }
+
+    try {
+
+        const { data: { user }, error } = await supabase.auth.getUser(token);
+
+        if (error || !user) {
+            return res.status(403).json({ error: &quot;Token invalide&quot; });
+        }
+
+
+        req.supabase = createClient(
+            process.env.SUPABASE_URL,
+            process.env.SUPABASE_ANON_KEY,
+            {
+                global: {
+                    headers: { Authorization: `Bearer ${token}` }
+                }
+            }
+        );
+
+        const { data: profile } = await req.supabase
+            .from(&quot;users&quot;)
+            .select(&quot;id, username, first_name, last_name, role, email&quot;)
+            .eq(&quot;id&quot;, user.id)
+            .maybeSingle();
+
+        req.user = {
+            id: user.id,
+            email: user.email,
+            username: profile?.username,
+            first_name: profile?.first_name,
+            last_name: profile?.last_name,
+            role: profile?.role
+        };
+
+        next();
+    } catch (err) {
+        console.error(&quot;Auth middleware error:&quot;, err);
+        return res.status(500).json({ error: &quot;Erreur d'authentification&quot; });
+    }
+}
+
+</code>
+</pre>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+</body>

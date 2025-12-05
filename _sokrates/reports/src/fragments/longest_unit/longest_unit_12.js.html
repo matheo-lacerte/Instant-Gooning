@@ -1,0 +1,64 @@
+<html>
+<head>
+    <title>export async function removeCartItem()</title>
+    <link rel="stylesheet" charset="UTF-8" href="https://d2bb1mtyn3kglb.cloudfront.net/lib/highlight/styles/docco.min.css">
+    <script charset="UTF-8" type="application/javascript" src="https://d2bb1mtyn3kglb.cloudfront.net/lib/highlight/highlight.min.js"></script>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">export async function removeCartItem()</h3>
+<p style="margin-top: 4px">in <i>server/controllers/cartController.js [110:151]</i></p>
+<ul>
+    <li><b>32</b> lines of code</li>
+    <li><b>9</b> McCabe index (conditional complexity)</li>
+</ul>
+<pre>
+<code class="js">
+export async function removeCartItem(req, res) {
+  try {
+    const user_id = req.user?.id;
+    if (!user_id) return res.status(401).json({ error: &quot;Non authentifi&eacute;&quot; });
+
+    const { itemId } = req.params;
+
+    const { data: item, error: itemErr } = await supabaseAdmin
+      .from(&quot;cart_items&quot;)
+      .select(&quot;id, cart_id&quot;)
+      .eq(&quot;id&quot;, itemId)
+      .maybeSingle();
+
+    if (itemErr) throw itemErr;
+    if (!item) return res.status(404).json({ error: &quot;Item introuvable&quot; });
+
+
+    const { data: cart, error: cartErr } = await supabaseAdmin
+      .from(&quot;carts&quot;)
+      .select(&quot;user_id&quot;)
+      .eq(&quot;id&quot;, item.cart_id)
+      .single();
+
+    if (cartErr) throw cartErr;
+    if (!cart || cart.user_id !== user_id) {
+      return res.status(403).json({ error: &quot;Refus&eacute;&quot; });
+    }
+
+    
+    const { error: delErr } = await supabaseAdmin
+      .from(&quot;cart_items&quot;)
+      .delete()
+      .eq(&quot;id&quot;, itemId);
+
+    if (delErr) throw delErr;
+
+    return res.status(204).send();
+  } catch (err) {
+    console.error(&quot;Error removing cart item:&quot;, err);
+    return res.status(500).json({ error: &quot;Erreur serveur&quot; });
+  }
+}
+
+</code>
+</pre>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+</body>
