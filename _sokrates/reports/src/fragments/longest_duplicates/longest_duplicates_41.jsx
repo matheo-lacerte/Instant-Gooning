@@ -1,31 +1,23 @@
-src/pages/Profile/EditProfile/EditProfile.jsx [95:104]:
+src/pages/Dev/Dev.jsx [156:161]:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-            />
-          </div>
-
-          <div className="control">
-            <label htmlFor="firstName">Prénom</label>
-            <input
-              type="text"
-              id="firstName"
-              value={first}
-              onChange={(e) => setFirst(e.target.value)}
+        title: "",
+        description: "",
+        genre: "",
+        platform: "",
+        developer: "",
+        publisher: "",
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
 
-src/pages/Profile/Profile.jsx [63:72]:
+src/pages/Dev/DevGameDetail/devGameDetail.jsx [56:61]:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-            />
-          </div>
-
-          <div className="control">
-            <label htmlFor="firstName">Prénom</label>
-            <input
-              type="text"
-              id="firstName"
-              value={first}
-              onChange={(e) => setFirst(e.target.value)}
+    title: "",
+    description: "",
+    genre: "",
+    platform: "",
+    developer: "",
+    publisher: "",
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 

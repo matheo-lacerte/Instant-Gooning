@@ -1,6 +1,5 @@
-src/pages/Profile/EditProfile/EditProfile.jsx [60:78]:
+src/pages/Profile/EditPassword/EditPassword.jsx [49:62]:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    }
   };
 
   return (
@@ -15,17 +14,12 @@ src/pages/Profile/EditProfile/EditProfile.jsx [60:78]:
             </li>
             <li>
               <h1>
-                <Link to="/dev">Développeur</Link>
-              </h1>
-            </li>
-            <li>
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
 
-src/pages/oldDev/Dev.jsx [95:113]:
+src/pages/Profile/Profile.jsx [23:36]:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    }
   };
 
   return (
@@ -40,10 +34,6 @@ src/pages/oldDev/Dev.jsx [95:113]:
             </li>
             <li>
               <h1>
-                <Link to="/dev">Développeur</Link>
-              </h1>
-            </li>
-            <li>
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 

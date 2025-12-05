@@ -1,82 +1,76 @@
 <html>
 <head>
-    <title>export async function checkoutCart()</title>
+    <title>export async function transferGameOwnership()</title>
     <link rel="stylesheet" charset="UTF-8" href="https://d2bb1mtyn3kglb.cloudfront.net/lib/highlight/styles/docco.min.css">
     <script charset="UTF-8" type="application/javascript" src="https://d2bb1mtyn3kglb.cloudfront.net/lib/highlight/highlight.min.js"></script>
 </head>
 <body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
-<h3 style="margin-bottom: 0">export async function checkoutCart()</h3>
-<p style="margin-top: 4px">in <i>server/controllers/paymentsController.js [5:69]</i></p>
+<h3 style="margin-bottom: 0">export async function transferGameOwnership()</h3>
+<p style="margin-top: 4px">in <i>server/controllers/devController.js [84:142]</i></p>
 <ul>
     <li><b>52</b> lines of code</li>
-    <li><b>18</b> McCabe index (conditional complexity)</li>
+    <li><b>21</b> McCabe index (conditional complexity)</li>
 </ul>
 <pre>
 <code class="js">
-export async function checkoutCart(req, res) {
+export async function transferGameOwnership(req, res) {
+  const { game_id, to_user_email, to_user_id } = req.body || {};
+  const id = Number(game_id);
+  if (Number.isNaN(id)) return res.status(400).json({ error: &quot;game_id invalide&quot; });
   try {
-    const user_id = req.user?.id;
-    const email = req.user?.email;
-    if (!user_id || !email) return res.status(401).json({ error: &quot;Non authentifi&eacute;&quot; });
+    const client = supabaseAdmin || supabase;
 
-    const { data: items } = await supabaseAdmin
-      .from(&quot;cart_items&quot;)
-      .select(&quot;quantity, game_id, games(*)&quot;)
-      .eq(&quot;cart_id&quot;, req.body.cart_id);
+    // Charger le jeu et v&eacute;rifier l'autorisation
+    const { data: game, error: gErr } = await client
+      .from(&quot;games&quot;)
+      .select(&quot;id, created_by&quot;)
+      .eq(&quot;id&quot;, id)
+      .single();
+    if (gErr) return res.status(gErr.code === &quot;PGRST116&quot; ? 404 : 500).json({ error: gErr.message });
+    if (req.user.role !== &quot;admin&quot; &amp;&amp; game.created_by !== req.user.id) {
+      return res.status(403).json({ error: &quot;Autorisation refus&eacute;e&quot; });
+    }
 
-    if (!items?.length) return res.status(400).json({ error: &quot;Panier vide&quot; });
-
-    const line_items = [];
-
-    for (const it of items) {
-      const game = it.games;
-      const priceId = game?.stripe_price_id;
-      if (!priceId) {
-        console.error(&quot;[checkoutCart] missing stripe_price_id for game:&quot;, game?.id);
-        return res.status(500).json({ error: `Stripe price missing for game ${game?.id}` });
+    // R&eacute;soudre le compte cible
+    let targetUserId = to_user_id;
+    if (!targetUserId) {
+      if (!to_user_email) return res.status(400).json({ error: &quot;to_user_email requis si to_user_id absent&quot; });
+      const { data: u, error: uErr } = await client
+        .from(&quot;users&quot;)
+        .select(&quot;id, role&quot;)
+        .ilike(&quot;email&quot;, to_user_email)
+        .single();
+      if (uErr) return res.status(uErr.code === &quot;PGRST116&quot; ? 404 : 500).json({ error: uErr.message });
+      targetUserId = u.id;
+      if (u.role !== &quot;dev&quot; &amp;&amp; u.role !== &quot;admin&quot;) {
+        return res.status(400).json({ error: &quot;Le compte cible n'est pas d&eacute;veloppeur&quot; });
       }
-      line_items.push({ price: priceId, quantity: it.quantity });
-    }
-
- 
-    let origin = req.get(&quot;origin&quot;);
-    if (!origin) {
-      const ref = req.get(&quot;referer&quot;);
-      if (ref) {
-        try { origin = new URL(ref).origin; } catch {}
+    } else {
+      const { data: u, error: uErr } = await client
+        .from(&quot;users&quot;)
+        .select(&quot;id, role&quot;)
+        .eq(&quot;id&quot;, targetUserId)
+        .single();
+      if (uErr) return res.status(uErr.code === &quot;PGRST116&quot; ? 404 : 500).json({ error: uErr.message });
+      if (u.role !== &quot;dev&quot; &amp;&amp; u.role !== &quot;admin&quot;) {
+        return res.status(400).json({ error: &quot;Le compte cible n'est pas d&eacute;veloppeur&quot; });
       }
     }
 
-    if (origin &amp;&amp; /localhost:5174$/i.test(origin)) {
-      origin = &quot;http://localhost:5173&quot;;
+    if (targetUserId === game.created_by) {
+      return res.status(400).json({ error: &quot;Le jeu appartient d&eacute;j&agrave; &agrave; ce compte&quot; });
     }
-    
-    if ((!origin || /localhost/i.test(origin)) &amp;&amp; process.env.SITE_URL &amp;&amp; !/localhost/i.test(process.env.SITE_URL)) {
-      origin = process.env.SITE_URL;
-    }
-    if (!origin) origin = &quot;http://localhost:5173&quot;;
-    const session = await stripe.checkout.sessions.create({
-      mode: &quot;payment&quot;,
-      customer_email: email,
-      line_items,
-      allow_promotion_codes: true,
 
-      automatic_tax: { enabled: true },
+    const { error: tErr } = await client
+      .from(&quot;games&quot;)
+      .update({ created_by: targetUserId })
+      .eq(&quot;id&quot;, id);
+    if (tErr) return res.status(500).json({ error: tErr.message });
 
-      customer_creation: &quot;always&quot;,
-      billing_address_collection: &quot;required&quot;,
-
-      success_url: `${origin}/purchase/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${origin}/cart`,
-      metadata: { user_id, cart_id: req.body.cart_id }
-    });
-
-    res.json({ url: session.url });
-  } catch (e) {
-    console.error(&quot;[checkoutCart] ERROR:&quot;, e);
-    res.status(500).json({ error: e.message, stack: e.stack });
+    return res.json({ ok: true });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
   }
-
 }
 
 </code>

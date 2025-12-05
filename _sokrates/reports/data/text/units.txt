@@ -17,21 +17,21 @@ McCabe index: 16
 number of parameters: 2
 
 id: 3
+unit: export async function checkoutCart()
+file: server/controllers/paymentsController.js
+start line: 6
+end line: 82
+size: 61 LOC
+McCabe index: 19
+number of parameters: 2
+
+id: 4
 unit: export async function transferGameOwnership()
 file: server/controllers/devController.js
 start line: 84
 end line: 142
 size: 52 LOC
 McCabe index: 21
-number of parameters: 2
-
-id: 4
-unit: export async function checkoutCart()
-file: server/controllers/paymentsController.js
-start line: 5
-end line: 69
-size: 52 LOC
-McCabe index: 18
 number of parameters: 2
 
 id: 5
@@ -82,8 +82,8 @@ number of parameters: 2
 id: 10
 unit: export async function getKeysBySession()
 file: server/controllers/paymentsController.js
-start line: 133
-end line: 179
+start line: 146
+end line: 192
 size: 38 LOC
 McCabe index: 9
 number of parameters: 2
@@ -163,8 +163,8 @@ number of parameters: 2
 id: 19
 unit: export async function getCheckoutSessionDetails()
 file: server/controllers/paymentsController.js
-start line: 71
-end line: 105
+start line: 84
+end line: 118
 size: 24 LOC
 McCabe index: 10
 number of parameters: 2
@@ -199,8 +199,8 @@ number of parameters: 1
 id: 23
 unit: export async function clearCartFromSession()
 file: server/controllers/paymentsController.js
-start line: 107
-end line: 131
+start line: 120
+end line: 144
 size: 19 LOC
 McCabe index: 10
 number of parameters: 2
@@ -278,6 +278,15 @@ McCabe index: 3
 number of parameters: 2
 
 id: 32
+unit: export default defineConfig()
+file: cypress.config.js
+start line: 3
+end line: 19
+size: 12 LOC
+McCabe index: 1
+number of parameters: 2
+
+id: 33
 unit: export async function getAllGames()
 file: server/controllers/gamesController.js
 start line: 17
@@ -286,7 +295,7 @@ size: 11 LOC
 McCabe index: 3
 number of parameters: 2
 
-id: 33
+id: 34
 unit: export function generateKeyCode()
 file: server/utils/keygen.js
 start line: 3
@@ -295,7 +304,7 @@ size: 9 LOC
 McCabe index: 2
 number of parameters: 0
 
-id: 34
+id: 35
 unit: export async function archiveStripeForGame()
 file: server/utils/stripePricing.js
 start line: 47
@@ -304,7 +313,7 @@ size: 8 LOC
 McCabe index: 5
 number of parameters: 1
 
-id: 35
+id: 36
 unit: export default defineConfig()
 file: vite.config.js
 start line: 5
@@ -313,16 +322,16 @@ size: 8 LOC
 McCabe index: 1
 number of parameters: 1
 
-id: 36
+id: 37
 unit: game_id: parseInt()
 file: server/controllers/paymentsController.js
-start line: 89
-end line: 95
+start line: 102
+end line: 108
 size: 6 LOC
 McCabe index: 5
 number of parameters: 1
 
-id: 37
+id: 38
 unit: function effectiveAmount()
 file: server/utils/stripePricing.js
 start line: 5
@@ -331,12 +340,21 @@ size: 4 LOC
 McCabe index: 2
 number of parameters: 1
 
-id: 38
+id: 39
 unit: export async function getDevGames()
 file: server/controllers/devController.js
 start line: 38
 end line: 40
 size: 3 LOC
+McCabe index: 1
+number of parameters: 2
+
+id: 40
+unit: setupNodeEvents()
+file: cypress.config.js
+start line: 5
+end line: 7
+size: 2 LOC
 McCabe index: 1
 number of parameters: 2
 

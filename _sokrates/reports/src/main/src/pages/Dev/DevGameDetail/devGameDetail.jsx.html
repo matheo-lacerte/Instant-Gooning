@@ -12,11 +12,50 @@
     </style>
 </head>
 <body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
-<h3 style="margin-bottom: 0">src/pages/Dev/DevGameDetail/devGameDetail.jsx (<b>489</b> lines of code) (<a href="devGameDetail.jsx">raw</a>):</h3>
+<h3 style="margin-bottom: 0">src/pages/Dev/DevGameDetail/devGameDetail.jsx (<b>485</b> lines of code) (<a href="devGameDetail.jsx">raw</a>):</h3>
 <div id="editor">import { useParams, Link, useNavigate } from &quot;react-router-dom&quot;;
 import { useEffect, useMemo, useState } from &quot;react&quot;;
 import &quot;../../GameDetail/gameDetail.css&quot;;
 
+function BackLinkDev() {
+  return (
+    &lt;Link className=&quot;back-link&quot; to=&quot;/dev?section=my-games&quot; aria-label=&quot;Retour&quot;&gt;
+      &lt;span className=&quot;icon&quot; aria-hidden&gt;
+        &lt;svg viewBox=&quot;0 0 24 24&quot; width=&quot;12&quot; height=&quot;12&quot;&gt;
+          &lt;path
+            d=&quot;M15 18l-6-6 6-6&quot;
+            fill=&quot;none&quot;
+            stroke=&quot;currentColor&quot;
+            strokeWidth=&quot;2&quot;
+            strokeLinecap=&quot;round&quot;
+            strokeLinejoin=&quot;round&quot;
+          /&gt;
+        &lt;/svg&gt;
+      &lt;/span&gt;
+      &lt;span&gt;Retour&lt;/span&gt;
+    &lt;/Link&gt;
+  );
+}
+
+function BackLinkHome() {
+  return (
+    &lt;Link className=&quot;back-link&quot; to=&quot;/&quot; aria-label=&quot;Retour &agrave; l'accueil&quot;&gt;
+      &lt;span className=&quot;icon&quot; aria-hidden&gt;
+        &lt;svg viewBox=&quot;0 0 24 24&quot; width=&quot;12&quot; height=&quot;12&quot;&gt;
+          &lt;path
+            d=&quot;M15 18l-6-6 6-6&quot;
+            fill=&quot;none&quot;
+            stroke=&quot;currentColor&quot;
+            strokeWidth=&quot;2&quot;
+            strokeLinecap=&quot;round&quot;
+            strokeLinejoin=&quot;round&quot;
+          /&gt;
+        &lt;/svg&gt;
+      &lt;/span&gt;
+      &lt;span&gt;Retour&lt;/span&gt;
+    &lt;/Link&gt;
+  );
+}
 
 export default function GameDetail() {
   const navigate = useNavigate();
@@ -49,7 +88,7 @@ export default function GameDetail() {
       setError(null);
       try {
         const response = await fetch(
-          `/api/games/GetGameById/${id}`,
+          `http://localhost:5174/api/games/GetGameById/${id}`,
           { method: &quot;GET&quot; }
         );
         if (!response.ok) throw new Error(&quot;R&eacute;ponse invalide du serveur&quot;);
@@ -150,7 +189,7 @@ export default function GameDetail() {
         setActionMsg(&quot;Aucun changement &agrave; enregistrer.&quot;);
         return;
       }
-      const res = await fetch(`/api/games/update/${game.id}`, {
+      const res = await fetch(`http://localhost:5174/api/games/update/${game.id}`, {
         method: &quot;PATCH&quot;,
         headers: { &quot;Content-Type&quot;: &quot;application/json&quot;, Authorization: `Bearer ${token}` },
         body: JSON.stringify(payload),
@@ -198,7 +237,7 @@ export default function GameDetail() {
   const deleteGame = async () =&gt; {
     if (token) {
       const response = await fetch(
-        &quot;/api/games/delete/&quot;+game.id,
+        &quot;http://localhost:5174/api/games/delete/&quot;+game.id,
         {
           method: &quot;PATCH&quot;,
           headers: {
@@ -221,7 +260,7 @@ export default function GameDetail() {
   const restoreGame = async () =&gt; {
     if (token) {
       const response = await fetch(
-        &quot;/api/games/restore/&quot;+game.id,
+        &quot;http://localhost:5174/api/games/restore/&quot;+game.id,
         {
           method: &quot;PATCH&quot;,
           headers: {
@@ -263,21 +302,7 @@ export default function GameDetail() {
   if (loading) {
     return (
       &lt;div className=&quot;game-detail-wrap&quot;&gt;
-        &lt;Link className=&quot;back-link&quot; to=&quot;/&quot; aria-label=&quot;Retour &agrave; l'accueil&quot;&gt;
-          &lt;span className=&quot;icon&quot; aria-hidden&gt;
-            &lt;svg viewBox=&quot;0 0 24 24&quot; width=&quot;12&quot; height=&quot;12&quot;&gt;
-              &lt;path
-                d=&quot;M15 18l-6-6 6-6&quot;
-                fill=&quot;none&quot;
-                stroke=&quot;currentColor&quot;
-                strokeWidth=&quot;2&quot;
-                strokeLinecap=&quot;round&quot;
-                strokeLinejoin=&quot;round&quot;
-              /&gt;
-            &lt;/svg&gt;
-          &lt;/span&gt;
-          &lt;span&gt;Retour&lt;/span&gt;
-        &lt;/Link&gt;
+        &lt;BackLinkHome /&gt;
         &lt;div className=&quot;skeleton-hero&quot;&gt;
           &lt;div className=&quot;skeleton-cover&quot; /&gt;
           &lt;div className=&quot;skeleton-meta&quot;&gt;
@@ -294,42 +319,14 @@ export default function GameDetail() {
     return (
       &lt;div className=&quot;game-detail-wrap&quot;&gt;
         &lt;p&gt;{error ? `Erreur: ${error}` : &quot;Jeu introuvable.&quot;}&lt;/p&gt;
-        &lt;Link className=&quot;back-link&quot; to=&quot;/&quot; aria-label=&quot;Retour &agrave; l'accueil&quot;&gt;
-          &lt;span className=&quot;icon&quot; aria-hidden&gt;
-            &lt;svg viewBox=&quot;0 0 24 24&quot; width=&quot;12&quot; height=&quot;12&quot;&gt;
-              &lt;path
-                d=&quot;M15 18l-6-6 6-6&quot;
-                fill=&quot;none&quot;
-                stroke=&quot;currentColor&quot;
-                strokeWidth=&quot;2&quot;
-                strokeLinecap=&quot;round&quot;
-                strokeLinejoin=&quot;round&quot;
-              /&gt;
-            &lt;/svg&gt;
-          &lt;/span&gt;
-          &lt;span&gt;Retour&lt;/span&gt;
-        &lt;/Link&gt;
+        &lt;BackLinkHome /&gt;
       &lt;/div&gt;
     );
   }
 
   return (
     &lt;div className=&quot;game-detail-wrap&quot;&gt;
-  &lt;Link className=&quot;back-link&quot; to=&quot;/dev?section=my-games&quot; aria-label=&quot;Retour&quot;&gt;
-        &lt;span className=&quot;icon&quot; aria-hidden&gt;
-          &lt;svg viewBox=&quot;0 0 24 24&quot; width=&quot;12&quot; height=&quot;12&quot;&gt;
-            &lt;path
-              d=&quot;M15 18l-6-6 6-6&quot;
-              fill=&quot;none&quot;
-              stroke=&quot;currentColor&quot;
-              strokeWidth=&quot;2&quot;
-              strokeLinecap=&quot;round&quot;
-              strokeLinejoin=&quot;round&quot;
-            /&gt;
-          &lt;/svg&gt;
-        &lt;/span&gt;
-        &lt;span&gt;Retour&lt;/span&gt;
-      &lt;/Link&gt;
+      &lt;BackLinkDev /&gt;
 
       &lt;section
         className=&quot;game-hero&quot;
@@ -530,8 +527,7 @@ export default function GameDetail() {
       &lt;/section&gt;
     &lt;/div&gt;
   );
-}
-</div>
+}</div>
 <script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
 <script>
     var editor = ace.edit("editor");

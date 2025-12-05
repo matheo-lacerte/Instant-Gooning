@@ -1,8 +1,5 @@
-src/pages/Profile/EditProfile/EditProfile.jsx [60:78]:
+src/pages/Profile/EditPassword/EditPassword.jsx [51:62]:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    }
-  };
-
   return (
     <div className="dev">
       <div className="rangee">
@@ -15,19 +12,12 @@ src/pages/Profile/EditProfile/EditProfile.jsx [60:78]:
             </li>
             <li>
               <h1>
-                <Link to="/dev">Développeur</Link>
-              </h1>
-            </li>
-            <li>
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
 
-src/pages/oldDev/CreateGame/CreateGame.jsx [73:91]:
+src/pages/Profile/Purchases.jsx [36:47]:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    }
-  };
-
   return (
     <div className="dev">
       <div className="rangee">
@@ -40,10 +30,6 @@ src/pages/oldDev/CreateGame/CreateGame.jsx [73:91]:
             </li>
             <li>
               <h1>
-                <Link to="/dev">Développeur</Link>
-              </h1>
-            </li>
-            <li>
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 

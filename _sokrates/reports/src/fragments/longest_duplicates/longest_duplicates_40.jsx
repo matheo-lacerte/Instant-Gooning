@@ -1,31 +1,27 @@
-src/pages/Profile/EditProfile/EditProfile.jsx [105:114]:
+src/pages/Dev/DevGameDetail/devGameDetail.jsx [346:353]:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-            />
-          </div>
-
-          <div className="control">
-            <label htmlFor="lastName">Nom</label>
-            <input
-              type="text"
-              id="lastName"
-              value={last}
-              onChange={(e) => setLast(e.target.value)}
+              <div className="chips" aria-label="Genres">
+                {genres.map((g) => (
+                  <span key={g} className="chip">
+                    {g}
+                  </span>
+                ))}
+              </div>
+            )}
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
 
-src/pages/Profile/Profile.jsx [74:83]:
+src/pages/GameDetail/GameDetail.jsx [209:216]:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-            />
-          </div>
-
-          <div className="control">
-            <label htmlFor="lastName">Nom</label>
-            <input
-              type="text"
-              id="lastName"
-              value={last}
-              onChange={(e) => setLast(e.target.value)}
+              <div className="chips" aria-label="Genres">
+                {genres.map((g) => (
+                  <span key={g} className="chip">
+                    {g}
+                  </span>
+                ))}
+              </div>
+            )}
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 

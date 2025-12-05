@@ -1,6 +1,7 @@
 Path	Lines of Code
 README.md	7
-git-history.txt	723
-package-lock.json	4661
-package.json	44
+cypress/fixtures/example.json	5
+git-history.txt	1760
+package-lock.json	6187
+package.json	45
 public/ouvert.svg	2

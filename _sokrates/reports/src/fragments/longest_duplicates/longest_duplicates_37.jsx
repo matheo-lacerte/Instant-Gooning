@@ -1,35 +1,23 @@
-src/pages/Profile/EditPassword/EditPassword.jsx [51:62]:
+src/pages/GameDetail/GameDetail.jsx [120:125]:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  return (
-    <div className="dev">
-      <div className="rangee">
-        <div className="colonnes">
-          <ul>
-            <li>
-              <h1>
-                <Link to="/profile">Profil</Link>
-              </h1>
-            </li>
-            <li>
-              <h1>
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
 
-src/pages/Profile/Purchases.jsx [36:47]:
+src/pages/Profile/EditProfile/EditProfile.jsx [25:30]:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  return (
-    <div className="dev">
-      <div className="rangee">
-        <div className="colonnes">
-          <ul>
-            <li>
-              <h1>
-                <Link to="/profile">Profil</Link>
-              </h1>
-            </li>
-            <li>
-              <h1>
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 

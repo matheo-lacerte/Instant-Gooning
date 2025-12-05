@@ -1,68 +1,47 @@
-src/pages/Profile/Profile.jsx [25:52]:
+src/pages/Dev/DevGameDetail/devGameDetail.jsx [316:333]:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  return (
-    <div className="dev">
-      <div className="rangee">
-        <div className="colonnes">
-          <ul>
-            <li>
-              <h1>
-                <Link to="/profile">Profil</Link>
-              </h1>
-            </li>
-            <li>
-              <h1>
-                <Link to="/profile/purchases">Mes achats</Link>
-              </h1>
-            </li>
-            <li>
-              <h1>
-                <Link to="/dev">Développeur</Link>
-              </h1>
-            </li>
-            <li>
-              <h1>
-                <Link to="/cart">Panier</Link>
-              </h1>
-            </li>
-          </ul>
-        </div>
-        <div className="colonnes userData">
+      <section
+        className="game-hero"
+        style={{
+          backgroundImage: game.cover_url
+            ? `linear-gradient(180deg, rgba(10,12,16,0.8), rgba(10,12,16,0.95)), url(${game.cover_url})`
+            : undefined,
+        }}
+        aria-label="En-tête du jeu"
+      >
+        <div className="detail-header">
+          <div className="gd-cover">
+            {game.cover_url ? (
+              <img src={game.cover_url} alt={game.title} />
+            ) : (
+              <div className="thumb-fallback">{game.title?.[0] ?? "?"}</div>
+            )}
+          </div>
+          <div className="meta">
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
 
-src/pages/Profile/Purchases.jsx [36:64]:
+src/pages/GameDetail/GameDetail.jsx [187:204]:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  return (
-    <div className="dev">
-      <div className="rangee">
-        <div className="colonnes">
-          <ul>
-            <li>
-              <h1>
-                <Link to="/profile">Profil</Link>
-              </h1>
-            </li>
-            <li>
-              <h1>
-                <Link to="/profile/purchases">Mes achats</Link>
-              </h1>
-            </li>
-            <li>
-              <h1>
-                <Link to="/dev">Développeur</Link>
-              </h1>
-            </li>
-            <li>
-              <h1>
-                <Link to="/cart">Panier</Link>
-              </h1>
-            </li>
-          </ul>
-        </div>
-
-        <div className="colonnes userData">
+      <section
+        className="game-hero"
+        style={{
+          backgroundImage: game.cover_url
+            ? `linear-gradient(180deg, rgba(10,12,16,0.8), rgba(10,12,16,0.95)), url(${game.cover_url})`
+            : undefined,
+        }}
+        aria-label="En-tête du jeu"
+      >
+        <div className="detail-header">
+          <div className="gd-cover">
+            {game.cover_url ? (
+              <img src={game.cover_url} alt={game.title} />
+            ) : (
+              <div className="thumb-fallback">{game.title?.[0] ?? "?"}</div>
+            )}
+          </div>
+          <div className="meta">
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 

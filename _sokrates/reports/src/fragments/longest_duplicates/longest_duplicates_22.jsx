@@ -1,39 +1,27 @@
-src/pages/Dev/DevGameDetail/devGameDetail.jsx [282:295]:
+src/pages/Dev/DevGameDetail/devGameDetail.jsx [140:147]:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-        <Link className="back-link" to="/" aria-label="Retour à l'accueil">
-          <span className="icon" aria-hidden>
-            <svg viewBox="0 0 24 24" width="12" height="12">
-              <path
-                d="M15 18l-6-6 6-6"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </span>
-          <span>Retour</span>
+  const formatPrice = (value) => {
+    if (value == null) return "";
+    const cents = Number(value);
+    return new Intl.NumberFormat("fr-CA", {
+      style: "currency",
+      currency: "CAD",
+    }).format(cents / 100);
+  };
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
 
-src/pages/GameDetail/GameDetail.jsx [141:154]:
+src/pages/GameDetail/GameDetail.jsx [82:89]:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-        <Link className="back-link" to="/" aria-label="Retour à l'accueil">
-          <span className="icon" aria-hidden>
-            <svg viewBox="0 0 24 24" width="12" height="12">
-              <path
-                d="M15 18l-6-6 6-6"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </span>
-          <span>Retour</span>
+  const formatPrice = (value) => {
+    if (value == null) return "";
+    const cents = Number(value);
+    return new Intl.NumberFormat("fr-CA", {
+      style: "currency",
+      currency: "CAD",
+    }).format(cents / 100);
+  };
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 

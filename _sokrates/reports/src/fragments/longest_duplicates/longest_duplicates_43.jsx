@@ -1,27 +1,23 @@
-src/pages/Dev/DevGameDetail/devGameDetail.jsx [101:108]:
+src/pages/Dev/Dev.jsx [230:235]:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  const formatPrice = (value) => {
-    if (value == null) return "";
-    const cents = Number(value);
-    return new Intl.NumberFormat("fr-CA", {
-      style: "currency",
-      currency: "CAD",
-    }).format(cents / 100);
-  };
+            } catch (e) {
+                setErrorMsg(String(e.message || e));
+            } finally {
+                setLoading(false);
+            }
+        };
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
 
-src/pages/GameDetail/GameDetail.jsx [62:69]:
+src/pages/Dev/Dev.jsx [283:288]:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  const formatPrice = (value) => {
-    if (value == null) return "";
-    const cents = Number(value);
-    return new Intl.NumberFormat("fr-CA", {
-      style: "currency",
-      currency: "CAD",
-    }).format(cents / 100);
-  };
+        } catch (e) {
+            setErrorMsg(String(e.message || e));
+        } finally {
+            setLoading(false);
+        }
+    };
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 

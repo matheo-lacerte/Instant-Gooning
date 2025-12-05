@@ -1,49 +1,35 @@
-src/pages/oldDev/CreateGame/CreateGame.jsx [73:91]:
+src/pages/Dev/DevGameDetail/devGameDetail.jsx [69:80]:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    }
-  };
-
-  return (
-    <div className="dev">
-      <div className="rangee">
-        <div className="colonnes">
-          <ul>
-            <li>
-              <h1>
-                <Link to="/profile">Profil</Link>
-              </h1>
-            </li>
-            <li>
-              <h1>
-                <Link to="/dev">Développeur</Link>
-              </h1>
-            </li>
-            <li>
+  useEffect(() => {
+    let ignore = false;
+    async function load() {
+      setLoading(true);
+      setError(null);
+      try {
+        const response = await fetch(
+          `http://localhost:5174/api/games/GetGameById/${id}`,
+          { method: "GET" }
+        );
+        if (!response.ok) throw new Error("Réponse invalide du serveur");
+        const data = await response.json();
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
 
-src/pages/oldDev/Dev.jsx [95:113]:
+src/pages/GameDetail/GameDetail.jsx [33:44]:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    }
-  };
-
-  return (
-    <div className="dev">
-      <div className="rangee">
-        <div className="colonnes">
-          <ul>
-            <li>
-              <h1>
-                <Link to="/profile">Profil</Link>
-              </h1>
-            </li>
-            <li>
-              <h1>
-                <Link to="/dev">Développeur</Link>
-              </h1>
-            </li>
-            <li>
+  useEffect(() => {
+    let ignore = false;
+    async function load() {
+      setLoading(true);
+      setError(null);
+      try {
+        const response = await fetch(
+          `http://localhost:5174/api/games/GetGameById/${id}`,
+          { method: "GET" }
+        );
+        if (!response.ok) throw new Error("Réponse invalide du serveur");
+        const data = await response.json();
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 

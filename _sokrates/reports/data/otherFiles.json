@@ -1,21 +1,28 @@
 [ {
+  "relativePath" : "cypress/fixtures/example.json",
+  "extension" : "json",
+  "linesOfCode" : 5,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
   "relativePath" : "git-history.txt",
   "extension" : "txt",
-  "linesOfCode" : 723,
+  "linesOfCode" : 1760,
   "unitsCount" : 0,
   "unitsMcCabeIndexSum" : 0,
   "linesOfCodeInUnits" : 0
 }, {
   "relativePath" : "package-lock.json",
   "extension" : "json",
-  "linesOfCode" : 4661,
+  "linesOfCode" : 6187,
   "unitsCount" : 0,
   "unitsMcCabeIndexSum" : 0,
   "linesOfCodeInUnits" : 0
 }, {
   "relativePath" : "package.json",
   "extension" : "json",
-  "linesOfCode" : 44,
+  "linesOfCode" : 45,
   "unitsCount" : 0,
   "unitsMcCabeIndexSum" : 0,
   "linesOfCodeInUnits" : 0

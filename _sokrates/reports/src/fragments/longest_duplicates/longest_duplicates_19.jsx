@@ -1,39 +1,31 @@
-src/pages/GameDetail/GameDetail.jsx [141:154]:
+src/pages/Profile/EditProfile/EditProfile.jsx [95:104]:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-        <Link className="back-link" to="/" aria-label="Retour à l'accueil">
-          <span className="icon" aria-hidden>
-            <svg viewBox="0 0 24 24" width="12" height="12">
-              <path
-                d="M15 18l-6-6 6-6"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </span>
-          <span>Retour</span>
+            />
+          </div>
+
+          <div className="control">
+            <label htmlFor="firstName">Prénom</label>
+            <input
+              type="text"
+              id="firstName"
+              value={first}
+              onChange={(e) => setFirst(e.target.value)}
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
 
-src/pages/GameDetail/GameDetail.jsx [172:185]:
+src/pages/Profile/Profile.jsx [63:72]:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-        <Link className="back-link" to="/" aria-label="Retour à l'accueil">
-          <span className="icon" aria-hidden>
-            <svg viewBox="0 0 24 24" width="12" height="12">
-              <path
-                d="M15 18l-6-6 6-6"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </span>
-          <span>Retour</span>
+            />
+          </div>
+
+          <div className="control">
+            <label htmlFor="firstName">Prénom</label>
+            <input
+              type="text"
+              id="firstName"
+              value={first}
+              onChange={(e) => setFirst(e.target.value)}
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 

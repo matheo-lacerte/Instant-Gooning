@@ -12,9 +12,10 @@
     </style>
 </head>
 <body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
-<h3 style="margin-bottom: 0">server/controllers/paymentsController.js (<b>142</b> lines of code) (<a href="paymentsController.js">raw</a>):</h3>
+<h3 style="margin-bottom: 0">server/controllers/paymentsController.js (<b>152</b> lines of code) (<a href="paymentsController.js">raw</a>):</h3>
 <div id="editor">import Stripe from &quot;stripe&quot;;
 import { supabaseAdmin } from &quot;../config/supabase.js&quot;;
+import { syncStripeForGame } from &quot;../utils/stripePricing.js&quot;;
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: &quot;2024-06-20&quot; });
 
 export async function checkoutCart(req, res) {
@@ -34,11 +35,23 @@ export async function checkoutCart(req, res) {
 
     for (const it of items) {
       const game = it.games;
-      const priceId = game?.stripe_price_id;
-      if (!priceId) {
-        console.error(&quot;[checkoutCart] missing stripe_price_id for game:&quot;, game?.id);
-        return res.status(500).json({ error: `Stripe price missing for game ${game?.id}` });
+      let priceId = game?.stripe_price_id;
+
+      // Ensure we have an ACTIVE price; auto-sync if missing/inactive
+      try {
+        if (!priceId) {
+          priceId = await syncStripeForGame(game);
+        } else {
+          const pr = await stripe.prices.retrieve(priceId);
+          if (!pr.active) {
+            priceId = await syncStripeForGame(game);
+          }
+        }
+      } catch (syncErr) {
+        console.error(&quot;[checkoutCart] price sync failed for game&quot;, game?.id, syncErr);
+        return res.status(500).json({ error: `&Eacute;chec de pr&eacute;paration du prix Stripe pour le jeu ${game?.id}` });
       }
+
       line_items.push({ price: priceId, quantity: it.quantity });
     }
 

@@ -247,11 +247,25 @@
     "componentsFolderDepth" : 1,
     "minComponentsCount" : 0,
     "components" : [ {
+      "name" : "cypress",
+      "sourceFileFilters" : [ {
+        "pathPattern" : "./cypress/.*",
+        "contentPattern" : "",
+        "exception" : false,
+        "note" : ""
+      } ],
+      "files" : [ ]
+    }, {
       "name" : "ROOT",
       "sourceFileFilters" : [ {
         "pathPattern" : "./.*",
         "contentPattern" : "",
         "exception" : false,
+        "note" : ""
+      }, {
+        "pathPattern" : "./cypress/.*",
+        "contentPattern" : "",
+        "exception" : true,
         "note" : ""
       }, {
         "pathPattern" : "./server/.*",

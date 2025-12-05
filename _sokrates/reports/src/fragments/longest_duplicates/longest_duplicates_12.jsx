@@ -1,49 +1,43 @@
-src/pages/Profile/EditPassword/EditPassword.jsx [48:66]:
+src/pages/Dev/DevGameDetail/devGameDetail.jsx [8:23]:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    }
-  };
-
-  return (
-    <div className="dev">
-      <div className="rangee">
-        <div className="colonnes">
-          <ul>
-            <li>
-              <h1>
-                <Link to="/profile">Profil</Link>
-              </h1>
-            </li>
-            <li>
-              <h1>
-                <Link to="/dev">Développeur</Link>
-              </h1>
-            </li>
-            <li>
+      <span className="icon" aria-hidden>
+        <svg viewBox="0 0 24 24" width="12" height="12">
+          <path
+            d="M15 18l-6-6 6-6"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </span>
+      <span>Retour</span>
+    </Link>
+  );
+}
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
 
-src/pages/oldDev/CreateGame/CreateGame.jsx [73:91]:
+src/pages/Dev/DevGameDetail/devGameDetail.jsx [28:43]:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    }
-  };
-
-  return (
-    <div className="dev">
-      <div className="rangee">
-        <div className="colonnes">
-          <ul>
-            <li>
-              <h1>
-                <Link to="/profile">Profil</Link>
-              </h1>
-            </li>
-            <li>
-              <h1>
-                <Link to="/dev">Développeur</Link>
-              </h1>
-            </li>
-            <li>
+      <span className="icon" aria-hidden>
+        <svg viewBox="0 0 24 24" width="12" height="12">
+          <path
+            d="M15 18l-6-6 6-6"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </span>
+      <span>Retour</span>
+    </Link>
+  );
+}
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 

@@ -1,38 +1,23 @@
-src/pages/Profile/EditPassword/EditPassword.jsx [61:73]:
+src/pages/GameDetail/GameDetail.jsx [120:125]:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-            <li>
-              <h1>
-                <Link to="/dev">Développeur</Link>
-              </h1>
-            </li>
-            <li>
-              <h1>
-                <Link to="/cart">Panier</Link>
-              </h1>
-            </li>
-          </ul>
-        </div>
-        <div className="colonnes userData">
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
 
-src/pages/Profile/Purchases.jsx [51:64]:
+src/pages/Profile/EditPassword/EditPassword.jsx [27:32]:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-            <li>
-              <h1>
-                <Link to="/dev">Développeur</Link>
-              </h1>
-            </li>
-            <li>
-              <h1>
-                <Link to="/cart">Panier</Link>
-              </h1>
-            </li>
-          </ul>
-        </div>
-
-        <div className="colonnes userData">
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
