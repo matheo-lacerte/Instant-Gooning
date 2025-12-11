@@ -20,7 +20,6 @@ import Search from "./pages/Search/Search.jsx";
 import Profile from "./pages/Profile/Profile.jsx";
 import PurchaseSuccess from "./pages/Purchase/Success.jsx";
 import Cart from "./pages/Cart/Cart.jsx";
-import DevGameDetail from "./pages/Dev/DevGameDetail/devGameDetail.jsx";
 import Support from "./pages/Support/Support.jsx";
 
 import "./App.css"
@@ -86,7 +85,7 @@ const App = () => {
     { path: "", element: <Home /> },
     { path: "/game/:id", element: <GameDetail /> },
     { path: "/dev", element: <Dev /> },
-    { path: "/dev/game/:id", element: <DevGameDetail /> },
+    { path: "/dev/game/:id", element: <GameDetail /> },
     { path: "/logout", element: <Logout /> },
     { path: "/search", element: <Search /> },
     { path: "/profile/*", element: <Profile /> },
