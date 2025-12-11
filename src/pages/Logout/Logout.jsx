@@ -8,7 +8,7 @@ const Logout = () => {
   const auth = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const deconnexion = async () => {
+  const handleSubmit = async () => {
     try {
       const reponse = await fetch("/api/auth/logout", {
         method: "POST",
@@ -19,25 +19,24 @@ const Logout = () => {
         throw new Error("Erreur lors de la déconnexion");
       }
 
-  const reponseData = await reponse.json();
-  console.log(reponseData.message);
-      auth.logout();
-      navigate("/");
+      const reponseData = await reponse.json();
+      console.log(reponseData.message);
     } catch (error) {
-      auth.logout();
-      navigate("/");
+      console.error("Erreur lors de la déconnexion :", error);
     }
+    auth.logout();
+    navigate("/");
   };
 
   return (
     <div className="logout-page">
       <h1>Voulez-vous déconnecter?</h1>
-      <div className="logout-choices">
-        <button className="button_logout green" onClick={deconnexion}>
+      <div>
+        <button className="button_logout green" onClick={handleSubmit}>
           Oui
         </button>
         <button className="button_logout red">
-          <Link to="/dev">Non</Link>
+          <Link to="/profile">Non</Link>
         </button>
       </div>
     </div>
