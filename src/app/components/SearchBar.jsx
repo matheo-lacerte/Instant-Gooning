@@ -19,6 +19,30 @@ export default function SearchBar({
   const [loading, setLoading] = useState(false);
   const [loadError, setLoadError] = useState(null);
 
+  function Image() {
+    return (
+      <svg
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16Z"
+          stroke="currentColor"
+          strokeWidth="2"
+        />
+        <path
+          d="m21 21-4.3-4.3"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+      </svg>
+    );
+  }
+
   useEffect(() => {
     const t = setTimeout(() => setDebounced(value), debounceMs);
     return () => clearTimeout(t);
@@ -29,9 +53,7 @@ export default function SearchBar({
     (async () => {
       try {
         setLoading(true);
-
         let data = null;
-
         const res = await fetch("/api/games/getAllGames", {
           method: "GET",
         });
@@ -147,25 +169,7 @@ export default function SearchBar({
       <div className="sb-inner">
         <span className="sb-icon" aria-hidden="true">
           {/* search icon */}
-          <svg
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16Z"
-              stroke="currentColor"
-              strokeWidth="2"
-            />
-            <path
-              d="m21 21-4.3-4.3"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-            />
-          </svg>
+          <Image />
         </span>
         <input
           ref={inputRef}
@@ -213,47 +217,34 @@ export default function SearchBar({
           <span className="sb-spacer" aria-hidden="true" />
         )}
         <button type="submit" className="sb-submit" aria-label="Rechercher">
-          <svg
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16Z"
-              stroke="currentColor"
-              strokeWidth="2"
-            />
-            <path
-              d="m21 21-4.3-4.3"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-            />
-          </svg>
+          <Image />
         </button>
       </div>
       {open && (
-        <ul className="sb-suggestions" id={listboxId} role="listbox">
-          {suggestions.map((s, idx) => (
-            <li
-              key={s.id}
-              id={`${listboxId}-opt-${idx}`}
-              role="option"
-              aria-selected={idx === highlight}
-              className={idx === highlight ? "active" : undefined}
-              onMouseDown={(e) => e.preventDefault()}
-              onClick={(e) => {
-                e.preventDefault();
-                selectSuggestion(s);
-              }}
-            >
-              <img src={s.icon} alt={s.label} className="sb-suggest-icon" />
-              <span className="sb-suggest-label">{s.label}</span>
-            </li>
-          ))}
-        </ul>
+        <>
+          {loading && <div className="sb-loading">Chargement...</div>}
+          {loadError && <div className="sb-error">Erreur : {loadError}</div>}
+
+          <ul className="sb-suggestions" id={listboxId} role="listbox">
+            {suggestions.map((s, idx) => (
+              <li
+                key={s.id}
+                id={`${listboxId}-opt-${idx}`}
+                role="option"
+                aria-selected={idx === highlight}
+                className={idx === highlight ? "active" : undefined}
+                onMouseDown={(e) => e.preventDefault()}
+                onClick={(e) => {
+                  e.preventDefault();
+                  selectSuggestion(s);
+                }}
+              >
+                <img src={s.icon} alt={s.label} className="sb-suggest-icon" />
+                <span className="sb-suggest-label">{s.label}</span>
+              </li>
+            ))}
+          </ul>
+        </>
       )}
     </form>
   );
