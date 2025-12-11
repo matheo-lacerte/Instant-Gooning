@@ -1,3 +1,7 @@
+2025-12-11 2384229@cmontmorency.qc.ca a015677bb0ef124cd124eb821c4ab99ea0d61a97 git-history.txt AnasRassiane
+2025-12-11 2384229@cmontmorency.qc.ca a015677bb0ef124cd124eb821c4ab99ea0d61a97 src/app/components/SearchBar.jsx AnasRassiane
+2025-12-11 2384229@cmontmorency.qc.ca ac1dac903f4500a85cc6c9de5d96644852fb73ba git-history.txt AnasRassiane
+2025-12-11 2384229@cmontmorency.qc.ca ac1dac903f4500a85cc6c9de5d96644852fb73ba src/app/components/SearchBar.jsx AnasRassiane
 2025-12-11 2384229@cmontmorency.qc.ca e98a9f6db3d3e147609d598565469d600d9f2122 git-history.txt AnasRassiane
 2025-12-11 2384229@cmontmorency.qc.ca e98a9f6db3d3e147609d598565469d600d9f2122 src/App.css AnasRassiane
 2025-12-11 2384229@cmontmorency.qc.ca e98a9f6db3d3e147609d598565469d600d9f2122 src/App.jsx AnasRassiane

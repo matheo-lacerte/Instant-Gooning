@@ -1,0 +1,46 @@
+coverage/components/SearchBar.jsx.html [589:605]:
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+export default function SearchBar({
+  value = "",
+  onChange,
+  onSubmit,
+  placeholder = "Rechercher un jeu...",
+  className = "search-bar",
+  debounceMs = 250,
+}) {
+  const inputRef = useRef(null);
+  const formRef = useRef(null);
+  const listboxId = useId();
+  const [open, setOpen] = useState(false);
+  const [highlight, setHighlight] = useState(-1);
+  const [debounced, setDebounced] = useState(value);
+  const [allGames, setAllGames] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [loadError, setLoadError] = useState(null);
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+
+src/app/components/SearchBar.jsx [4:20]:
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+export default function SearchBar({
+  value = "",
+  onChange,
+  onSubmit,
+  placeholder = "Rechercher un jeu...",
+  className = "search-bar",
+  debounceMs = 250,
+}) {
+  const inputRef = useRef(null);
+  const formRef = useRef(null);
+  const listboxId = useId();
+  const [open, setOpen] = useState(false);
+  const [highlight, setHighlight] = useState(-1);
+  const [debounced, setDebounced] = useState(value);
+  const [allGames, setAllGames] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [loadError, setLoadError] = useState(null);
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+

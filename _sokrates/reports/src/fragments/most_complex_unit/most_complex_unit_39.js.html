@@ -1,0 +1,36 @@
+<html>
+<head>
+    <title>export async function getGameById()</title>
+    <link rel="stylesheet" charset="UTF-8" href="https://d2bb1mtyn3kglb.cloudfront.net/lib/highlight/styles/docco.min.css">
+    <script charset="UTF-8" type="application/javascript" src="https://d2bb1mtyn3kglb.cloudfront.net/lib/highlight/highlight.min.js"></script>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">export async function getGameById()</h3>
+<p style="margin-top: 4px">in <i>server/controllers/gamesController.js [29:42]</i></p>
+<ul>
+    <li><b>14</b> lines of code</li>
+    <li><b>3</b> McCabe index (conditional complexity)</li>
+</ul>
+<pre>
+<code class="js">
+export async function getGameById(req, res) {
+    const { id } = req.params;
+    try {
+        const { data, error } = await supabase
+            .from(&quot;games&quot;)
+            .select(&quot;*&quot;)
+            .eq(&quot;id&quot;, id)
+            .single();
+        if (error) throw error;
+        res.json(data);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+}
+
+</code>
+</pre>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+</body>

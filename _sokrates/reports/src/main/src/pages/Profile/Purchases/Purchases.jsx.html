@@ -1,0 +1,139 @@
+<html>
+<head>
+    <title>src/pages/Profile/Purchases/Purchases.jsx</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">src/pages/Profile/Purchases/Purchases.jsx (<b>108</b> lines of code) (<a href="Purchases.jsx">raw</a>):</h3>
+<div id="editor">import React, { useEffect, useState } from &quot;react&quot;;
+import { Link } from &quot;react-router-dom&quot;;
+import &quot;../../Profile/Profile.css&quot;;
+
+export default function Purchases() {
+  const [token] = useState(localStorage.getItem(&quot;token&quot;));
+  const [purchases, setPurchases] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() =&gt; {
+    let cancelled = false;
+    async function load() {
+      if (!token) return setError(&quot;Utilisateur non connect&eacute;&quot;);
+      setLoading(true);
+      setError(null);
+      try {
+        const res = await fetch(&quot;/api/user/keys&quot;, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const data = await res.json();
+        if (cancelled) return;
+        if (res.ok) setPurchases(Array.isArray(data) ? data : []);
+        else
+          setError(data.error || &quot;Erreur lors de la r&eacute;cup&eacute;ration des achats&quot;);
+      } catch (e) {
+        if (!cancelled) setError(e.message || String(e));
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    }
+    load();
+    return () =&gt; {
+      cancelled = true;
+    };
+  }, [token]);
+
+  return (
+    &lt;&gt;
+      &lt;h1&gt;Mes achats&lt;/h1&gt;
+
+      {loading ? (
+        &lt;div&gt;Chargement des achats&hellip;&lt;/div&gt;
+      ) : error ? (
+        &lt;div style={{ color: &quot;#ffb4b4&quot; }}&gt;Erreur: {error}&lt;/div&gt;
+      ) : purchases.length === 0 ? (
+        &lt;div&gt;Aucun achat trouv&eacute;.&lt;/div&gt;
+      ) : (
+        &lt;div className=&quot;purchases-list&quot;&gt;
+          {purchases.map((p, idx) =&gt; (
+            &lt;div
+              key={`purchase-${idx}`}
+              className=&quot;purchase-item&quot;
+              style={{
+                border: &quot;1px solid var(--border, #1f2937)&quot;,
+                padding: 12,
+                borderRadius: 8,
+                marginBottom: 10,
+              }}
+            &gt;
+              &lt;div
+                style={{
+                  display: &quot;flex&quot;,
+                  justifyContent: &quot;space-between&quot;,
+                  alignItems: &quot;baseline&quot;,
+                  gap: 12,
+                }}
+              &gt;
+                &lt;div style={{ fontWeight: 700 }}&gt;{p.title}&lt;/div&gt;
+                &lt;div style={{ color: &quot;var(--muted, #9ca3af)&quot;, fontSize: 12 }}&gt;
+                  {new Date(p.created_at).toLocaleString?.() || p.created_at}
+                &lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div
+                style={{
+                  marginTop: 6,
+                  display: &quot;flex&quot;,
+                  gap: 12,
+                  flexWrap: &quot;wrap&quot;,
+                }}
+              &gt;
+                &lt;div&gt;
+                  &lt;strong&gt;Cl&eacute;:&lt;/strong&gt;{&quot; &quot;}
+                  &lt;code
+                    style={{
+                      background: &quot;rgba(255,255,255,0.03)&quot;,
+                      padding: &quot;2px 6px&quot;,
+                      borderRadius: 4,
+                    }}
+                  &gt;
+                    {p.key}
+                  &lt;/code&gt;
+                &lt;/div&gt;
+                &lt;div&gt;
+                  &lt;strong&gt;Statut:&lt;/strong&gt; {p.status}
+                &lt;/div&gt;
+                {p.order_id &amp;&amp; (
+                  &lt;div&gt;
+                    &lt;strong&gt;Commande:&lt;/strong&gt; {p.order_id}
+                  &lt;/div&gt;
+                )}
+              &lt;/div&gt;
+            &lt;/div&gt;
+          ))}
+        &lt;/div&gt;
+      )}
+
+      &lt;div style={{ marginTop: 12 }}&gt;
+        &lt;Link to=&quot;/profile&quot;&gt;&larr; Retour au profil&lt;/Link&gt;
+      &lt;/div&gt;
+    &lt;/&gt;
+  );
+}
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/html");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

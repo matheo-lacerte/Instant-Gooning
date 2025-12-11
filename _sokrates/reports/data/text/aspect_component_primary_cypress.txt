@@ -1,0 +1,5 @@
+Path	Lines of Code
+cypress/support/commands.js	1
+cypress/support/component-index.html	12
+cypress/support/component.js	3
+cypress/support/e2e.js	1

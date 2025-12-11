@@ -1,0 +1,2 @@
+coverage/components/SearchBar.jsx.html
+src/app/components/SearchBar.jsx

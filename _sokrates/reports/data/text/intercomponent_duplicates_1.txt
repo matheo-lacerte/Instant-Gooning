@@ -1,0 +1,12 @@
+17 duplicated lines in:
+  - coverage/components/SearchBar.jsx.html (589:605, 2%)
+  - src/app/components/SearchBar.jsx (4:20, 7%)
+
+6 duplicated lines in:
+  - coverage/components/SearchBar.jsx.html (761:766, <1%)
+  - src/app/components/SearchBar.jsx (176:181, 2%)
+
+6 duplicated lines in:
+  - coverage/components/SearchBar.jsx.html (681:686, <1%)
+  - src/app/components/SearchBar.jsx (96:101, 2%)
+

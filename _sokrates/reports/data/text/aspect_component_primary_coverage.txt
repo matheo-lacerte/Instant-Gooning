@@ -1,0 +1,14 @@
+Path	Lines of Code
+coverage/Context/AuthContext.jsx.html	107
+coverage/Context/index.html	102
+coverage/base.css	203
+coverage/block-navigation.js	66
+coverage/components/GameCard.jsx.html	155
+coverage/components/Guards/RequireAdmin.jsx.html	95
+coverage/components/Guards/RequireDev.jsx.html	125
+coverage/components/Guards/index.html	116
+coverage/components/SearchBar.jsx.html	851
+coverage/components/index.html	116
+coverage/index.html	130
+coverage/prettify.css	1
+coverage/sorter.js	171
