@@ -27,10 +27,7 @@ export default function Profile() {
     ModeComponent = <EditProfile />;
   } else if (edit === "password") {
     ModeComponent = <EditPassword />;
-  } else if (
-    location.pathname.endsWith("/purchase") ||
-    location.pathname.endsWith("/purchases")
-  ) {
+  } else if (location.pathname.endsWith("/purchases")) {
     ModeComponent = <Purchases />;
   } else {
     ModeComponent = <DefaultProfile />;
@@ -106,15 +103,13 @@ export default function Profile() {
   };
 
   return (
-    <div className="dev">
+    <div className="profile">
       <div className="rangee">
         <NavProfile />
-        <div className="colonnes userData">
-          {ModeComponent}
-        </div>
+        <div className="colonnes userData">{ModeComponent}</div>
       </div>
 
-      <Link to="/logout" className="button_dev">
+      <Link to="/logout" className="button_logout">
         Déconnexion
       </Link>
     </div>
