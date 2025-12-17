@@ -6,7 +6,7 @@ describe("Profil: modifier informations et persistance", () => {
     cy.visit("http://localhost:5173/login");
     cy.get('#email').type('test@test.com');
     cy.get('#password').type('Abcde123456!');
-    cy.intercept('POST', 'http://localhost:5174/api/auth/login').as('login');
+    cy.intercept('POST', '**/api/auth/login').as('login');
     cy.contains('Se connecter').click();
     cy.wait('@login').its('response.statusCode').should('eq', 200);
 
@@ -16,16 +16,18 @@ describe("Profil: modifier informations et persistance", () => {
 
     // Aller à la page d'édition
     cy.contains('Modifier les informations du compte').click();
-    cy.url().should('include', '/profile/editProfile');
+    cy.url().should('include', '/profile?edit=profile');
 
     // Modifier le prénom
     const newFirst = `Test-${Date.now()}`;
     cy.get('#firstName').clear().type(newFirst);
 
     // Sauvegarder
-    cy.intercept('POST', 'http://localhost:5174/api/user/changeUserProfile').as('saveProfile');
+    cy.intercept('POST', '**/api/user/changeUserProfile').as('saveProfile');
     cy.contains('Sauvegarder').click();
     cy.wait('@saveProfile').its('response.statusCode').should('eq', 200);
+
+    cy.reload();
 
     // Retour profil et vérifications
     cy.url().should('include', '/profile');

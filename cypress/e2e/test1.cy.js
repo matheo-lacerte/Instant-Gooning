@@ -9,16 +9,16 @@ describe("Test register, login, refresh", () => {
     cy.get('input[id="first_name"]').type('Test');
     cy.get('input[id="last_name"]').type('User');
     cy.get('input[id="password"]').type('Abcde123456!');
-    cy.intercept('POST', 'http://localhost:5174/api/auth/register').as('register');
+    cy.intercept('POST', '**/api/auth/register').as('register');
     cy.contains("S'inscrire").click();
     cy.wait('@register').its('response.statusCode').should('eq', 201);
 
     
     cy.get('input[id="email"]').type('test@test.com');
     cy.get('input[id="password"]').type('Abcde123456!');
-    cy.intercept('POST', 'http://localhost:5174/api/auth/login').as('login');
+    cy.intercept('POST', '**/api/auth/login').as('login');
     cy.contains('Se connecter').click();
-    cy.wait('@login').its('response.statusCode').should('eq', 201);
+    cy.wait('@login').its('response.statusCode').should('eq', 200);
  
     cy.reload();
   });
