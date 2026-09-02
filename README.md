@@ -10,15 +10,15 @@ A full-stack e-commerce platform for browsing and purchasing digital games. It i
 
 ### Game catalogue
 
-![Game catalogue](docs/screenshots/catalog.png)
+![Game catalogue](doc/screenshots/catalog.png)
 
 ### Shopping cart
 
-![Shopping cart](docs/screenshots/cart.png)
+![Shopping cart](doc/screenshots/cart.png)
 
 ### Developer dashboard
 
-![Developer dashboard](docs/screenshots/developer-dashboard.png)
+![Developer dashboard](doc/screenshots/developer-dashboard.png)
 
 ## Main features
 
