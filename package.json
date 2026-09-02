@@ -1,5 +1,5 @@
 {
-  "name": "instant-gooning",
+  "name": "game-commerce-platform",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -58,17 +58,17 @@
     "vite": "^7.1.2",
     "vitest": "^4.0.15"
   },
-  "description": "This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.",
+  "description": "Game Commerce Platform is a full-stack marketplace for browsing games, managing carts, and completing Stripe-powered checkout.",
   "main": "cypress.config.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/matheo-lacerte/Instant-Gooning.git"
+    "url": "git+https://github.com/matheo-lacerte/game-commerce-platform.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/matheo-lacerte/Instant-Gooning/issues"
+    "url": "https://github.com/matheo-lacerte/game-commerce-platform/issues"
   },
-  "homepage": "https://github.com/matheo-lacerte/Instant-Gooning#readme"
+  "homepage": "https://github.com/matheo-lacerte/game-commerce-platform#readme"
 }

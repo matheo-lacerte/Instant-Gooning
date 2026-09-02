@@ -221,7 +221,7 @@ export default function Home() {
       </section>
 
       <footer className="page-footer">
-        <div>© {new Date().getFullYear()} Instant Gooning</div>
+        <div>© {new Date().getFullYear()} Game Commerce Platform</div>
         <div className="footer-links">
           <Link to="/support">Support</Link>
           <a href="#">Conditions</a>

@@ -9,7 +9,11 @@ lerna-debug.log*
 
 # Generated reports/history
 coverage/
+build/
+reports/
+tmp/
 git-history.txt
+_sokrates/reports/
 
 # Local Copilot agent artifacts
 .agents/
@@ -23,6 +27,11 @@ dist-ssr
 # Environment files
 .env
 .env.*
+.envrc
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 !.env.example
 
 # Editor directories and files
