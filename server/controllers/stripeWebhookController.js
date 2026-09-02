@@ -1,11 +1,10 @@
 // controllers/stripeWebhookController.js
-import Stripe from "stripe";
 import { supabaseAdmin } from "../config/supabase.js";
 import { generateKeyCode } from "../utils/keygen.js";
-
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: "2024-06-20" });
+import { getStripe } from "../utils/stripeClient.js";
 
 export async function stripeWebhook(req, res) {
+  const stripe = getStripe();
   const sig = req.headers["stripe-signature"];
   let event;
   try {

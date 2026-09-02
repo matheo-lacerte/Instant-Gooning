@@ -60,4 +60,8 @@ app.get("/api/test-db", async (_req, res) => {
 });
 
 const port = process.env.PORT || 5174;
-app.listen(port, () => console.log(`API server on http://localhost:${port}`));
+if (!process.env.VERCEL) {
+  app.listen(port, () => console.log(`API server on http://localhost:${port}`));
+}
+
+export default app;

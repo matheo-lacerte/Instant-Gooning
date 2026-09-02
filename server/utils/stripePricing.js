@@ -1,6 +1,5 @@
-import Stripe from "stripe";
 import { supabaseAdmin } from "../config/supabase.js";
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: "2024-06-20" });
+import { getStripe } from "./stripeClient.js";
 
 function effectiveAmount(game) {
   const eff = Number(game.discounted_price ?? 0) > 0 ? Number(game.discounted_price) : Number(game.price);
@@ -8,6 +7,7 @@ function effectiveAmount(game) {
 }
 
 export async function syncStripeForGame(game) {
+  const stripe = getStripe();
   const currency = (game.currency || process.env.DEFAULT_CURRENCY || "CAD").toLowerCase();
   const amount = effectiveAmount(game);
 
@@ -45,6 +45,7 @@ export async function syncStripeForGame(game) {
 }
 
 export async function archiveStripeForGame(game) {
+  const stripe = getStripe();
 
   if (game.stripe_price_id) {
     try { await stripe.prices.update(game.stripe_price_id, { active: false }); } catch {}

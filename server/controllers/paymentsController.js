@@ -1,10 +1,10 @@
-import Stripe from "stripe";
 import { supabaseAdmin } from "../config/supabase.js";
 import { syncStripeForGame } from "../utils/stripePricing.js";
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: "2024-06-20" });
+import { getStripe } from "../utils/stripeClient.js";
 
 export async function checkoutCart(req, res) {
   try {
+    const stripe = getStripe();
     const user_id = req.user?.id;
     const email = req.user?.email;
     if (!user_id || !email) return res.status(401).json({ error: "Non authentifié" });
@@ -83,6 +83,7 @@ export async function checkoutCart(req, res) {
 
 export async function getCheckoutSessionDetails(req, res) {
   try {
+    const stripe = getStripe();
     const session_id = req.query.session_id;
     if (!session_id) return res.status(400).json({ error: "session_id requis" });
     const { id: userId } = req.user || {};
@@ -119,6 +120,7 @@ export async function getCheckoutSessionDetails(req, res) {
 
 export async function clearCartFromSession(req, res) {
   try {
+    const stripe = getStripe();
     const session_id = req.query.session_id || req.body?.session_id;
     if (!session_id) return res.status(400).json({ error: "session_id requis" });
 
@@ -145,6 +147,7 @@ export async function clearCartFromSession(req, res) {
 
 export async function getKeysBySession(req, res) {
   try {
+    const stripe = getStripe();
     const user_id = req.user.id;
     const session_id = req.query.session_id;
     if (!session_id) return res.status(400).json({ error: "session_id requis" });
@@ -190,4 +193,3 @@ export async function getKeysBySession(req, res) {
     return res.status(500).json({ error: e.message });
   }
 }
-
