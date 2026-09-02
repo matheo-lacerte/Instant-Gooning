@@ -14,7 +14,7 @@ const Navigation = () => {
 
   return (
     <header className="main-header">
-      <Link to="/" className="title"> Instant Gooning </Link>
+      <Link to="/" className="title"> Game Commerce Platform </Link>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
       <div className="nav-buttons">
         {!auth.isLoggedIn ? (

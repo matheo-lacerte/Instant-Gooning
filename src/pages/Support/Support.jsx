@@ -74,7 +74,7 @@ export default function Support() {
         <div>
           <h1>Support</h1>
           <p>
-            Bienvenue sur la page de support d'Instant Gooning
+            Bienvenue sur la page de support de Game Commerce Platform
             <a href="mailto:support@example.com"> support@example.com</a>.
           </p>
         </div>
